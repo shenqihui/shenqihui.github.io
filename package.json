@@ -1,0 +1,14 @@
+{
+  "name": "shenqihui.github.io",
+  "version": "2.8.3",
+  "hexo version": "2.8.3",
+  "private": true,
+  "dependencies": {
+    "hexo-renderer-ejs": "*",
+    "hexo-renderer-stylus": "*",
+    "hexo-renderer-marked": "*",
+    "hexo-migrator-rss": "*",
+    "hexo-generator-feed": "*",
+    "hexo-generator-sitemap": "*"
+  }
+}
