@@ -84,7 +84,8 @@ plugins:
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
 ## Themes: https://github.com/hexojs/hexo/wiki/Themes
 # theme: landscape
-theme: hexo-theme-alberta
+# theme: hexo-theme-alberta
+theme: alberta
 exclude_generator:
 
 # Deployment
