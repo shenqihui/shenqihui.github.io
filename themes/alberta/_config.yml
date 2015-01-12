@@ -1,0 +1,32 @@
+# Header
+menu:
+  Home: /
+  # Archives: /archives
+  # About: /about
+  Weibo: http://www.weibo.com/p/1005051896403155
+  Github: https://github.com/shenqihui
+
+rss: /atom.xml
+
+menu_icon:
+  Home: fa-home
+  Archives: fa-archive
+  About: fa-user
+  Weibo: fa-weibo
+  Github: fa-github
+
+# Content
+excerpt_link: Read More
+fancybox: true
+
+#your personal image
+your_img: /img/profile_img.jpg
+
+# Miscellaneous
+google_analytics: UA-48454013-1
+baidu_analytics: a359010dd82707c1ee6d1ca5d64be33b
+favicon: favicon.ico
+twitter: shenqihui
+google_plus:
+fb_admins:
+fb_app_id:
