@@ -1,0 +1,7 @@
+Sitemap: http://shenqihui.github.io/sitemap.xml
+User-agent: 360Spider 
+Disallow: /
+User-agent: Sogou web spider 
+Disallow: /
+User-Agent: *
+Allow: /
