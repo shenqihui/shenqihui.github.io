@@ -1,6 +1,9 @@
 #博客系统
 ---
 
+### blog
+[地址](http://shenqihui.github.io/). [仓库](https://github.com/shenqihui/shenqihui.github.io/)
+
 
 ## 配置
 
