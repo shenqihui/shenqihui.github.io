@@ -7,9 +7,10 @@
 
 ## 配置
 
-需要配置的地方有两个，
-1. _config.yml  
-2. themes/hexo-theme-alberta/_config.yml  
+需要配置的地方有两个，  
+
+1. _config.yml    
+2. themes/hexo-theme-alberta/_config.yml    
 
 
 ## 如何修改主题
