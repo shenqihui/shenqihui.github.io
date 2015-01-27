@@ -14,6 +14,11 @@ _config.yml
 themes/alberta/_config.yml    
 ```
 
+## 初始化
+```bash
+npm install
+```
+
 
 ## 如何修改主题
 
