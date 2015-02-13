@@ -16,7 +16,12 @@ app = Flask(__name__)
 
 
 
-
+@app.route('/cb/<data>/')
+def cbdata(data):
+    print data
+    return '''
+        console.log(%s); done();
+    ''' % data
 
 # Create your views here.
 @app.route('/baidu/')
