@@ -1,6 +1,6 @@
-javascript 函数劫持  
-===
-2015/02/12 00:38:04
+title: 'javascript 函数劫持'
+tags: []  
+date: 2015-02-12 00:38:04
 
 ---
 
