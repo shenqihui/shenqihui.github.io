@@ -1,0 +1,1169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[神奇辉的Blog]]></title>
+  <subtitle><![CDATA[吾十有五而志于养猪，三十始养，四十亏本，五十再亏，六十亏大了，七十卒，不逾矩。现廿五，将卒。]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://shenqihui.github.io/"/>
+  <updated>2015-03-12T05:51:42.000Z</updated>
+  <id>http://shenqihui.github.io/</id>
+  
+  <author>
+    <name><![CDATA[神奇辉]]></name>
+    <email><![CDATA[c2hlbnFpaHVpMDkyMEBnbWFpbC5jb20=]]></email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[javascript 函数劫持]]></title>
+    <link href="http://shenqihui.github.io/2015/02/12/the-Italian-job-hijacked-the-javascript-function/"/>
+    <id>http://shenqihui.github.io/2015/02/12/the-Italian-job-hijacked-the-javascript-function/</id>
+    <published>2015-02-11T16:38:04.000Z</published>
+    <updated>2015-03-12T05:51:42.000Z</updated>
+    <content type="html"><![CDATA[<p>最近在搞坏事，因此总会有一些很猥琐很猥琐的想法。<br>具体有多少，只有你想不到，没有做不到。<br>这里就来讲讲如何在 js 层面，神不知鬼不觉的劫持函数。</p>
+<a id="more"></a>
+<h2 id="函数劫持是什么？">函数劫持是什么？</h2><p>这里所说的函数劫持，是在不改变原有功能的前提下，注入自己想要的功能。<br>改变原有功能的劫持方式简单粗暴，这里不推荐这种想法。<br>我们要做的，就是天知地知你知我知其他人不知。  </p>
+<h2 id="函数劫持能干什么？">函数劫持能干什么？</h2><p>首先你得明白为什么要劫持。<br>一旦你明白了为什么要劫持，就需要找劫持点，进行函数重写劫持。<br>具体在这个重写之后的函数增加什么功能，就看你为什么要劫持了。<br>函数劫持了，你想干什么，就能干什么。</p>
+<h2 id="劫持的原理">劫持的原理</h2><p>一般的劫持原理都是一个思路：<br>一、使用新的变量保存即将被劫持的函数。<br>二、改写被劫持函数的功能。<br>三、在被劫持函数的末尾段（或者其他适当部位）重新调用重写之前的函数。  </p>
+<h2 id="如何进行劫持">如何进行劫持</h2><p>先来看看下面这段代码。  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// save old ajax</span></span><br><span class="line">$._ajax = $.ajax;</span><br><span class="line"><span class="comment">// incase something.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">noop</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"><span class="comment">// 我想要加入的功能</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunctionToHack</span><span class="params">(data)</span> </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">  <span class="comment">// do something you want</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// accord $.ajax to change</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajaxHacker</span><span class="params">(e, n)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// old success function</span></span><br><span class="line">  e._success = e.success || noop;</span><br><span class="line">  <span class="comment">// new success function of lucky money</span></span><br><span class="line">  e.success = <span class="function"><span class="keyword">function</span> <span class="title">success</span><span class="params">(data)</span> </span>&#123;</span><br><span class="line">    myFunctionToHack(data);</span><br><span class="line"></span><br><span class="line">    e._success.call(<span class="keyword">this</span>, data);</span><br><span class="line">    </span><br><span class="line">  &#125;;</span><br><span class="line">  $._ajax(e, n);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// change default ajax</span></span><br><span class="line">$.ajax = ajaxHacker;</span><br></pre></td></tr></table></figure>
+<p>这段代码的作用估计大家都一目了然。<br>主要的功能就是重写 jquery 的 ajax 请求函数，在原生的 ajax 功能的基础上，劫持 success 回调功能。</p>
+<p>具体劫持方式：</p>
+<h3 id="使用新的变量保存即将被劫持的函数">使用新的变量保存即将被劫持的函数</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$.</span><span class="constant">_ajax </span>= <span class="variable">$.</span>ajax;  </span><br><span class="line">e.<span class="constant">_success </span>= e.success || noop;</span><br></pre></td></tr></table></figure>
+<p>保存旧方法方便调用。</p>
+<h3 id="改写被劫持函数的功能">改写被劫持函数的功能</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$.ajax = ajaxHacker;</span><br><span class="line">e.success = <span class="keyword">function</span> success(data) &#123;</span><br><span class="line">  // <span class="keyword">...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>把 <code>jquery</code> 的 <code>ajax</code> 替换为 <code>ajaxHacker</code> 函数，实现就功能的改写。</p>
+<h3 id="在被劫持函数的末尾段重新调用重写之前的函数">在被劫持函数的末尾段重新调用重写之前的函数</h3><p>为了保持功能与原来的基本一致，需要重新调用原来的函数。<br>一般情况下面都是在处理完毕自己想要的功能之后调用。这些都看个人习惯进行。<br>由于上面的代码有两个函数劫持，所以分开来讲：  </p>
+<p>先看一个简单的： </p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> ajaxHacker(e, n) &#123;</span><br><span class="line">  // <span class="keyword">...</span></span><br><span class="line">  </span><br><span class="line">  $._ajax(e, n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个时候，旧的 <code>jquery</code> <code>ajax</code> 功能就能在 <code>ajaxHacker</code> 执行末尾调用，<br>中途就能增加自己想要的功能了。</p>
+<p>复杂点的：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">e.success = <span class="keyword">function</span> success(data) &#123;</span><br><span class="line">  // <span class="keyword">...</span></span><br><span class="line">  myFunctionToHack(data);</span><br><span class="line"></span><br><span class="line">  e._success.call(this, data);</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><code>success</code> 回调函数保存在 <code>e._success</code> 里面，重写了 <code>success</code> 功能之后，重新调用 <code>e._success</code>。<br>但是这个时候使用了 <code>call</code> 进行调用，原因就是避免函数运行环境 <code>this</code> 对象变化了。使用 <code>call</code> 能够确保劫持之前的运行上下文与劫持之后的运行上下文一致。<br>当然如果 <code>this</code> 对象没被使用的话，不使用 <code>call</code> 也是可以的，  </p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">e</span>._success(<span class="typedef"><span class="keyword">data</span>);</span></span><br></pre></td></tr></table></figure>
+<p>这样子调用，也行。</p>
+<p>另外也可以使用 <code>apply</code> 代替 <code>call</code> ，两者都能操控 <code>this</code> 。</p>
+<p>PS: 第二个例子，不使用 <code>call</code> 其 <code>this</code> 对象也是 <code>e</code>。因为使用了命名空间的方式进行了调用。如果不是使用 <code>e._success</code> 而是使用 <code>_success</code> 保存就函数，就必须使用 <code>call</code> 或者 <code>apply</code> 来确保运行上下文正确。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近在搞坏事，因此总会有一些很猥琐很猥琐的想法。<br>具体有多少，只有你想不到，没有做不到。<br>这里就来讲讲如何在 js 层面，神不知鬼不觉的劫持函数。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Git 最佳实践]]></title>
+    <link href="http://shenqihui.github.io/2015/01/29/best-practices-of-git/"/>
+    <id>http://shenqihui.github.io/2015/01/29/best-practices-of-git/</id>
+    <published>2015-01-29T15:11:00.000Z</published>
+    <updated>2015-03-12T05:50:26.000Z</updated>
+    <content type="html"><![CDATA[<p>今天一个朋友在他们的 git 工作流上面遇到问题了。来询问我关于我们团队是如何使用 git 进行团队协作的。 然后我就秉着技术分享的思想给他们讲解。特意写下此文。git 这东西，用得好就是好东西。用得不好，那就只能怪你没下功夫去用了。骚年，勇敢的用起来吧。  </p>
+<a id="more"></a>
+<h2 id="前言">前言</h2><p>怎么使用 git， 为啥使用 git， 如何使用 git， git 和 svn 或者 hg 哪个好，就不说了，个人还是觉得 git 好。如果你觉得意见不同，来打我啊。<br>本文提到的项目是网站类型的，迭代比较快，所以一旦有功能完成就即刻发布。  </p>
+<h2 id="我们的使用场景">我们的使用场景</h2><p>项目是一个网站，开发团队 n(n&gt;3)人。使用的时内部的 git 仓库。  </p>
+<h2 id="仓库规范">仓库规范</h2><p>项目发起由项目组组织（organization）发起，每个项目成员进行仓库的 fork 操作，不允许 push 代码至非自己所有的远程仓库。  </p>
+<h2 id="分支规范">分支规范</h2><p>每个人都进行了仓库的 fork 操作，因此每个人的仓库（下称 origin ）分支就自由发挥了。主要讲讲主仓库（下称 upstream ）的分支规范。<br>主仓库主要存在两个分支，master + dev 分支，具体名字可以随便，能理解就好。</p>
+<h3 id="dev_分支的功能">dev 分支的功能</h3><p>dev 有两个功能，一个是发布到测试环境进行新功能测试，另外一个是用于团队成员进行 mr 时候使用的分支，最新功能一旦开发测试完毕，就进行 origin/branchname mr 到 upstream/dev 的操作， 分配给其他项目成员进行 review 。<br>mr 期间成员可以任意对代码进行审查评论，mr 发起人需要对评论进行回应。  </p>
+<h3 id="master_分支的功能">master 分支的功能</h3><p>master 是生产环境所使用的代码，因此得确保 master 分支的代码时刻可用。如何确保，就是确保 dev 的代码能够无已知 bug 地运行了，才进行 upstream/dev mr upstream/master 的操作。dev 一旦新功能测试成功，就提 mr 至 master 分支， 分配给自己。然后自己点击 accept mr 的操作。<br>这一步操作，看似多余，但是能确保 master 分支时刻可用。</p>
+<h2 id="mr_的规范">mr 的规范</h2><p>上面讲完了两个分支的作用，这是大部分仓库基本上的操作，估计很多人都清楚。<br>那如何是用这两个分支进行方便团队协作呢？这个就是一门学问了。<br>由于前面提到了， dev 和 master 只能通过 mr 方法进行代码的变动，所以，提交 mr 的时候就需要确保该 mr 能够让 git 仓库程序自动 accept（自动 accept 的意思是点击 accept 按钮就能合并代码），其他成员确定 mr accept 时候，只需点击按钮即可完成，而不是 merge this request manually 。</p>
+<h2 id="团队协作踩坑大法">团队协作踩坑大法</h2><p>说一个场景很容易遇到的场景，假设项目 A 同时有 B 、 C 两个功能同时开发。不久， B 、 C 同时提了个 mr 上来。然后， B 经过 review 目测无 bug，点击了 accept ， 然后 C 也经过了 review 目测无 bug，点击了 accept 。<br>但是目测失败了，线上生产环境是非常复杂，一堆的机器、分布式数据库，超大数据量等等，造成 B 功能在模拟环境运行失败的情形。然而此时 C 功能目测无 bug 测试也无 bug ，可发布生产环境了。但是由于 B 功能出现 bug ，dev 此时就不能进行 mr 到 master 进行功能发布了。<br>C 功能急着发布，也只能看着 B 功能的成员修复此 bug 了。或者先把 B 功能从 dev 慢慢抠出来发布。但是这个是坑。</p>
+<p>这里的漏洞就是 B 、 C 功能在 mr 阶段没有进行模拟生产环境测试就直接 accept 造成的。所以，就得解决这个问题。只有通过了 mr 阶段的模拟生产环境测试的 mr 才能点击 accept 进行代码合并。</p>
+<h2 id="如何解决_mr_阶段测试的问题">如何解决 mr 阶段测试的问题</h2><p>说说项目的测试环境，<br>1、 用于 dev 分支代码的测试，基本上和生产环境一致，只是运行的代码不同而已。<br>2、 用于测试 mr 的测试环境，mr 测试的功能由自己控制，随便部署，每个提交 mr 的所有者需要部署 mr 环境给其他 review 代码的成员进行测试使用。在确保代码质量的同时，也确保了由于开发环境跟生产环境差异造成的代码缺陷。</p>
+<h2 id="团队协助规范">团队协助规范</h2><ol>
+<li>禁止 push 代码至非 origin 仓库  </li>
+<li>使用 fetch + rebase 代替 pull + merge 更新其他成员最新的代码，不予许使用 pull + merge  </li>
+<li>upstream 只能通过 mr 方式进行代码合并请求  </li>
+<li>功能 mr 必须 asign 给非自己进行代码审查  </li>
+</ol>
+<hr>
+<p>我要开始讲故事了</p>
+<hr>
+<h2 id="如何进行团队的协助">如何进行团队的协助</h2><p>以场景进行讲解吧。</p>
+<h3 id="需求订立">需求订立</h3><p>开发的功能都商量好了，产品狗可以一边玩去。项目起了个响当当的名字，叫做古猫搜索引擎，小明（git id ming） 和 小花（git id hua，女的打字工哦） 再加几个打酱油的打字工进行开发。</p>
+<h3 id="创建仓库">创建仓库</h3><p>他们创建了个组织叫古猫组织（git id goocat），然后创建了个 goocat 仓库，设置主分支为 dev ，master 留着暂时不管，push 个 相同的 init 到 dev 和 master ，然后把小明和小花还有几个打酱油的设置为管理员权限。仓库就这样子弄上来了。 .gitignore 、 WTFPL 什么的，也在这个时候加上去。  </p>
+<h3 id="打字工出场">打字工出场</h3><p>这个时候，产品狗的什么，已经为了避免冲突，被送去某个小黑屋好好呆着了。<br>其他打酱油的被分配开发数据库什么的了。<br>小明和小花就马上动手写代码开发 index 页面，自己动手，丰衣足食。马上 fork 仓库， git clone 、 git remote add 什么一气呵成， add 了 upstream 和其他项目组成员的仓库地址。<br>小明用上了打 dota 的 apm ，瞬间把后台功能完成了， push origin api 完成，接下来等妹子小花来补充前端开发了。小花真羡慕打 dota 的人的 apm 能这么高，用来写代码瞬间就写完了。<br>但是小明完成的功能只是整个功能的一半，需要小花继续进行，所以小花第一步就是更新小明的代码下来<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git remote -v </span><br><span class="line">git remote add ming git@**<span class="class">.com</span>:ming/goocat<span class="class">.git</span></span><br><span class="line">git fetch ming </span><br><span class="line">git checkout -<span class="tag">b</span> page </span><br><span class="line">git rebase -<span class="tag">i</span> ming/api</span><br></pre></td></tr></table></figure></p>
+<p>然后根据提示把 rebase 进行到底。这样子就能获取小明最新的代码了。</p>
+<p>小花技术也杠杠的，瞬间接上了小明的几个 api。</p>
+<h3 id="需求变动">需求变动</h3><p>到了某个 api 的时候，发现页面展示效果其实没那么好，这个时候召唤产品狗和小明过来。</p>
+<p>他们间对话</p>
+<blockquote>
+<p>小花：这个功能我要这样这样这样，这样才是最好的交互效果。<br>小明这个时候使劲点头，手里的也不停下，拿着犀牛书在看。也能够在跟产品狗起争执时候一书拍过去，屡试不爽好吗，那个产品狗都被吓怕了。<br>产品狗看了下小明的犀牛书，擦了下汗：这个想法非常好，就这么实现了</p>
+</blockquote>
+<p>就这样子，没啥废话，需求就这样变吧。</p>
+<h3 id="多人协作">多人协作</h3><p>需求变动了，api 继续变下，小花女神交代小明改改api，我的分支是 apge ，小明刷刷刷几下就马上动手改了。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">git checkout api</span><br><span class="line">git status</span><br><span class="line">git remote -v</span><br><span class="line">git remote add nvshen git<span class="comment">@**.com:hua/goocat.git</span></span><br><span class="line">git fetch nvshen</span><br><span class="line">git stash</span><br><span class="line">git rebase -i nvshen/page</span><br><span class="line"><span class="comment"># 坐等 git rebase 完成</span></span><br><span class="line">git stash pop</span><br><span class="line">vim <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>.py</span><br><span class="line">vim api.md</span><br><span class="line"><span class="comment"># 编辑完毕代码</span></span><br><span class="line">git add <span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>.py api.md</span><br><span class="line">git commit -m '根据女神说的需求改动，进行 古猫搜索部分 api 改动'</span><br><span class="line">git push origin api</span><br></pre></td></tr></table></figure>
+<p>然后跑过女神那里说： 小花，改动完了，你 fetch 下来看看呗。<br>小花有开始了这个功能代码的编写，获取小明最新的代码：<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git stash </span><br><span class="line">git fetch ming</span><br><span class="line">git <span class="keyword">push</span> origin page</span><br><span class="line">git rebase -i ming/api</span><br><span class="line">git stash <span class="keyword">pop</span></span><br></pre></td></tr></table></figure></p>
+<p>然后继续进行代码的开发，编写完毕果断使用 github 客户端进行代码的 commit，不错不错，功能 done 。提交仓库给小明吧。<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">push</span> origin page</span><br><span class="line"><span class="preprocessor"># 打印了一堆的冲突的信息</span></span><br><span class="line">git <span class="keyword">push</span> -f origin page</span><br></pre></td></tr></table></figure></p>
+<p>然后到线上仓库看看时候提交成功了，看看 commit ，看到了之前小明的 commit </p>
+<blockquote>
+<p>‘根据女神说的需求改动，进行 古猫搜索部分 api 改动’</p>
+</blockquote>
+<p>然后小花又叹气了</p>
+<blockquote>
+<p>这小明，老是这样子，一点勇气都没有。</p>
+</blockquote>
+<p>然后在微信朋友圈发了条 Text ： 你主动一点，我们之间就会有故事。<br>然后告知小明前端开发完毕了，提 mr 测试吧。</p>
+<h3 id="mr_操作">mr 操作</h3><p>这个时候小明就开始提 mr 了<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git fetch nvshen</span><br><span class="line">git <span class="keyword">push</span> origin api</span><br><span class="line">git rebase -i nvshen/page</span><br><span class="line">git <span class="keyword">push</span> -f origin api</span><br></pre></td></tr></table></figure></p>
+<p>上仓库进行 mr 了，提交了个 mr ，指向给了某一个打酱油的打字工 A 进行 review ，看到写着不能自动 accept，原来其他几个打酱油的已经把部分功能提交并且 accept 了，而且代码有冲突，这个时候小明就要做成没冲突了。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git fetch upstream</span><br><span class="line">git rebase -<span class="tag">i</span> upstream/dev</span><br><span class="line">git push -f origin api</span><br></pre></td></tr></table></figure></p>
+<p>回 upstream 仓库看看，不错，能自动 accept 了。</p>
+<h3 id="review_&amp;&amp;_accept">review &amp;&amp; accept</h3><p>打酱油 A 提了部分意见，小明都一一做了改动。最后 mr 环境测试成功了， accept ，发布到 dev 环境， 也成功，上线，古猫搜索引擎 demo 版本出来了。<br>v0.1.0 实现了。</p>
+<h3 id="打版本了">打版本了</h3><p>产品狗一阵激动，终于实现了小部分了。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone git@**<span class="class">.com</span>:goocat:goocat<span class="class">.git</span></span><br><span class="line">git checkout dev</span><br><span class="line">git tag v0.<span class="number">1.0</span></span><br><span class="line">git push origin --tag</span><br></pre></td></tr></table></figure></p>
+<p>奔走相告，今晚大家唱歌庆祝。白天鹅 KTV 唱 K。</p>
+<h3 id="庆功会">庆功会</h3><p>小花点了一首歌： she 的 《恋人未满》，申请的唱出来了，眼睛还冒着泪花，时不时还望了望小明。</p>
+<p>故事唱完了，小花很伤心：</p>
+<blockquote>
+<p>那小明怎么能这样子，一点都不主动。  </p>
+</blockquote>
+<p>然后喝了很多酒。结果醉了，领导说：</p>
+<blockquote>
+<p>小明，公司里面你和小花关系最好了，今晚你负责送她回家啦。  </p>
+</blockquote>
+<p>小明呆呆的望着女神去了。</p>
+<p>散场了，小明扶着小花上了出租车，送小花回家，然后就没有然后了。<br>这是个悲伤的故事。</p>
+<hr>
+<p>故事讲完了，大家洗洗睡吧。</p>
+<hr>
+<h2 id="科普下上面提到的名词">科普下上面提到的名词</h2><p>upstream : 上层仓库<br>origin : 当前所有者的仓库<br>master : 生产代码主分支<br>dev : 开发代码主分支<br>merge : 合并代码<br>mr : merge request, 合并代码请求<br>accept : 接受代码合并请求<br>review : 队友对你的代码进行审查<br>bug : 八阿哥<br><del>以下的词我解析不了，有很多东西中文是没法解析的，自己理解</del><br>git : 词典释义为饭桶，无用的人 →_→<br>organization : 相对于成员，它就是组织<br>fork : 词典释义为叉子<br>clone : 克隆</p>
+<h2 id="彩蛋">彩蛋</h2><p>看到这里，也挺艰难的，其实 dev 测试环境可以去掉不用。<br>至于其他的不同的方法，欢迎评论指导。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>今天一个朋友在他们的 git 工作流上面遇到问题了。来询问我关于我们团队是如何使用 git 进行团队协作的。 然后我就秉着技术分享的思想给他们讲解。特意写下此文。git 这东西，用得好就是好东西。用得不好，那就只能怪你没下功夫去用了。骚年，勇敢的用起来吧。  </p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[XSRF测试题]]></title>
+    <link href="http://shenqihui.github.io/2015/01/17/XSRF/"/>
+    <id>http://shenqihui.github.io/2015/01/17/XSRF/</id>
+    <published>2015-01-16T16:38:04.000Z</published>
+    <updated>2015-03-12T05:49:13.000Z</updated>
+    <content type="html"><![CDATA[<p>这个是一个测试 xsrf 的测试题，具体实现思想可能猥琐。看看谁能想到和我一样猥琐的方案。</p>
+<a id="more"></a>
+<h1 id="网络环境">网络环境</h1><p>现在的场景是A站点和B站点，假设A站是新浪，B站是我们控制的站，<br>所以B站的后端代码随便该。A站的话，参考新浪主页。</p>
+<hr>
+<h1 id="想干啥">想干啥</h1><p>我们发现了个新浪主页的XSS漏洞，就是能注入我们的 script 进去，用户打开特定网址后，就运行我们的 script ，我们就能获取一堆信息，现在想把信息发送回来。信息可能非常非常的大，大于 GET 方式能处理的长度。   </p>
+<hr>
+<h1 id="B站的环境">B站的环境</h1><p>目前已经有一个 get 和 post 方式共用的 api。<br>例如 get 方式的，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.get(<span class="string">"api.html"</span>, &#123; name: <span class="string">"John"</span>&#125; );</span><br></pre></td></tr></table></figure></p>
+<p>或者 post 方式的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.post(<span class="string">"api.html"</span>, &#123; name: <span class="string">"John"</span>&#125; );</span><br></pre></td></tr></table></figure></p>
+<p>然后这两种方式，任意一中，就能把 { name: “John”} 这个信息发送回 B站 进行存储了。<br>B站已经进行了任何的跨域请求，例如 Access-Control-Allow-Origin， p3p等等。</p>
+<hr>
+<h1 id="A站的环境">A站的环境</h1><p>A站环境未知，也可以说是任意，但是我们有办法在 A站 的页面注入我们的 script</p>
+<hr>
+<h1 id="不能使用的解决方式">不能使用的解决方式</h1><p>不能使用 flash </p>
+<hr>
+<h1 id="任务：要做什么">任务：要做什么</h1><p>任务1，不改变现有接口的前提下，实现</p>
+<ol>
+<li>解决 chrome 现代浏览器该怎么发送数据。</li>
+<li>解决了 上面的，那就开始解决 低版本 IE 了。要求兼容 IE6 ，比较变态，但是这个业务不能忽略 IE6 等。（用代码体现）<br>提示：跨域，HTTP状态，实现方式能多猥琐就多猥琐。</li>
+</ol>
+<p>任务二，躺床上，想一种更好的方法，也不能用 flash。不用写代码，说说思路，这个时候能任意改 B站 API。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这个是一个测试 xsrf 的测试题，具体实现思想可能猥琐。看看谁能想到和我一样猥琐的方案。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[自己收集的一堆开发有用的网址]]></title>
+    <link href="http://shenqihui.github.io/2014/11/04/%E8%87%AA%E5%B7%B1%E6%94%B6%E9%9B%86%E7%9A%84%E4%B8%80%E5%A0%86%E5%BC%80%E5%8F%91%E6%9C%89%E7%94%A8%E7%9A%84%E7%BD%91%E5%9D%80/"/>
+    <id>http://shenqihui.github.io/2014/11/04/自己收集的一堆开发有用的网址/</id>
+    <published>2014-11-03T19:36:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p>1、查看 ip、ua 以及&nbsp;X Forwarded For，来自v2的，平常识别下自己的机器信息。&nbsp;<a href="http://www.v2ex.com/ua" target="_blank" rel="external">http://www.v2ex.com/ua</a><br><a id="more"></a><br>&nbsp;</p>
+<p>2、楼下补充</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>1、查看 ip、ua 以及&nbsp;X Forwarded For，来自v2的，平常识别下自己的机器信息。&nbsp;<a href="http://www.v2ex.com/ua">http://www.v2ex.com/ua</a><br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[支付宝么么哒]]></title>
+    <link href="http://shenqihui.github.io/2014/10/30/%E6%94%AF%E4%BB%98%E5%AE%9D%E4%B9%88%E4%B9%88%E5%93%92/"/>
+    <id>http://shenqihui.github.io/2014/10/30/支付宝么么哒/</id>
+    <published>2014-10-29T20:44:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://images.cnitblog.com/blog/358891/201410/301244088943397.png" alt=""></p>
+<p>么么哒。<br><a id="more"></a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="http://images.cnitblog.com/blog/358891/201410/301244088943397.png" alt=""></p>
+<p>么么哒。<br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[js页码生成库，一个适合前后端分离的页码生成器]]></title>
+    <link href="http://shenqihui.github.io/2014/07/13/js%E9%A1%B5%E7%A0%81%E7%94%9F%E6%88%90%E5%BA%93%EF%BC%8C%E4%B8%80%E4%B8%AA%E9%80%82%E5%90%88%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E7%9A%84%E9%A1%B5%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/"/>
+    <id>http://shenqihui.github.io/2014/07/13/js页码生成库，一个适合前后端分离的页码生成器/</id>
+    <published>2014-07-13T01:50:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>前言</strong></p>
+<p>上星期写的任务里面有需要进行分页的处理，git搜索了一番，没有觉得合适的，于是自己临时写了个分页的算法。</p>
+<p>然后等闲下来的时候，决定把分页进行优化并推广。于是乎，一个适合前后端分离的页码生成器就这样出来了。<br><a id="more"></a><br>先别废话了，直接上 <a href="https://github.com/shenqihui/pagination" target="_blank" rel="external">git 地址</a> 和 <a href="http://shenqihui.github.io/pagination/" target="_blank" rel="external">demo 地址</a>。看官果断点击进去瞧瞧看。项目主页的 readme 文档的自动排版将更好。</p>
+<p>&nbsp;</p>
+<p><strong>先讲讲设计思想</strong></p>
+<p>整个开发流程围绕事件绑定进行开发。</p>
+<p>脱离 callback 回调这种回调方法，直接使用 事件 方式触发换页前后的动作，方便解耦。</p>
+<p>既然使用这种方式进行回调，就使用全局变量挂载分页的数据，方便回调时候进行分页数据的访问。</p>
+<p>&nbsp;</p>
+<p><strong>库的依赖</strong></p>
+<p>由于开发库的时候，并没有使用原生的语法进行元素或者事件绑定的操作，因此需要依赖某个库。</p>
+<p>现阶段，经过测试支持 zepto 以及 jquery （二选一）。</p>
+<p>css 方面，建议还是直接自己写或者使用 bootstrap 的库，源代码里面有从 bootstrap 里面抽出来的分页 css 代码。</p>
+<p>&nbsp;</p>
+<p><strong>简洁demo</strong></p>
+<p>由于分页就必须知道分页数据大小，因此必须传输配置对象。</p>
+<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">var</span> pageConfig =<span style="color: #000000;"> {<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 每页显示的数据长度，必填，而且 &gt;1</span><br>  prePageLenght: 10<span style="color: #000000;">,<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 数据的总长度，必填，而且 &gt;1</span><br>  dataLength: 30<span style="color: #000000;">,<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 现在的页码，默认 1</span><br>  pageNow: 1<span style="color: #000000;">,<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 渲染分页 html 的容器，一般框架的容器即可</span><br>  renderBox: $(‘.pagination-box’<span style="color: #000000;">)<br>};</span></pre><br></div>
+
+<p><span style="color: #0000ff;"><span style="color: #000000; font-family: verdana, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.5; background-color: #ffffff;">配置之后，进行调用</span></span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><br><pre><span style="color: #008000;">//</span><span style="color: #008000;"> 运行即可分页</span><br>pageBuilder(pageConfig);</pre><br></div>
+
+<p>&nbsp;</p>
+<p>这样子就能进行分页了。</p>
+<p><strong>回调的书写</strong></p>
+<p>回调的书写虽然放在了调用分页的主函数后面，但是记得在调用分页之前就定义这些事件，因为一旦调用分页函数，就马上触发分页回调，写在后面了，就会忘记了刚分页时候的事件回调了。</p>
+<p>首先是分页前的回调，分页之前会触发 window 下面一个自定义分页之前的事件&nbsp;<span class="s1">beforePageChange ，因此要触发处理分页前的动作，就这样处理：</span></p>
+<div class="cnblogs_code"><br><pre><span style="color: #008000;">//</span><span style="color: #008000;"> 提前定义好分页之前的动作，可选</span><br>$(window).on(‘beforePageChange’, <span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> callback</span><br>  <span style="color: #008000;">//</span><span style="color: #008000;"> todo</span><br>  <span style="color: #008000;">//</span><span style="color: #008000;"> 获取当前页码，可以从 pageBuilder.page.pageNow 取得，注意此时的值为未分页之前的旧页码。</span><br>})</pre><br></div>
+
+<p>同样道理，分页之后的回调差不多：</p>
+<div class="cnblogs_code"><br><pre><span style="color: #008000;">//</span><span style="color: #008000;"> 提前定义好分页之后的动作，可选</span><br>$(window).on(‘afterPageChange’, <span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> callback</span><br>  <span style="color: #008000;">//</span><span style="color: #008000;"> todo</span><br>  <span style="color: #008000;">//</span><span style="color: #008000;"> 获取当前页码，可以从 pageBuilder.page.pageNow 取得</span><br>})</pre><br></div>
+
+<p><strong>特别说明</strong></p>
+<p>一个页面只适合使用一个分页实例。分页的动作将在 hashchange 触发之后进行分页。</p>
+<p>里面监控页码变化的函数：</p>
+<div class="cnblogs_code"><br><pre>    <span style="color: #008000;">//</span><span style="color: #008000;"> 绑定换页的事件</span><br>    $(window).on(‘hashchange’, <span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>      </span><span style="color: #0000ff;">var</span> hash =<span style="color: #000000;"> location.hash;<br>      </span><span style="color: #0000ff;">var</span> pageTemp = 0<span style="color: #000000;">;<br>      </span><span style="color: #0000ff;">if</span> (/^#page=\d+$/.test(hash) === <span style="color: #0000ff;">true</span><span style="color: #000000;">) {<br>        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 直接是页码的</span><br>        pageTemp = hash.substring(6) | 0<span style="color: #000000;">;<br>        </span><span style="color: #0000ff;">if</span> (defaultConfig.pageNow !==<span style="color: #000000;"> pageTemp) {<br>          defaultConfig.pageNow </span>=<span style="color: #000000;"> pageTemp;<br>          $(window).trigger(</span>“renderPagination”<span style="color: #000000;">);<br>        }<br><br>      } </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (hash === “#page=next”<span style="color: #000000;">) {<br>        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 下一页的</span><br>        location.hash = “page=” + ( defaultConfig.pageNow + 1<span style="color: #000000;"> );<br>      } </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (hash === “#page=prev”<span style="color: #000000;">) {<br>        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 上一页的</span><br>        location.hash = “page=” + ( defaultConfig.pageNow - 1<span style="color: #000000;"> );<br>      }<br>    })</span></pre><br></div>
+
+<p>因为 hashchange 只支持 IE8+，</p>
+<p>所以，该插件只适合 IE8+，甚至IE8的怪异模式不支持 hashchange 事件。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>结束语</strong></p>
+<p>这个库还有很多可以优化的地方，例如页码缓存，还有作用域优化之类的，还没进行优化。</p>
+<p>&nbsp;</p>
+<p>希望大家喜欢。喜欢的话，点个推荐吧，如果使用上了，记得 star 下哦。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>前言</strong></p>
+<p>上星期写的任务里面有需要进行分页的处理，git搜索了一番，没有觉得合适的，于是自己临时写了个分页的算法。</p>
+<p>然后等闲下来的时候，决定把分页进行优化并推广。于是乎，一个适合前后端分离的页码生成器就这样出来了。<br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[任何一个团队，永远不会像你想象中的那么好，也不会如你所听说的那么糟。]]></title>
+    <link href="http://shenqihui.github.io/2014/02/28/%E4%BB%BB%E4%BD%95%E4%B8%80%E4%B8%AA%E5%9B%A2%E9%98%9F%EF%BC%8C%E6%B0%B8%E8%BF%9C%E4%B8%8D%E4%BC%9A%E5%83%8F%E4%BD%A0%E6%83%B3%E8%B1%A1%E4%B8%AD%E7%9A%84%E9%82%A3%E4%B9%88%E5%A5%BD%EF%BC%8C%E4%B9%9F%E4%B8%8D%E4%BC%9A%E5%A6%82%E4%BD%A0%E6%89%80%E5%90%AC%E8%AF%B4%E7%9A%84%E9%82%A3%E4%B9%88%E7%B3%9F%E3%80%82/"/>
+    <id>http://shenqihui.github.io/2014/02/28/任何一个团队，永远不会像你想象中的那么好，也不会如你所听说的那么糟。/</id>
+    <published>2014-02-27T19:35:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p>标题这句话是玉伯说的。<br><a id="more"></a><br>&nbsp;</p>
+<p><strong>缘由：</strong></p>
+<p>看了这个问题：<span><a href="http://www.zhihu.com/question/20084964" target="_blank" rel="external">淘宝 UED 前端、腾讯脚本开发、豆瓣前端开发，应该如何在这几个工作之间选择？</a>&nbsp;，有自己</span>的感受。</p>
+<p>&nbsp;</p>
+<p><strong>背景：</strong></p>
+<p>三天前，也就是 2014 年 02 月 25 日，我向领导提交了辞职申请表，裸辞。辞职的理由是：追求专注于互联网的团队。</p>
+<p>领导看完申请表之后，马上过来问我什么情况，我的回答：想换个专注于互联网的环境。</p>
+<p>昨天 ( 2014 年 02 月 27 日 ) 领导和我详细谈了下，确定在 2014 年 03 月 14 日&nbsp;(2014年3月4日注：离职提前到了20140304)。最近都在做交接工作和做一些补充性的功能之后发给接手的同事。</p>
+<p>离职时间已定，我在公司的时间不算长，20130301-20140314，一年多一点点，毕业后的第一份正式工作。(2014年3月4日注：离职提前到了20140304)</p>
+<p>在公司 ( 某大屏幕制造方向的公司 ) 期间，参与了公司的一个大项目的三大模块，公司的专职前端开发工程师只有两个，因此我算是负责这个大项目的主前端了。项目的架构师前端知识也很牛 ( CSS，响应式设计除外 ) ，所以我主要 协助架构师进行JS架构 和 进行多皮肤多终端下面的响应式CSS框架的架构。对自己的CSS长进还是很足的，另外也使用工厂模式开发了一个地图控件库，三个视频控件库 ( 差不多一样功能 ) 。&nbsp;</p>
+<p>当团队和部门的同事知道我要辞职的消息之后，都会问我一个这样子的问题：</p>
+<blockquote>
+<p>同事：怎么突然间辞职了，找到下一家了没有？</p>
+<p>我：想换个环境吧，裸辞。</p>
+<p>同事：这么傻，干嘛不等到找到了再辞职？</p>
+</blockquote>
+<p>&nbsp;</p>
+<p><strong>裸辞原因：</strong></p>
+<p>至于这个 &ldquo;为什么要裸辞？&rdquo; 这个原因，我觉得没什么原因吧。</p>
+<p>主要是大家的观念都是骑驴找马、没有足够的勇气裸辞、怕裸辞之后没能快速找到工作，而我的观念是裸辞、有勇气、花时间下去找好工作。这个就是为什么裸辞的原因。</p>
+<p>辞职了之后，我有时候晚上会想想，如果工作找不到怎么办？那就只能逼自己学习拥有更牛的技术，让别人希望你加入他们团队。</p>
+<p>&nbsp;</p>
+<p><strong>离职原因：</strong></p>
+<p><span style="line-height: 1.5;">上面提到我回答领导问题的答案是：想换个专注于互联网的环境。</span></p>
+<p>看到知乎上面 <a href="http://www.zhihu.com/people/sofish" target="_blank" rel="external">@sofish</a>&nbsp;的回答中的一句话 ：</p>
+<blockquote>
+<p>我爸爸常告诉我，不要轻易离职，只有当你呆足够久了才可能知道是这个团队不适合你，还是你没有适应这个团队 <a href="http://www.zhihu.com/question/20084964" target="_blank" rel="external">撮这里看原答案</a></p>
+</blockquote>
+<p><span>此时我清楚的明白到，这个团队不适合我。我想做互联网的项目，针对的是普通大众，而不是特定的人群 ( 现在所做项目受众就是特定的人群 ) 。</span></p>
+<p><span>而且我不希望搞 jsp 开发。在现在的团队里面，使用了 Lifray 的框架，开发出来的页面对我来说，都觉得是不可控的，总觉得不踏实。</span></p>
+<p><span>我喜欢的是 php/python ，当然如果是直接使用 api 的话根本不用管后台用什么语言进行开发。</span></p>
+<p><span>另外， Liferay 的启动是在太慢了，而且框架自带的 UI 太庞大，扔个原版 bootstrap 3.0 进去都会造成不兼容。</span></p>
+<p><span>还有一个很重要的原因：<strong>太闲了，基本不用加班，而且项目过度阶段能闲上1个月不用写代码。</strong>这是一个致命的原因，对于一个刚毕业的技术菜鸟来说，适当繁重的工作任务对技能的提升有非常大的帮助。现阶段我更希望到有加班氛围的公司。<br></span></p>
+<p><span>有人说那为什么你当初加入这个团队，这个只能怪自己在毕业的时候，没能力选择更好的企业，老师说：&ldquo;先就业后择业&rdquo;。</span></p>
+<p><span>当时有一个创业团队，一直在实习，可以毕业之后留下来，做电子商务网站的。而我选择了现在这个大屏幕制造的股份公司，稳定，福利好，大公司。</span></p>
+<p>&nbsp;</p>
+<p><strong>为啥现在离职：</strong></p>
+<p><span>当然，年终奖是一个诱惑。</span></p>
+<p><span>1月多，参与的项目算是初步做完，不用中途退出给别人留个烂摊子，都快到年了，拿了年终奖再走吧。</span></p>
+<p>&nbsp;</p>
+<p><strong>我所希望的团队：</strong></p>
+<p><span>在我的理念了，最好的前后端开发方式是：前端单纯写 html ，通过各种 api 与后台进行交互。这个也是大部分前端开发工程师觉得最可操控的一种模式吧。</span></p>
+<p><span>但是现实往往不是这样，例如数据展现是直接一个 php 或者 jsp 生成一段 html 代码的方式。</span></p>
+<p><span>代码管理最好使用 git ，这样就能尽量避免队友在无意间提交的失误造成 bug ，能针对性的审查代码。当然 svn 也行，需要在更新的时候进行所有更新的代码的审查。</span></p>
+<p><span>团队成员为了产品，乐意加班，乐意奉献，一个团队不为别的，就为了自己的产品能做好，越快完成越好。</span></p>
+<p>&nbsp;</p>
+<p><strong>任何一个团队，永远不会像你想象中的那么好，也不会如你所听说的那么糟。</strong></p>
+<p><span style="line-height: 1.5;">在一个团队里，如果你觉得团队太糟了，原因只有两个：1、这个团队不适合你。2、你没适应这个团队。不然，这个团队早就瓦解了。</span></p>
+<p><span style="line-height: 1.5;">上至团队老大，下至团队最小能力最差的码农，都有自己的在团队里面的一席之地，要么就是技术能力上的增长，要么就是管理能力上的增长。</span></p>
+<p><span style="line-height: 1.5;">可能你在寻找工作的时候，看到团队的描述是多么的美好，结果加入了却发现某些问题，这个不可避免，毕竟在想象里面的东西可以使完美的。</span></p>
+<p><span style="line-height: 1.5;">发现不完善的东西，你可以努力尝试改变它，如果不可改变，那就一定是有存在的道理，例如为啥微信还在用 svn 进行代码管理：因为 svn 通用，稳定，很多人擅长；项目开始的时候没考虑那么多，使用了，改动不过来。等等。</span></p>
+<p>&nbsp;</p>
+<p>扯淡结束了，突然间觉得自己的全文跟标题有一点点跑偏的感觉。</p>
+<p>&nbsp;</p>
+<p><strong>卖一下广告，求职：</strong></p>
+<p>离职了，处于交接阶段，当然得着手找工作，我也在投简历中。</p>
+<p>如果有团队希望接纳我，请考虑下我，猛戳 <a href="http://shenqihui.github.io/lab/resume/" target="_blank" rel="external">我的简历</a>&nbsp;，简历一直在修改。昨天看到了 <a href="http://yuguo.us/" target="_blank" rel="external">余果</a>&nbsp;的简历，觉得我们间距居然那么大 T_T 。不过嘛，人家工作那么久了，差距<span style="line-height: 1.5;">肯定有。</span></p>
+<p>如果是大牛，根本不用简历。例如传说中 <a href="http://zh.wikipedia.org/zh-cn/%E5%90%89%E5%A4%9A%C2%B7%E8%8C%83%E7%BD%97%E8%8B%8F%E5%A7%86" target="_blank" rel="external"><span>Guido</span></a>&nbsp;去面试 google 的时候的简介描述就一句话：T WROTE PYTHON. &nbsp;当然，我还没那么牛，现在还是一个小菜鸟。T_T</p>
+<p>也说说我的期望吧：</p>
+<p>1、地点：暂时只考虑广州。</p>
+<p>2、团队方向：（移动）互联网方向，产品受众面广。</p>
+<p>3、不写 JSP。因为不太懂。T_T。</p>
+<p>4、职位：前端开发 / 页面重构。</p>
+<p>&nbsp;</p>
+<p>谢谢看这一篇扯淡，如果觉得你赞同其中的某个观点，点个赞吧。^_^</p>
+<p>更新信息一：2014年3月3日</p>
+<p>offer已经收到，是位于珠江新城附近的一个移动互联网公司，虽然福利没有之前公司好，但是，估计在这个公司能学到更牛的技术。</p>
+<p>昨天跟朋友说：五年后，我要成为一个：找工作时，开价年薪30w，别人还抢着要我的牛人。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>标题这句话是玉伯说的。<br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[探讨javascript面向对象编程]]></title>
+    <link href="http://shenqihui.github.io/2014/02/12/%E6%8E%A2%E8%AE%A8javascript%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/"/>
+    <id>http://shenqihui.github.io/2014/02/12/探讨javascript面向对象编程/</id>
+    <published>2014-02-11T21:58:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p>(个人blog迁移文章。)</p>
+<p><strong>前言：</strong></p>
+<p>下面将探讨javascript面向对象编程的知识。</p>
+<p>&nbsp;</p>
+<p>请不要刻意把javascript想成面向对象编程是理所当然的。<br><a id="more"></a><br>javascript里面，对象思想不可少，但是不一定需要面向对象编程，有时候，我们需要的只是一个实例化了的对象，而不是一个创建对象的类。</p>
+<p>偏要这样做的话，也行，请看下文。另外请勿与传统面向对象编程做对比，这没有可比性。</p>
+<p>&nbsp;</p>
+<p>对于javascript来说，所有的变量都可以被称为对象。例如：</p>
+<pre>var a = 'hello world';
+console.log(a.toUpperCase());</pre>
+
+<p>这里面，a为字符串对象。有其能直接调用的方法。但是这篇文章不讨论这一类的变量，而是讨论如何自定义对象。</p>
+<p><strong>声明一个对象：</strong></p>
+<pre>var obj1 = {};
+var obj2 = new Object();<span>&nbsp;</span></pre>
+
+<p>通过上面这两种方式中任意一种，就就声明了一个对象变量，这是一个实例，而且，是一个空对象,不能继承。</p>
+<p>何为空对象，就是这个对象里面没有定义任何成员和方法。</p>
+<p><strong>设置对象成员和方法：</strong></p>
+<pre>var Person = {};
+Person.name = 'Tom';
+Person.gender = 'male';
+Person.sayHello = function () {
+  console.log("Hello "+this.name+".");
+}</pre>
+
+<p>这是一种最直观最简单的对象定义及成员方法添加的方法，里面定义了person对象，person有name和gender的成员，以及sayHello的方法。这也是一个实例，不能继承。通过person.name/persion.gender能直接引用该对象的成员，person.sayHello()能直接调用该对象的方法。这算基础。</p>
+<p>在sayHello方法中，this指向的就是person，和其他的面向对象编程方法相同。</p>
+<p>上面声明对象的方法太过于累赘，一般选择下面这种对象声明的方法。</p>
+<pre>var Person = {
+  name:'Tom',
+  gender:'male',
+  sayHello:function() {
+    console.log("Hello "+this.name+".");
+  }
+}<span>&nbsp;</span></pre>
+
+<p>这样的声明方法比上面的方法都简洁，首推方法。成员方法调用方式一样。</p>
+<p><strong>声明一个可继承的类：</strong></p>
+<p><strong>情景一：</strong></p>
+<pre>var Person = function (name) {
+  this.name = name || 'NoName';
+};
+Person.sayHello = function () {
+  console.log("Hello "+this.name+".");
+}
+var Tom = new Person();</pre>
+
+<p>这样子，就等于声明了一个person的类，Tom就是person的一个实例。但是person.sayHello方法就等于是私有属性，不能被继承，所有Tom没有sayHello的方法。</p>
+<p><strong>情景二：</strong></p>
+<pre>var Person = function (name) {
+  this.name = name||"NoName";
+  this.sayHello = function () {
+    console.log("Hello "+this.name+".");
+  }
+};
+var Tom = new Person('Tom');
+Tom.sayHello();<span>&nbsp;</span></pre>
+
+<p>这样也是定义对象的一个方法，person是一个类，其name和sayHello可被实例继承。但是有一个缺陷，如果通过此类创建多个实例，那么这个类就存在多少份的复制，就如上面来说，创建多个实例：</p>
+<pre>var Tom1 = new Person("Tom1");
+var Tom2 = new Person("Tom2");
+var Tom3 = new Person("Tom3");</pre>
+
+<p>此时，Person就存在三个实例，每个实例有自己的成员和方法，内存中有三个sayHello方法的引用。sayHello作为一个通用的方法，这样定义的话，在新建多个实例时，就会造成内存的浪费。因此，应该把通用的方法使用原型链的方式定义，请看情景三。</p>
+<p><strong>情景三：</strong></p>
+<pre>var Person = function (name) {
+  this.name = name||"NoName";
+};
+Person.prototype.sayHello = function () {
+  console.log("Hello "+this.name+".");
+}
+var Tom = new Person('Tom');
+Tom.sayHello();<span>&nbsp;</span></pre>
+
+<p>通过原型链的方式，基于这个类新建的实例，其方法就不会再内存里面存在多个实例。</p>
+<p>但是此时，又涉及一个问题，如何知道Tom属于哪个类的呢，通过哪个构造函数来创建的呢？就引申到情景四了。</p>
+<p><strong>情景四：</strong></p>
+<p>这里，讨论的是实例的构造函数，每一个对象都有一个construcor的成员方法，指向的是创建该对象的那个函数。</p>
+<p>例如：</p>
+<pre>var arr1 = [1,2,3,4,5]; //此时arr1.constructor就是Array。
+var func = function() {};//此时func.constructor就是Function。<span>&nbsp;</span></pre>
+
+<p>因此，情景三中的Tom.constructor 就是 Person，就是</p>
+<pre>function (name) {
+  this.name = name||"NoName";
+};</pre>
+
+<p>这一个函数。通过new运算符创建的实例，该实例成员constructor所指向的就是new后面的变量。</p>
+<p>题外话，说说new运算符，MDN上面<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" target="_blank" rel="external">关于new运算符的定义</a>是这样的：</p>
+<blockquote>
+<p>The&nbsp;new&nbsp;operator creates an instance of a user-defined object type or of one of the built-in object types that has a constructor function.</p>
+</blockquote>
+<p>大意是：new运算符能为那些存在构造函数的用户自定义对象类型或者浏览器内部实现对象类型创建一个实例。</p>
+<p>new的语法格式为</p>
+<pre>new constructor[([arguments])];<span>&nbsp;</span></pre>
+
+<p>可以明显看出 实例的成员constructor就是创建该实例的对象类型。</p>
+<p>上面的四个情景，都不能说是面向对象编程，因为，还没有实现类的继承，只实现了类的创建实例。下面情景五来探讨如何继承类。</p>
+<p><strong>情景五：</strong></p>
+<p>不推荐用原生的写法进行面向对象编程，因为确实非常麻烦，推荐使用coffeescript进行面向对象的编程，甚至所有的javascript的编写，能转coffeescript就全部转，你会发现，使用coffeescript写出来的代码非常的优雅，而且，你将全部精力投入的是如何巧妙的设计代码，而不是堆代码的时代。</p>
+<p>当然，这里还是会讲讲如何通过原生javascript的方式实现javascript的继承。不过，真的很麻烦。</p>
+<p>首先，得要一个extends，把它看成new级别的东西吧。</p>
+<pre>var __extends = function(child,father) {
+  for(var property in father) {
+    child[property] = father[property];
+  }
+}
+var Animal = function (name) {
+  this.name = name;
+}
+Animal.sayHello = function () {
+  console.log("Hello "+this.name);
+}
+var Cat = function (name) {
+  this.name = name;
+}
+__extends(Cat,Animal);
+Cat.sayHello();</pre>
+
+<p>&nbsp;<span>这是一种继承的方式，要完美实现，这还是不足的。代码量好大啊。还是使用coffeescript来写吧。</span></p>
+<p><strong>情景六：</strong></p>
+<p><span>在情景五中，Cat继承了Animal的sayHello的方法。但是，如果改成&nbsp;Animal.prototype.sayHello = function () {}的话，Cat类就没法继承了，这就是上面那种简单写法的缺陷。</span></p>
+<p>所以需要把prototype的属性也要继承，所以必须把__extends函数重新写，注意prototype对于所有其派生类都是指向同一个内存空间的，修改父类对象的prototype将影响所有的子类。</p>
+<pre>var __extends = function(child,father) {
+  for(var property in father) {
+    child[property] = father[property];
+  }
+  function ctor() { 
+    this.constructor = child; 
+  } 
+  ctor.prototype = parent.prototype; 
+  child.prototype = new ctor(); 
+  child.__super__ = father.prototype; 
+}</pre>
+
+<p>很麻烦是吧，而且也不知道会不会出错。那您也应该尝试coffeescript的写法了。</p>
+<p><strong>情景七：</strong></p>
+<p>所以，还是来试试coffeescript的写法吧</p>
+<pre>class Animal
+  constructor:(@name) -&gt;
+  sayHello:-&gt;
+    console.log "Hello #{this.name}."
+    return
+class Cat extends Animal
+  sayHello:-&gt;
+  console.log "喵喵喵喵喵喵，#{this.name}"
+class Dog extends Animal
+  sayHello:-&gt;
+  console.log "汪汪汪汪汪汪，#{this.name}"
+cat1 = new Cat "kitty"
+dog1 = new Don "哈士奇"</pre>
+
+<p>&nbsp;通过coffeescript写出一个javascript对象继承，代码就是这么简洁。</p>
+<p>&nbsp;在这里面，就定义了Animal类，还有派生类Cat和Dog，分别覆盖了父类的sayHello的方法。写完之后，直接使用<a href="http://koala-app.com/" target="_blank" rel="external">koala</a>编译一下，马上一段完美的继承代码生成了。</p>
+<p><strong>结语：</strong></p>
+<p>至此，此片面向对象的文章算是草草结束了，断断续续写了一个星期，就写成了这样子，比较糟糕。大家不妨看看下面的参考文献。</p>
+<p><strong>参考文献：</strong></p>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" title="new operator" target="_blank" rel="external">new</a></li>
+<li><a href="http://developer.51cto.com/art/200907/134913.htm" title="javascript类和继承" target="_blank" rel="external">JavaScript类和继承：constructor属性</a></li>
+<li><a href="http://koala-app.com/" title="koala" target="_blank" rel="external">koala</a></li>
+<li><a href="http://coffeescript.org/" title="coffeescript" target="_blank" rel="external">coffeescript</a></li>
+</ol>
+<p>觉得对您有帮助，点个赞。赞赞更健康。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>(个人blog迁移文章。)</p>
+<p><strong>前言：</strong></p>
+<p>下面将探讨javascript面向对象编程的知识。</p>
+<p>&nbsp;</p>
+<p>请不要刻意把javascript想成面向对象编程是理所当然的。<br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[探讨css中repaint和reflow]]></title>
+    <link href="http://shenqihui.github.io/2014/02/12/%E6%8E%A2%E8%AE%A8css%E4%B8%ADrepaint%E5%92%8Creflow/"/>
+    <id>http://shenqihui.github.io/2014/02/12/探讨css中repaint和reflow/</id>
+    <published>2014-02-11T21:47:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p>(个人blog迁移文章。)</p>
+<p><strong>前言：</strong></p>
+<p>页面设计中，不可避免的需要浏览器进行repaint和reflow。那到底什么是repaint和reflow呢。下面谈谈自己对repaint和reflow的理解，以及结合其他技术牛的讲解，谈谈如何优化repaint和reflow。<br><a id="more"></a><br><strong>初步介绍：</strong></p>
+<p>开发一个页面时，不可避免的需要进行repaint和reflow。也就只有古来的静态页面才会不存在repaint和reflow。repaint主要是针对某一个DOM元素进行的重绘，reflow则是回流，针对整个页面的重排。字面意思来说：repaint就是重绘，reflow就是回流。repaint和reflow的目的是：展示一个新的页面样貌。</p>
+<p><strong>严重性：</strong></p>
+<p>在性能优先的前提下，性能消耗 reflow大于repaint。</p>
+<p><strong>体现：</strong></p>
+<p>repaint是某个DOM元素进行重绘；reflow是整个页面进行重排，也就是页面所有DOM元素渲染。</p>
+<p><strong>如何触发：</strong></p>
+<p>style变动造成repaint和reflow。</p>
+<p>不涉及任何DOM元素的排版问题的变动为repaint，例如元素的color/text-align/text-decoration等等属性的变动。</p>
+<p>除上面所提到的DOM元素style的修改基本为reflow。例如元素的任何涉及长、宽、行高、边框、display等style的修改。</p>
+<p><strong>常见触发场景：</strong></p>
+<ol>
+<li><p>触发repaint：</p>
+<pre><code><span class="number">1</span>.  <span class="attribute">color</span>的修改，如<span class="attribute">color</span>=<span class="hexcolor">#ddd</span>；
+</code></pre><ol>
+<li>text-align的修改，如text-align=center；</li>
+<li>a:hover也会造成重绘。</li>
+<li>:hover引起的颜色等不导致页面回流的style变动。</li>
+<li>等等太多，一时间写出来也太难想了。</li>
+</ol>
+</li>
+<li><p>触发reflow：</p>
+<pre><code><span class="number">1</span>.  <span class="attribute">width</span>/<span class="attribute">height</span>/<span class="attribute">border</span>/<span class="attribute">margin</span>/<span class="attribute">padding</span>的修改，如<span class="attribute">width</span>=<span class="number">778px</span>；
+</code></pre><ol>
+<li>动画，:hover等伪类引起的元素表现改动，display=none等造成页面回流；</li>
+<li>appendChild等DOM元素操作；</li>
+<li>font类style的修改；</li>
+<li>background的修改，注意着字面上可能以为是重绘，但是浏览器确实回流了，经过浏览器厂家的优化，部分background的修改只触发repaint，当然IE不用考虑；</li>
+<li>scroll页面，这个不可避免；</li>
+<li>resize页面，桌面版本的进行浏览器大小的缩放，移动端的话，还没玩过能拖动程序，resize程序窗口大小的多窗口操作系统。</li>
+<li>读取元素的属性（这个无法理解，但是技术达人是这么说的，那就把它当做定理吧）：读取元素的某些属性（offsetLeft、offsetTop、offsetHeight、offsetWidth、scrollTop/Left/Width/Height、clientTop/Left/Width/Height、getComputedStyle()、currentStyle(in IE))；</li>
+</ol>
+</li>
+</ol>
+<p><strong>如何避免：</strong></p>
+<p>说避免那是不可能的，不然就是以前古老的静态页面了，没有交互，那在现在看来，就是一个失败的作品。所以，在我们进行网页设计的时候，就必须尽量减少页面的repaint和reflow。repaint和reflow的目的是为了展示一个新的页面，那么我们在进行页面交互时，尽量通过各种方法减少repaint和reflow但又能展示一个新的页面的目的。所以下面将结合其他技术达人的建议，通过自己的理解，给大家讲解如何避免和优化repaint和reflow：</p>
+<p>下面是大神Nicole Sullivan的原话：</p>
+<blockquote>
+<ol>
+<li>Change classes on the element you wish to style (as low in the dom tree as possible)</li>
+<li>Avoid setting multiple inline styles</li>
+<li>Apply animations to elements that are position fixed or absolute</li>
+<li>Trade smoothness for speed</li>
+<li>Avoid tables for layout</li>
+<li>Avoid JavaScript expressions in the CSS&nbsp;(IE only)</li>
+</ol>
+</blockquote>
+<ol>
+<li><strong>尽可能在DOM末梢通过改变class来修改元素的style属性</strong>：尽可能的减少受影响的DOM元素。</li>
+<li><strong>避免设置多项内联样式</strong>：使用常用的class的方式进行设置样式，以避免设置样式时访问DOM的低效率。</li>
+<li><strong>设置动画元素position属性为fixed或者absolute</strong>：由于当前元素从DOM流中独立出来，因此受影响的只有当前元素，元素repaint。</li>
+<li><strong>牺牲平滑度满足性能</strong>：动画精度太强，会造成更多次的repaint/reflow，牺牲精度，能满足性能的损耗，获取性能和平滑度的平衡。</li>
+<li><strong>避免使用table进行布局</strong>：table的每个元素的大小以及内容的改动，都会导致整个table进行重新计算，造成大幅度的repaint或者reflow。改用div则可以进行针对性的repaint和避免不必要的reflow。</li>
+<li><strong>避免在CSS中使用运算式</strong>：学习CSS的时候就知道，这个应该避免，不应该加深到这一层再去了解，因为这个的后果确实非常严重，一旦存在动画性的repaint/reflow，那么每一帧动画都会进行计算，性能消耗不容小觑。</li>
+</ol>
+<p><strong>参考文献：</strong></p>
+<ol>
+<li><a href="http://www.blueidea.com/tech/web/2011/8365.asp" title="http://www.blueidea.com/tech/web/2011/8365.asp" target="_blank" rel="external">页面重构应注意的repaint和reflow</a></li>
+<li><a href="http://blog.csdn.net/baiduforum/article/details/5415527" title="如何减少浏览器repaint和reflow（上）" target="_blank" rel="external">如何减少浏览器repaint和reflow（上）</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2010/01/%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E7%BB%98%EF%BC%9Acss%E6%80%A7%E8%83%BD%E8%AE%A9javascript%E5%8F%98%E6%85%A2%EF%BC%9F/" title="回流与重绘：CSS性能让JavaScript变慢？" target="_blank" rel="external">回流与重绘：CSS性能让JavaScript变慢？</a></li>
+<li><a href="http://www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/" title="Permanent Link: Reflows &amp; Repaints: CSS Performance making your JavaScript slow?" target="_blank" rel="external">Reflows &amp; Repaints: CSS Performance making your JavaScript slow?</a></li>
+</ol>
+<p>&nbsp;</p>
+<p>觉得有用，点个赞，赞赞更健康。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>(个人blog迁移文章。)</p>
+<p><strong>前言：</strong></p>
+<p>页面设计中，不可避免的需要浏览器进行repaint和reflow。那到底什么是repaint和reflow呢。下面谈谈自己对repaint和reflow的理解，以及结合其他技术牛的讲解，谈谈如何优化repaint和reflow。<br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[汤姆大叔设计模式学习体会：设计模式的思想]]></title>
+    <link href="http://shenqihui.github.io/2014/02/08/%E6%B1%A4%E5%A7%86%E5%A4%A7%E5%8F%94%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%BD%93%E4%BC%9A%EF%BC%9A%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%80%9D%E6%83%B3/"/>
+    <id>http://shenqihui.github.io/2014/02/08/汤姆大叔设计模式学习体会：设计模式的思想/</id>
+    <published>2014-02-08T00:32:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>汤姆大叔的教程地址：<a href="http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html" target="_blank" rel="external">http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html</a>，谢谢大叔。</strong></p>
+<p><strong>1、单例模式</strong></p>
+<p>核心是该对象只存在一个实例，要么直接写成实例的形式，</p>
+<p>要么就需要写成构造函数形式，但是需要在构造函数里面通过模拟闭包的方式重新定义该构造函数，保存当前this对象，新定义的构造函数返回该this对象，达到只存在改对象只存在一个实例的目的。<br><a id="more"></a><br><strong>2、构造者模式</strong></p>
+<p>其实就一构造函数，记得首字母大写。</p>
+<p><strong>3、建造者模式</strong></p>
+<p>给你一块砖，你能砌上墙，给你十块砖，也能通过这个方法砌上墙。可能这些砖的颜色有点不同而已。这个方法，就是建造者模式。</p>
+<p>砖的颜色怎么样，墙就怎么样，跟怎么建造没关系。给你同类型的砖，这个方法就能砌好这堵墙。</p>
+<p><strong>4、工厂模式</strong></p>
+<p>一个有钱的傻大壮，有一天看到想要一个三轮车，他爸给了他个能做任何车的车厂。</p>
+<p>傻大壮跟厂长说：&ldquo;给我个帅气的三轮车&rdquo;，铛的一声，厂长给了他一辆自己厂生产的三轮车。</p>
+<p>又一天，傻大壮想要一个拖拉机，厂长二话没说，拉出了刚下生产线的拖拉机。</p>
+<p>傻大壮耍了几天，觉得拖拉机太快了，根厂长要量人力三轮车，厂长吩咐阿四把刚出产的人力三轮车骑了过来。</p>
+<p>傻大壮要去泡妞啊，厂长觉得三轮车去泡妞太霸气了，要低调，哄傻大壮开个别的。傻大壮说：&ldquo;那好，给我个法拉利&rdquo;。 厂长笑了笑，又叫阿四拉出了最新研发的法拉利出来。</p>
+<p>这个就是工厂，这个工厂就是一个模式，给什么要求，做什么东西，当然，你说飞机火箭什么的，劳驾到其它工厂吧。</p>
+<p>不过嘛，你没有傻大壮的老爸，这个工厂需要你自己来搭建咯，先从自行车的刹车皮开始做起吧，慢慢来别急啊骚年。</p>
+<p><strong>5、装饰者模式</strong></p>
+<p>傻大壮一直有一个理念，只买贵的不买对的。</p>
+<p>一天他朋友跟他说，他的劳斯莱斯改装过之后，价值比原来高了100快啊，然后又加了个高压发动机，价值又高了200快。总价从原来的400快变成700了。</p>
+<p>傻大壮开不过眼，自己的法拉利再怎么说也是600快的价值，我也要改装，超过你们，结果傻大壮把车拿去改装：喷靓丽的骚红色车漆，价值+100、改装亮瞎前灯，价值+200，傻大壮觉得，反正已经900快价值了，比你的高。</p>
+<p>这就是装饰者模式，把原车拿去，换了一个改装过的车。再把这车改装，这车又更加霸气了。不过来来回回都是那个车每一次改装都没有前提和前置条件。不过大叔的代码里面，前面的代码说的确实每一次的车都被克隆了一个，把克隆了之后的给了别人。后面使用了prototype才算正确。（个人疑惑点，大叔见谅，谢谢大叔指点。）</p>
+<p><strong>6、外观模式</strong></p>
+<p>将相同功能但是参数顺序数量格式不同或者功能名不同的功能集合起来，通过该功能即可自动识别调用该系统支持的接口，鉴于每次都需要进行支持性判断，损耗了部分的性能。但是大大方便了程序员的工作，大部分兼容框架都会使用到该模式。如下事件绑定代码：</p>
+<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">var</span> addMyEvent = <span style="color: #0000ff;">function</span><span style="color: #000000;"> (el, ev, fn) {<br>    </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (el.addEventListener) {<br>        el.addEventListener(ev, fn, </span><span style="color: #0000ff;">false</span><span style="color: #000000;">);<br>    } </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span><span style="color: #000000;"> (el.attachEvent) {<br>        el[</span>‘e’+ev+fn]=<span style="color: #000000;">fn;<br>        el[ev</span>+fn]=<span style="color: #0000ff;">function</span>(e){el<a href="e||&lt;span style=&quot;color: #000000;&quot;&gt;window.event">‘e’+ev+fn</a>;}<br>        el.attachEvent(‘on’ + ev, el[ev+<span style="color: #000000;">fn]);<br>    } </span><span style="color: #0000ff;">else</span><span style="color: #000000;"> {<br>        el[</span>‘e’+ev+fn]=<span style="color: #000000;">fn;<br>        el[ev</span>+fn]=<span style="color: #0000ff;">function</span>(e){el<a href="e||&lt;span style=&quot;color: #000000;&quot;&gt;window.event">‘e’+ev+fn</a>;}<br>        el[‘on’ + ev] = el[ev+<span style="color: #000000;">fn];<br>    }<br>}; </span></pre><br></div>
+
+<p><strong>7、代理模式</strong></p>
+<p>大叔说了，dudu不敢送玫瑰花给酸奶小妹，大叔就帮他了。常用，不过把自己的命运交给别人把握的感觉不怎么好。</p>
+<p><strong>8、观察者模式</strong></p>
+<p>对于消息分发很有帮助，能通过一个地方的修改就改变其他地方。具体实现代码的时候直接模仿。</p>
+<p><strong>9、策略模式</strong></p>
+<p>&nbsp;把算法单独封装起来，区别于每次使用不使用这种模式构造的算法集都会影响用户使用。使用该种模式的话，能够方便的进行功能增加的测试，新增加的同类算法不影响现在的算法，大叔的文章中把输入验证的算法单独抽出实现算法集的集合，增加新验证方式又不影响现在算法。</p>
+<p><strong>10、命令模式</strong></p>
+<p>这个模式十分适合那种需要记录动作执行记录的功能，讲这个命令接口设置成字符串或者JSON格式，传输给命令接口，即可方便执行命令记录和执行命令的动作。命令格式还能自定义。</p>
+<p><strong>11、迭代器模式</strong></p>
+<p>主要思想是把一个属性不可修改的可遍历的聚合对象保护起来，在进行遍历时，需要采用该种模式。</p>
+<p>该模式中，通过至少<span>hasNext()和Next()两个方法，即可进行把一个聚合对象的所有可遍历属性遍历完毕。</span></p>
+<p><strong>12、中介者模式</strong></p>
+<p><span>使用中介封装其他对象的交互。大叔说道，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。</span></p>
+<p><span>耦合松散对编程来说那可是值得走的好方向，只是需要花点时间来解耦而已。</span></p>
+<p>中介者模式和观察者模式有相同之处，都是通过消息驱动，用户出发一个对象的事件，传输到中介者，中介者分发下去，触发接受者的接受函数。其实我把两者混淆了。</p>
+<p>重要特点是，中介者，多对多；观察者，一对多。</p>
+<p><strong>13、享元模式</strong></p>
+<p>方便的管理相同的层级元素。例如具备相同单元的对象及元素，能把其相同之处集合起来。还有管理 DOM 事件，利用 DOM 的冒泡和捕抓事件的特性。能把单独的小事件统一到其上一级别，通过判断 e.originalTarget 或者 e.srcElement 进行小事件的对应单独处理，但是要注意多次触发事件的问题。达到性能和内存的优化。</p>
+<p><strong>14、职责链模式</strong></p>
+<p>职责链就好像工厂的生产流水线，每到一个责任，都会有一个特定的接口，调用该接口就能自动通知下一任责任者就行责任的填充，每一个责任都知道其下一任职责者。最后一任职责者会调用完毕动作。</p>
+<p>因此在使用职责链时，需要传入下一任职责者，生成对象，调用职责链的公用方法，通知下一任职责者。创建处事对象的时候，需要根据职责链的接口，设定动作函数。</p>
+<p><strong>15、适配器模式</strong></p>
+<p>该模式主要针对接口的改变，如果不想再原始对象上面进行变动，那就可以采取适配器的模式。把原有接口重新封装，实现用户需要的接口。</p>
+<p>就比如一个三口插座充电器，在中国能用，在外国不能用了，就需要使用接口转换的了，现在的高端手机基本上都有多口转换。充电器到头来还是那个充电器。</p>
+<p><strong>16、组合模式</strong></p>
+<p>&nbsp;大叔说道，组合模式有明确的使用场景：1、你想表达对象的部分-整体层次结构时。2、组合对象和单个对象不同，但是使用的时候能相同使用。具体实现时需要先写一个最基础的组合方法，然后后面的单个对象的基础对象都需要继承该方法。详细实现时，参考大叔的菜单代码。</p>
+<p><strong>17、模板方法</strong></p>
+<p>思想：创建一个框架，搭建框架的所有方法，但是只实现相同功能，可变功能只留接口不实现，留在子类实现。</p>
+<p>该框架能够延森到其它子类中，具体功能将在子类实现时补充完毕。</p>
+<p><strong>18、原型模式</strong></p>
+<p>这个模式比较通用，通过javascript特有的原型继承实现继承方法都会使用到该种模式。ECMA5中的是使用Odject.create方法实现原型继承。大叔提到需要注意深拷贝和浅拷贝的问题。值引用方式为浅拷贝，值返回的方式是深拷贝。</p>
+<p><strong>19、状态模式</strong></p>
+<p>代码很多的一篇，一个模式足足200行。</p>
+<p>使用该种模式有明确场景：</p>
+<p>对象的行为跟对象的状态相关，运行时刻，状态改变讲改变对象的行为，对象的行为根据状态进行。</p>
+<p>写这种代码确实是劳心劳力啊。T_T||。详细实现的时候再瞧瞧大叔的代码吧。</p>
+<p><strong>20、桥接模式</strong></p>
+<p>最简单的桥接模式，把一个可能在不同上下文下不能运行的函数，通过改变调用方式或者改变参数的方式达到运行的目的。这个方式就成为桥。</p>
+<p>大叔的例子里面，代码是运行不鸟了，因为没有环境。主要思想就是在绑定动作的时候，直接的实现内容用户可以不知道，传输正确参数（如id）进去即可判断参数进行动作或者获取数据。</p>
+<p>&nbsp;</p>
+<p><strong>总结：</strong></p>
+<p>花了一个春节假期，把大叔的设计模式这一块看完了，从编码思想方面进行了改变。但是，设计模式并非看完就能真正掌握了，没有实践，永远只能在口中胡扯。</p>
+<p>talk is cheap,show me the code.</p>
+<p>速成设计模式，难，没基础学设计模式，难。学习设计模式的最佳方法不是看书就知道，而是看过了书知道，了解到其思想，在自己的编码实践中，结合进去，参考前人的代码进行该模式的实现，自然水到渠成。</p>
+<p>这就是这篇文章的目的：设计模式的思想。</p>
+<p>（<span style="line-height: 1.5;">并非做了精读，</span><span style="line-height: 1.5;">只做编程作参考，如有错误，恳请大力指出，谢谢。）</span></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>汤姆大叔的教程地址：<a href="http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html">http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html</a>，谢谢大叔。</strong></p>
+<p><strong>1、单例模式</strong></p>
+<p>核心是该对象只存在一个实例，要么直接写成实例的形式，</p>
+<p>要么就需要写成构造函数形式，但是需要在构造函数里面通过模拟闭包的方式重新定义该构造函数，保存当前this对象，新定义的构造函数返回该this对象，达到只存在改对象只存在一个实例的目的。<br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[从一道数学题弹程序员的思维：数学题，求证：(a+b%c)%c=(a+b)%c]]></title>
+    <link href="http://shenqihui.github.io/2014/02/08/%E4%BB%8E%E4%B8%80%E9%81%93%E6%95%B0%E5%AD%A6%E9%A2%98%E5%BC%B9%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%80%9D%E7%BB%B4%EF%BC%9A%E6%95%B0%E5%AD%A6%E9%A2%98%EF%BC%8C%E6%B1%82%E8%AF%81%EF%BC%9A-a-b-c-c-a-b-c/"/>
+    <id>http://shenqihui.github.io/2014/02/08/从一道数学题弹程序员的思维：数学题，求证：-a-b-c-c-a-b-c/</id>
+    <published>2014-02-07T19:36:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p>在学校论坛看到这道题目，全忘了的感觉。</p>
+<p>如果你是高中的，那我觉得你完全没问题。但是，在这个博客园的圈子，觉得全部人都是程(ban)序(zhuan)员(gong)相关的人员，解决这个问题有点难度，毕竟，想法已经偏了。</p>
+<a id="more"></a>
+<p>有句话说得好，如果你拿着一个锤子，那你看什么都像一个钉子。</p>
+<p>因此程序员必要的时候必须转换下思路啊。程序员思维是：已知条件，求值；而不是已知 条件 和 值，求证：这求值过程不存在bug。</p>
+<p>如果有人叫你这么证明你的程序的求值过程正确，你会不会抡起你的键(zhuan)盘(tou)就拍过去了。</p>
+<p>我们能做到的只是，带入a=<em>,b=<strong>,c=</strong></em>，验证等式成立。数学题让数学家证明去吧。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>下面回到高中的想法，谈谈这道题目吧：</p>
+<div class="cnblogs_code"><br><pre>求证：(a+b%c)%c=(a+<span style="color: #000000;">b)%c<br>解：<br><br>　　假设等式左右边的值为 v，<br><br>　　则 存在整数x和y，使得下面等式成立。<br><br>　　a</span>+b%c = v +<span style="color: #000000;"> xc;（左边）<br><br>　　a</span>+b     = v +<span style="color: #000000;"> yc;（右边）<br><br>　　这两式子同时成立，则可以化简为：<br><br>　　存在整数 z 使得 z</span>*c = b -<span style="color: #000000;"> b%c 成立。<br><br>　　则证明 b </span>-<span style="color: #000000;"> b%c 为 c 的倍数。<br><br>　　显然 b </span>- b%c 为 c 的倍数。</pre><br></div>
+
+<p><span style="line-height: 1.5;">（</span><span style="line-height: 1.5;">　　感觉我自己也跑歪了，如果(b - b%c 为 c 的倍数)不是显然的话，我们还做什么程序员。</span></p>
+<p><span style="line-height: 1.5;">其实 &nbsp;</span><span style="line-height: 1.5;">(a+b%c)%c=(a+b)%c 也是显然的。</span><span style="line-height: 1.5;">）</span></p>
+<p>&nbsp;</p>
+<p>后注：发表了出来，才发现，其实这道题跟程序员思维没啥联系。纯当胡扯。</p>
+<p>&nbsp;</p>
+<p>下面是整理一楼&nbsp;<a href="http://home.cnblogs.com/u/228024/" target="_blank" rel="external">五岳</a>&nbsp;提供的正确方法，谢谢指导。（我的答案已经跑歪了）</p>
+<div class="cnblogs_code"><br><pre><span style="color: #000000;">假设：<br>　　a </span>= x<em>c +<span style="color: #000000;"> a0<br>　　b </span>= y</em>c +<span style="color: #000000;"> b0<br>　　其中x,y,a0,b0&isin;Z,且|a0|</span>&lt;|c|,|b0|&lt;<span style="color: #000000;">|c|<br>　　那么<br>　　(a</span>+b%c)%c = (x<em>c + a0 + (y</em>c + b0)%c)=(x<em>c +a0 + b0)%c = (a0 +<span style="color: #000000;"> b0)%c<br>　　而(a</span>+b)%c = (x</em>c + a0 + y*c + b0)%c = (a0+<span style="color: #000000;">b0)%c<br>　　两式相等，得证</span></pre><br></div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在学校论坛看到这道题目，全忘了的感觉。</p>
+<p>如果你是高中的，那我觉得你完全没问题。但是，在这个博客园的圈子，觉得全部人都是程(ban)序(zhuan)员(gong)相关的人员，解决这个问题有点难度，毕竟，想法已经偏了。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[汤姆大叔 深入理解JavaScript系列（20）：《你真懂JavaScript吗？》答案详解 后六道题答案]]></title>
+    <link href="http://shenqihui.github.io/2014/02/03/%E6%B1%A4%E5%A7%86%E5%A4%A7%E5%8F%94-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JavaScript%E7%B3%BB%E5%88%97%EF%BC%8820%EF%BC%89%EF%BC%9A%E3%80%8A%E4%BD%A0%E7%9C%9F%E6%87%82JavaScript%E5%90%97%EF%BC%9F%E3%80%8B%E7%AD%94%E6%A1%88%E8%AF%A6%E8%A7%A3-%E5%90%8E%E5%85%AD%E9%81%93%E9%A2%98%E7%AD%94%E6%A1%88/"/>
+    <id>http://shenqihui.github.io/2014/02/03/汤姆大叔-深入理解JavaScript系列（20）：《你真懂JavaScript吗？》答案详解-后六道题答案/</id>
+    <published>2014-02-03T07:00:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p>原题目地址：<a href="http://www.cnblogs.com/TomXu/archive/2012/02/10/2342098.html" target="_blank" rel="external">http://www.cnblogs.com/TomXu/archive/2012/02/10/2342098.html</a></p>
+<p>答案丰富多彩。我只是记录下自己思考了半天全部的答案。<br><a id="more"></a><br>&nbsp;</p>
+<p><strong>题目一：找出数字数组中最大的元素（使用Match.max函数）</strong></p>
+<p>这个题目，看到Match，不知道啥东西，结果放在最后，</p>
+<p>用了个很笨的解决方法：</p>
+<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">var</span> arr=[0,1,2,3,4,5,6,7,8,9],arrFunc = [], max = -<span style="color: #000000;">Infinity<br></span><span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i = 0, l = arr.length; i &lt; l; i++<span style="color: #000000;">){<br>  max </span>=<span style="color: #000000;"> Math.max(max,arr[i])<br>}<br>console.log(max);</span></pre><br></div>
+
+<p>后来看了下原文评论，原来这么简单。</p>
+<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">var</span> arr=[0,1,2,3,4,5,6,7,8,9<span style="color: #000000;">];<br>console.log(Math.max.apply(</span><span style="color: #0000ff;">null</span>,arr))</pre><br></div>
+
+<p>这个问题就没啥好解析的了。</p>
+<p><strong>题目二：转化一个数字数组为function数组（每个function都弹出相应的数字）</strong></p>
+<p>for循环闭包的问题，大叔的文章很多提到这个问题。</p>
+<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">var</span> arr=[0,1,2,3,4,5,6,7,8,9],arrFunc =<span style="color: #000000;"> [];<br></span><span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i = 0, l = arr.length; i &lt; l; i++<span style="color: #000000;">){<br>  arrFunc.push((</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(i) {<br>    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>      console.log(arr[i]);<br>    }<br>  })(i))<br>}</span></pre><br></div>
+
+<p>个人觉得对于闭包最简单的解析：闭包的作用就是保存当前的作用链域的环境。</p>
+<p>&nbsp;</p>
+<p><strong>题目三：给object数组进行排序（排序条件是每个元素对象的属性个数）</strong></p>
+<p>这个说起来好像很坑爹的赶脚。我居然用了这么笨的想法。</p>
+<div class="cnblogs_code"><br><pre>Object.prototype.myLength = <span style="color: #0000ff;">function</span><span style="color: #000000;">(){<br>  </span><span style="color: #0000ff;">var</span> length = 0<span style="color: #000000;">;<br>  </span><span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i <span style="color: #0000ff;">in</span> <span style="color: #0000ff;">this</span><span style="color: #000000;">){<br>    length </span>++<span style="color: #000000;">;<br>  }<br>  </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> length;<br>}<br></span><span style="color: #0000ff;">var</span> objArr =<span style="color: #000000;"> [<br>  {a:</span>1, b:2, c:5, d:7, e:8, g:0, h:12, i:5, v:9, w:9, x:9, y:9, z: 15<span style="color: #000000;">},<br>  {a:</span>2, b:2, c:5, d:7, e:8, g:0, h:12, i:5, j:7, k:5, l:9, m:9, n:0, o:1, p:9, x:9, y:9, z:9<span style="color: #000000;"> },<br>  {a:</span>3, b:2, c:5, d:7, e:8, g:0, h:12, i:5, j:7, k:5, l:9, m:9, n:0, o:1, p:9, q:0<span style="color: #000000;"> },<br>  {a:</span>4, b:2, c:5, d:7, e:8, g:0, h:12, i:5, j:7, k:5, w:9, x:9, y:9, z:9<span style="color: #000000;"> },<br>  {a:</span>5, b:2, c:5, d:7, e:8, g:0, h:12, i:5, j:7, k:5, v:9, w:9, x:9, y:9, z:9<span style="color: #000000;"> },<br>  {a:</span>6, b:2, c:5, d:7, e:8, g:0, h:12, i:5, j:7, k:5, l:9, m:9, n:0, o:1, p:9, q:0, r:8, s:9, t:9, z:9<span style="color: #000000;"> },<br>  {a:</span>7, b:2, c:5, d:7, e:8, x:9, y:9, z:9<span style="color: #000000;"> }</span><span style="color: #000000;"><br>];<br></span><span style="color: #008000;">//</span><span style="color: #008000;"> arr before sort</span><br><span style="color: #0000ff;">var</span> numArr1 =<span style="color: #000000;"> []<br></span><span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i = 0, l = objArr.length; i &lt; l; i++<span style="color: #000000;"> ){<br>  numArr1.push( objArr[i].myLength() )<br>}<br>console.log(numArr1.join(</span>“ “)) <span style="color: #008000;">//</span><span style="color: #008000;">result</span><span style="color: #008000;"><br>//</span><span style="color: #008000;"> arr after sort</span><br>objArr.sort(<span style="color: #0000ff;">function</span><span style="color: #000000;">(a,b){<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> stable sort</span><br>  <span style="color: #008000;">//</span><span style="color: #008000;"> return (a.myLength() &gt; b.myLength()) === true? 1:-1;</span><br>  <span style="color: #008000;">//</span><span style="color: #008000;"> unstable sort</span><br>  <span style="color: #0000ff;">return</span> (a.myLength() &gt;= b.myLength()) === <span style="color: #0000ff;">true</span>? 1:-1<span style="color: #000000;">;</span><br>  <span style="color: #008000;">//</span><span style="color: #008000;"> return a.myLength() - b.myLength();</span><span style="color: #000000;"><br>})<br></span><span style="color: #0000ff;">var</span> numArr2 =<span style="color: #000000;"> []<br></span><span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i = 0, l = objArr.length; i &lt; l; i++<span style="color: #000000;"> ){<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> console.log(i,l,objArr[i].myLength());</span><br><span style="color: #000000;">  numArr2.push( objArr[i].myLength() )<br>}<br>console.log(numArr2.join(</span>“ “)) <span style="color: #008000;">//</span><span style="color: #008000;">result</span></pre><br></div>
+
+<p>感觉突然自己的想法和别人的有点不同（不好的方向）。</p>
+<p>&nbsp;</p>
+<p><strong>题目四：利用JavaScript打印出Fibonacci数（不使用全局变量）</strong></p>
+<p>这个问题，写完之后我看了下其他人的写法，一半一半都没写中间缓存保存，我觉得这也是大叔表明不适用全局变量的原因，我把两种方式都写了进去。</p>
+<p>这个是有缓存的，</p>
+<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">var</span> fibonacci = (<span style="color: #0000ff;">function</span><span style="color: #000000;">(){<br>  </span><span style="color: #0000ff;">var</span> s =<span style="color: #000000;"> [];<br>  </span><span style="color: #0000ff;">var</span> fun = <span style="color: #0000ff;">function</span><span style="color: #000000;">(x) {<br>    </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(s[x]){<br>      </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> s[x];<br>    }<br>    </span><span style="color: #0000ff;">if</span>(x &lt; 0<span style="color: #000000;">) {<br>      </span><span style="color: #0000ff;">throw</span> “Can’t be negative”<span style="color: #000000;">;<br>      </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> ;<br>    }<br>    </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span>(x === 0 || x === 1<span style="color: #000000;">) {<br>      s[x] </span>= s[x] ||<span style="color: #000000;"> x;<br>      </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> s[x];<br>    }<br>    </span><span style="color: #0000ff;">else</span><span style="color: #000000;">{<br>      s[x] </span>= ( fun(x - 1) + fun(x - 2<span style="color: #000000;">) );<br>      </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> s[x];<br>    }<br>  };<br>  fun.print </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>    console.log(s.join(</span>“ “<span style="color: #000000;">));<br>  }<br>  fun.printLast </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>    </span><span style="color: #008000;">//</span><span style="color: #008000;"> console.log(s.length);</span><br>    <span style="color: #0000ff;">return</span>(s[s.length-1<span style="color: #000000;">]);<br>  }<br>  window.s </span>=<span style="color: #000000;"> s;<br>  </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> fun;<br><br>})()<br>console.time(</span>200<span style="color: #000000;">);<br>console.log(fibonacci(</span>200<span style="color: #000000;">));<br>console.log(fibonacci.printLast());<br>console.log(fibonacci.print());<br>console.timeEnd(</span>200);</pre><br></div>
+
+<p>测试几百几千位的时间不足1000ms。</p>
+<p>这个是递归无缓存的，</p>
+<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">var</span> fibonacci2 = <span style="color: #0000ff;">function</span><span style="color: #000000;">(x){<br>  </span><span style="color: #0000ff;">if</span>(x &lt; 0<span style="color: #000000;">) {<br>    </span><span style="color: #0000ff;">throw</span> “Can’t be negative”<span style="color: #000000;">;<br>    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> ;<br>  }<br>  </span><span style="color: #0000ff;">if</span>(x === 0 || x === 1<span style="color: #000000;">) {<br>    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> x;<br>  }<br>  </span><span style="color: #0000ff;">var</span> num = ( fibonacci2(x - 1) + fibonacci2(x - 2<span style="color: #000000;">) )<br>  </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> num;<br>}<br>console.time(</span>32<span style="color: #000000;">);<br>console.log(fibonacci2(</span>32<span style="color: #000000;">));<br>console.timeEnd(</span>32);</pre><br></div>
+
+<p>测试个32位已经4000ms+，时间呈数量级增长，太坑。</p>
+<p><strong>题目五：实现如下语法的功能：var a = (5).plus(3).minus(6); //2</strong></p>
+<p>这个算是最简单的吧，但是我居然和别人的不一样，都能运行。</p>
+<div class="cnblogs_code"><br><pre>Number.prototype.plus = <span style="color: #0000ff;">function</span><span style="color: #000000;">(x) {<br>  </span><span style="color: #0000ff;">var</span> num = <span style="color: #0000ff;">this</span>.valueOf() +<span style="color: #000000;"> x;<br>  </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> Number(num);<br>}<br>Number.prototype.minus </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">(x) {<br>  </span><span style="color: #0000ff;">var</span> num = <span style="color: #0000ff;">this</span>.valueOf() -<span style="color: #000000;"> x;<br>  </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> Number(num);<br>}<br><br></span><span style="color: #0000ff;">var</span> a = (5).plus(3).minus(6<span style="color: #000000;">);<br>console.log(a);<br>alert(a);</span></pre><br></div>
+
+<p>人家直接返回一个num，我返回一个Number封装的num对象，其实都一样是Number对象。</p>
+<p><strong>题目六：实现如下语法的功能：var a = add(2)(3)(4); //9</strong></p>
+<p>这个题目算是第一个做出来的题目，因为我觉得这个题目的要求最简单，一看就记得，半夜睡醒了在床上直接脑袋打草稿运行了。</p>
+<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">function</span><span style="color: #000000;"> add(x) {<br>  </span><span style="color: #0000ff;">var</span><span style="color: #000000;"> mid;<br>  mid </span>= x || 0<span style="color: #000000;">;<br>  </span><span style="color: #0000ff;">function</span><span style="color: #000000;"> addObj(x) {<br>    x </span>= x || 0<span style="color: #000000;">;<br>    mid </span>= mid +<span style="color: #000000;"> x;<br>    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> addObj;<br>  }<br>  addObj.valueOf </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> mid;<br>  }<br>  addObj.toString </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> mid;<br>  }<br>  </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> addObj;<br>}<br></span><span style="color: #008000;">//</span><span style="color: #008000;">call the obj.valueOf function</span><br>console.log(add(2<span style="color: #000000;">));<br>console.log(add(</span>2)(3<span style="color: #000000;">));<br>console.log(add(</span>2)(3)(4<span style="color: #000000;">));<br>console.log(add(</span>2)(3)(4)(5<span style="color: #000000;">));<br><br></span><span style="color: #008000;">//</span><span style="color: #008000;">call the obj.toString function</span><br>alert(add(2<span style="color: #000000;">));<br>alert(add(</span>2)(3<span style="color: #000000;">));<br>alert(add(</span>2)(3)(4<span style="color: #000000;">));<br>alert(add(</span>2)(3)(4)(5));</pre><br></div>
+
+<p>&nbsp;能无限调用。</p>
+<p>&nbsp;</p>
+<p>写完上述代码，我参考了下原文评论里面的，看了下自己的代码，和别人的比较下，有好的地方，也有不足之处，不过我的代码比较浅显，不想部分人写的那些看了很久才看明白，特别是那个写了缓存的fibonacci数列的答案。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>原题目地址：<a href="http://www.cnblogs.com/TomXu/archive/2012/02/10/2342098.html">http://www.cnblogs.com/TomXu/archive/2012/02/10/2342098.html</a></p>
+<p>答案丰富多彩。我只是记录下自己思考了半天全部的答案。<br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[canvas绘制自定义的曲线，以椭圆为例，通俗易懂，童叟无欺]]></title>
+    <link href="http://shenqihui.github.io/2013/08/21/canvas%E7%BB%98%E5%88%B6%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E6%9B%B2%E7%BA%BF%EF%BC%8C%E4%BB%A5%E6%A4%AD%E5%9C%86%E4%B8%BA%E4%BE%8B%EF%BC%8C%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%EF%BC%8C%E7%AB%A5%E5%8F%9F%E6%97%A0%E6%AC%BA/"/>
+    <id>http://shenqihui.github.io/2013/08/21/canvas绘制自定义的曲线，以椭圆为例，通俗易懂，童叟无欺/</id>
+    <published>2013-08-20T20:57:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p>本篇文章，将讲述如何通过自定义的曲线函数，使用canvas的方式进行曲线的绘制。<a href="http://sharefunny.sinaapp.com/example/ellipse.html" target="_blank" rel="external">
+</a></p>
+<p>为了通俗易懂，将以大家熟悉的椭圆曲线为例，进行椭圆的绘制。至于其他比较复杂的曲线，用户只需通过数学方式建立起曲线函数，然后变换成为距离函数方程，替换即可。另外：<span style="color: #ff0000;">代码还没进行任何优化。</span><br><a id="more"></a><br><span style="color: #ff0000;">（注：本文只适合那种能在一个点为原点、基于原点的每个角度只能存在一个点的曲线，通俗说就是，过原点作直线，与曲线相交的交点最多两个，而且两交点分别位于原点两端。）</span></p>
+<p>目录结构</p>
+<p><a href="#hh1">1、数学分析</a></p>
+<p><a href="#hh2">2、曲线方程</a></p>
+<p><a href="#hh3">3、画一个点</a></p>
+<p><a href="#hh4">4、画形状</a></p>
+<p><a href="#hh5">5、废话</a></p>
+<p>正文：</p>
+<p>1、数学分析</p>
+<p>首先讲解下椭圆的构造，如图所示，数学厉害的忽视这段。</p>
+<p>======================================分割线，数学帝请忽略这一段==================================</p>
+<p><img src="http://images.cnitblog.com/blog/358891/201308/21124416-9a3d72a50a4e4defb07b200019eba1f8.png" alt=""></p>
+<p>椭圆构造图</p>
+<p>其中，OA,OB分别为半长轴和短长轴，通过此两线段的距离能计算出半焦距FO的长度，再确定心O的坐标就能确认整个椭圆的范围。</p>
+<p>由此可知，清楚了OA,OB的距离，就能知道椭圆的形状。</p>
+<p><a href="http://baike.baidu.com/link?url=pbwLlXdKGl18oSg94MhDTzfi-http://baike.baidu.com/link?url=pbwLlXdKGl18oSg94MhDTzfi-s1HNoSmCs9EfZ3PeGy0hJSE0suePuZqvO7D92Zi" target="_blank" rel="external">百度百科</a>里面讲到，</p>
+<blockquote>
+<p>椭圆的标准方程有两种，取决于焦点所在的坐标轴：</p>
+<p>1）焦点在X轴时，标准方程为：x&sup2;/a&sup2;+y&sup2;/b&sup2;=1 (a&gt;b&gt;0)</p>
+<p>2）焦点在Y轴时，标准方程为：y&sup2;/a&sup2;+x&sup2;/b&sup2;=1 (a&gt;b&gt;0)</p>
+</blockquote>
+<p>其实两个概念差不多一样，将a 和 b在方程中的位置对调就行。不详细讲。</p>
+<p>看好，我要变形了。&rarr;_&rarr;</p>
+<p>假设&theta;为&ang;POF，P点距离x轴的长度为Y<sub>1</sub>的值，设为y；距离Y轴长度为X<sub>1</sub>值，设为X，P点基于O的坐标就是(x<sub>1</sub>,y<sub>1</sub>)。</p>
+<p>tan&theta; = y/x</p>
+<p>y = xtan&theta;</p>
+<p>带入椭圆方程 x&sup2;/a&sup2;+x<sup>2</sup>(tan&theta;)<sup>2</sup>/b&sup2;=1，解得(注：tan&theta;*tan&theta;，不记得是用tan&theta;<sup>2</sup>/tan<sup>2</sup>&theta;表示了，貌似是tan<sup>2</sup>&theta;，本文统一(tan&theta;)<sup>2</sup>表示)</p>
+<p>x<sup>2</sup> = a<sup>2</sup>b<sup>2</sup> / (b<sup>2</sup>+a<sup>2</sup>(tan&theta;)<sup>2</sup>)，带入y = xtan&theta;，并进行化简得出 x<sup>2</sup>+y<sup>2</sup> = (a<sup>2</sup>b<sup>2</sup>(1+(tan&theta;)<sup>2</sup>)/ (b<sup>2</sup>+a<sup>2</sup>(tan&theta;)<sup>2</sup>)，就是说，通过a，b，&theta; 能计算出OP 的距离来了。</p>
+<p>======================================分割线，忽略了上面段的可以回来了====================================</p>
+<p>2、曲线方程</p>
+<p>因此，得到一个方程，返回的是OP的距离</p>
+<div class="cnblogs_code"><br><pre><span style="color: #008000;">/<em></em></span><span style="color: #008000;"><br>    func:<br>          ellipseFunc:return the length<br>    args:<br>          a:[number] ellipse’s a<br>          b:[number] ellipse’s b<br>          theta:[number] how much of Math.PI<br>  </span><span style="color: #008000;">/</span><br>  <span style="color: #0000ff;">function</span><span style="color: #000000;"> ellipseFunc(a,b,theta) {<br>    </span><span style="color: #008000;">//</span><span style="color: #008000;"> javascript Math对象下面的三角函数，传入的theta值必须是转换成弧度制的值，就是多少个3.141592&hellip;等等等的那个弧度制</span><br>    <span style="color: #0000ff;">return</span> Math.pow(((a<em>a</em>b<em>b)</em>(1+Math.tan(theta)<em>Math.tan(theta)))/(b</em>b+a<em>a</em>Math.tan(theta)*Math.tan(theta)),1/2<span style="color: #000000;">);<br>  }</span></pre><br></div>
+
+<p>3、画一个点</p>
+<p><span style="line-height: 1.5;">既然曲线函数完毕，下面就行画图了，先从画一个点来说，网上很对关于描绘一个点的帖子，我选了ctx.</span><a href="http://www.w3schools.com/tags/canvas_fillrect.asp" target="_blank" rel="external">fillRect</a><span style="line-height: 1.5;">(x,y,a,b)，这是绘制矩形的函数，x、y为绘制矩形的起点，就是左上角，设置a=b=1，就能绘制一个长宽各为1px大小的矩阵，个人喜欢使用其他也行。</span></p>
+<p>下面是绘制一个点的函数，填充风格没有定义，在传入_ctx时是什么<a href="http://www.w3school.com.cn/html5/canvas_fillstyle.asp" target="_blank" rel="external">fillStyle</a>就填充什么风格。</p>
+<div class="cnblogs_code"><br><pre>  <span style="color: #008000;">/<em></em></span><span style="color: #008000;"><br>    func:<br>          drawPoint:draw a point<br>    args:<br>          _ctx:[object]the canvas’s getContent(“2d”) variable<br>          point:[object] the point where to draw a dot such as {“x”:200,”y”:200}<br>          strokwidth:[number] the draw line’s width and height<br>  </span><span style="color: #008000;">/</span><br>  <span style="color: #0000ff;">function</span><span style="color: #000000;"> drawPoint(_ctx,point,strokwidth){<br>    strokwidth </span>= strokwidth || 1<span style="color: #000000;">;<br>    </span><span style="color: #0000ff;">if</span>(!(_ctx !== undefined &amp;&amp; _ctx !== <span style="color: #0000ff;">null</span>)) <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;<br>    </span><span style="color: #0000ff;">var</span> x =<span style="color: #000000;"> point.x,<br>        y </span>=<span style="color: #000000;"> point.y;<br>    _ctx.fillRect(x,y,strokwidth,strokwidth);<br>    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;<br>  }</span></pre><br></div>
+
+<p>4、画形状</p>
+<p>点的绘制讲述完毕，开始画曲线了，用for循环，画图吧。</p>
+<div class="cnblogs_code"><br><pre>  <span style="color: #008000;">/<em></em></span><span style="color: #008000;"><br>    func:<br>          drawShape:draw a shape<br>    args:<br>          canvasId:[string]the canvas’s id<br>          func:[function]the shape function<br>          ellipse:[object] the ellipse’s a and b length such as {“a”:300,”b”:200}<br>          center:[object] the draw center such as {“x”:400,”y”:400}<br>  </span><span style="color: #008000;">/</span><br>  <span style="color: #0000ff;">function</span><span style="color: #000000;"> drawShape(canvasId,func,ellipse,center){<br>     </span><span style="color: #0000ff;">var</span> _c =<span style="color: #000000;"> document.getElementById(canvasId);<br>    </span><span style="color: #0000ff;">if</span>(_c === <span style="color: #0000ff;">null</span>) <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;<br>    </span><span style="color: #0000ff;">var</span> _ctx = _c.getContext(“2d”<span style="color: #000000;">);<br>   </span><span style="color: #008000;">//</span><span style="color: #008000;"> 默认椭圆中心为canvas的中心</span><br>    <span style="color: #0000ff;">var</span> a = ellipse.a || 0<span style="color: #000000;">,<br>        b </span>= ellipse.b || 0<span style="color: #000000;">,<br>        centerX </span>= center.x || _c.width/2,<br>        centerY = center.y || _c.height/2,<br><span style="color: #000000;">        drawX,drawY,pointCX,pointCY;<br>    shapeGet </span>=<span style="color: #000000;"> func;<br>    </span><span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i = 0;i &lt;= 2<em>Math.PI; i+=0.0001){<span style="color: #008000;">//</span><span style="color: #008000;"> 通过弧度绘图，精确到每个0.0001弧度画图，可以更加精确。但是小图的话，没必要那么精确，浪费CPU时间。</span><br>      length =<span style="color: #000000;"> shapeGet(a,b,i);<br>      pointCX </span>= length</em><span style="color: #000000;">Math.cos(i);<br>      pointCY </span>= length*<span style="color: #000000;">Math.sin(i);<br>      drawX </span>= centerX +<span style="color: #000000;"> pointCX;<br>      drawY </span>= centerY -<span style="color: #000000;"> pointCY;<br>      drawPoint(_ctx,{</span>“x”:drawX,”y”:drawY},1<span style="color: #000000;">);<br>    }<br>    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;<br>  }</span></pre><br></div>
+
+<p><span style="line-height: 1.5;">调用方式&nbsp;</span></p>
+<div class="cnblogs_code"><br><pre>drawShape(“myCanvas”,ellipseFunc,{“a”:300,”b”:200},{“x”:400,”y”:400});</pre><br></div>
+
+<p>页面的全部源码如下：</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('ef49d799-9301-4bf8-aca6-a398ff852e52')"><img src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt=""><img src="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt=""><br><div id="cnblogs_code_open_ef49d799-9301-4bf8-aca6-a398ff852e52" class="cnblogs_code_hide"><br><pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span><br>    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">=”utf-8”</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">=”cloud”</span><span style="color: #0000ff;">&gt;</span><br>    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">canvas </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">=”myCanvas”</span><span style="color: #ff0000;"> width</span><span style="color: #0000ff;">=”800”</span><span style="color: #ff0000;"> height</span><span style="color: #0000ff;">=”800”</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">canvas</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span><br><br><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><br>  <span style="background-color: #f5f5f5; color: #008000;">/<em></em></span><span style="background-color: #f5f5f5; color: #008000;"><br>    func:<br>          ellipseFunc:return the length<br>    args:<br>          a:[number] ellipse’s a<br>          b:[number] ellipse’s b<br>          theta:[number] how much of Math.PI<br>  </span><span style="background-color: #f5f5f5; color: #008000;">/</span><br>  <span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;"> ellipseFunc(a,b,theta) {<br>    </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> javascript Math对象下面的三角函数，传入的theta值必须是转换成弧度制的值，就是多少个3.141592&hellip;等等等的那个弧度制</span><br>    <span style="background-color: #f5f5f5; color: #0000ff;">return</span><span style="background-color: #f5f5f5; color: #000000;"> Math.pow(((a</span><span style="background-color: #f5f5f5; color: #000000;"><em></em></span><span style="background-color: #f5f5f5; color: #000000;">a</span><span style="background-color: #f5f5f5; color: #000000;"></span><span style="background-color: #f5f5f5; color: #000000;">b</span><span style="background-color: #f5f5f5; color: #000000;"><em></em></span><span style="background-color: #f5f5f5; color: #000000;">b)</span><span style="background-color: #f5f5f5; color: #000000;"></span><span style="background-color: #f5f5f5; color: #000000;">(</span><span style="background-color: #f5f5f5; color: #000000;">1</span><span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #000000;">Math.tan(theta)</span><span style="background-color: #f5f5f5; color: #000000;"><em></em></span><span style="background-color: #f5f5f5; color: #000000;">Math.tan(theta)))</span><span style="background-color: #f5f5f5; color: #000000;">/</span><span style="background-color: #f5f5f5; color: #000000;">(bb+a<em>a</em>Math.tan(theta)<em>Math.tan(theta)),1</em></span><span style="background-color: #f5f5f5; color: #000000;">/</span><span style="background-color: #f5f5f5; color: #000000;">2</span><span style="background-color: #f5f5f5; color: #000000;">);<br>  }<br><br>  </span><span style="background-color: #f5f5f5; color: #008000;">/</span><span style="background-color: #f5f5f5; color: #008000;"><br>    func:<br>          drawPoint:draw a point<br>    args:<br>          _ctx:[object]the canvas’s getContent(“2d”) variable<br>          point:[object] the point where to draw a dot such as {“x”:200,”y”:200}<br>          strokwidth:[number] the draw line’s width and height<br>  </span><span style="background-color: #f5f5f5; color: #008000;"><em>/</em></span><br>  <span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;"> drawPoint(_ctx,point,strokwidth){<br>    strokwidth </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> strokwidth </span><span style="background-color: #f5f5f5; color: #000000;">||</span> <span style="background-color: #f5f5f5; color: #000000;">1</span><span style="background-color: #f5f5f5; color: #000000;">;<br>    </span><span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;">(</span><span style="background-color: #f5f5f5; color: #000000;">!</span><span style="background-color: #f5f5f5; color: #000000;">(_ctx </span><span style="background-color: #f5f5f5; color: #000000;">!==</span><span style="background-color: #f5f5f5; color: #000000;"> undefined </span><span style="background-color: #f5f5f5; color: #000000;">&amp;&amp;</span><span style="background-color: #f5f5f5; color: #000000;"> _ctx </span><span style="background-color: #f5f5f5; color: #000000;">!==</span> <span style="background-color: #f5f5f5; color: #0000ff;">null</span><span style="background-color: #f5f5f5; color: #000000;">)) </span><span style="background-color: #f5f5f5; color: #0000ff;">return</span> <span style="background-color: #f5f5f5; color: #0000ff;">false</span><span style="background-color: #f5f5f5; color: #000000;">;<br>    </span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> x </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> point.x,<br>        y </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> point.y;<br>    _ctx.fillRect(x,y,strokwidth,strokwidth);<br>    </span><span style="background-color: #f5f5f5; color: #0000ff;">return</span> <span style="background-color: #f5f5f5; color: #0000ff;">true</span><span style="background-color: #f5f5f5; color: #000000;">;<br>  }<br><br>  </span><span style="background-color: #f5f5f5; color: #008000;">/</span><span style="background-color: #f5f5f5; color: #008000;"><br>    func:<br>          drawShape:draw a shape<br>    args:<br>          canvasId:[string]the canvas’s id<br>          func:[function]the shape function<br>          ellipse:[object] the ellipse’s a and b length such as {“a”:300,”b”:200}<br>          center:[object] the draw center such as {“x”:400,”y”:400}<br>  </span><span style="background-color: #f5f5f5; color: #008000;"><em>/</em></span><br>  <span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;"> drawShape(canvasId,func,ellipse,center){<br>     </span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> _c </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> document.getElementById(canvasId);<br>    </span><span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;">(_c </span><span style="background-color: #f5f5f5; color: #000000;">===</span> <span style="background-color: #f5f5f5; color: #0000ff;">null</span><span style="background-color: #f5f5f5; color: #000000;">) </span><span style="background-color: #f5f5f5; color: #0000ff;">return</span> <span style="background-color: #f5f5f5; color: #0000ff;">false</span><span style="background-color: #f5f5f5; color: #000000;">;<br>    </span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> _ctx </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> _c.getContext(</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">2d</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">);<br>   </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> 默认椭圆中心为canvas的中心</span><br>    <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> a </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> ellipse.a </span><span style="background-color: #f5f5f5; color: #000000;">||</span> <span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">,<br>        b </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> ellipse.b </span><span style="background-color: #f5f5f5; color: #000000;">||</span> <span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">,<br>        centerX </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> center.x </span><span style="background-color: #f5f5f5; color: #000000;">||</span><span style="background-color: #f5f5f5; color: #000000;"> _c.width</span><span style="background-color: #f5f5f5; color: #000000;">/</span><span style="background-color: #f5f5f5; color: #000000;">2,</span><br><span style="background-color: #f5f5f5; color: #000000;">        centerY </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> center.y </span><span style="background-color: #f5f5f5; color: #000000;">||</span><span style="background-color: #f5f5f5; color: #000000;"> _c.height</span><span style="background-color: #f5f5f5; color: #000000;">/</span><span style="background-color: #f5f5f5; color: #000000;">2,</span><br><span style="background-color: #f5f5f5; color: #000000;">        drawX,drawY,pointCX,pointCY;<br>    shapeGet </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> func;<br>    </span><span style="background-color: #f5f5f5; color: #0000ff;">for</span><span style="background-color: #f5f5f5; color: #000000;">(</span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> i </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">;i </span><span style="background-color: #f5f5f5; color: #000000;">&lt;=</span> <span style="background-color: #f5f5f5; color: #000000;">2</span><span style="background-color: #f5f5f5; color: #000000;"></span><span style="background-color: #f5f5f5; color: #000000;">Math.PI; i</span><span style="background-color: #f5f5f5; color: #000000;">+=</span><span style="background-color: #f5f5f5; color: #000000;">0.0001</span><span style="background-color: #f5f5f5; color: #000000;">){</span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> 通过弧度绘图，精确到每个0.0001弧度画图，可以更加精确，0.0001更加欢迎。但是小图的话，没必要那么精确，浪费CPU时间。</span><br><span style="background-color: #f5f5f5; color: #000000;">      length </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> shapeGet(a,b,i);<br>      pointCX </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> length</span><span style="background-color: #f5f5f5; color: #000000;"><em></em></span><span style="background-color: #f5f5f5; color: #000000;">Math.cos(i);<br>      pointCY </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> length</span><span style="background-color: #f5f5f5; color: #000000;"></span><span style="background-color: #f5f5f5; color: #000000;">Math.sin(i);<br>      drawX </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> centerX </span><span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #000000;"> pointCX;<br>      drawY </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> centerY </span><span style="background-color: #f5f5f5; color: #000000;">-</span><span style="background-color: #f5f5f5; color: #000000;"> pointCY;<br>      drawPoint(_ctx,{</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">x</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">:drawX,</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">y</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">:drawY},</span><span style="background-color: #f5f5f5; color: #000000;">1</span><span style="background-color: #f5f5f5; color: #000000;">);<br>    }<br>    </span><span style="background-color: #f5f5f5; color: #0000ff;">return</span> <span style="background-color: #f5f5f5; color: #0000ff;">true</span><span style="background-color: #f5f5f5; color: #000000;">;<br>  }<br>  drawShape(</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">myCanvas</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">,ellipseFunc,{</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">a</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #000000;">300</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">b</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #000000;">200</span><span style="background-color: #f5f5f5; color: #000000;">},{</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">x</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #000000;">400</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">y</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #000000;">400</span><span style="background-color: #f5f5f5; color: #000000;">});<br><br></span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre><br></div><br><span class="cnblogs_code_collapse">View Code </span></div>
+
+<p>&nbsp;</p>
+<p>5、废话</p>
+<p><span style="line-height: 1.5;">本文产生的原因，本来是想做词云的，给定词云的形状，在这个形状内填充词语，产生了这个念头，词云还没实现，关键是如何才能让填充词语相互不覆盖的问题。后来，选择在github里面搜索算了，选择了一个</span><a href="https://github.com/indyarmy/jQuery.awesomeCloud.pluginplugin" target="_blank" rel="external">jQuery.awesomeCloud.plugin</a><span style="line-height: 1.5;">，但是填充效率确实压力山大。想过去模拟他的方法，做一个出来，因此先从画自定义曲线开始了。</span></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>本篇文章，将讲述如何通过自定义的曲线函数，使用canvas的方式进行曲线的绘制。<a href="http://sharefunny.sinaapp.com/example/ellipse.html">
+</a></p>
+<p>为了通俗易懂，将以大家熟悉的椭圆曲线为例，进行椭圆的绘制。至于其他比较复杂的曲线，用户只需通过数学方式建立起曲线函数，然后变换成为距离函数方程，替换即可。另外：<span style="color: #ff0000;">代码还没进行任何优化。</span><br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[nodejs 平台的 webscoket 的实现]]></title>
+    <link href="http://shenqihui.github.io/2013/08/07/nodejs-%E5%B9%B3%E5%8F%B0%E7%9A%84-webscoket-%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
+    <id>http://shenqihui.github.io/2013/08/07/nodejs-平台的-webscoket-的实现/</id>
+    <published>2013-08-06T20:43:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p>新手入门，没办法，只能选择不断不断的google吧。</p>
+<p>找了很多的例子都跑不了，不知道什么原因。</p>
+<p>后，自己在git搜索吧，选择了一个下面的例子：&nbsp;<strong><a href="https://github.com/kashiif/nodejs-web-socket" target="_blank" rel="external">nodejs-web-socket</a></strong></p>
+<p>经过我的改造，改成我自己想要的方式。<br><a id="more"></a><br>只是将客户端发送的数据直接原封不动发回客户端。</p>
+<p>先说说运行环境：window 7 ，node&nbsp;v0.10.5，全局安装了websocket.io模块，chrome 28浏览器。</p>
+<p>（注：以下提到的两个js文件放在同一层目录下面即可，html文件随便放置）</p>
+<p>这是后台的js代码：</p>
+<p>1、将其存为socketServer.js文件里面，并且进行module导出。</p>
+<div class="cnblogs_code"><br><pre><span style="color: #008000;">/<em></em></span><span style="color: #008000;"><br>  仅用于测试，<br>  客户端发送的东西将被服务器原封不动的返回到客户端<br>  运行环境：node v0.10.5<br>            window 7<br>            chromw 28<br></span><span style="color: #008000;">/</span><br><span style="color: #008000;">/<em></em></span><span style="color: #008000;">var server = </span><span style="color: #008000;">/</span>module.exports = ( <span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>  </span><span style="color: #0000ff;">var</span> ws = require(‘websocket.io’<span style="color: #000000;">);<br>  </span><span style="color: #0000ff;">var</span> socketServer = <span style="color: #0000ff;">null</span><span style="color: #000000;">;<br>  </span><span style="color: #0000ff;">var</span> socketInitListen = <span style="color: #0000ff;">function</span><span style="color: #000000;">(port) {<br>    socketServer </span>=<span style="color: #000000;"> ws.listen(port);<br>    socketServer.on(</span>‘listening’,<span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>      console.log(</span>‘Socket server running’<span style="color: #000000;">);<br>    });<br>    socketServer.on(</span>‘connection’,<span style="color: #0000ff;">function</span><span style="color: #000000;">(socket) {<br>      console.log(</span>‘Connected to client’<span style="color: #000000;">);<br>      socket.on(</span>‘message’, <span style="color: #0000ff;">function</span><span style="color: #000000;">(data) {<br>        </span><span style="color: #008000;">//</span><span style="color: #008000;"> client send message to server</span><br>        console.log(‘Server received message : ‘<span style="color: #000000;">,data);<br>        socket.send(data);<br>      });<br>      socket.on(</span>‘close’,<span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>        socket.send(</span>‘close’<span style="color: #000000;">);<br>      })<br>    })<br>  };<br>  </span><span style="color: #0000ff;">var</span> init = <span style="color: #0000ff;">function</span><span style="color: #000000;">(socketPort) {<br>    socketInitListen(socketPort);<br>  };<br>  </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> {<br>    init: init<br>  };<br>})();<br><br></span><span style="color: #008000;">//</span><span style="color: #008000;"> server.init(9000);</span></pre><br></div>
+
+<p><span style="line-height: 1.5;">2、引用上面那个module的文件，并且将端口绑定为9000端口，存为文件server.js。</span></p>
+<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">var</span> socketServer = require(‘./socketServer’).init(9000);</pre><br></div>
+
+<p>3、页面的代码 ：index.html</p>
+<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span><br>    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">=”utf-8”</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>WebSockets Node.js<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">style</span><span style="color: #0000ff;">&gt;</span><span style="background-color: #f5f5f5; color: #800000;"><br>        .container</span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;"><br>            margin</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;">auto</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;"><br>            width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;">300px</span><span style="background-color: #f5f5f5; color: #000000;">;</span><br>        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;"><br>        label,input</span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;"><br>            width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;">200px</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;"><br>            float</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;">left</span><span style="background-color: #f5f5f5; color: #000000;">;</span><br>        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;"><br>        input[type=button]</span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;"><br>            float</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;">right</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;"><br>            width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;">80px</span><span style="background-color: #f5f5f5; color: #000000;">;</span><br>        <span style="background-color: #f5f5f5; color: #000000;">}</span><br>  <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">style</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">=”<a href="http://code.jquery.com/jquery.min.js" target="_blank" rel="external">http://code.jquery.com/jquery.min.js</a>“</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">=”container”</span><span style="color: #0000ff;">&gt;</span><br>    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">label </span><span style="color: #ff0000;">for</span><span style="color: #0000ff;">=”content”</span><span style="color: #0000ff;">&gt;</span>发送的内容:<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">label</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">=”text”</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">=”content”</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">=”input something”</span> <span style="color: #0000ff;">/&gt;</span><br>        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">label </span><span style="color: #ff0000;">for</span><span style="color: #0000ff;">=”recive”</span><span style="color: #0000ff;">&gt;</span>收到的内容:<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">label</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">=”text”</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">=”recive”</span> <span style="color: #0000ff;">/&gt;</span><br>    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">=”button”</span><span style="color: #ff0000;"> id</span><span style="color: #0000ff;">=”send”</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">=”点击发送”</span> <span style="color: #0000ff;">/&gt;</span><br>  <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><br>      <span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> websocket 连接变量</span><br>    <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> wsConn;<br>    (</span><span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;"> () {<br>      </span><span style="background-color: #f5f5f5; color: #0000ff;">try</span><span style="background-color: #f5f5f5; color: #000000;"> {<br>        wsConn </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> WebSocket(</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">ws://127.0.0.1:9000</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">);<br>      } </span><span style="background-color: #f5f5f5; color: #0000ff;">catch</span><span style="background-color: #f5f5f5; color: #000000;"> (e) {<br>        console.log(</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">websocket 连接出错。</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">);<br>        console.log(e);<br>      }<br>    })();<br><br>    $(</span><span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;">() {<br>      </span><span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;"> (wsConn) {<br>        wsConn.onopen </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;">() {<br>          console.log(</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">open Connection.</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">);<br>        };<br>        wsConn.onmessage </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;">(msg) {<br>          console.log(</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">onmessage.</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">);<br>          console.log(msg.data);<br>          $(</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">#recive</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">).val(msg.data);<br>        };<br>        wsConn.onerror </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;">(msg) {<br>          console.log(</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">onerror.</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">);<br>          console.log(msg);<br>        };<br>        wsConn.onclose </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;">(msg) {<br>          console.log(</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">onclose.</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">);<br>          console.log(msg);<br>        };<br>        </span><span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;"> wsConnSend(content) {<br>            wsConn.send(content);<br>        };<br>        $(</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">#send</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">).bind(</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">click</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;"> sendClick() {<br>            wsConnSend($(</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">#content</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">).val())<br>        })<br>      }<br>    });<br>  </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre><br></div>
+
+<p>这都是源码的三个文件。</p>
+<p>运行的方法为：</p>
+<p>1、安装node ，我的版本是0.10.5，其他版本没进行测试；</p>
+<p>2、安装websocket.io，命令如下 npm i -g websocket.io；</p>
+<p>3、环境弄好了，可以跑了，打开命令行，cd到当前目录，跑 node server.js。</p>
+<p>4、直接用chrome以本地文件方式直接打开index.html ，里面操作简单。其他浏览器没进行测试。</p>
+<p>搭建完毕。</p>
+<p>这是控制台下面的一行命令的截图。</p>
+<p><img src="http://images.cnitblog.com/blog/358891/201308/07124246-07456af2379947258a81200c6353462e.png" alt=""></p>
+<p>&nbsp;新手习作，若有出错，敬请大神指出。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>新手入门，没办法，只能选择不断不断的google吧。</p>
+<p>找了很多的例子都跑不了，不知道什么原因。</p>
+<p>后，自己在git搜索吧，选择了一个下面的例子：&nbsp;<strong><a href="https://github.com/kashiif/nodejs-web-socket">nodejs-web-socket</a></strong></p>
+<p>经过我的改造，改成我自己想要的方式。<br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[javascript 控制台输出 图片 console.log 真强大 真佩服你们的创造力]]></title>
+    <link href="http://shenqihui.github.io/2013/07/26/javascript-%E6%8E%A7%E5%88%B6%E5%8F%B0%E8%BE%93%E5%87%BA-%E5%9B%BE%E7%89%87-console-log-%E7%9C%9F%E5%BC%BA%E5%A4%A7-%E7%9C%9F%E4%BD%A9%E6%9C%8D%E4%BD%A0%E4%BB%AC%E7%9A%84%E5%88%9B%E9%80%A0%E5%8A%9B/"/>
+    <id>http://shenqihui.github.io/2013/07/26/javascript-控制台输出-图片-console-log-真强大-真佩服你们的创造力/</id>
+    <published>2013-07-26T02:42:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p>&nbsp;</p>
+<p><img src="http://images.cnitblog.com/blog/358891/201307/26184120-9ac42ecfcc1344508eb358c9f78021c7.png" alt=""></p>
+<p>无意中，在百度知道页面发现了这货。居然能输出图片到控制台。</p>
+<p>完全颠覆自己的三观，果断查阅其输出方法。后得知，原来如此。<br><a id="more"></a><br>曾经做过的项目中，同事把控制台做成一个网页形式方便远程控制和远程调用。没想到过这控制台原来就是网页。</p>
+<p>废话不多说，去片。下面是百度的原始输出页面的code</p>
+<div class="cnblogs_Highlighter"><br><pre class="brush:javascript;gutter:false;">if (window.console) {<br>    var cons = console;<br>    if (cons) {<br>        cons.log(“%c\n       “, “font-size:41px;background:url(‘<a href="http://cdn.iknow.bdimg.com/static/common/pkg/module_zed9cd9fd.png" target="_blank" rel="external">http://cdn.iknow.bdimg.com/static/common/pkg/module_zed9cd9fd.png</a>‘) no-repeat -135px -1px”);<br>        cons.log(‘想和我们共同打造世界最大中文互动问答平台吗？\n想让自己的成就在亿万用户面前展现吗？想让世界看得你的光芒吗？\n加入我们，在这里不仅是工作，投入你的时间和热情，滴滴汗水终会汇聚成不平凡的成果。\n期待你的加盟。（投简历地址被我砍了）’);<br>        cons.log(“请在邮件中注明%c来自:console”, “color:red;font-weight:bold;”);<br>    }<br>}<br></pre><br></div>
+
+<p>真佩服发现这东西的那人的想象力。估计这人也是搞浏览器开发的，然后发现了这东西。</p>
+<p>然后，就没有然后了。骚年们，去投简历吧。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>&nbsp;</p>
+<p><img src="http://images.cnitblog.com/blog/358891/201307/26184120-9ac42ecfcc1344508eb358c9f78021c7.png" alt=""></p>
+<p>无意中，在百度知道页面发现了这货。居然能输出图片到控制台。</p>
+<p>完全颠覆自己的三观，果断查阅其输出方法。后得知，原来如此。<br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ichartjs 使用BUG，assign_scale:true 解决]]></title>
+    <link href="http://shenqihui.github.io/2013/07/22/ichartjs-%E4%BD%BF%E7%94%A8BUG%EF%BC%8Cassign-scale-true-%E8%A7%A3%E5%86%B3/"/>
+    <id>http://shenqihui.github.io/2013/07/22/ichartjs-使用BUG，assign-scale-true-解决/</id>
+    <published>2013-07-22T03:21:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p>今天纯属灌水，好久没灌水的。</p>
+<p>最近使用了flotr2 和 ichartjs进行canvas图标的开发，都不能满足需求。<br><a id="more"></a><br>没办法，先将就用用吧。然后，既然其他大神推荐使用ichartjs，为了统一，我也只能使用ichartjs了，</p>
+<p>使用过程中，发现一个bug。</p>
+<p>具体为左右y轴，不能自定义，start_scale,end_scale,scale_space,scale_share限制都不给力。。。。。。。<a href="http://www.ichartjs.com/samples/index.html?page=combination2d_02.html&amp;pageno=11" target="_blank" rel="external">http://www.ichartjs.com/samples/index.html?page=combination2d_02.html&amp;pageno=11</a>&nbsp;就仿照这例子弄的而已。</p>
+<p>然后，bug提交给大神了，大神没多说，说之前就有人遇到这个问题，后马上给我解决方案：在scale的参数里面添加：assign_scale:true。更新到<a href="http://www.ichartjs.com/ichart.latest.min.js" target="_blank" rel="external">latest.min.js</a>文件，就能解决。此参数还没发布正式API，只是在源文件改了而已。</p>
+<p>可怜我自己尝试了半天。</p>
+<p>我问大神，为什么不发布这新参数，他说，等问题积累到一定程度再发。我想想也对，这东西，一发就是更新版本，又要用户换，又要写更新日志，麻烦。</p>
+<p>后，没有然后了。灌水完毕。加班中，一会走人。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>今天纯属灌水，好久没灌水的。</p>
+<p>最近使用了flotr2 和 ichartjs进行canvas图标的开发，都不能满足需求。<br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[flotr2 中英文文档 对照]]></title>
+    <link href="http://shenqihui.github.io/2013/07/17/flotr2-%E4%B8%AD%E8%8B%B1%E6%96%87%E6%96%87%E6%A1%A3-%E5%AF%B9%E7%85%A7/"/>
+    <id>http://shenqihui.github.io/2013/07/17/flotr2-中英文文档-对照/</id>
+    <published>2013-07-16T19:39:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<div class="clear">
+
+<p>近期工作用到 flotr2 。学了一下，然后使用吧。鉴于现在还没完全的中文文档信息，做点贡献，翻译<a href="http://www.humblesoftware.com/flotr2/documentation" title="flotr2 documentation" target="_blank" rel="external">官方的文档</a>信息。鉴于时间关系，将陆续进行翻译。不过感觉官方文档信息很简单。</p>
+<p></p></div><br><a id="more"></a><p></p>
+<p><div class="clear"></div></p>
+<blockquote>
+<h2 id="Introduction">Introduction</h2><p>Flotr2 is a library for drawing HTML5 charts and graphs. It is a branch of <a href="http://code.google.com/p/flotr/" title="flotr" target="_blank" rel="external">flotr</a> which removes the Prototype dependency and includes many improvements.</p>
+<h3 id="Features:">Features:</h3><ul>
+<li>mobile support</li>
+<li>framework independent</li>
+<li>extensible plugin framework</li>
+<li>custom chart types</li>
+<li>FF, Chrome, IE6+, Android, iOS</li>
+</ul>
+<ul>
+<li>lines</li>
+<li>bars</li>
+<li>candles</li>
+<li>pies</li>
+<li>bubbles<br><div class="clear">
+
+</div></li>
+</ul>
+</blockquote>
+<h2 id="这里翻译">这里翻译</h2><p></p>
+<p><div class="clear"></div></p>
+<blockquote>
+<h2 id="Usage"><a id="usage"></a>Usage</h2><p>To use Flotr2, include the <code>flotr2.min.js</code> script in your page and create a visible <code>&amp;lt;div&amp;gt;</code> with positive width and height. A graph is drawn with the <code>Flotr.draw(container, data, options)</code> method.</p>
+<h3 id="Usage_Example_(stand_alone)"><a id="usage-example"></a>Usage Example (<a href="http://www.cnblogs.com/flotr2/example" target="_blank" rel="external">stand alone</a>)</h3><div class="editor usage">&nbsp;</div>
+
+
+<h3 id="API:_Flotr-draw(container,_data,_options)">API: <code>Flotr.draw(container, data, options)</code></h3><ul>
+<li><code>container</code> a visible DOM element with positive width and height.</li>
+<li><code>data</code> an Array of series.</li>
+<li><code>options</code> a configuration object containing flotr configuration options, defining axes, grids, legends, etc.</li>
+</ul>
+<h3 id="Data">Data</h3><p>Each series is either an array of points <code>[[x0, y0], [x1, y1] ...]</code> or an object with series options and a data member.</p>
+<h3 id="Internet_Explorer">Internet Explorer</h3><p>Flotr2 is fully supported in IE 9+ and <a href="http://code.google.com/p/explorercanvas/" title="explorer canvas" target="_blank" rel="external">explorer canvas</a> or <a href="http://flashcanvas.net/" title="flash canvas" target="_blank" rel="external">flashcanvas</a> may be conditionally included to support older versions, as seen in the <a href="#usage-example" title="usage example">example</a> above.<br></p>
+<div class="clear">
+
+</div></blockquote>
+<h2 id="这里翻译-1">这里翻译</h2><p></p>
+<p><div class="clear"></div></p>
+<blockquote>
+<h2 id="Configuration"><a id="configuration"></a>Configuration</h2><p>The following are the default configuration options for Flotr. Additional options are added for individual graph types and plugins. In general, those can be found at the top of each plugin or graph file.</p>
+<h3 id="Flotr2_Defaults">Flotr2 Defaults</h3><p><div class="editor api">&nbsp;</div><br></p>
+<div class="clear">
+
+</div></blockquote>
+<h2 id="这里翻译-2">这里翻译</h2><p></p>
+<p><div class="clear"></div></p>
+<blockquote>
+<h2 id="Development"><a id="development"></a>Development</h2><p>This project uses <a href="https://github.com/fat/smoosh" title="smoosh" target="_blank" rel="external"> smoosh</a> to build and <a href="http://pivotal.github.com/jasmine/" title="Jasmine BDD" target="_blank" rel="external">jasmine</a> with <a href="https://github.com/HumbleSoftware/js-imagediff" title="js-imagediff canvas testing" target="_blank" rel="external">js-imagediff</a> to test. Tests may be executed by <a href="http://johnbintz.github.com/jasmine-headless-webkit/" title="jasmine headless webkit" target="_blank" rel="external"> jasmine-headless-webkit</a> with <code>cd spec; jasmine-headless-webkit -j jasmine.yml -c</code> or by a browser by navigating to <code>spec/SpecRunner.html</code>.</p>
+<h3 id="Directories">Directories</h3><ul>
+<li><code>js/</code> main source files</li>
+<li><code>js/plugins/</code> flotr plugins</li>
+<li><code>js/types/</code> chart types</li>
+<li><code>spec/</code> Jasmine tests</li>
+<li><code>examples/</code> stable and development example pages</li>
+<li><code>make/</code> build configuration files</li>
+<li><code>lib/</code> included libraries</li>
+<li><code>build/</code> temporary directory used during build</li>
+</ul>
+<h3 id="Extending">Extending</h3><p>Flotr may be extended by adding new graph types and plugins. Graph types define how a particular chart is rendered. Examples include line, bar, pie. Existing graph types are found in <a href="https://github.com/HumbleSoftware/Flotr2/tree/master/js/types" title="flotr2 graph types" target="_blank" rel="external"><code>js/types/</code></a>.</p>
+<p>Plugins extend the core of flotr with new functionality. They can add interactions, new decorations, etc. Examples include titles, labels and selection. Plugins are found in <a href="https://github.com/HumbleSoftware/Flotr2/tree/master/js/plugins" title="flotr2 plugins" target="_blank" rel="external"><code>js/plugins/</code></a>.<br></p>
+<div class="clear">
+
+</div></blockquote>
+<h2 id="这里翻译-3">这里翻译</h2><p></p>
+<p><div class="clear"></div></p>
+<blockquote>
+<h2 id="Resources"><a id="resources"></a>Resources</h2><p> <img src="http://groups.google.com/intl/en/images/logos/groups_logo_sm.gif" alt="Google Groups"> </p>
+<p>  <a href="http://groups.google.com/group/flotr2" target="_blank" rel="external">Flotr2 is on Google groups</a></p>
+<h3 id="Issues">Issues</h3><p>  Please submit issues and pull requests on github at <a href="http://github.com/HumbleSoftware/Flotr2/issues" title="Flotr2 issues" target="_blank" rel="external">http://github.com/HumbleSoftware/Flotr2/issues</a>.</p>
+<h3 id="Source">Source</h3><p>  The source is available on github at <a href="http://github.com/HumbleSoftware/Flotr2" title="Flotr2 source on github" target="_blank" rel="external">http://github.com/HumbleSoftware/Flotr2</a>.</p>
+</blockquote>
+<p></p>
+<div class="clear">
+
+<h2 id="这里翻译-4">这里翻译</h2><p></p></div><p></p>
+<p><script type="text/javascript" src="http://www.humblesoftware.com/static/js/hsd.js?d3fa1"></script></p>
+<p><script type="text/javascript" src="http://www.humblesoftware.com/static/js/hsd-flotr2.js?d3fa1"></script></p>
+<p><script type="text/javascript" src="http://www.humblesoftware.com/static/js/hsd-flotr2-documentation.js?d3fa1"></script></p>
+<style><!--
+.features, .types{
+float:left;
+display:block;
+}
+.clean{width:100%;height:100%;clear:both;}
+</stlye>
+--></style>]]></content>
+    <summary type="html">
+    <![CDATA[<div class="clear">
+
+<p>近期工作用到 flotr2 。学了一下，然后使用吧。鉴于现在还没完全的中文文档信息，做点贡献，翻译<a href="http://www.humblesoftware.com/flotr2/documentation" title="flotr2 documentation">官方的文档</a>信息。鉴于时间关系，将陆续进行翻译。不过感觉官方文档信息很简单。</p>
+<p></div><br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[读过的某些书]]></title>
+    <link href="http://shenqihui.github.io/2012/11/12/%E8%AF%BB%E8%BF%87%E7%9A%84%E6%9F%90%E4%BA%9B%E4%B9%A6/"/>
+    <id>http://shenqihui.github.io/2012/11/12/读过的某些书/</id>
+    <published>2012-11-11T20:18:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p>只是以此记录下，不足以参考。<br><a id="more"></a><br>jquery实战：比较基础的感觉；</p>
+<p>javascript语言精粹：周爱民有一本差不多的，弥漫着香味；</p>
+<p>高性能javascript：巧妙，学的是思想；</p>
+<p>javascript权威指南：你会感觉到，一个提升，醍醐灌顶的感觉；</p>
+<p>javascript设计模式：设计模式的魅力，非功力深厚不要轻易尝试；</p>
+<p>测试驱动的javascript开发：还没看完，看了前面的，不知道怎么描述，看书名就感觉，牛人必备；</p>
+<p>css web设计高级教程：感觉就像一本很低调的书，包装精美，看上去非常的舒服；</p>
+<p>html5揭秘：将它列为参考书，用的时候在看看；</p>
+<p>javascript程序员参考手册：这本书，不是用来看的；</p>
+<p>待续；</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>只是以此记录下，不足以参考。<br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[深入理解判断IE浏览器的经典方法-James Padolsey判断法]]></title>
+    <link href="http://shenqihui.github.io/2012/07/20/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%88%A4%E6%96%ADIE%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BB%8F%E5%85%B8%E6%96%B9%E6%B3%95-James-Padolsey%E5%88%A4%E6%96%AD%E6%B3%95/"/>
+    <id>http://shenqihui.github.io/2012/07/20/深入理解判断IE浏览器的经典方法-James-Padolsey判断法/</id>
+    <published>2012-07-19T18:11:00.000Z</published>
+    <updated>2015-02-15T15:41:34.000Z</updated>
+    <content type="html"><![CDATA[<p>标题这样子，是为了吸引眼球，至于是不是<span>James&nbsp;Padolsey原创的方法，网上是这么流传的就是了。菜鸟习作，写的不好，请轻拍。如果错误，请指出，感谢。</span><br><a id="more"></a><br><span>正题：</span></p>
+<p>IE浏览器钉子户不断，IE 6像个老不死的一样存活在世界上，有人说：主要是因为chinese多。</p>
+<p>我们现在开发网站都不针对IE6，需要针对的话得增加项目经费，毕竟IE6及其以下的css变现比较坑爹。</p>
+<p>因此，多了下面这个函数，提醒客户不要在IE6及其以下版本进行浏览网站。</p>
+<p>请看</p>
+<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span><br><br><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span><br>  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">=”text/javascript”</span><span style="color: #0000ff;">&gt;</span><br>    <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> ie </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> (</span><span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;">(){<br>      </span><span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> undef,<br>      v </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">3</span><span style="background-color: #f5f5f5; color: #000000;">,<br>      div </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> document.createElement(</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">div</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">),<br>      all </span><span style="background-color: #f5f5f5; color: #000000;">=</span><span style="background-color: #f5f5f5; color: #000000;"> div.getElementsByTagName(</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">i</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">);<br>      </span><span style="background-color: #f5f5f5; color: #0000ff;">while</span><span style="background-color: #f5f5f5; color: #000000;"> (<br>        div.innerHTML </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">&lt;!—[if gt IE </span><span style="background-color: #f5f5f5; color: #000000;">‘</span> <span style="background-color: #f5f5f5; color: #000000;">+</span><span style="background-color: #f5f5f5; color: #000000;"> (</span><span style="background-color: #f5f5f5; color: #000000;">++</span><span style="background-color: #f5f5f5; color: #000000;">v) </span><span style="background-color: #f5f5f5; color: #000000;">+</span> <span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">]&gt;&lt;i&gt;&lt;/i&gt;&lt;![endif]—&gt;</span><span style="background-color: #f5f5f5; color: #000000;">‘</span><span style="background-color: #f5f5f5; color: #000000;">,<br>        all[</span><span style="background-color: #f5f5f5; color: #000000;">0</span><span style="background-color: #f5f5f5; color: #000000;">]<br>      ) ;<br>      </span><span style="background-color: #f5f5f5; color: #0000ff;">return</span><span style="background-color: #f5f5f5; color: #000000;"> v </span><span style="background-color: #f5f5f5; color: #000000;">&gt;</span> <span style="background-color: #f5f5f5; color: #000000;">4</span> <span style="background-color: #f5f5f5; color: #000000;">?</span><span style="background-color: #f5f5f5; color: #000000;"> v : undef<br>      }());<br>    </span><span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;"> is_ie(){<br>      </span><span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;">(</span><span style="background-color: #f5f5f5; color: #000000;">!</span><span style="background-color: #f5f5f5; color: #000000;">ie)<br>        alert(</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">您当前使用非Microsoft Internet Explorer.</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">);<br>      </span><span style="background-color: #f5f5f5; color: #0000ff;">else</span> <span style="background-color: #f5f5f5; color: #0000ff;">if</span><span style="background-color: #f5f5f5; color: #000000;"> (ie</span><span style="background-color: #f5f5f5; color: #000000;">&lt;=</span><span style="background-color: #f5f5f5; color: #000000;">6</span><span style="background-color: #f5f5f5; color: #000000;">)<br>        alert(</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">您当前使用的浏览器版本过低。为获取良好的用户体验，\n请选择 IE 7.0 及其以上版本的Microsoft Internet Explorer.</span><span style="background-color: #f5f5f5; color: #000000;">“</span><span style="background-color: #f5f5f5; color: #000000;">);<br>　　}//一楼 </span><a href="http://home.cnblogs.com/u/66564/" target="_blank" rel="external">Jefft</a><span>&nbsp; 评论说漏了一半大括号，现在补充了，多谢了。</span></pre><br><pre><a href="http://home.cnblogs.com/u/66564/" target="_blank" rel="external">
+</a><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span></pre><br><pre><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span><br><br><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body </span><span style="color: #ff0000;">onload</span><span style="color: #0000ff;">=”is_ie()”</span><span style="color: #0000ff;">&gt;</span><br><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span><br><br><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre><br></div>
+
+<p>这算是最简单又最高高效的IE判别方法了。不过，大部分人看不懂。</p>
+<p>下面解析下为什么这样子：我的理解，如有错误，敬请指出，共同学习，多谢。</p>
+<p>首先怎么调用，我就不讲了，如果不是IE，直接将ie赋值为undef的值，就是undefined，现在直接讲讲这货的代码块里面这个吧。<span style="color: #ffffff;"><br></span></p>
+<div class="cnblogs_code"><br><pre><span style="color: #000000;">while (<br>  div.innerHTML = ‘</span><span style="color: #008000;">&lt;!—</span><span style="color: #008000;">[if gt IE ‘ + (++v) + ‘]&gt;&lt;i&gt;&lt;/i&gt;&lt;![endif]</span><span style="color: #008000;">—&gt;</span><span style="color: #000000;">‘,<br>  all[0]<br>) ;</span></pre><br></div>
+
+<p>这段代码。听巧妙的用到了逗号表达式，逗号表达式就是在表达式中，无论什么情况，返回最后一个子表达式的值，在这里就是返回all[0]的值了。</p>
+<p>前面的div的赋值，为什么要放在这里，是因为这样子才能保证每次循环都能赋值，原创者这样写的话，是为了精简，这段代码，已经不能再精简了。</p>
+<p>其实，能改成另外一种符合常人思维的形式。如下</p>
+<div class="cnblogs_code"><br><pre><span style="color: #000000;">do {<br>  div.innerHTML = ‘</span><span style="color: #008000;">&lt;!—</span><span style="color: #008000;">[if gt IE ‘ + (++v) + ‘]&gt;&lt;i&gt;&lt;/i&gt;&lt;![endif]</span><span style="color: #008000;">—&gt;</span><span style="color: #000000;">‘;<br>}while(all[0])  </span></pre><br></div>
+
+<p>改成这样子，while循环应该能看懂了吧？</p>
+<p>其实不然，毕竟控制循环的变量很难理解对吧。</p>
+<p>首先我们测试一下，就在这个while循环的下面，写上 alert(all[0])，</p>
+<p>如</p>
+<div class="cnblogs_code"><br><pre><span style="color: #000000;">do {<br>  div.innerHTML = ‘</span><span style="color: #008000;">&lt;!—</span><span style="color: #008000;">[if gt IE ‘ + (++v) + ‘]&gt;&lt;i&gt;&lt;/i&gt;&lt;![endif]</span><span style="color: #008000;">—&gt;</span><span style="color: #000000;">‘;<br>}while(all[0])<br>alert(all[0])</span></pre><br></div>
+
+<p>你会发现，警告都是 undefined 。</p>
+<p>但是，如果将这个写在while循环里面，你会发现，最后的那次警告必然是undefined ，之前的都是object（IEtester下面），非IE浏览器的话，只有一个警告，为undefined。代码如下，</p>
+<div class="cnblogs_code"><br><pre><span style="color: #000000;">do {<br>  div.innerHTML = ‘</span><span style="color: #008000;">&lt;!—</span><span style="color: #008000;">[if gt IE ‘ + (++v) + ‘]&gt;&lt;i&gt;&lt;/i&gt;&lt;![endif]</span><span style="color: #008000;">—&gt;</span><span style="color: #000000;">‘;<br>  alert(all[0])<br>}while(all[0]) </span></pre><br></div>
+
+<p>说道这里，大家应该知道用什么变量控制while循环的吧。</p>
+<p>然后讲讲为什么all[0]会被赋值成为这样。下面根据w3c标准来讲讲看。</p>
+<p>因为<span>getElementsByTagName这个函数返回的是一个指向<span>NodeList类型，请看<a href="http://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-A6C9094" title="getElementsByTagName" target="_blank" rel="external">getElementsByTagName</a><br></span></span></p>
+<p><span><span>而当</span></span>div进行了重新赋值之后，应为NodeList 是活动的（目测这么翻译，摘自&nbsp;<code>NodeList</code><span>&nbsp;objects in the DOM are&nbsp;</span><a href="http://www.w3.org/TR/DOM-Level-3-Core/core.html#td-live" target="_blank" rel="external">live</a><span>. 摘自<a href="http://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-536297177" target="_blank" rel="external">Interface NodeList</a></span>），所以整个NodeList的对象集合也就发生改变。请看<a href="http://www.w3.org/TR/DOM-Level-3-Core/core.html#td-live" target="_blank" rel="external">live</a>&nbsp;。</p>
+<p>因此，all每次指向的东西都是不变的，变的是NodeList，all[0]指向的是NodeList的第一个 i 元素，也因此发生改变。</p>
+<p>然后讲讲，为什么通过这样子的判断能判断出all[0]到底是object还是undefined呢？</p>
+<p>原因很简单，就是，非IE浏览器不认识这样的条件注释。IE浏览器也不认不能相对应的那些条件注释。</p>
+<p>下面是部分条件注释写法。</p>
+<div class="cnblogs_code"><br><pre><span style="color: #008000;">&lt;!—</span><span style="color: #008000;">[if IE]&gt;&lt;i&gt;您使用的是IE浏览器。&lt;/i&gt;&lt;![endif]</span><span style="color: #008000;">—&gt;</span><br><span style="color: #008000;">&lt;!—</span><span style="color: #008000;">[if IE 6]&gt;&lt;i&gt;欢迎使用Internet Explorer 6&lt;/i&gt;&lt;![endif]</span><span style="color: #008000;">—&gt;</span><br><span style="color: #008000;">&lt;!—</span><span style="color: #008000;">[if !(IE 6)]&gt;&lt;i&gt;您正在使用的不是 IE6。&lt;/i&gt;&lt;![endif]</span><span style="color: #008000;">—&gt;</span></pre><br></div>
+
+<p>太多，我就不写出来，详细规则请看<a href="http://msdn.microsoft.com/en-us/library/ms537512(VS.85" target="_blank" rel="external">微软官方</a>.aspx)。</p>
+<p>到了这里，大家应该大概了解了吧。</p>
+<p>估计现在大家看我这篇文章的时候，用的都不是IE，那就举一个是IE的例子。</p>
+<div class="cnblogs_code"><br><pre><span style="color: #008000;">&lt;!—</span><span style="color: #008000;">[if IE]&gt;&lt;i&gt;您使用的不是IE浏览器。&lt;/i&gt;&lt;![endif]</span><span style="color: #008000;">—&gt;</span></pre><br></div>
+
+<p>如果是IE浏览器，那么这段东西里面的&lt;i&gt;&lt;/i&gt;标签就能被 IE浏览器当正常的DOM元素。</p>
+<p>如果不是IE浏览器，那么&ldquo;[if IE]&gt;&lt;i&gt;您使用的不是IE浏览器。&lt;/i&gt;&lt;![endif]&rdquo;整一句都会被当场注释掉了。至于<span>[if !IE]，目前来说，还是不能被非IE正确判别。</span></p>
+<p>讲到这里，大家还不懂的话，那么我这篇文章写得不好。抱歉浪费您的时间来看了。</p>
+<p>感谢一楼<a href="http://home.cnblogs.com/u/66564/" target="_blank" rel="external">Jefft</a>&nbsp;和<a href="http://home.cnblogs.com/u/Xdoable/" title="xiiiiiin" target="_blank" rel="external">xiiiiii</a>指导错误。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>标题这样子，是为了吸引眼球，至于是不是<span>James&nbsp;Padolsey原创的方法，网上是这么流传的就是了。菜鸟习作，写的不好，请轻拍。如果错误，请指出，感谢。</span><br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2012年5月17日23:35:10]]></title>
+    <link href="http://shenqihui.github.io/2012/05/17/2012%E5%B9%B45%E6%9C%8817%E6%97%A523-35-10/"/>
+    <id>http://shenqihui.github.io/2012/05/17/2012年5月17日23-35-10/</id>
+    <published>2012-05-17T07:36:00.000Z</published>
+    <updated>2015-03-12T05:47:44.000Z</updated>
+    <content type="html"><![CDATA[<p>blog诞生记。原因，此为技术blog群体，转这边。</p>
+<p>2012年5月17日23:36:24<br><a id="more"></a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>blog诞生记。原因，此为技术blog群体，转这边。</p>
+<p>2012年5月17日23:36:24<br>]]>
+    
+    </summary>
+    
+  </entry>
+  
+</feed>

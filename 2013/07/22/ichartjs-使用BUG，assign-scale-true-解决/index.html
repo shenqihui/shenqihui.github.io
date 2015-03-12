@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>ichartjs 使用BUG，assign_scale:true 解决 | 神奇辉的Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="今天纯属灌水，好久没灌水的。
+最近使用了flotr2 和 ichartjs进行canvas图标的开发，都不能满足需求。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ichartjs 使用BUG，assign_scale:true 解决">
+<meta property="og:url" content="http://shenqihui.github.io/2013/07/22/ichartjs-使用BUG，assign-scale-true-解决/index.html">
+<meta property="og:site_name" content="神奇辉的Blog">
+<meta property="og:description" content="今天纯属灌水，好久没灌水的。
+最近使用了flotr2 和 ichartjs进行canvas图标的开发，都不能满足需求。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ichartjs 使用BUG，assign_scale:true 解决">
+<meta name="twitter:description" content="今天纯属灌水，好久没灌水的。
+最近使用了flotr2 和 ichartjs进行canvas图标的开发，都不能满足需求。">
+<meta name="twitter:creator" content="@shenqihui">
+  
+    <link rel="alternative" href="/atom.xml" title="神奇辉的Blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header class="header">
+  <div class="header-outer outer">
+    <div class="profile_img">
+      <img class="circle_img" src="/img/profile_img.jpg" />
+    </div>
+    <div class="header-title">
+      <h1 class="logo">神奇辉的Blog</h1>
+      
+        <h4 class="subtitle">吾十有五而志于养猪，三十始养，四十亏本，五十再亏，六十亏大了，七十卒，不逾矩。现廿五，将卒。</h4>
+      
+    </div>
+    <div class="header-menu">
+      <nav class="main-nav">
+        <ul>
+        
+          <li><a href="/"><i class="fa fa-home icon-setting"></i></a></li>
+        
+          <li><a href="http://www.weibo.com/p/1005051896403155"><i class="fa fa-weibo icon-setting"></i></a></li>
+        
+          <li><a href="https://github.com/shenqihui"><i class="fa fa-github icon-setting"></i></a></li>
+        
+        
+          <li><a href="/atom.xml"><i class="fa fa-rss %> icon-setting"></i></a></li>
+        
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ichartjs-使用BUG，assign-scale-true-解决" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/07/22/ichartjs-使用BUG，assign-scale-true-解决/" class="article-date">
+  <time datetime="2013-07-22T03:21:00.000Z" itemprop="datePublished">2013 年 07 月 22 日</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ichartjs 使用BUG，assign_scale:true 解决
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天纯属灌水，好久没灌水的。</p>
+<p>最近使用了flotr2 和 ichartjs进行canvas图标的开发，都不能满足需求。<br><a id="more"></a><br>没办法，先将就用用吧。然后，既然其他大神推荐使用ichartjs，为了统一，我也只能使用ichartjs了，</p>
+<p>使用过程中，发现一个bug。</p>
+<p>具体为左右y轴，不能自定义，start_scale,end_scale,scale_space,scale_share限制都不给力。。。。。。。<a href="http://www.ichartjs.com/samples/index.html?page=combination2d_02.html&amp;pageno=11" target="_blank" rel="external">http://www.ichartjs.com/samples/index.html?page=combination2d_02.html&amp;pageno=11</a>&nbsp;就仿照这例子弄的而已。</p>
+<p>然后，bug提交给大神了，大神没多说，说之前就有人遇到这个问题，后马上给我解决方案：在scale的参数里面添加：assign_scale:true。更新到<a href="http://www.ichartjs.com/ichart.latest.min.js" target="_blank" rel="external">latest.min.js</a>文件，就能解决。此参数还没发布正式API，只是在源文件改了而已。</p>
+<p>可怜我自己尝试了半天。</p>
+<p>我问大神，为什么不发布这新参数，他说，等问题积累到一定程度再发。我想想也对，这东西，一发就是更新版本，又要用户换，又要写更新日志，麻烦。</p>
+<p>后，没有然后了。灌水完毕。加班中，一会走人。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://shenqihui.github.io/2013/07/22/ichartjs-使用BUG，assign-scale-true-解决/" data-id="ci75qnxi8000ho9az5hk1jkwj" class="article-share-link">Share</a>
+      
+        <a href="http://shenqihui.github.io/2013/07/22/ichartjs-使用BUG，assign-scale-true-解决/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/07/26/javascript-控制台输出-图片-console-log-真强大-真佩服你们的创造力/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          javascript 控制台输出 图片 console.log 真强大 真佩服你们的创造力
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/07/17/flotr2-中英文文档-对照/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">flotr2 中英文文档 对照</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 神奇辉<br>
+      Theme remake by <a href="https://github.com/shenqihui/hexo-theme-alberta" target="_blank">shenqihui</a> base <a href="http://jaychung.tw" target="_blank">jaychung</a>'s <a href="https://github.com/ken8203/hexo-theme-alberta" target="_blank">Alberta</a>. Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://pages.github.com/">Github Pages</a>. <a href="/sitemap.xml">Sitemap</a> .
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+    
+<script>
+  var disqus_shortname = 'shenqihuiblog';
+  
+  var disqus_url = 'http://shenqihui.github.io/2013/07/22/ichartjs-使用BUG，assign-scale-true-解决/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js
+"></script>
+<!--<script src="//imsky.github.io/holder/holder.js"></script>-->
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-48454013-1', 'auto');
+ga('require', 'displayfeatures');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Baidu Analytics -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a359010dd82707c1ee6d1ca5d64be33b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- Baidu Google Analytics -->
+
+</body>
+</html>
