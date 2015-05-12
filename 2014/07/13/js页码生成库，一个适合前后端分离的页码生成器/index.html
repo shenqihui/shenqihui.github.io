@@ -91,55 +91,40 @@
         <p><strong>前言</strong></p>
 <p>上星期写的任务里面有需要进行分页的处理，git搜索了一番，没有觉得合适的，于是自己临时写了个分页的算法。</p>
 <p>然后等闲下来的时候，决定把分页进行优化并推广。于是乎，一个适合前后端分离的页码生成器就这样出来了。<br><a id="more"></a><br>先别废话了，直接上 <a href="https://github.com/shenqihui/pagination" target="_blank" rel="external">git 地址</a> 和 <a href="http://shenqihui.github.io/pagination/" target="_blank" rel="external">demo 地址</a>。看官果断点击进去瞧瞧看。项目主页的 readme 文档的自动排版将更好。</p>
-<p>&nbsp;</p>
 <p><strong>先讲讲设计思想</strong></p>
 <p>整个开发流程围绕事件绑定进行开发。</p>
 <p>脱离 callback 回调这种回调方法，直接使用 事件 方式触发换页前后的动作，方便解耦。</p>
 <p>既然使用这种方式进行回调，就使用全局变量挂载分页的数据，方便回调时候进行分页数据的访问。</p>
-<p>&nbsp;</p>
 <p><strong>库的依赖</strong></p>
 <p>由于开发库的时候，并没有使用原生的语法进行元素或者事件绑定的操作，因此需要依赖某个库。</p>
 <p>现阶段，经过测试支持 zepto 以及 jquery （二选一）。</p>
 <p>css 方面，建议还是直接自己写或者使用 bootstrap 的库，源代码里面有从 bootstrap 里面抽出来的分页 css 代码。</p>
-<p>&nbsp;</p>
 <p><strong>简洁demo</strong></p>
 <p>由于分页就必须知道分页数据大小，因此必须传输配置对象。</p>
-<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">var</span> pageConfig =<span style="color: #000000;"> {<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 每页显示的数据长度，必填，而且 &gt;1</span><br>  prePageLenght: 10<span style="color: #000000;">,<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 数据的总长度，必填，而且 &gt;1</span><br>  dataLength: 30<span style="color: #000000;">,<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 现在的页码，默认 1</span><br>  pageNow: 1<span style="color: #000000;">,<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 渲染分页 html 的容器，一般框架的容器即可</span><br>  renderBox: $(‘.pagination-box’<span style="color: #000000;">)<br>};</span></pre><br></div>
-
-<p><span style="color: #0000ff;"><span style="color: #000000; font-family: verdana, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.5; background-color: #ffffff;">配置之后，进行调用</span></span></p>
-<p>&nbsp;</p>
-<div class="cnblogs_code"><br><pre><span style="color: #008000;">//</span><span style="color: #008000;"> 运行即可分页</span><br>pageBuilder(pageConfig);</pre><br></div>
-
-<p>&nbsp;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pageConfig = &#123;</span><br><span class="line">  <span class="comment">// 每页显示的数据长度，必填，而且 &gt;1</span></span><br><span class="line">  prePageLenght: <span class="number">10</span>,</span><br><span class="line">  <span class="comment">// 数据的总长度，必填，而且 &gt;1</span></span><br><span class="line">  dataLength: <span class="number">30</span>,</span><br><span class="line">  <span class="comment">// 现在的页码，默认 1</span></span><br><span class="line">  pageNow: <span class="number">1</span>,</span><br><span class="line">  <span class="comment">// 渲染分页 html 的容器，一般框架的容器即可</span></span><br><span class="line">  renderBox: $(<span class="string">'.pagination-box'</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>配置之后，进行调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 运行即可分页</span></span><br><span class="line">pageBuilder(pageConfig);</span><br></pre></td></tr></table></figure>
 <p>这样子就能进行分页了。</p>
 <p><strong>回调的书写</strong></p>
 <p>回调的书写虽然放在了调用分页的主函数后面，但是记得在调用分页之前就定义这些事件，因为一旦调用分页函数，就马上触发分页回调，写在后面了，就会忘记了刚分页时候的事件回调了。</p>
 <p>首先是分页前的回调，分页之前会触发 window 下面一个自定义分页之前的事件&nbsp;<span class="s1">beforePageChange ，因此要触发处理分页前的动作，就这样处理：</span></p>
-<div class="cnblogs_code"><br><pre><span style="color: #008000;">//</span><span style="color: #008000;"> 提前定义好分页之前的动作，可选</span><br>$(window).on(‘beforePageChange’, <span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> callback</span><br>  <span style="color: #008000;">//</span><span style="color: #008000;"> todo</span><br>  <span style="color: #008000;">//</span><span style="color: #008000;"> 获取当前页码，可以从 pageBuilder.page.pageNow 取得，注意此时的值为未分页之前的旧页码。</span><br>})</pre><br></div>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 提前定义好分页之前的动作，可选</span></span><br><span class="line">$(<span class="built_in">window</span>).on(<span class="string">'beforePageChange'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// callback</span></span><br><span class="line">  <span class="comment">// todo</span></span><br><span class="line">  <span class="comment">// 获取当前页码，可以从 pageBuilder.page.pageNow 取得，注意此时的值为未分页之前的旧页码。</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>同样道理，分页之后的回调差不多：</p>
-<div class="cnblogs_code"><br><pre><span style="color: #008000;">//</span><span style="color: #008000;"> 提前定义好分页之后的动作，可选</span><br>$(window).on(‘afterPageChange’, <span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>  </span><span style="color: #008000;">//</span><span style="color: #008000;"> callback</span><br>  <span style="color: #008000;">//</span><span style="color: #008000;"> todo</span><br>  <span style="color: #008000;">//</span><span style="color: #008000;"> 获取当前页码，可以从 pageBuilder.page.pageNow 取得</span><br>})</pre><br></div>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 提前定义好分页之后的动作，可选</span></span><br><span class="line">$(<span class="built_in">window</span>).on(<span class="string">'afterPageChange'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// callback</span></span><br><span class="line">  <span class="comment">// todo</span></span><br><span class="line">  <span class="comment">// 获取当前页码，可以从 pageBuilder.page.pageNow 取得</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p><strong>特别说明</strong></p>
 <p>一个页面只适合使用一个分页实例。分页的动作将在 hashchange 触发之后进行分页。</p>
 <p>里面监控页码变化的函数：</p>
-<div class="cnblogs_code"><br><pre>    <span style="color: #008000;">//</span><span style="color: #008000;"> 绑定换页的事件</span><br>    $(window).on(‘hashchange’, <span style="color: #0000ff;">function</span><span style="color: #000000;">() {<br>      </span><span style="color: #0000ff;">var</span> hash =<span style="color: #000000;"> location.hash;<br>      </span><span style="color: #0000ff;">var</span> pageTemp = 0<span style="color: #000000;">;<br>      </span><span style="color: #0000ff;">if</span> (/^#page=\d+$/.test(hash) === <span style="color: #0000ff;">true</span><span style="color: #000000;">) {<br>        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 直接是页码的</span><br>        pageTemp = hash.substring(6) | 0<span style="color: #000000;">;<br>        </span><span style="color: #0000ff;">if</span> (defaultConfig.pageNow !==<span style="color: #000000;"> pageTemp) {<br>          defaultConfig.pageNow </span>=<span style="color: #000000;"> pageTemp;<br>          $(window).trigger(</span>“renderPagination”<span style="color: #000000;">);<br>        }<br><br>      } </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (hash === “#page=next”<span style="color: #000000;">) {<br>        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 下一页的</span><br>        location.hash = “page=” + ( defaultConfig.pageNow + 1<span style="color: #000000;"> );<br>      } </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (hash === “#page=prev”<span style="color: #000000;">) {<br>        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 上一页的</span><br>        location.hash = “page=” + ( defaultConfig.pageNow - 1<span style="color: #000000;"> );<br>      }<br>    })</span></pre><br></div>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 绑定换页的事件</span></span><br><span class="line">$(<span class="built_in">window</span>).on(<span class="string">'hashchange'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> hash = location.hash;</span><br><span class="line">  <span class="keyword">var</span> pageTemp = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/^#page=\d+$/</span>.test(hash) === <span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="comment">// 直接是页码的</span></span><br><span class="line">    pageTemp = hash.substring(<span class="number">6</span>) | <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (defaultConfig.pageNow !== pageTemp) &#123;</span><br><span class="line">      defaultConfig.pageNow = pageTemp;</span><br><span class="line">      $(<span class="built_in">window</span>).trigger(<span class="string">"renderPagination"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (hash === <span class="string">"#page=next"</span>) &#123;</span><br><span class="line">    <span class="comment">// 下一页的</span></span><br><span class="line">    location.hash = <span class="string">"page="</span> + ( defaultConfig.pageNow + <span class="number">1</span> );</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (hash === <span class="string">"#page=prev"</span>) &#123;</span><br><span class="line">    <span class="comment">// 上一页的</span></span><br><span class="line">    location.hash = <span class="string">"page="</span> + ( defaultConfig.pageNow - <span class="number">1</span> );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>因为 hashchange 只支持 IE8+，</p>
 <p>所以，该插件只适合 IE8+，甚至IE8的怪异模式不支持 hashchange 事件。</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <p><strong>结束语</strong></p>
 <p>这个库还有很多可以优化的地方，例如页码缓存，还有作用域优化之类的，还没进行优化。</p>
-<p>&nbsp;</p>
 <p>希望大家喜欢。喜欢的话，点个推荐吧，如果使用上了，记得 star 下哦。</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shenqihui.github.io/2014/07/13/js页码生成库，一个适合前后端分离的页码生成器/" data-id="ci75qnxi3000fo9azyrmhk21j" class="article-share-link">Share</a>
+      <a data-url="http://shenqihui.github.io/2014/07/13/js页码生成库，一个适合前后端分离的页码生成器/" data-id="ci9li6qje000qdzs681whdf9n" class="article-share-link">Share</a>
       
         <a href="http://shenqihui.github.io/2014/07/13/js页码生成库，一个适合前后端分离的页码生成器/#disqus_thread" class="article-comment-link">Comments</a>
       

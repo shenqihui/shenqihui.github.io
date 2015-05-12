@@ -91,27 +91,18 @@
 <p>有句话说得好，如果你拿着一个锤子，那你看什么都像一个钉子。</p>
 <p>因此程序员必要的时候必须转换下思路啊。程序员思维是：已知条件，求值；而不是已知 条件 和 值，求证：这求值过程不存在bug。</p>
 <p>如果有人叫你这么证明你的程序的求值过程正确，你会不会抡起你的键(zhuan)盘(tou)就拍过去了。</p>
-<p>我们能做到的只是，带入a=<em>,b=<strong>,c=</strong></em>，验证等式成立。数学题让数学家证明去吧。</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p>我们能做到的只是，代入 <code>a=*,b=**,c=***</code>，验证等式成立。数学题让数学家证明去吧。</p>
 <p>下面回到高中的想法，谈谈这道题目吧：</p>
-<div class="cnblogs_code"><br><pre>求证：(a+b%c)%c=(a+<span style="color: #000000;">b)%c<br>解：<br><br>　　假设等式左右边的值为 v，<br><br>　　则 存在整数x和y，使得下面等式成立。<br><br>　　a</span>+b%c = v +<span style="color: #000000;"> xc;（左边）<br><br>　　a</span>+b     = v +<span style="color: #000000;"> yc;（右边）<br><br>　　这两式子同时成立，则可以化简为：<br><br>　　存在整数 z 使得 z</span>*c = b -<span style="color: #000000;"> b%c 成立。<br><br>　　则证明 b </span>-<span style="color: #000000;"> b%c 为 c 的倍数。<br><br>　　显然 b </span>- b%c 为 c 的倍数。</pre><br></div>
-
-<p><span style="line-height: 1.5;">（</span><span style="line-height: 1.5;">　　感觉我自己也跑歪了，如果(b - b%c 为 c 的倍数)不是显然的话，我们还做什么程序员。</span></p>
-<p><span style="line-height: 1.5;">其实 &nbsp;</span><span style="line-height: 1.5;">(a+b%c)%c=(a+b)%c 也是显然的。</span><span style="line-height: 1.5;">）</span></p>
-<p>&nbsp;</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">求证：<span class="comment">(a+b%c)</span><span class="preprocessor">%</span>c=<span class="comment">(a+b)</span><span class="preprocessor">%</span>c</span><br><span class="line">解：</span><br><span class="line"></span><br><span class="line">　　假设等式左右边的值为 v，</span><br><span class="line"></span><br><span class="line">　　则 存在整数x和y，使得下面等式成立。</span><br><span class="line"></span><br><span class="line">　　a+b<span class="preprocessor">%</span>c = v + xc;（左边）</span><br><span class="line"></span><br><span class="line">　　a+b     = v + yc;（右边）</span><br><span class="line"></span><br><span class="line">　　这两式子同时成立，则可以化简为：</span><br><span class="line"></span><br><span class="line">　　存在整数 z 使得 z*c = b - b<span class="preprocessor">%</span>c 成立。</span><br><span class="line"></span><br><span class="line">　　则证明 b - b<span class="preprocessor">%</span>c 为 c 的倍数。</span><br><span class="line"></span><br><span class="line">　　显然 b - b<span class="preprocessor">%</span>c 为 c 的倍数。</span><br></pre></td></tr></table></figure>
+<p>（感觉我自己也跑歪了，如果(b - b%c 为 c 的倍数)不是显然的话，我们还做什么程序员。其实 (a+b%c)%c=(a+b)%c 也是显然的。）</p>
 <p>后注：发表了出来，才发现，其实这道题跟程序员思维没啥联系。纯当胡扯。</p>
-<p>&nbsp;</p>
-<p>下面是整理一楼&nbsp;<a href="http://home.cnblogs.com/u/228024/" target="_blank" rel="external">五岳</a>&nbsp;提供的正确方法，谢谢指导。（我的答案已经跑歪了）</p>
-<div class="cnblogs_code"><br><pre><span style="color: #000000;">假设：<br>　　a </span>= x<em>c +<span style="color: #000000;"> a0<br>　　b </span>= y</em>c +<span style="color: #000000;"> b0<br>　　其中x,y,a0,b0&isin;Z,且|a0|</span>&lt;|c|,|b0|&lt;<span style="color: #000000;">|c|<br>　　那么<br>　　(a</span>+b%c)%c = (x<em>c + a0 + (y</em>c + b0)%c)=(x<em>c +a0 + b0)%c = (a0 +<span style="color: #000000;"> b0)%c<br>　　而(a</span>+b)%c = (x</em>c + a0 + y*c + b0)%c = (a0+<span style="color: #000000;">b0)%c<br>　　两式相等，得证</span></pre><br></div>
-
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p>下面是整理某网友 <a href="http://home.cnblogs.com/u/228024/" target="_blank" rel="external">五岳</a> 提供的正确方法，谢谢指导。（我的答案已经跑歪了）</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">假设：</span><br><span class="line">　　a = x*<span class="built_in">c</span> + a0</span><br><span class="line">　　b = y*<span class="built_in">c</span> + b0</span><br><span class="line">　　其中x,y,a0,b0∈<span class="type">Z</span>,且|a0|&lt;|<span class="built_in">c</span>|,|b0|&lt;|<span class="built_in">c</span>|</span><br><span class="line">　　那么</span><br><span class="line">　　(a+b%<span class="built_in">c</span>)%<span class="built_in">c</span> = (x*<span class="built_in">c</span> + a0 + (y*<span class="built_in">c</span> + b0)%<span class="built_in">c</span>)=(x*<span class="built_in">c</span> +a0 + b0)%<span class="built_in">c</span> = (a0 + b0)%<span class="built_in">c</span></span><br><span class="line">　　而(a+b)%<span class="built_in">c</span> = (x*<span class="built_in">c</span> + a0 + y*<span class="built_in">c</span> + b0)%<span class="built_in">c</span> = (a0+b0)%<span class="built_in">c</span></span><br><span class="line">　　两式相等，得证</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shenqihui.github.io/2014/02/08/从一道数学题弹程序员的思维：数学题，求证：-a-b-c-c-a-b-c/" data-id="ci75qnxhz000co9azcoirqmqf" class="article-share-link">Share</a>
+      <a data-url="http://shenqihui.github.io/2014/02/08/从一道数学题弹程序员的思维：数学题，求证：-a-b-c-c-a-b-c/" data-id="ci9li6qj7000hdzs6niyhihgh" class="article-share-link">Share</a>
       
         <a href="http://shenqihui.github.io/2014/02/08/从一道数学题弹程序员的思维：数学题，求证：-a-b-c-c-a-b-c/#disqus_thread" class="article-comment-link">Comments</a>
       

@@ -101,10 +101,10 @@
 <p>砖的颜色怎么样，墙就怎么样，跟怎么建造没关系。给你同类型的砖，这个方法就能砌好这堵墙。</p>
 <p><strong>4、工厂模式</strong></p>
 <p>一个有钱的傻大壮，有一天看到想要一个三轮车，他爸给了他个能做任何车的车厂。</p>
-<p>傻大壮跟厂长说：&ldquo;给我个帅气的三轮车&rdquo;，铛的一声，厂长给了他一辆自己厂生产的三轮车。</p>
+<p>傻大壮跟厂长说：“给我个帅气的三轮车”，铛的一声，厂长给了他一辆自己厂生产的三轮车。</p>
 <p>又一天，傻大壮想要一个拖拉机，厂长二话没说，拉出了刚下生产线的拖拉机。</p>
 <p>傻大壮耍了几天，觉得拖拉机太快了，根厂长要量人力三轮车，厂长吩咐阿四把刚出产的人力三轮车骑了过来。</p>
-<p>傻大壮要去泡妞啊，厂长觉得三轮车去泡妞太霸气了，要低调，哄傻大壮开个别的。傻大壮说：&ldquo;那好，给我个法拉利&rdquo;。 厂长笑了笑，又叫阿四拉出了最新研发的法拉利出来。</p>
+<p>傻大壮要去泡妞啊，厂长觉得三轮车去泡妞太霸气了，要低调，哄傻大壮开个别的。傻大壮说：“那好，给我个法拉利”。 厂长笑了笑，又叫阿四拉出了最新研发的法拉利出来。</p>
 <p>这个就是工厂，这个工厂就是一个模式，给什么要求，做什么东西，当然，你说飞机火箭什么的，劳驾到其它工厂吧。</p>
 <p>不过嘛，你没有傻大壮的老爸，这个工厂需要你自己来搭建咯，先从自行车的刹车皮开始做起吧，慢慢来别急啊骚年。</p>
 <p><strong>5、装饰者模式</strong></p>
@@ -114,22 +114,21 @@
 <p>这就是装饰者模式，把原车拿去，换了一个改装过的车。再把这车改装，这车又更加霸气了。不过来来回回都是那个车每一次改装都没有前提和前置条件。不过大叔的代码里面，前面的代码说的确实每一次的车都被克隆了一个，把克隆了之后的给了别人。后面使用了prototype才算正确。（个人疑惑点，大叔见谅，谢谢大叔指点。）</p>
 <p><strong>6、外观模式</strong></p>
 <p>将相同功能但是参数顺序数量格式不同或者功能名不同的功能集合起来，通过该功能即可自动识别调用该系统支持的接口，鉴于每次都需要进行支持性判断，损耗了部分的性能。但是大大方便了程序员的工作，大部分兼容框架都会使用到该模式。如下事件绑定代码：</p>
-<div class="cnblogs_code"><br><pre><span style="color: #0000ff;">var</span> addMyEvent = <span style="color: #0000ff;">function</span><span style="color: #000000;"> (el, ev, fn) {<br>    </span><span style="color: #0000ff;">if</span><span style="color: #000000;"> (el.addEventListener) {<br>        el.addEventListener(ev, fn, </span><span style="color: #0000ff;">false</span><span style="color: #000000;">);<br>    } </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span><span style="color: #000000;"> (el.attachEvent) {<br>        el[</span>‘e’+ev+fn]=<span style="color: #000000;">fn;<br>        el[ev</span>+fn]=<span style="color: #0000ff;">function</span>(e){el<a href="e||&lt;span style=&quot;color: #000000;&quot;&gt;window.event">‘e’+ev+fn</a>;}<br>        el.attachEvent(‘on’ + ev, el[ev+<span style="color: #000000;">fn]);<br>    } </span><span style="color: #0000ff;">else</span><span style="color: #000000;"> {<br>        el[</span>‘e’+ev+fn]=<span style="color: #000000;">fn;<br>        el[ev</span>+fn]=<span style="color: #0000ff;">function</span>(e){el<a href="e||&lt;span style=&quot;color: #000000;&quot;&gt;window.event">‘e’+ev+fn</a>;}<br>        el[‘on’ + ev] = el[ev+<span style="color: #000000;">fn];<br>    }<br>}; </span></pre><br></div>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> addMyEvent = <span class="function"><span class="keyword">function</span> <span class="params">(el, ev, fn)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (el.addEventListener) &#123;</span><br><span class="line">        el.addEventListener(ev, fn, <span class="literal">false</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (el.attachEvent) &#123;</span><br><span class="line">        el[<span class="string">'e'</span>+ev+fn]=fn;</span><br><span class="line">        el[ev+fn]=<span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>&#123;el[<span class="string">'e'</span>+ev+fn](e||<span class="built_in">window</span>.event);&#125;</span><br><span class="line">        el.attachEvent(<span class="string">'on'</span> + ev, el[ev+fn]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        el[<span class="string">'e'</span>+ev+fn]=fn;</span><br><span class="line">        el[ev+fn]=<span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>&#123;el[<span class="string">'e'</span>+ev+fn](e||<span class="built_in">window</span>.event);&#125;</span><br><span class="line">        el[<span class="string">'on'</span> + ev] = el[ev+fn];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p><strong>7、代理模式</strong></p>
 <p>大叔说了，dudu不敢送玫瑰花给酸奶小妹，大叔就帮他了。常用，不过把自己的命运交给别人把握的感觉不怎么好。</p>
 <p><strong>8、观察者模式</strong></p>
 <p>对于消息分发很有帮助，能通过一个地方的修改就改变其他地方。具体实现代码的时候直接模仿。</p>
 <p><strong>9、策略模式</strong></p>
-<p>&nbsp;把算法单独封装起来，区别于每次使用不使用这种模式构造的算法集都会影响用户使用。使用该种模式的话，能够方便的进行功能增加的测试，新增加的同类算法不影响现在的算法，大叔的文章中把输入验证的算法单独抽出实现算法集的集合，增加新验证方式又不影响现在算法。</p>
+<p>把算法单独封装起来，区别于每次使用不使用这种模式构造的算法集都会影响用户使用。使用该种模式的话，能够方便的进行功能增加的测试，新增加的同类算法不影响现在的算法，大叔的文章中把输入验证的算法单独抽出实现算法集的集合，增加新验证方式又不影响现在算法。</p>
 <p><strong>10、命令模式</strong></p>
 <p>这个模式十分适合那种需要记录动作执行记录的功能，讲这个命令接口设置成字符串或者JSON格式，传输给命令接口，即可方便执行命令记录和执行命令的动作。命令格式还能自定义。</p>
 <p><strong>11、迭代器模式</strong></p>
 <p>主要思想是把一个属性不可修改的可遍历的聚合对象保护起来，在进行遍历时，需要采用该种模式。</p>
-<p>该模式中，通过至少<span>hasNext()和Next()两个方法，即可进行把一个聚合对象的所有可遍历属性遍历完毕。</span></p>
+<p>该模式中，通过至少hasNext()和Next()两个方法，即可进行把一个聚合对象的所有可遍历属性遍历完毕。</p>
 <p><strong>12、中介者模式</strong></p>
-<p><span>使用中介封装其他对象的交互。大叔说道，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。</span></p>
-<p><span>耦合松散对编程来说那可是值得走的好方向，只是需要花点时间来解耦而已。</span></p>
+<p>使用中介封装其他对象的交互。大叔说道，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。</p>
+<p>耦合松散对编程来说那可是值得走的好方向，只是需要花点时间来解耦而已。</p>
 <p>中介者模式和观察者模式有相同之处，都是通过消息驱动，用户出发一个对象的事件，传输到中介者，中介者分发下去，触发接受者的接受函数。其实我把两者混淆了。</p>
 <p>重要特点是，中介者，多对多；观察者，一对多。</p>
 <p><strong>13、享元模式</strong></p>
@@ -141,7 +140,7 @@
 <p>该模式主要针对接口的改变，如果不想再原始对象上面进行变动，那就可以采取适配器的模式。把原有接口重新封装，实现用户需要的接口。</p>
 <p>就比如一个三口插座充电器，在中国能用，在外国不能用了，就需要使用接口转换的了，现在的高端手机基本上都有多口转换。充电器到头来还是那个充电器。</p>
 <p><strong>16、组合模式</strong></p>
-<p>&nbsp;大叔说道，组合模式有明确的使用场景：1、你想表达对象的部分-整体层次结构时。2、组合对象和单个对象不同，但是使用的时候能相同使用。具体实现时需要先写一个最基础的组合方法，然后后面的单个对象的基础对象都需要继承该方法。详细实现时，参考大叔的菜单代码。</p>
+<p>大叔说道，组合模式有明确的使用场景：1、你想表达对象的部分-整体层次结构时。2、组合对象和单个对象不同，但是使用的时候能相同使用。具体实现时需要先写一个最基础的组合方法，然后后面的单个对象的基础对象都需要继承该方法。详细实现时，参考大叔的菜单代码。</p>
 <p><strong>17、模板方法</strong></p>
 <p>思想：创建一个框架，搭建框架的所有方法，但是只实现相同功能，可变功能只留接口不实现，留在子类实现。</p>
 <p>该框架能够延森到其它子类中，具体功能将在子类实现时补充完毕。</p>
@@ -155,18 +154,17 @@
 <p><strong>20、桥接模式</strong></p>
 <p>最简单的桥接模式，把一个可能在不同上下文下不能运行的函数，通过改变调用方式或者改变参数的方式达到运行的目的。这个方式就成为桥。</p>
 <p>大叔的例子里面，代码是运行不鸟了，因为没有环境。主要思想就是在绑定动作的时候，直接的实现内容用户可以不知道，传输正确参数（如id）进去即可判断参数进行动作或者获取数据。</p>
-<p>&nbsp;</p>
 <p><strong>总结：</strong></p>
 <p>花了一个春节假期，把大叔的设计模式这一块看完了，从编码思想方面进行了改变。但是，设计模式并非看完就能真正掌握了，没有实践，永远只能在口中胡扯。</p>
 <p>talk is cheap,show me the code.</p>
 <p>速成设计模式，难，没基础学设计模式，难。学习设计模式的最佳方法不是看书就知道，而是看过了书知道，了解到其思想，在自己的编码实践中，结合进去，参考前人的代码进行该模式的实现，自然水到渠成。</p>
 <p>这就是这篇文章的目的：设计模式的思想。</p>
-<p>（<span style="line-height: 1.5;">并非做了精读，</span><span style="line-height: 1.5;">只做编程作参考，如有错误，恳请大力指出，谢谢。）</span></p>
+<p>（并非做了精读，只做编程作参考，如有错误，恳请大力指出，谢谢。）</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shenqihui.github.io/2014/02/08/汤姆大叔设计模式学习体会：设计模式的思想/" data-id="ci75qnxhm0006o9azt9gv8afd" class="article-share-link">Share</a>
+      <a data-url="http://shenqihui.github.io/2014/02/08/汤姆大叔设计模式学习体会：设计模式的思想/" data-id="ci9li6qit000bdzs6zybibxji" class="article-share-link">Share</a>
       
         <a href="http://shenqihui.github.io/2014/02/08/汤姆大叔设计模式学习体会：设计模式的思想/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -181,7 +179,7 @@
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          探讨css中repaint和reflow
+          探讨 css 中 repaint 和 reflow
         
       </div>
     </a>

@@ -3,23 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ichartjs 使用BUG，assign_scale:true 解决 | 神奇辉的Blog</title>
+  <title>神奇辉的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="今天纯属灌水，好久没灌水的。
-最近使用了flotr2 和 ichartjs进行canvas图标的开发，都不能满足需求。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ichartjs 使用BUG，assign_scale:true 解决">
-<meta property="og:url" content="http://shenqihui.github.io/2013/07/22/ichartjs-使用BUG，assign-scale-true-解决/index.html">
+  <meta name="description" content="神奇辉,博客,blog,前端,hexo,nodejs,javascript,python,php">
+<meta property="og:type" content="website">
+<meta property="og:title" content="神奇辉的Blog">
+<meta property="og:url" content="http://shenqihui.github.io/tags/nodejs/index.html">
 <meta property="og:site_name" content="神奇辉的Blog">
-<meta property="og:description" content="今天纯属灌水，好久没灌水的。
-最近使用了flotr2 和 ichartjs进行canvas图标的开发，都不能满足需求。">
+<meta property="og:description" content="神奇辉,博客,blog,前端,hexo,nodejs,javascript,python,php">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ichartjs 使用BUG，assign_scale:true 解决">
-<meta name="twitter:description" content="今天纯属灌水，好久没灌水的。
-最近使用了flotr2 和 ichartjs进行canvas图标的开发，都不能满足需求。">
+<meta name="twitter:title" content="神奇辉的Blog">
+<meta name="twitter:description" content="神奇辉,博客,blog,前端,hexo,nodejs,javascript,python,php">
 <meta name="twitter:creator" content="@shenqihui">
   
     <link rel="alternative" href="/atom.xml" title="神奇辉的Blog" type="application/atom+xml">
@@ -63,10 +60,12 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-ichartjs-使用BUG，assign-scale-true-解决" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-nodejs-平台的-webscoket-的实现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2013/07/22/ichartjs-使用BUG，assign-scale-true-解决/" class="article-date">
-  <time datetime="2013-07-22T03:21:00.000Z" itemprop="datePublished">2013 年 07 月 22 日</time>
+    <a href="/2013/08/07/nodejs-平台的-webscoket-的实现/" class="article-date">
+  <time datetime="2013-08-06T20:43:00.000Z" itemprop="datePublished">2013 年 08 月 07 日</time>
 </a>
     
   </div>
@@ -76,8 +75,8 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      ichartjs 使用BUG，assign_scale:true 解决
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/08/07/nodejs-平台的-webscoket-的实现/">nodejs 平台的 webscoket 的实现</a>
     </h1>
   
 
@@ -85,55 +84,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天纯属灌水，好久没灌水的。</p>
-<p>最近使用了flotr2 和 ichartjs进行canvas图标的开发，都不能满足需求。<br><a id="more"></a><br>没办法，先将就用用吧。然后，既然其他大神推荐使用ichartjs，为了统一，我也只能使用ichartjs了，</p>
-<p>使用过程中，发现一个bug。</p>
-<p>具体为左右y轴，不能自定义，start_scale,end_scale,scale_space,scale_share限制都不给力。。。。。。。<a href="http://www.ichartjs.com/samples/index.html?page=combination2d_02.html&amp;pageno=11" target="_blank" rel="external">http://www.ichartjs.com/samples/index.html?page=combination2d_02.html&amp;pageno=11</a>&nbsp;就仿照这例子弄的而已。</p>
-<p>然后，bug提交给大神了，大神没多说，说之前就有人遇到这个问题，后马上给我解决方案：在scale的参数里面添加：assign_scale:true。更新到<a href="http://www.ichartjs.com/ichart.latest.min.js" target="_blank" rel="external">latest.min.js</a>文件，就能解决。此参数还没发布正式API，只是在源文件改了而已。</p>
-<p>可怜我自己尝试了半天。</p>
-<p>我问大神，为什么不发布这新参数，他说，等问题积累到一定程度再发。我想想也对，这东西，一发就是更新版本，又要用户换，又要写更新日志，麻烦。</p>
-<p>后，没有然后了。灌水完毕。加班中，一会走人。</p>
-
+        <p>新手入门，没办法，只能选择不断不断的 google 吧。</p>
+<p>找了很多的例子都跑不了，不知道什么原因。</p>
+<p>后，自己在 git 搜索吧，选择了一个下面的例子： <strong><a href="https://github.com/kashiif/nodejs-web-socket">nodejs-web-socket</a></strong></p>
+<p>经过我的改造，改成我自己想要的方式。<br>
+        
+          <p class="article-more-link">
+            <a href="/2013/08/07/nodejs-平台的-webscoket-的实现/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shenqihui.github.io/2013/07/22/ichartjs-使用BUG，assign-scale-true-解决/" data-id="ci75qnxi8000ho9az5hk1jkwj" class="article-share-link">Share</a>
+      <a data-url="http://shenqihui.github.io/2013/08/07/nodejs-平台的-webscoket-的实现/" data-id="ci9li6qja000jdzs62jxudidp" class="article-share-link">Share</a>
       
-        <a href="http://shenqihui.github.io/2013/07/22/ichartjs-使用BUG，assign-scale-true-解决/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://shenqihui.github.io/2013/08/07/nodejs-平台的-webscoket-的实现/#disqus_thread" class="article-comment-link">Comments</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/websocket/">websocket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+
     </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2013/07/26/javascript-控制台输出-图片-console-log-真强大-真佩服你们的创造力/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          javascript 控制台输出 图片 console.log 真强大 真佩服你们的创造力
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2013/07/17/flotr2-中英文文档-对照/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">flotr2 中英文文档 对照</div>
-    </a>
-  
-</nav>
-
   
 </article>
 
 
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
+  
+  
 </section>
         
       </div>
@@ -153,13 +130,11 @@
 <script>
   var disqus_shortname = 'shenqihuiblog';
   
-  var disqus_url = 'http://shenqihui.github.io/2013/07/22/ichartjs-使用BUG，assign-scale-true-解决/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

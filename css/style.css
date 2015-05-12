@@ -163,6 +163,12 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
 }
+code {
+  background-color: #e2dada;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  color: #000;
+}
 .outer {
   max-width: 820px;
   margin: 0px auto;
