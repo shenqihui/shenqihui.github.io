@@ -11,8 +11,6 @@ date: 2014-07-13 09:50:00
 <!--more-->
 先别废话了，直接上 [git 地址](https://github.com/shenqihui/pagination) 和 [demo 地址](http://shenqihui.github.io/pagination/)。看官果断点击进去瞧瞧看。项目主页的 readme 文档的自动排版将更好。
 
-&nbsp;
-
 **先讲讲设计思想**
 
 整个开发流程围绕事件绑定进行开发。
@@ -20,8 +18,6 @@ date: 2014-07-13 09:50:00
 脱离 callback 回调这种回调方法，直接使用 事件 方式触发换页前后的动作，方便解耦。
 
 既然使用这种方式进行回调，就使用全局变量挂载分页的数据，方便回调时候进行分页数据的访问。
-
-&nbsp;
 
 **库的依赖**
 
@@ -31,35 +27,29 @@ date: 2014-07-13 09:50:00
 
 css 方面，建议还是直接自己写或者使用 bootstrap 的库，源代码里面有从 bootstrap 里面抽出来的分页 css 代码。
 
-&nbsp;
-
 **简洁demo**
 
 由于分页就必须知道分页数据大小，因此必须传输配置对象。
 
-<div class="cnblogs_code">
-<pre><span style="color: #0000ff;">var</span> pageConfig =<span style="color: #000000;"> {
-  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 每页显示的数据长度，必填，而且 &gt;1</span>
-  prePageLenght: 10<span style="color: #000000;">,
-  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 数据的总长度，必填，而且 &gt;1</span>
-  dataLength: 30<span style="color: #000000;">,
-  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 现在的页码，默认 1</span>
-  pageNow: 1<span style="color: #000000;">,
-  </span><span style="color: #008000;">//</span><span style="color: #008000;"> 渲染分页 html 的容器，一般框架的容器即可</span>
-  renderBox: $('.pagination-box'<span style="color: #000000;">)
-};</span></pre>
-</div>
+```javascript
+var pageConfig = {
+  // 每页显示的数据长度，必填，而且 >1
+  prePageLenght: 10,
+  // 数据的总长度，必填，而且 >1
+  dataLength: 30,
+  // 现在的页码，默认 1
+  pageNow: 1,
+  // 渲染分页 html 的容器，一般框架的容器即可
+  renderBox: $('.pagination-box')
+};
+```
 
-<span style="color: #0000ff;"><span style="color: #000000; font-family: verdana, Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.5; background-color: #ffffff;">配置之后，进行调用</span></span>
+配置之后，进行调用
 
-&nbsp;
-
-<div class="cnblogs_code">
-<pre><span style="color: #008000;">//</span><span style="color: #008000;"> 运行即可分页</span>
-pageBuilder(pageConfig);</pre>
-</div>
-
-&nbsp;
+```javascript
+// 运行即可分页
+pageBuilder(pageConfig);
+```
 
 这样子就能进行分页了。
 
@@ -69,25 +59,26 @@ pageBuilder(pageConfig);</pre>
 
 首先是分页前的回调，分页之前会触发 window 下面一个自定义分页之前的事件&nbsp;<span class="s1">beforePageChange ，因此要触发处理分页前的动作，就这样处理：</span>
 
-<div class="cnblogs_code">
-<pre><span style="color: #008000;">//</span><span style="color: #008000;"> 提前定义好分页之前的动作，可选</span>
-$(window).on('beforePageChange', <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
-  </span><span style="color: #008000;">//</span><span style="color: #008000;"> callback</span>
-  <span style="color: #008000;">//</span><span style="color: #008000;"> todo</span>
-  <span style="color: #008000;">//</span><span style="color: #008000;"> 获取当前页码，可以从 pageBuilder.page.pageNow 取得，注意此时的值为未分页之前的旧页码。</span>
-})</pre>
-</div>
+```javascript
+// 提前定义好分页之前的动作，可选
+$(window).on('beforePageChange', function() {
+  // callback
+  // todo
+  // 获取当前页码，可以从 pageBuilder.page.pageNow 取得，注意此时的值为未分页之前的旧页码。
+})
+
+```
 
 同样道理，分页之后的回调差不多：
 
-<div class="cnblogs_code">
-<pre><span style="color: #008000;">//</span><span style="color: #008000;"> 提前定义好分页之后的动作，可选</span>
-$(window).on('afterPageChange', <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
-  </span><span style="color: #008000;">//</span><span style="color: #008000;"> callback</span>
-  <span style="color: #008000;">//</span><span style="color: #008000;"> todo</span>
-  <span style="color: #008000;">//</span><span style="color: #008000;"> 获取当前页码，可以从 pageBuilder.page.pageNow 取得</span>
-})</pre>
-</div>
+```javascript
+// 提前定义好分页之后的动作，可选
+$(window).on('afterPageChange', function() {
+  // callback
+  // todo
+  // 获取当前页码，可以从 pageBuilder.page.pageNow 取得
+})
+```
 
 **特别说明**
 
@@ -95,45 +86,36 @@ $(window).on('afterPageChange', <span style="color: #0000ff;">function</span><sp
 
 里面监控页码变化的函数：
 
-<div class="cnblogs_code">
-<pre>    <span style="color: #008000;">//</span><span style="color: #008000;"> 绑定换页的事件</span>
-    $(window).on('hashchange', <span style="color: #0000ff;">function</span><span style="color: #000000;">() {
-      </span><span style="color: #0000ff;">var</span> hash =<span style="color: #000000;"> location.hash;
-      </span><span style="color: #0000ff;">var</span> pageTemp = 0<span style="color: #000000;">;
-      </span><span style="color: #0000ff;">if</span> (/^#page=\d+$/.test(hash) === <span style="color: #0000ff;">true</span><span style="color: #000000;">) {
-        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 直接是页码的</span>
-        pageTemp = hash.substring(6) | 0<span style="color: #000000;">;
-        </span><span style="color: #0000ff;">if</span> (defaultConfig.pageNow !==<span style="color: #000000;"> pageTemp) {
-          defaultConfig.pageNow </span>=<span style="color: #000000;"> pageTemp;
-          $(window).trigger(</span>"renderPagination"<span style="color: #000000;">);
-        }
+```javascript
+// 绑定换页的事件
+$(window).on('hashchange', function() {
+  var hash = location.hash;
+  var pageTemp = 0;
+  if (/^#page=\d+$/.test(hash) === true) {
+    // 直接是页码的
+    pageTemp = hash.substring(6) | 0;
+    if (defaultConfig.pageNow !== pageTemp) {
+      defaultConfig.pageNow = pageTemp;
+      $(window).trigger("renderPagination");
+    }
 
-      } </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (hash === "#page=next"<span style="color: #000000;">) {
-        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 下一页的</span>
-        location.hash = "page=" + ( defaultConfig.pageNow + 1<span style="color: #000000;"> );
-      } </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (hash === "#page=prev"<span style="color: #000000;">) {
-        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 上一页的</span>
-        location.hash = "page=" + ( defaultConfig.pageNow - 1<span style="color: #000000;"> );
-      }
-    })</span></pre>
-</div>
+  } else if (hash === "#page=next") {
+    // 下一页的
+    location.hash = "page=" + ( defaultConfig.pageNow + 1 );
+  } else if (hash === "#page=prev") {
+    // 上一页的
+    location.hash = "page=" + ( defaultConfig.pageNow - 1 );
+  }
+})
+```
 
 因为 hashchange 只支持 IE8+，
 
 所以，该插件只适合 IE8+，甚至IE8的怪异模式不支持 hashchange 事件。
 
-&nbsp;
-
-&nbsp;
 
 **结束语**
 
 这个库还有很多可以优化的地方，例如页码缓存，还有作用域优化之类的，还没进行优化。
 
-&nbsp;
-
 希望大家喜欢。喜欢的话，点个推荐吧，如果使用上了，记得 star 下哦。
-
-&nbsp;
-
-&nbsp;

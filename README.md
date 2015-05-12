@@ -19,11 +19,15 @@ themes/alberta/_config.yml
 npm install
 ```
 
+## 本地运行测试
+```
+hexo server
+```
+然后访问：http://yourip:4000/ 即可看到效果。
 
 ## 如何修改主题
 
 主题文件位于 theme 下面，使用的是 hexo-theme-alberta ，目前已经把此 主题 整入仓库，后期将不对主题进行开发，直接位于此仓库进行开发。
-
 
 ## 发布到 Github 
 ```bash

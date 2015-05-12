@@ -15,58 +15,44 @@ date: 2014-02-08 03:36:00
 
 如果有人叫你这么证明你的程序的求值过程正确，你会不会抡起你的键(zhuan)盘(tou)就拍过去了。
 
-我们能做到的只是，带入a=*,b=**,c=***，验证等式成立。数学题让数学家证明去吧。
-
-&nbsp;
-
-&nbsp;
+我们能做到的只是，代入 `a=*,b=**,c=***`，验证等式成立。数学题让数学家证明去吧。
 
 下面回到高中的想法，谈谈这道题目吧：
 
-<div class="cnblogs_code">
-<pre>求证：(a+b%c)%c=(a+<span style="color: #000000;">b)%c
+```
+求证：(a+b%c)%c=(a+b)%c
 解：
 
 　　假设等式左右边的值为 v，
 
 　　则 存在整数x和y，使得下面等式成立。
 
-　　a</span>+b%c = v +<span style="color: #000000;"> xc;（左边）
+　　a+b%c = v + xc;（左边）
 
-　　a</span>+b     = v +<span style="color: #000000;"> yc;（右边）
+　　a+b     = v + yc;（右边）
 
 　　这两式子同时成立，则可以化简为：
 
-　　存在整数 z 使得 z</span>*c = b -<span style="color: #000000;"> b%c 成立。
+　　存在整数 z 使得 z*c = b - b%c 成立。
 
-　　则证明 b </span>-<span style="color: #000000;"> b%c 为 c 的倍数。
+　　则证明 b - b%c 为 c 的倍数。
 
-　　显然 b </span>- b%c 为 c 的倍数。</pre>
-</div>
+　　显然 b - b%c 为 c 的倍数。
+```
 
-<span style="line-height: 1.5;">（</span><span style="line-height: 1.5;">　　感觉我自己也跑歪了，如果(b - b%c 为 c 的倍数)不是显然的话，我们还做什么程序员。</span>
-
-<span style="line-height: 1.5;">其实 &nbsp;</span><span style="line-height: 1.5;">(a+b%c)%c=(a+b)%c 也是显然的。</span><span style="line-height: 1.5;">）</span>
-
-&nbsp;
+（感觉我自己也跑歪了，如果(b - b%c 为 c 的倍数)不是显然的话，我们还做什么程序员。其实 (a+b%c)%c=(a+b)%c 也是显然的。）
 
 后注：发表了出来，才发现，其实这道题跟程序员思维没啥联系。纯当胡扯。
 
-&nbsp;
+下面是整理某网友 [五岳](http://home.cnblogs.com/u/228024/) 提供的正确方法，谢谢指导。（我的答案已经跑歪了）
 
-下面是整理一楼&nbsp;[五岳](http://home.cnblogs.com/u/228024/)&nbsp;提供的正确方法，谢谢指导。（我的答案已经跑歪了）
-
-<div class="cnblogs_code">
-<pre><span style="color: #000000;">假设：
-　　a </span>= x*c +<span style="color: #000000;"> a0
-　　b </span>= y*c +<span style="color: #000000;"> b0
-　　其中x,y,a0,b0&isin;Z,且|a0|</span>&lt;|c|,|b0|&lt;<span style="color: #000000;">|c|
+```
+假设：
+　　a = x*c + a0
+　　b = y*c + b0
+　　其中x,y,a0,b0∈Z,且|a0|<|c|,|b0|<|c|
 　　那么
-　　(a</span>+b%c)%c = (x*c + a0 + (y*c + b0)%c)=(x*c +a0 + b0)%c = (a0 +<span style="color: #000000;"> b0)%c
-　　而(a</span>+b)%c = (x*c + a0 + y*c + b0)%c = (a0+<span style="color: #000000;">b0)%c
-　　两式相等，得证</span></pre>
-</div>
-
-&nbsp;
-
-&nbsp;
+　　(a+b%c)%c = (x*c + a0 + (y*c + b0)%c)=(x*c +a0 + b0)%c = (a0 + b0)%c
+　　而(a+b)%c = (x*c + a0 + y*c + b0)%c = (a0+b0)%c
+　　两式相等，得证
+```
