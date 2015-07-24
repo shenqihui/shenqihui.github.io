@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[神奇辉的Blog]]></title>
+  <title><![CDATA[神奇辉]]></title>
   <subtitle><![CDATA[吾十有五而志于养猪，三十始养，四十亏本，五十再亏，六十亏大了，七十卒，不逾矩。现廿五，将卒。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://shenqihui.github.io/"/>
@@ -9,7 +9,7 @@
   
   <author>
     <name><![CDATA[神奇辉]]></name>
-    <email><![CDATA[c2hlbnFpaHVpMDkyMEBnbWFpbC5jb20=]]></email>
+    <email><![CDATA[c2hlbnFpaHVpMDkyMEBnbWFpbC5jb20K]]></email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
