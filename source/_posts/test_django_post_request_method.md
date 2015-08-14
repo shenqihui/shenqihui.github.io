@@ -8,23 +8,31 @@ Django 是一个强大的 Web 框架。
 最近在处理各种跨域传输的问题，其中就遇到了一个坑： Django 服务下 IE 8、9 下面通过 XDomainRequest 无法传输数据的问题。  
 <!--more-->
 
-## 事情是这样子的。
+---
 
+# 事情是这样子的。
 
 1、 开发了一个接口，处理 POST 的 http 请求，在各类型 XMLHttpRequest 方法下面的 POST 请求基本处理通过来进行数据传输都能实现， request 的 POST 数据都能获取。
 2、 不过，在 IE 8/9 的时候，使用 XDomainRequest 来进行跨域 POST 传输的时候，却没能获取到 POST 数据。
 
-## 然后
+# 然后
+
 事情就是这样，一开始还以为是 XDomainRequest 的 Ajax 请求代码出问题了。后面经过一番调试，越发觉得这不是 js 代码出问题了，而是 Django 解析出问题了。
 
-## 所以
+# 所以
+
 所以我就要测试，到底是我的 js 代码写错了，还是我的猜测正确了。经过验证，确实是 Django 解析这种请求出问题了。所以，就写下了这篇文章。
 
-## 验证过程
+---
+
+## 验证过程   
+
+然后我就开始验证这个过程了。
 
 ### 后端开发不同的 http 服务
 
 #### nodejs 的 http 服务
+
 使用 nodejs 开发一个 http 服务来处理 POST 请求，横向对比 js 代码是否正确，代码很少，能实现功能就行，如下：
 
 ```
@@ -50,6 +58,7 @@ http.createServer(function (req, res) {
 使用过程，保存为 `node.js`， 然后直接运行 `node node.js` 即可，监听了 3001 端口的 http 服务。
 
 #### django 的 http 服务
+
 这个用来检验，
 
 核心代码如下：
@@ -85,6 +94,7 @@ url(r'^$', 'some_app.views.index', name='test_post'),
 使用过程，保存为 django 的 `some_app` 对应的 views， 增加到 url 路由中， 然后直接运行 `python manage.py runserver 0.0.0.0:3002` 即可，监听了 3002 端口的 http 服务。
 
 ### 前端 js 代码请求。
+
 贴全部出了了。
 ```
 <html>
@@ -202,14 +212,15 @@ Django 在处理 XDomainRequest 的 POST 请求时候确实没有正确解析。
 
 然后发现现在也有框架无法处理 XDomainRequest 的 POST 数据，例如在抓包过程中使用的 `livepool` 工具。
 
-## 测试环境
+## 测试环境  
 
-### 后端环境：
+后端环境：
+
 硬件： macbook pro retina 13
 nodejs ： v0.12.0
 django ： 1.8.3
 
-### 运行环境：
+运行环境：
 PD 虚拟机 + WIN7 + IE 9
 
 ## 源代码
