@@ -64,6 +64,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-how_to_proxy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/18/how_to_proxy/" class="article-date">
+  <time datetime="2015-10-18T13:21:21.000Z" itemprop="datePublished">2015 年 10 月 18 日</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/18/how_to_proxy/">搭建网络代理的几种方法。</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>搭建网络代理的几种方法。</p>
+<h1 id="讲讲代理方法">讲讲代理方法</h1><h2 id="shadowsocks">shadowsocks</h2><p>这个基本上很常用很常用的了。<br>需要服务器端和客户端，具体详情，查看<a href="https://github.com/shadowsocks/shadowsocks/wiki/Configuration-via-Config-File" target="_blank" rel="external">官网</a>，都很简单的，加密通信。<br>缺点就是：一定要需要客户端，而且，转成 http 代理有点麻烦。</p>
+<h2 id="ssh_转发">ssh 转发</h2><p>一条指令即可，直接生成了一个 socks5 的代理：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ssh</span> -N -D <span class="number">127.0.0.1:8080</span> user<span class="variable">@vpsip</span> -p sshport</span><br></pre></td></tr></table></figure></p>
+<p>基于 ssh 进行的代理。<br>缺点：客户端执行 ssh 。</p>
+<h2 id="直接创建_proxy">直接创建 proxy</h2><p>网上一堆软件。github 搜索关键字 <code>proxy</code> ，基本上一堆，直接按照说明运行，即可开启一个 http(s) 的代理。</p>
+<h1 id="另外">另外</h1><p>同事推荐了 cow ，好像不错，还没尝试使用。</p>
+<p><img src="/img/cat_1.gif" alt="汪汪汪"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://shenqihui.github.io/2015/10/18/how_to_proxy/" data-id="cifwjla7k0017x5azelf5ay6c" class="article-share-link">Share</a>
+      
+        <a href="http://shenqihui.github.io/2015/10/18/how_to_proxy/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/proxy/">proxy</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-tibet_tourism_at_2015_national_day" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/10/14/tibet_tourism_at_2015_national_day/" class="article-date">
@@ -95,7 +142,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shenqihui.github.io/2015/10/14/tibet_tourism_at_2015_national_day/" data-id="cifq8ex4y000i3iazlcsxnm0s" class="article-share-link">Share</a>
+      <a data-url="http://shenqihui.github.io/2015/10/14/tibet_tourism_at_2015_national_day/" data-id="cifwjla74000ix5azwcvh84c7" class="article-share-link">Share</a>
       
         <a href="http://shenqihui.github.io/2015/10/14/tibet_tourism_at_2015_national_day/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -140,7 +187,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shenqihui.github.io/2015/08/14/test_django_post_request_method/" data-id="cifq8ex52000o3iaz7g27mdsq" class="article-share-link">Share</a>
+      <a data-url="http://shenqihui.github.io/2015/08/14/test_django_post_request_method/" data-id="cifwjla78000ox5azlku1ubkm" class="article-share-link">Share</a>
       
         <a href="http://shenqihui.github.io/2015/08/14/test_django_post_request_method/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -185,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shenqihui.github.io/2015/02/12/the-Italian-job-hijacked-the-javascript-function/" data-id="cifq8ex51000n3iazsqlzl8a5" class="article-share-link">Share</a>
+      <a data-url="http://shenqihui.github.io/2015/02/12/the-Italian-job-hijacked-the-javascript-function/" data-id="cifwjla76000nx5azhbv1aszy" class="article-share-link">Share</a>
       
         <a href="http://shenqihui.github.io/2015/02/12/the-Italian-job-hijacked-the-javascript-function/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -228,7 +275,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shenqihui.github.io/2015/01/29/best-practices-of-git/" data-id="cifq8ex5c00183iazurh9pvya" class="article-share-link">Share</a>
+      <a data-url="http://shenqihui.github.io/2015/01/29/best-practices-of-git/" data-id="cifwjla7o001bx5azbmeod317" class="article-share-link">Share</a>
       
         <a href="http://shenqihui.github.io/2015/01/29/best-practices-of-git/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -271,7 +318,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shenqihui.github.io/2015/01/17/XSRF/" data-id="cifq8ex5e00193iaz3a3wc46o" class="article-share-link">Share</a>
+      <a data-url="http://shenqihui.github.io/2015/01/17/XSRF/" data-id="cifwjla7q001cx5aze8dyfdup" class="article-share-link">Share</a>
       
         <a href="http://shenqihui.github.io/2015/01/17/XSRF/#disqus_thread" class="article-comment-link">Comments</a>
       
