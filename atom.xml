@@ -4,7 +4,7 @@
   <subtitle><![CDATA[吾十有五而志于养猪，三十始养，四十亏本，五十再亏，六十亏大了，七十卒，不逾矩。现廿五，将卒。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://shenqihui.github.io/"/>
-  <updated>2015-10-18T13:23:18.000Z</updated>
+  <updated>2015-12-08T01:54:30.000Z</updated>
   <id>http://shenqihui.github.io/</id>
   
   <author>
@@ -13,6 +13,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[给你们介绍下几大暗黑搜索引擎]]></title>
+    <link href="http://shenqihui.github.io/2015/12/08/dark_search/"/>
+    <id>http://shenqihui.github.io/2015/12/08/dark_search/</id>
+    <published>2015-12-08T01:50:00.000Z</published>
+    <updated>2015-12-08T01:54:30.000Z</updated>
+    <content type="html"><![CDATA[<p>给你们介绍下几大暗黑搜索引擎：<br><a href="https://www.shodan.io/" target="_blank" rel="external">https://www.shodan.io/</a> 撒旦。美帝。<br><a href="https://www.zoomeye.org/" target="_blank" rel="external">https://www.zoomeye.org/</a> 钟馗之眼。我厂。<br><a href="https://www.censys.io" target="_blank" rel="external">https://www.censys.io</a> 。 nmap 创始人创建， google 支持。</p>
+<a id="more"></a>
+<p>还有一堆小厂的，绿盟、360、安天之类的。</p>
+<p><img src="/img/cat_1.gif" alt="汪汪汪"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>给你们介绍下几大暗黑搜索引擎：<br><a href="https://www.shodan.io/">https://www.shodan.io/</a> 撒旦。美帝。<br><a href="https://www.zoomeye.org/">https://www.zoomeye.org/</a> 钟馗之眼。我厂。<br><a href="https://www.censys.io">https://www.censys.io</a> 。 nmap 创始人创建， google 支持。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[关于颜色的几种形式]]></title>
+    <link href="http://shenqihui.github.io/2015/11/20/about_color/"/>
+    <id>http://shenqihui.github.io/2015/11/20/about_color/</id>
+    <published>2015-11-20T03:01:30.000Z</published>
+    <updated>2015-12-08T01:53:27.000Z</updated>
+    <content type="html"><![CDATA[<p>关于颜色的几种形式</p>
+<p>简单来说，总共有： RGB, CMYK, HSB 。<br>但是，在 Web 和其他领域的使用层面上，还有很多。</p>
+<a id="more"></a>
+<p>rgb(#5a8120), rgba(rgba(90, 129, 32, 0.5)), argb(#805a1794), hsl(hsl(90, 100%, 50%)), hsla(hsl(90, 100%, 50%, 0.5)), hsv(hsv(90, 100%, 50%)), hsva(hsva(90, 100%, 50%, 0.5)), </p>
+<p>这个基本上很常用很常用的了。<br><a href="http://lesscss.org/functions/#color-definition" target="_blank" rel="external">LESS</a>，</p>
+<p><img src="/img/cat_1.gif" alt="汪汪汪"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>关于颜色的几种形式</p>
+<p>简单来说，总共有： RGB, CMYK, HSB 。<br>但是，在 Web 和其他领域的使用层面上，还有很多。</p>]]>
+    
+    </summary>
+    
+      <category term="color" scheme="http://shenqihui.github.io/tags/color/"/>
+    
+      <category term="web" scheme="http://shenqihui.github.io/tags/web/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[搭建网络代理的几种方法。]]></title>
@@ -958,64 +1001,6 @@
     <![CDATA[<p>只是以此记录下，不足以参考。<br>]]>
     
     </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[深入理解判断IE浏览器的经典方法-James Padolsey判断法]]></title>
-    <link href="http://shenqihui.github.io/2012/07/20/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%88%A4%E6%96%ADIE%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BB%8F%E5%85%B8%E6%96%B9%E6%B3%95-James-Padolsey%E5%88%A4%E6%96%AD%E6%B3%95/"/>
-    <id>http://shenqihui.github.io/2012/07/20/深入理解判断IE浏览器的经典方法-James-Padolsey判断法/</id>
-    <published>2012-07-19T18:11:00.000Z</published>
-    <updated>2015-05-12T15:13:28.000Z</updated>
-    <content type="html"><![CDATA[<p>标题这样子，是为了吸引眼球，至于是不是 James Padolsey 原创的方法，网上是这么流传的就是了。菜鸟习作，写的不好，请轻拍。如果错误，请指出，感谢。<br><a id="more"></a><br>正题：</p>
-<p>IE浏览器钉子户不断，IE 6像个老不死的一样存活在世界上，有人说：主要是因为 chinese 多。</p>
-<p>我们现在开发网站都不针对 IE6，需要针对的话得增加项目经费，毕竟 IE6 及其以下的 css 变现比较坑爹。</p>
-<p>因此，多了下面这个函数，提醒客户不要在IE6及其以下版本进行浏览网站。</p>
-<p>请看</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">      <span class="keyword">var</span> ie = (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">var</span> undef,</span><br><span class="line">        v = <span class="number">3</span>,</span><br><span class="line">        div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>),</span><br><span class="line">        all = div.getElementsByTagName(<span class="string">'i'</span>);</span><br><span class="line">        <span class="keyword">while</span> (</span><br><span class="line">          div.innerHTML = <span class="string">'&lt;!—[if gt IE '</span> + (++v) + <span class="string">']&gt;&lt;i&gt;&lt;/i&gt;&lt;![endif]—&gt;'</span>,</span><br><span class="line">          all[<span class="number">0</span>]</span><br><span class="line">        ) ;</span><br><span class="line">        <span class="keyword">return</span> v &gt; <span class="number">4</span> ? v : undef</span><br><span class="line">      &#125;());</span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">is_ie</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!ie)</span><br><span class="line">          alert(<span class="string">'您当前使用非Microsoft Internet Explorer.'</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ie&lt;=<span class="number">6</span>)</span><br><span class="line">          alert(<span class="string">'您当前使用的浏览器版本过低。为获取良好的用户体验，\n请选择 IE 7.0 及其以上版本的Microsoft Internet Explorer.'</span>);</span><br><span class="line">  　　&#125;</span><br><span class="line">    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">body</span> <span class="attribute">onload</span>=<span class="value">"is_ie()"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这算是最简单又最高高效的IE判别方法了。不过，大部分人看不懂。</p>
-<p>下面解析下为什么这样子：我的理解，如有错误，敬请指出，共同学习，多谢。</p>
-<p>首先怎么调用，我就不讲了，如果不是 IE，直接将 ie 赋值为 undefined 的值，就是 undefined，现在直接讲讲这货的代码块里面这个吧。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (</span><br><span class="line">  div.innerHTML = <span class="string">'&lt;!—-[if gt IE '</span> + (++v) + <span class="string">']&gt;&lt;i&gt;&lt;/i&gt;&lt;![endif]-—&gt;'</span>,</span><br><span class="line">  all[<span class="number">0</span>]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>这段代码。听巧妙的用到了逗号表达式，逗号表达式就是在表达式中，无论什么情况，返回最后一个子表达式的值，在这里就是返回 all[0] 的值了。</p>
-<p>前面的 div 的赋值，为什么要放在这里，是因为这样子才能保证每次循环都能赋值，原创者这样写的话，是为了精简，这段代码，已经不能再精简了。</p>
-<p>其实，能改成另外一种符合常人思维的形式。如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;  </span><br><span class="line">  div.innerHTML = <span class="string">'&lt;!--[if gt IE '</span> + (++v) + <span class="string">']&gt;&lt;i&gt;&lt;/i&gt;&lt;![endif]--&gt;'</span>;         </span><br><span class="line">&#125; <span class="keyword">while</span>(all[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<p>改成这样子，while 循环应该能看懂了吧？</p>
-<p>其实不然，毕竟控制循环的变量很难理解对吧。</p>
-<p>首先我们测试一下，就在这个 while 循环的下面，写上 alert(all[0])，</p>
-<p>如</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;  </span><br><span class="line">  div.innerHTML = <span class="string">'&lt;!--[if gt IE '</span> + (++v) + <span class="string">']&gt;&lt;i&gt;&lt;/i&gt;&lt;![endif]--&gt;'</span>;         </span><br><span class="line">&#125;<span class="keyword">while</span>(all[<span class="number">0</span>]) </span><br><span class="line">alert(all[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<p>你会发现，警告都是 undefined 。</p>
-<p>但是，如果将这个写在 while 循环里面，你会发现，最后的那次警告必然是 undefined ，之前的都是 object （IEtester 下面），非IE浏览器的话，只有一个警告，为 undefined。代码如下，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;  </span><br><span class="line">  div.innerHTML = <span class="string">'&lt;!--[if gt IE '</span> + (++v) + <span class="string">']&gt;&lt;i&gt;&lt;/i&gt;&lt;![endif]--&gt;'</span>;</span><br><span class="line">  alert(all[<span class="number">0</span>])         </span><br><span class="line">&#125;<span class="keyword">while</span>(all[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<p>说道这里，大家应该知道用什么变量控制 while 循环的吧。</p>
-<p>然后讲讲为什么 <code>all[0]</code> 会被赋值成为这样。下面根据 w3c 标准来讲讲看。</p>
-<p>因为 <code>getElementsByTagName</code> 这个函数返回的是一个指向 <code>NodeList</code> 类型，请看<a href="http://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-A6C9094" title="getElementsByTagName" target="_blank" rel="external">getElementsByTagName</a></p>
-<p>而当 <code>div</code> 进行了重新赋值之后，应为 <code>NodeList</code>  是活动的（目测这么翻译，摘自 <code>NodeListobjects in the DOM are [live](http://www.w3.org/TR/DOM-Level-3-Core/core.html#td-live)</code>. 摘自<a href="http://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-536297177" target="_blank" rel="external">Interface NodeList</a>），所以整个NodeList的对象集合也就发生改变。请看<a href="http://www.w3.org/TR/DOM-Level-3-Core/core.html#td-live" target="_blank" rel="external">live</a>。</p>
-<p>因此，all 每次指向的东西都是不变的，变的是 NodeList，all[0] 指向的是 NodeList 的第一个 i 元素，也因此发生改变。</p>
-<p>然后讲讲，为什么通过这样子的判断能判断出 all[0] 到底是 object 还是 undefined 呢？</p>
-<p>原因很简单，就是，非IE浏览器不认识这样的条件注释。IE浏览器也不认不能相对应的那些条件注释。</p>
-<p>下面是部分条件注释写法。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if IE]&gt;&lt;i&gt;您使用的是IE浏览器。&lt;/i&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE 6]&gt;&lt;i&gt;欢迎使用Internet Explorer 6&lt;/i&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if !(IE 6)]&gt;&lt;i&gt;您正在使用的不是 IE6。&lt;/i&gt;&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
-<p>太多，我就不写出来，详细规则请看<a href="http://msdn.microsoft.com/en-us/library/ms537512(VS.85" target="_blank" rel="external">微软官方</a>.aspx)。</p>
-<p>到了这里，大家应该大概了解了吧。</p>
-<p>估计现在大家看我这篇文章的时候，用的都不是IE，那就举一个是IE的例子。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if IE]&gt;&lt;i&gt;您使用的不是IE浏览器。&lt;/i&gt;&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如果是IE浏览器，那么这段东西里面的 <code>&lt;i&gt;&lt;/i&gt;</code> 标签就能被 IE 浏览器当正常的 DOM 元素。</p>
-<p>如果不是IE浏览器，那么 <code>[if IE]&gt;&lt;i&gt;您使用的不是IE浏览器。&lt;/i&gt;&lt;![endif]</code> 整一句都会被当场注释掉了。至于 <code>[if !IE]</code>，目前来说，还是不能被非IE正确判别。</p>
-<p>讲到这里，大家还不懂的话，那么我这篇文章写得不好。抱歉浪费您的时间来看了。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>标题这样子，是为了吸引眼球，至于是不是 James Padolsey 原创的方法，网上是这么流传的就是了。菜鸟习作，写的不好，请轻拍。如果错误，请指出，感谢。<br>]]>
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://shenqihui.github.io/tags/javascript/"/>
-    
-      <category term="前端" scheme="http://shenqihui.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="技术" scheme="http://shenqihui.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
