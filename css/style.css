@@ -1177,16 +1177,7 @@ a.article-title:hover {
 .article-entry .highlight .line {
   height: 19.88px;
 }
-.article-entry .gist {
-  margin: 0 -1em;
-  border-style: solid;
-  border-color: #ddd;
-  border-width: 1px 0;
-  background: #2d2d2d;
-  padding: 15px 1em 15px 0;
-}
 .article-entry .gist .gist-file {
-  border: none;
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
   margin: 0;
 }
@@ -1212,9 +1203,8 @@ a.article-title:hover {
   color: #999;
   font: 0.85em 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, 'Lantinghei SC', 'Hiragino Sans GB', 'Microsoft YaHei', "微软雅黑", STHeiti, 'WenQuanYi Micro Hei', "Apple LiGothic Medium", "Microsoft JhengHei";
   text-shadow: 0 0;
-  padding: 0;
-  margin-top: 1em;
-  margin-left: 1em;
+  line-height: 3em;
+  padding: 0 1em;
 }
 .article-entry .gist .gist-file .gist-meta a {
   color: #258fb8;

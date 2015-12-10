@@ -4,7 +4,7 @@
   <subtitle><![CDATA[吾十有五而志于养猪，三十始养，四十亏本，五十再亏，六十亏大了，七十卒，不逾矩。现廿五，将卒。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://shenqihui.github.io/"/>
-  <updated>2015-12-08T01:59:10.000Z</updated>
+  <updated>2015-12-10T06:58:42.000Z</updated>
   <id>http://shenqihui.github.io/</id>
   
   <author>
@@ -13,6 +13,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[fab 部署脚本]]></title>
+    <link href="http://shenqihui.github.io/2015/12/10/fab_deploy_simple/"/>
+    <id>http://shenqihui.github.io/2015/12/10/fab_deploy_simple/</id>
+    <published>2015-12-10T14:23:23.000Z</published>
+    <updated>2015-12-10T06:58:42.000Z</updated>
+    <content type="html"><![CDATA[<p>这是遇到的某个项目（<a href="https://www.zoomeye.org" target="_blank" rel="external">zoomeye</a>）的 fab 部署脚本的改写通用版本。</p>
+<p>可能对大型项目没起作用，但是对于小项目，作用还是很大，所以发出来写个文章分享下。</p>
+<hr>
+<a id="more"></a>
+<h1 id="有啥功能">有啥功能</h1><ul>
+<li>部署开发人员的测试环境</li>
+<li>部署测试环境</li>
+<li>部署生产环境</li>
+</ul>
+<hr>
+<h1 id="部署生产环境">部署生产环境</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">fab</span> <span class="tag">deploy</span><span class="pseudo">:master</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="部署测试环境">部署测试环境</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">fab</span> <span class="tag">deploy</span><span class="pseudo">:dev</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="部署开发人员的测试环境">部署开发人员的测试环境</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">fab</span> <span class="tag">deploy</span><span class="pseudo">:test</span>,<span class="tag">userA</span>,<span class="tag">funBranch</span><span class="class">.ubuntu</span><span class="at_rule">@<span class="keyword">10.10.10.12</span></span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="依赖">依赖</h1><p>python, pip, fabric<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> build-essential <span class="keyword">python</span>-dev <span class="keyword">python</span>-pip</span><br><span class="line">sudo pip install fabric</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="配置">配置</h1><ul>
+<li>前 30 行针对性修改</li>
+<li>git 地址针对性修改</li>
+<li>部署前，前端编译，后端编译等等针对修改</li>
+<li>部署后，环境安装，服务重启等等针对修改</li>
+</ul>
+<hr>
+<h1 id="注意事项：">注意事项：</h1><ul>
+<li>所有机器的 ssh 端口，都统一，不支持运行时修改 ssh 端口</li>
+<li>所有仓库的仓库名都一致， 推荐 fork 方式进行 git 协助</li>
+<li>执行这脚本的机器有 ssh 方式部署各个部署 git 仓库的权限，有 ssh 方式访问各个部署机器的权限。</li>
+</ul>
+<hr>
+<p>看看源码：</p>
+<script src="http://gist.stutostu.com/shenqihui/64205c52078ce6c14602.js?file=fabfile.py"></script>
+
+<hr>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这是遇到的某个项目（<a href="https://www.zoomeye.org">zoomeye</a>）的 fab 部署脚本的改写通用版本。</p>
+<p>可能对大型项目没起作用，但是对于小项目，作用还是很大，所以发出来写个文章分享下。</p>
+<hr>]]>
+    
+    </summary>
+    
+      <category term="proxy" scheme="http://shenqihui.github.io/tags/proxy/"/>
+    
+      <category term="部署脚本" scheme="http://shenqihui.github.io/tags/%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[给你们介绍下几大暗黑搜索引擎]]></title>
@@ -977,30 +1032,6 @@
       <category term="websocket" scheme="http://shenqihui.github.io/tags/websocket/"/>
     
       <category term="技术" scheme="http://shenqihui.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[读过的某些书]]></title>
-    <link href="http://shenqihui.github.io/2012/11/12/%E8%AF%BB%E8%BF%87%E7%9A%84%E6%9F%90%E4%BA%9B%E4%B9%A6/"/>
-    <id>http://shenqihui.github.io/2012/11/12/读过的某些书/</id>
-    <published>2012-11-11T20:18:00.000Z</published>
-    <updated>2015-02-15T15:41:34.000Z</updated>
-    <content type="html"><![CDATA[<p>只是以此记录下，不足以参考。<br><a id="more"></a><br>jquery实战：比较基础的感觉；</p>
-<p>javascript语言精粹：周爱民有一本差不多的，弥漫着香味；</p>
-<p>高性能javascript：巧妙，学的是思想；</p>
-<p>javascript权威指南：你会感觉到，一个提升，醍醐灌顶的感觉；</p>
-<p>javascript设计模式：设计模式的魅力，非功力深厚不要轻易尝试；</p>
-<p>测试驱动的javascript开发：还没看完，看了前面的，不知道怎么描述，看书名就感觉，牛人必备；</p>
-<p>css web设计高级教程：感觉就像一本很低调的书，包装精美，看上去非常的舒服；</p>
-<p>html5揭秘：将它列为参考书，用的时候在看看；</p>
-<p>javascript程序员参考手册：这本书，不是用来看的；</p>
-<p>待续；</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>只是以此记录下，不足以参考。<br>]]>
-    
-    </summary>
     
   </entry>
   
