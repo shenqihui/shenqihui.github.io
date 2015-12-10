@@ -4,7 +4,7 @@
   <subtitle><![CDATA[吾十有五而志于养猪，三十始养，四十亏本，五十再亏，六十亏大了，七十卒，不逾矩。现廿五，将卒。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://shenqihui.github.io/"/>
-  <updated>2015-12-10T07:10:35.000Z</updated>
+  <updated>2015-12-10T07:20:48.000Z</updated>
   <id>http://shenqihui.github.io/</id>
   
   <author>
@@ -19,12 +19,10 @@
     <link href="http://shenqihui.github.io/2015/12/10/fab_deploy_simple/"/>
     <id>http://shenqihui.github.io/2015/12/10/fab_deploy_simple/</id>
     <published>2015-12-10T14:23:23.000Z</published>
-    <updated>2015-12-10T07:10:35.000Z</updated>
+    <updated>2015-12-10T07:20:48.000Z</updated>
     <content type="html"><![CDATA[<p>这是遇到的某个项目（<a href="https://www.zoomeye.org" target="_blank" rel="external">zoomeye</a>）的 fab 部署脚本的改写通用版本。</p>
 <p>可能对大型项目没起作用，但是对于小项目，作用还是很大，所以发出来写个文章分享下。</p>
-<hr>
-<a id="more"></a>
-<h1 id="有啥功能">有啥功能</h1><ul>
+<h2 id="<!-more->"><a id="more"></a></h2><h1 id="有啥功能">有啥功能</h1><ul>
 <li>部署开发人员的测试环境</li>
 <li>部署测试环境</li>
 <li>部署生产环境</li>
@@ -55,11 +53,12 @@
 <script src="http://gist.stutostu.com/shenqihui/64205c52078ce6c14602.js?file=fabfile.py"></script>
 
 <hr>
+<p>更多详情，查看 <a href="https://gist.github.com/shenqihui/64205c52078ce6c14602" target="_blank" rel="external">https://gist.github.com/shenqihui/64205c52078ce6c14602</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>这是遇到的某个项目（<a href="https://www.zoomeye.org">zoomeye</a>）的 fab 部署脚本的改写通用版本。</p>
 <p>可能对大型项目没起作用，但是对于小项目，作用还是很大，所以发出来写个文章分享下。</p>
-<hr>]]>
+<h2 id="<!-more->">]]>
     
     </summary>
     
