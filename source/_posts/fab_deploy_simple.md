@@ -67,6 +67,5 @@ sudo pip install fabric
 
 ---
 
-更多详情：
-[https://gist.github.com/shenqihui/64205c52078ce6c14602](https://gist.github.com/shenqihui/64205c52078ce6c14602)
+更多详情，查看 [https://gist.github.com/shenqihui/64205c52078ce6c14602](https://gist.github.com/shenqihui/64205c52078ce6c14602)
 
