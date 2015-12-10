@@ -33,7 +33,7 @@ fab deploy:dev
 ---
 # 部署开发人员的测试环境
 ```
-fab deploy:test,userA,funBranch.ubuntu@10.10.10.12
+fab deploy:test,userA,funBranch,ubuntu@10.10.10.12
 ```
 
 ---
