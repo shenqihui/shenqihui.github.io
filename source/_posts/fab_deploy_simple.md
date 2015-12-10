@@ -70,3 +70,6 @@ sudo pip install fabric
 
 更多详情，查看 [https://gist.github.com/shenqihui/64205c52078ce6c14602](https://gist.github.com/shenqihui/64205c52078ce6c14602)
 
+另外推荐：
+* [项目部署SNIPPET (GITLAB+FABRIC)](http://lvyaojia.sinaapp.com/2015/01/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2snippet-gitlabfabric/)
+* [fabric 官网](http://www.fabfile.org/)
