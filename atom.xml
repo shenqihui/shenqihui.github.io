@@ -4,7 +4,7 @@
   <subtitle><![CDATA[吾十有五而志于养猪，三十始养，四十亏本，五十再亏，六十亏大了，七十卒，不逾矩。现廿五，将卒。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://shenqihui.github.io/"/>
-  <updated>2015-12-10T06:58:42.000Z</updated>
+  <updated>2015-12-10T07:04:16.000Z</updated>
   <id>http://shenqihui.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://shenqihui.github.io/2015/12/10/fab_deploy_simple/"/>
     <id>http://shenqihui.github.io/2015/12/10/fab_deploy_simple/</id>
     <published>2015-12-10T14:23:23.000Z</published>
-    <updated>2015-12-10T06:58:42.000Z</updated>
+    <updated>2015-12-10T07:04:16.000Z</updated>
     <content type="html"><![CDATA[<p>这是遇到的某个项目（<a href="https://www.zoomeye.org" target="_blank" rel="external">zoomeye</a>）的 fab 部署脚本的改写通用版本。</p>
 <p>可能对大型项目没起作用，但是对于小项目，作用还是很大，所以发出来写个文章分享下。</p>
 <hr>
@@ -34,7 +34,7 @@
 <hr>
 <h1 id="部署测试环境">部署测试环境</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">fab</span> <span class="tag">deploy</span><span class="pseudo">:dev</span></span><br></pre></td></tr></table></figure>
 <hr>
-<h1 id="部署开发人员的测试环境">部署开发人员的测试环境</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">fab</span> <span class="tag">deploy</span><span class="pseudo">:test</span>,<span class="tag">userA</span>,<span class="tag">funBranch</span><span class="class">.ubuntu</span><span class="at_rule">@<span class="keyword">10.10.10.12</span></span></span><br></pre></td></tr></table></figure>
+<h1 id="部署开发人员的测试环境">部署开发人员的测试环境</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">fab</span> <span class="tag">deploy</span><span class="pseudo">:test</span>,<span class="tag">userA</span>,<span class="tag">funBranch</span>,<span class="tag">ubuntu</span><span class="at_rule">@<span class="keyword">10.10.10.12</span></span></span><br></pre></td></tr></table></figure>
 <hr>
 <h1 id="依赖">依赖</h1><p>python, pip, fabric<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> build-essential <span class="keyword">python</span>-dev <span class="keyword">python</span>-pip</span><br><span class="line">sudo pip install fabric</span><br></pre></td></tr></table></figure></p>
 <hr>
