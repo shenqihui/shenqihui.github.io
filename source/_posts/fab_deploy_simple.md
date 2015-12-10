@@ -7,9 +7,9 @@ date: 2015-12-10 22:23:23
 
 可能对大型项目没起作用，但是对于小项目，作用还是很大，所以发出来写个文章分享下。
 
----
 
 <!--more-->
+---
 
 # 有啥功能
 * 部署开发人员的测试环境
@@ -66,4 +66,7 @@ sudo pip install fabric
 <script src="http://gist.stutostu.com/shenqihui/64205c52078ce6c14602.js?file=fabfile.py"></script>
 
 ---
+
+更多详情：
+[https://gist.github.com/shenqihui/64205c52078ce6c14602](https://gist.github.com/shenqihui/64205c52078ce6c14602)
 
