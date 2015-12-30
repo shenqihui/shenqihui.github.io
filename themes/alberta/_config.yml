@@ -27,7 +27,7 @@ your_img: /img/profile_img.jpg
 # Miscellaneous
 google_analytics: UA-48454013-1
 baidu_analytics: a359010dd82707c1ee6d1ca5d64be33b
-favicon: favicon.ico
+favicon: /favicon.ico
 twitter: shenqihui
 google_plus: 
 fb_admins:
