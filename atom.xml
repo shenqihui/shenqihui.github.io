@@ -189,6 +189,24 @@
   </entry>
   
   <entry>
+    <title><![CDATA[maple_leaf]]></title>
+    <link href="http://shenqihui.github.io/2015/12/01/maple-leaf/"/>
+    <id>http://shenqihui.github.io/2015/12/01/maple-leaf/</id>
+    <published>2015-12-01T11:23:08.000Z</published>
+    <updated>2016-01-04T06:47:12.000Z</updated>
+    <content type="html"><![CDATA[<p>拍得枫叶，之前没法，现在补充，把发的时间改为 2015-12-01 了。</p>
+<a id="more"></a>
+<p>作了个弊。</p>
+<p><img src="/picture/maple-leaf/IMG_0124.jpg" alt=""><br><img src="/picture/maple-leaf/IMG_0125.jpg" alt=""><br><img src="/picture/maple-leaf/IMG_0126.jpg" alt=""><br><img src="/picture/maple-leaf/IMG_0127.jpg" alt=""><br><img src="/picture/maple-leaf/IMG_0128.jpg" alt=""><br><img src="/picture/maple-leaf/IMG_0129.jpg" alt=""></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>拍得枫叶，之前没法，现在补充，把发的时间改为 2015-12-01 了。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[关于颜色的几种形式]]></title>
     <link href="http://shenqihui.github.io/2015/11/20/about_color/"/>
     <id>http://shenqihui.github.io/2015/11/20/about_color/</id>
@@ -947,34 +965,6 @@
 <p><strong>1、单例模式</strong></p>
 <p>核心是该对象只存在一个实例，要么直接写成实例的形式，</p>
 <p>要么就需要写成构造函数形式，但是需要在构造函数里面通过模拟闭包的方式重新定义该构造函数，保存当前this对象，新定义的构造函数返回该this对象，达到只存在改对象只存在一个实例的目的。<br>]]>
-    
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[从一道数学题弹程序员的思维：数学题，求证：(a+b%c)%c=(a+b)%c]]></title>
-    <link href="http://shenqihui.github.io/2014/02/08/%E4%BB%8E%E4%B8%80%E9%81%93%E6%95%B0%E5%AD%A6%E9%A2%98%E5%BC%B9%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E6%80%9D%E7%BB%B4%EF%BC%9A%E6%95%B0%E5%AD%A6%E9%A2%98%EF%BC%8C%E6%B1%82%E8%AF%81%EF%BC%9A-a-b-c-c-a-b-c/"/>
-    <id>http://shenqihui.github.io/2014/02/08/从一道数学题弹程序员的思维：数学题，求证：-a-b-c-c-a-b-c/</id>
-    <published>2014-02-07T19:36:00.000Z</published>
-    <updated>2015-05-12T15:37:13.000Z</updated>
-    <content type="html"><![CDATA[<p>在学校论坛看到这道题目，全忘了的感觉。</p>
-<p>如果你是高中的，那我觉得你完全没问题。但是，在这个博客园的圈子，觉得全部人都是程(ban)序(zhuan)员(gong)相关的人员，解决这个问题有点难度，毕竟，想法已经偏了。</p>
-<a id="more"></a>
-<p>有句话说得好，如果你拿着一个锤子，那你看什么都像一个钉子。</p>
-<p>因此程序员必要的时候必须转换下思路啊。程序员思维是：已知条件，求值；而不是已知 条件 和 值，求证：这求值过程不存在bug。</p>
-<p>如果有人叫你这么证明你的程序的求值过程正确，你会不会抡起你的键(zhuan)盘(tou)就拍过去了。</p>
-<p>我们能做到的只是，代入 <code>a=*,b=**,c=***</code>，验证等式成立。数学题让数学家证明去吧。</p>
-<p>下面回到高中的想法，谈谈这道题目吧：</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">求证：<span class="comment">(a+b%c)</span><span class="preprocessor">%</span>c=<span class="comment">(a+b)</span><span class="preprocessor">%</span>c</span><br><span class="line">解：</span><br><span class="line"></span><br><span class="line">　　假设等式左右边的值为 v，</span><br><span class="line"></span><br><span class="line">　　则 存在整数x和y，使得下面等式成立。</span><br><span class="line"></span><br><span class="line">　　a+b<span class="preprocessor">%</span>c = v + xc;（左边）</span><br><span class="line"></span><br><span class="line">　　a+b     = v + yc;（右边）</span><br><span class="line"></span><br><span class="line">　　这两式子同时成立，则可以化简为：</span><br><span class="line"></span><br><span class="line">　　存在整数 z 使得 z*c = b - b<span class="preprocessor">%</span>c 成立。</span><br><span class="line"></span><br><span class="line">　　则证明 b - b<span class="preprocessor">%</span>c 为 c 的倍数。</span><br><span class="line"></span><br><span class="line">　　显然 b - b<span class="preprocessor">%</span>c 为 c 的倍数。</span><br></pre></td></tr></table></figure>
-<p>（感觉我自己也跑歪了，如果(b - b%c 为 c 的倍数)不是显然的话，我们还做什么程序员。其实 (a+b%c)%c=(a+b)%c 也是显然的。）</p>
-<p>后注：发表了出来，才发现，其实这道题跟程序员思维没啥联系。纯当胡扯。</p>
-<p>下面是整理某网友 <a href="http://home.cnblogs.com/u/228024/" target="_blank" rel="external">五岳</a> 提供的正确方法，谢谢指导。（我的答案已经跑歪了）</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">假设：</span><br><span class="line">　　a = x*<span class="built_in">c</span> + a0</span><br><span class="line">　　b = y*<span class="built_in">c</span> + b0</span><br><span class="line">　　其中x,y,a0,b0∈<span class="type">Z</span>,且|a0|&lt;|<span class="built_in">c</span>|,|b0|&lt;|<span class="built_in">c</span>|</span><br><span class="line">　　那么</span><br><span class="line">　　(a+b%<span class="built_in">c</span>)%<span class="built_in">c</span> = (x*<span class="built_in">c</span> + a0 + (y*<span class="built_in">c</span> + b0)%<span class="built_in">c</span>)=(x*<span class="built_in">c</span> +a0 + b0)%<span class="built_in">c</span> = (a0 + b0)%<span class="built_in">c</span></span><br><span class="line">　　而(a+b)%<span class="built_in">c</span> = (x*<span class="built_in">c</span> + a0 + y*<span class="built_in">c</span> + b0)%<span class="built_in">c</span> = (a0+b0)%<span class="built_in">c</span></span><br><span class="line">　　两式相等，得证</span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>在学校论坛看到这道题目，全忘了的感觉。</p>
-<p>如果你是高中的，那我觉得你完全没问题。但是，在这个博客园的圈子，觉得全部人都是程(ban)序(zhuan)员(gong)相关的人员，解决这个问题有点难度，毕竟，想法已经偏了。</p>]]>
     
     </summary>
     
