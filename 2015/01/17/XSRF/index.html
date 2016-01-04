@@ -14,6 +14,7 @@
 <meta property="og:url" content="http://shenqihui.github.io/2015/01/17/XSRF/index.html">
 <meta property="og:site_name" content="神奇辉">
 <meta property="og:description" content="这个是一个测试 xsrf 的测试题，具体实现思想可能猥琐。看看谁能想到和我一样猥琐的方案。">
+<meta property="og:updated_time" content="2015-03-12T05:49:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XSRF测试题">
 <meta name="twitter:description" content="这个是一个测试 xsrf 的测试题，具体实现思想可能猥琐。看看谁能想到和我一样猥琐的方案。">
@@ -86,19 +87,19 @@
       
         <p>这个是一个测试 xsrf 的测试题，具体实现思想可能猥琐。看看谁能想到和我一样猥琐的方案。</p>
 <a id="more"></a>
-<h1 id="网络环境">网络环境</h1><p>现在的场景是A站点和B站点，假设A站是新浪，B站是我们控制的站，<br>所以B站的后端代码随便该。A站的话，参考新浪主页。</p>
+<h1 id="u7F51_u7EDC_u73AF_u5883"><a href="#u7F51_u7EDC_u73AF_u5883" class="headerlink" title="网络环境"></a>网络环境</h1><p>现在的场景是A站点和B站点，假设A站是新浪，B站是我们控制的站，<br>所以B站的后端代码随便该。A站的话，参考新浪主页。</p>
 <hr>
-<h1 id="想干啥">想干啥</h1><p>我们发现了个新浪主页的XSS漏洞，就是能注入我们的 script 进去，用户打开特定网址后，就运行我们的 script ，我们就能获取一堆信息，现在想把信息发送回来。信息可能非常非常的大，大于 GET 方式能处理的长度。   </p>
+<h1 id="u60F3_u5E72_u5565"><a href="#u60F3_u5E72_u5565" class="headerlink" title="想干啥"></a>想干啥</h1><p>我们发现了个新浪主页的XSS漏洞，就是能注入我们的 script 进去，用户打开特定网址后，就运行我们的 script ，我们就能获取一堆信息，现在想把信息发送回来。信息可能非常非常的大，大于 GET 方式能处理的长度。   </p>
 <hr>
-<h1 id="B站的环境">B站的环境</h1><p>目前已经有一个 get 和 post 方式共用的 api。<br>例如 get 方式的，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.get(<span class="string">"api.html"</span>, &#123; name: <span class="string">"John"</span>&#125; );</span><br></pre></td></tr></table></figure></p>
+<h1 id="B_u7AD9_u7684_u73AF_u5883"><a href="#B_u7AD9_u7684_u73AF_u5883" class="headerlink" title="B站的环境"></a>B站的环境</h1><p>目前已经有一个 get 和 post 方式共用的 api。<br>例如 get 方式的，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.get(<span class="string">"api.html"</span>, &#123; name: <span class="string">"John"</span>&#125; );</span><br></pre></td></tr></table></figure></p>
 <p>或者 post 方式的<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.post(<span class="string">"api.html"</span>, &#123; name: <span class="string">"John"</span>&#125; );</span><br></pre></td></tr></table></figure></p>
 <p>然后这两种方式，任意一中，就能把 { name: “John”} 这个信息发送回 B站 进行存储了。<br>B站已经进行了任何的跨域请求，例如 Access-Control-Allow-Origin， p3p等等。</p>
 <hr>
-<h1 id="A站的环境">A站的环境</h1><p>A站环境未知，也可以说是任意，但是我们有办法在 A站 的页面注入我们的 script</p>
+<h1 id="A_u7AD9_u7684_u73AF_u5883"><a href="#A_u7AD9_u7684_u73AF_u5883" class="headerlink" title="A站的环境"></a>A站的环境</h1><p>A站环境未知，也可以说是任意，但是我们有办法在 A站 的页面注入我们的 script</p>
 <hr>
-<h1 id="不能使用的解决方式">不能使用的解决方式</h1><p>不能使用 flash </p>
+<h1 id="u4E0D_u80FD_u4F7F_u7528_u7684_u89E3_u51B3_u65B9_u5F0F"><a href="#u4E0D_u80FD_u4F7F_u7528_u7684_u89E3_u51B3_u65B9_u5F0F" class="headerlink" title="不能使用的解决方式"></a>不能使用的解决方式</h1><p>不能使用 flash </p>
 <hr>
-<h1 id="任务：要做什么">任务：要做什么</h1><p>任务1，不改变现有接口的前提下，实现</p>
+<h1 id="u4EFB_u52A1_uFF1A_u8981_u505A_u4EC0_u4E48"><a href="#u4EFB_u52A1_uFF1A_u8981_u505A_u4EC0_u4E48" class="headerlink" title="任务：要做什么"></a>任务：要做什么</h1><p>任务1，不改变现有接口的前提下，实现</p>
 <ol>
 <li>解决 chrome 现代浏览器该怎么发送数据。</li>
 <li>解决了 上面的，那就开始解决 低版本 IE 了。要求兼容 IE6 ，比较变态，但是这个业务不能忽略 IE6 等。（用代码体现）<br>提示：跨域，HTTP状态，实现方式能多猥琐就多猥琐。</li>
@@ -108,7 +109,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://shenqihui.github.io/2015/01/17/XSRF/" data-id="ciizlvx9h001za4azkry8kkij" class="article-share-link">Share</a>
+      <a data-url="http://shenqihui.github.io/2015/01/17/XSRF/" data-id="ciizqhqz2001zrpaz9nwf0kyc" class="article-share-link">Share</a>
       
         <a href="http://shenqihui.github.io/2015/01/17/XSRF/#disqus_thread" class="article-comment-link">Comments</a>
       
