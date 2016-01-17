@@ -4,7 +4,7 @@
   <subtitle><![CDATA[吾十有五而志于养猪，三十始养，四十亏本，五十再亏，六十亏大了，七十卒，不逾矩。现廿五，将卒。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://shenqihui.github.io/"/>
-  <updated>2015-12-29T01:37:32.000Z</updated>
+  <updated>2016-01-17T09:52:28.000Z</updated>
   <id>http://shenqihui.github.io/</id>
   
   <author>
@@ -13,6 +13,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[CSS 技巧：table 中，如何进行 warp 和 ellipsis]]></title>
+    <link href="http://shenqihui.github.io/2016/01/17/table_warp_ellipsis/"/>
+    <id>http://shenqihui.github.io/2016/01/17/table_warp_ellipsis/</id>
+    <published>2016-01-17T09:15:23.000Z</published>
+    <updated>2016-01-17T09:52:28.000Z</updated>
+    <content type="html"><![CDATA[<p>今天谈谈 table 中 warp 和 ellipsis 问题。<br>table（display:table 形式，下同） 元素， 会随着子元素的高度和宽度直接进行缩放， 自定义的宽度高度基本不起作用，这也是 table 设定的目的。<br>但是，如果 table 中存在超级长的无法 warp 的单词，想要直接进行 ellipsis 展现，就必须进行特殊的设定。</p>
+<p>下面我来讲讲这个的技术细节：</p>
+<a id="more"></a>
+<hr>
+<h1 id="u4F8B_u5B50_uFF0C_u773C_u89C1_u4E3A_u5B9E"><a href="#u4F8B_u5B50_uFF0C_u773C_u89C1_u4E3A_u5B9E" class="headerlink" title="例子，眼见为实"></a>例子，眼见为实</h1><p></p><p data-height="500" data-theme-id="0" data-slug-hash="zrEMOj" data-default-tab="result" data-user="shenqihui" class="codepen">See the Pen <a href="http://codepen.io/shenqihui/pen/zrEMOj/" target="_blank" rel="external">zrEMOj</a> by 神奇辉 (<a href="http://codepen.io/shenqihui" target="_blank" rel="external">@shenqihui</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<hr>
+<h1 id="u4F8B_u5B50_u8BB2_u89E3"><a href="#u4F8B_u5B50_u8BB2_u89E3" class="headerlink" title="例子讲解"></a>例子讲解</h1><hr>
+<h2 id="u4F8B_u5B50_u4E00_uFF1A_u4EFB_u6027_uFF0C_u968F_u4FBF_u8D85_u51FA"><a href="#u4F8B_u5B50_u4E00_uFF1A_u4EFB_u6027_uFF0C_u968F_u4FBF_u8D85_u51FA" class="headerlink" title="例子一：任性，随便超出"></a>例子一：任性，随便超出</h2><p>不进行任何的处理，最基础的表格，我猜测这种情况在网站开发的时候估计会很少发生的。<br>无需讲解。  </p>
+<hr>
+<h2 id="u4F8B_u5B50_u4E8C_uFF1A_u8FDB_u884C_word__u7684_u5F3A_u5236_break__u548C_u6362_u884C"><a href="#u4F8B_u5B50_u4E8C_uFF1A_u8FDB_u884C_word__u7684_u5F3A_u5236_break__u548C_u6362_u884C" class="headerlink" title="例子二：进行 word 的强制 break 和换行"></a>例子二：进行 word 的强制 break 和换行</h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">tag</span> &#123;</span><br><span class="line">  <span class="attribute">word-wrap</span>: break-word;</span><br><span class="line">  <span class="attribute">word-break</span>: break-all;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个就是影响强制换行的主要代码，一般连用，最重要的就是 <code>word-break</code> 这个属性，能把所有的非正常 break 的单词进行强制单词。  </p>
+<hr>
+<h2 id="u4F8B_u5B50_u4E09_uFF1A__u9650_u5B9A_u9AD8_u5EA6_uFF0C_u8FDB_u884C_u8D85_u51FA_u7684_ellipsis__u3002"><a href="#u4F8B_u5B50_u4E09_uFF1A__u9650_u5B9A_u9AD8_u5EA6_uFF0C_u8FDB_u884C_u8D85_u51FA_u7684_ellipsis__u3002" class="headerlink" title="例子三： 限定高度，进行超出的 ellipsis 。"></a>例子三： 限定高度，进行超出的 ellipsis 。</h2><p>一般这种需求，在进行列表形式的内容展示时候会经常用到。  </p>
+<p>例如：如果其中一列的文字超长，采用例子二的解决方式，会造成整个页面的不平衡。而这个时候，大部分是在展现的时候进行 ellipsis 隐藏提醒，如果用户 hover 或者其他方式时候，再采用 title 的方式进行提醒等等。</p>
+<p>因此，就出现了在 table 中进行 ellipsis 的展现处理。<br>故，有了这篇文章：</p>
+<p>先看代码：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.td-overflow-container</span> &#123;</span><br><span class="line">  <span class="comment">// 必须定义上级 td 的高度。不然就没法获取高度。</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class">.td-overflow</span> &#123;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">td</span> <span class="attribute">style</span>=<span class="value">"height: 1em;"</span> <span class="attribute">title</span>=<span class="value">"warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"td-warp-container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"td-warp"</span>&gt;</span> warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_warp_<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">td</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>理解这段代码，需要理解的技术点有：</p>
+<ul>
+<li>table 是根据子容器大小而进行自己大小的计算的</li>
+<li>脱离文档流</li>
+<li>position 的四个值的具体含义</li>
+</ul>
+<h2 id="table__u662F_u6839_u636E_u5B50_u5BB9_u5668_u5927_u5C0F_u800C_u8FDB_u884C_u81EA_u5DF1_u5927_u5C0F_u7684_u8BA1_u7B97_u7684"><a href="#table__u662F_u6839_u636E_u5B50_u5BB9_u5668_u5927_u5C0F_u800C_u8FDB_u884C_u81EA_u5DF1_u5927_u5C0F_u7684_u8BA1_u7B97_u7684" class="headerlink" title="table 是根据子容器大小而进行自己大小的计算的"></a>table 是根据子容器大小而进行自己大小的计算的</h2><p>这个应该不用解析了，直接例子一、二就是这个样子，横或者宽都任意扩张。</p>
+<h2 id="u8131_u79BB_u6587_u6863_u6D41"><a href="#u8131_u79BB_u6587_u6863_u6D41" class="headerlink" title="脱离文档流"></a>脱离文档流</h2><p>脱离了文档流之后，父元素就不能捕捉到该元素的大小了，故如果在 table 中直接运行这种方式，直接把子元素进行脱离文档流，就能避免 table 任性的横宽拓展。</p>
+<h2 id="position__u7684_u56DB_u4E2A_u503C_u7684_u5177_u4F53_u542B_u4E49"><a href="#position__u7684_u56DB_u4E2A_u503C_u7684_u5177_u4F53_u542B_u4E49" class="headerlink" title="position 的四个值的具体含义"></a>position 的四个值的具体含义</h2><ul>
+<li>static ，流定位，这个是默认的值，文档流中，父元素能知道其大小。</li>
+<li>relative，相对定位，父元素能捕捉该元素大小。</li>
+<li>absolute， 绝对行为，定位标准是最近的、position 为非 static 的父元素。</li>
+<li>fixed， 固定定位，没啥好说的。</li>
+</ul>
+<p>上面三个技术点的讲解，估计能理解上面为什么用那些 css 就能处理文本的超出或者 ellipsis 了。</p>
+<p>在 <code>td</code> 中， 使用了 <code>.td-overflow-container</code> ，定义了其宽度高度，使用了 relative 的定位，使 <code>.td-overflow</code> 有了定位的参考。<br>这个时候， <code>.td-overflow</code> 就知道了其宽度和高度了，具体的 <code>text-overflow</code> 或者 <code>overflow</code> 就能和普通的 block 类型的元素一样的处理方式了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>今天谈谈 table 中 warp 和 ellipsis 问题。<br>table（display:table 形式，下同） 元素， 会随着子元素的高度和宽度直接进行缩放， 自定义的宽度高度基本不起作用，这也是 table 设定的目的。<br>但是，如果 table 中存在超级长的无法 warp 的单词，想要直接进行 ellipsis 展现，就必须进行特殊的设定。</p>
+<p>下面我来讲讲这个的技术细节：</p>]]>
+    
+    </summary>
+    
+      <category term="ellipsis" scheme="http://shenqihui.github.io/tags/ellipsis/"/>
+    
+      <category term="table" scheme="http://shenqihui.github.io/tags/table/"/>
+    
+      <category term="warp" scheme="http://shenqihui.github.io/tags/warp/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[三句话]]></title>
@@ -879,92 +935,6 @@
     <summary type="html">
     <![CDATA[<p><strong>前言：</strong></p>
 <p>页面设计中，不可避免的需要浏览器进行 repaint 和 reflow 。那到底什么是 repaint 和 reflow 呢。下面谈谈自己对 repaint 和 reflow 的理解，以及结合其他技术牛的讲解，谈谈如何优化 repaint 和 reflow 。<br>]]>
-    
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[汤姆大叔设计模式学习体会：设计模式的思想]]></title>
-    <link href="http://shenqihui.github.io/2014/02/08/%E6%B1%A4%E5%A7%86%E5%A4%A7%E5%8F%94%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E4%BD%93%E4%BC%9A%EF%BC%9A%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%80%9D%E6%83%B3/"/>
-    <id>http://shenqihui.github.io/2014/02/08/汤姆大叔设计模式学习体会：设计模式的思想/</id>
-    <published>2014-02-08T00:32:00.000Z</published>
-    <updated>2015-05-12T15:57:11.000Z</updated>
-    <content type="html"><![CDATA[<p><strong>汤姆大叔的教程地址：<a href="http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html" target="_blank" rel="external">http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html</a>，谢谢大叔。</strong></p>
-<p><strong>1、单例模式</strong></p>
-<p>核心是该对象只存在一个实例，要么直接写成实例的形式，</p>
-<p>要么就需要写成构造函数形式，但是需要在构造函数里面通过模拟闭包的方式重新定义该构造函数，保存当前this对象，新定义的构造函数返回该this对象，达到只存在改对象只存在一个实例的目的。<br><a id="more"></a><br><strong>2、构造者模式</strong></p>
-<p>其实就一构造函数，记得首字母大写。</p>
-<p><strong>3、建造者模式</strong></p>
-<p>给你一块砖，你能砌上墙，给你十块砖，也能通过这个方法砌上墙。可能这些砖的颜色有点不同而已。这个方法，就是建造者模式。</p>
-<p>砖的颜色怎么样，墙就怎么样，跟怎么建造没关系。给你同类型的砖，这个方法就能砌好这堵墙。</p>
-<p><strong>4、工厂模式</strong></p>
-<p>一个有钱的傻大壮，有一天看到想要一个三轮车，他爸给了他个能做任何车的车厂。</p>
-<p>傻大壮跟厂长说：“给我个帅气的三轮车”，铛的一声，厂长给了他一辆自己厂生产的三轮车。</p>
-<p>又一天，傻大壮想要一个拖拉机，厂长二话没说，拉出了刚下生产线的拖拉机。</p>
-<p>傻大壮耍了几天，觉得拖拉机太快了，根厂长要量人力三轮车，厂长吩咐阿四把刚出产的人力三轮车骑了过来。</p>
-<p>傻大壮要去泡妞啊，厂长觉得三轮车去泡妞太霸气了，要低调，哄傻大壮开个别的。傻大壮说：“那好，给我个法拉利”。 厂长笑了笑，又叫阿四拉出了最新研发的法拉利出来。</p>
-<p>这个就是工厂，这个工厂就是一个模式，给什么要求，做什么东西，当然，你说飞机火箭什么的，劳驾到其它工厂吧。</p>
-<p>不过嘛，你没有傻大壮的老爸，这个工厂需要你自己来搭建咯，先从自行车的刹车皮开始做起吧，慢慢来别急啊骚年。</p>
-<p><strong>5、装饰者模式</strong></p>
-<p>傻大壮一直有一个理念，只买贵的不买对的。</p>
-<p>一天他朋友跟他说，他的劳斯莱斯改装过之后，价值比原来高了100快啊，然后又加了个高压发动机，价值又高了200快。总价从原来的400快变成700了。</p>
-<p>傻大壮开不过眼，自己的法拉利再怎么说也是600快的价值，我也要改装，超过你们，结果傻大壮把车拿去改装：喷靓丽的骚红色车漆，价值+100、改装亮瞎前灯，价值+200，傻大壮觉得，反正已经900快价值了，比你的高。</p>
-<p>这就是装饰者模式，把原车拿去，换了一个改装过的车。再把这车改装，这车又更加霸气了。不过来来回回都是那个车每一次改装都没有前提和前置条件。不过大叔的代码里面，前面的代码说的确实每一次的车都被克隆了一个，把克隆了之后的给了别人。后面使用了prototype才算正确。（个人疑惑点，大叔见谅，谢谢大叔指点。）</p>
-<p><strong>6、外观模式</strong></p>
-<p>将相同功能但是参数顺序数量格式不同或者功能名不同的功能集合起来，通过该功能即可自动识别调用该系统支持的接口，鉴于每次都需要进行支持性判断，损耗了部分的性能。但是大大方便了程序员的工作，大部分兼容框架都会使用到该模式。如下事件绑定代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> addMyEvent = <span class="function"><span class="keyword">function</span> (<span class="params">el, ev, fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (el.addEventListener) &#123;</span><br><span class="line">        el.addEventListener(ev, fn, <span class="literal">false</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (el.attachEvent) &#123;</span><br><span class="line">        el[<span class="string">'e'</span>+ev+fn]=fn;</span><br><span class="line">        el[ev+fn]=<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;el[<span class="string">'e'</span>+ev+fn](e||<span class="built_in">window</span>.event);&#125;</span><br><span class="line">        el.attachEvent(<span class="string">'on'</span> + ev, el[ev+fn]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        el[<span class="string">'e'</span>+ev+fn]=fn;</span><br><span class="line">        el[ev+fn]=<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;el[<span class="string">'e'</span>+ev+fn](e||<span class="built_in">window</span>.event);&#125;</span><br><span class="line">        el[<span class="string">'on'</span> + ev] = el[ev+fn];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><strong>7、代理模式</strong></p>
-<p>大叔说了，dudu不敢送玫瑰花给酸奶小妹，大叔就帮他了。常用，不过把自己的命运交给别人把握的感觉不怎么好。</p>
-<p><strong>8、观察者模式</strong></p>
-<p>对于消息分发很有帮助，能通过一个地方的修改就改变其他地方。具体实现代码的时候直接模仿。</p>
-<p><strong>9、策略模式</strong></p>
-<p>把算法单独封装起来，区别于每次使用不使用这种模式构造的算法集都会影响用户使用。使用该种模式的话，能够方便的进行功能增加的测试，新增加的同类算法不影响现在的算法，大叔的文章中把输入验证的算法单独抽出实现算法集的集合，增加新验证方式又不影响现在算法。</p>
-<p><strong>10、命令模式</strong></p>
-<p>这个模式十分适合那种需要记录动作执行记录的功能，讲这个命令接口设置成字符串或者JSON格式，传输给命令接口，即可方便执行命令记录和执行命令的动作。命令格式还能自定义。</p>
-<p><strong>11、迭代器模式</strong></p>
-<p>主要思想是把一个属性不可修改的可遍历的聚合对象保护起来，在进行遍历时，需要采用该种模式。</p>
-<p>该模式中，通过至少hasNext()和Next()两个方法，即可进行把一个聚合对象的所有可遍历属性遍历完毕。</p>
-<p><strong>12、中介者模式</strong></p>
-<p>使用中介封装其他对象的交互。大叔说道，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。</p>
-<p>耦合松散对编程来说那可是值得走的好方向，只是需要花点时间来解耦而已。</p>
-<p>中介者模式和观察者模式有相同之处，都是通过消息驱动，用户出发一个对象的事件，传输到中介者，中介者分发下去，触发接受者的接受函数。其实我把两者混淆了。</p>
-<p>重要特点是，中介者，多对多；观察者，一对多。</p>
-<p><strong>13、享元模式</strong></p>
-<p>方便的管理相同的层级元素。例如具备相同单元的对象及元素，能把其相同之处集合起来。还有管理 DOM 事件，利用 DOM 的冒泡和捕抓事件的特性。能把单独的小事件统一到其上一级别，通过判断 e.originalTarget 或者 e.srcElement 进行小事件的对应单独处理，但是要注意多次触发事件的问题。达到性能和内存的优化。</p>
-<p><strong>14、职责链模式</strong></p>
-<p>职责链就好像工厂的生产流水线，每到一个责任，都会有一个特定的接口，调用该接口就能自动通知下一任责任者就行责任的填充，每一个责任都知道其下一任职责者。最后一任职责者会调用完毕动作。</p>
-<p>因此在使用职责链时，需要传入下一任职责者，生成对象，调用职责链的公用方法，通知下一任职责者。创建处事对象的时候，需要根据职责链的接口，设定动作函数。</p>
-<p><strong>15、适配器模式</strong></p>
-<p>该模式主要针对接口的改变，如果不想再原始对象上面进行变动，那就可以采取适配器的模式。把原有接口重新封装，实现用户需要的接口。</p>
-<p>就比如一个三口插座充电器，在中国能用，在外国不能用了，就需要使用接口转换的了，现在的高端手机基本上都有多口转换。充电器到头来还是那个充电器。</p>
-<p><strong>16、组合模式</strong></p>
-<p>大叔说道，组合模式有明确的使用场景：1、你想表达对象的部分-整体层次结构时。2、组合对象和单个对象不同，但是使用的时候能相同使用。具体实现时需要先写一个最基础的组合方法，然后后面的单个对象的基础对象都需要继承该方法。详细实现时，参考大叔的菜单代码。</p>
-<p><strong>17、模板方法</strong></p>
-<p>思想：创建一个框架，搭建框架的所有方法，但是只实现相同功能，可变功能只留接口不实现，留在子类实现。</p>
-<p>该框架能够延森到其它子类中，具体功能将在子类实现时补充完毕。</p>
-<p><strong>18、原型模式</strong></p>
-<p>这个模式比较通用，通过javascript特有的原型继承实现继承方法都会使用到该种模式。ECMA5中的是使用Odject.create方法实现原型继承。大叔提到需要注意深拷贝和浅拷贝的问题。值引用方式为浅拷贝，值返回的方式是深拷贝。</p>
-<p><strong>19、状态模式</strong></p>
-<p>代码很多的一篇，一个模式足足200行。</p>
-<p>使用该种模式有明确场景：</p>
-<p>对象的行为跟对象的状态相关，运行时刻，状态改变讲改变对象的行为，对象的行为根据状态进行。</p>
-<p>写这种代码确实是劳心劳力啊。T_T||。详细实现的时候再瞧瞧大叔的代码吧。</p>
-<p><strong>20、桥接模式</strong></p>
-<p>最简单的桥接模式，把一个可能在不同上下文下不能运行的函数，通过改变调用方式或者改变参数的方式达到运行的目的。这个方式就成为桥。</p>
-<p>大叔的例子里面，代码是运行不鸟了，因为没有环境。主要思想就是在绑定动作的时候，直接的实现内容用户可以不知道，传输正确参数（如id）进去即可判断参数进行动作或者获取数据。</p>
-<p><strong>总结：</strong></p>
-<p>花了一个春节假期，把大叔的设计模式这一块看完了，从编码思想方面进行了改变。但是，设计模式并非看完就能真正掌握了，没有实践，永远只能在口中胡扯。</p>
-<p>talk is cheap,show me the code.</p>
-<p>速成设计模式，难，没基础学设计模式，难。学习设计模式的最佳方法不是看书就知道，而是看过了书知道，了解到其思想，在自己的编码实践中，结合进去，参考前人的代码进行该模式的实现，自然水到渠成。</p>
-<p>这就是这篇文章的目的：设计模式的思想。</p>
-<p>（并非做了精读，只做编程作参考，如有错误，恳请大力指出，谢谢。）</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><strong>汤姆大叔的教程地址：<a href="http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html">http://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html</a>，谢谢大叔。</strong></p>
-<p><strong>1、单例模式</strong></p>
-<p>核心是该对象只存在一个实例，要么直接写成实例的形式，</p>
-<p>要么就需要写成构造函数形式，但是需要在构造函数里面通过模拟闭包的方式重新定义该构造函数，保存当前this对象，新定义的构造函数返回该this对象，达到只存在改对象只存在一个实例的目的。<br>]]>
     
     </summary>
     
