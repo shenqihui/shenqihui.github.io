@@ -4,7 +4,7 @@
   <subtitle><![CDATA[吾十有五而志于养猪，三十始养，四十亏本，五十再亏，六十亏大了，七十卒，不逾矩。现廿五，将卒。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://shenqihui.github.io/"/>
-  <updated>2016-01-17T09:55:50.000Z</updated>
+  <updated>2016-01-17T10:03:03.000Z</updated>
   <id>http://shenqihui.github.io/</id>
   
   <author>
@@ -19,12 +19,12 @@
     <link href="http://shenqihui.github.io/2016/01/17/table_warp_ellipsis/"/>
     <id>http://shenqihui.github.io/2016/01/17/table_warp_ellipsis/</id>
     <published>2016-01-17T09:15:23.000Z</published>
-    <updated>2016-01-17T09:55:50.000Z</updated>
+    <updated>2016-01-17T10:03:03.000Z</updated>
     <content type="html"><![CDATA[<p>今天谈谈 table 中 warp 和 ellipsis 问题。<br>table（display:table 形式，下同） 元素， 会随着子元素的高度和宽度直接进行缩放， 自定义的宽度高度基本不起作用，这也是 table 设定的目的。<br>但是，如果 table 中存在超级长的无法 warp 的单词，想要直接进行 ellipsis 展现，就必须进行特殊的设定。</p>
 <p>下面我来讲讲这个的技术细节：</p>
 <a id="more"></a>
 <hr>
-<h1 id="u4F8B_u5B50_uFF0C_u773C_u89C1_u4E3A_u5B9E"><a href="#u4F8B_u5B50_uFF0C_u773C_u89C1_u4E3A_u5B9E" class="headerlink" title="例子，眼见为实"></a>例子，眼见为实</h1><p></p><p data-height="900" data-theme-id="0" data-slug-hash="zrEMOj" data-default-tab="result" data-user="shenqihui" class="codepen">See the Pen <a href="http://codepen.io/shenqihui/pen/zrEMOj/" target="_blank" rel="external">zrEMOj</a> by 神奇辉 (<a href="http://codepen.io/shenqihui" target="_blank" rel="external">@shenqihui</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<h1 id="u4F8B_u5B50_uFF0C_u773C_u89C1_u4E3A_u5B9E"><a href="#u4F8B_u5B50_uFF0C_u773C_u89C1_u4E3A_u5B9E" class="headerlink" title="例子，眼见为实"></a>例子，眼见为实</h1><p></p><p data-height="500" data-theme-id="0" data-slug-hash="zrEMOj" data-default-tab="result" data-user="shenqihui" class="codepen">See the Pen <a href="http://codepen.io/shenqihui/pen/zrEMOj/" target="_blank" rel="external">zrEMOj</a> by 神奇辉 (<a href="http://codepen.io/shenqihui" target="_blank" rel="external">@shenqihui</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 <hr>
