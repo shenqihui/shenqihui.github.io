@@ -15,7 +15,7 @@ table（display:table 形式，下同） 元素， 会随着子元素的高度�
 
 # 例子，眼见为实
 
-<p data-height="500" data-theme-id="0" data-slug-hash="zrEMOj" data-default-tab="result" data-user="shenqihui" class='codepen'>See the Pen <a href='http://codepen.io/shenqihui/pen/zrEMOj/'>zrEMOj</a> by 神奇辉 (<a href='http://codepen.io/shenqihui'>@shenqihui</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p data-height="900" data-theme-id="0" data-slug-hash="zrEMOj" data-default-tab="result" data-user="shenqihui" class='codepen'>See the Pen <a href='http://codepen.io/shenqihui/pen/zrEMOj/'>zrEMOj</a> by 神奇辉 (<a href='http://codepen.io/shenqihui'>@shenqihui</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 ---
