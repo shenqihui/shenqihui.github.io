@@ -37,7 +37,7 @@ Django 是一个强大的 Web 框架。
 
 使用 nodejs 开发一个 http 服务来处理 POST 请求，横向对比 js 代码是否正确，代码很少，能实现功能就行，如下：
 
-```
+```python
 var http = require('http');
 
 http.createServer(function (req, res) {
@@ -65,7 +65,7 @@ http.createServer(function (req, res) {
 
 核心代码如下：
 1、 `views.py` 的：
-```
+```python
 import json
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -90,7 +90,7 @@ def index(request):
 ```
 
 2、 `urls.py` 的：
-```
+```python
 url(r'^$', 'some_app.views.index', name='test_post'),
 ```
 使用过程，保存为 django 的 `some_app` 对应的 views， 增加到 url 路由中， 然后直接运行 `python manage.py runserver 0.0.0.0:3002` 即可，监听了 3002 端口的 http 服务。
@@ -98,7 +98,7 @@ url(r'^$', 'some_app.views.index', name='test_post'),
 ### 前端 js 代码请求。
 
 贴全部出了了。
-```
+```html
 <html>
   <head>
     <meta charset="utf-8">
@@ -230,6 +230,15 @@ url(r'^$', 'some_app.views.index', name='test_post'),
 Django 在处理 XDomainRequest 的 POST 请求时候确实没有正确解析。  但是 nodejs 原生的 http 服务例子能解析。 python 原生的写法没进行测试。
 
 然后发现现在也有框架无法处理 XDomainRequest 的 POST 数据，例如在抓包过程中使用的 `livepool` 工具。
+
+## 解决方式
+提供一种可行的解决方式，强行解析 body 即可。
+
+```python
+from django.http import QueryDict  
+QueryDict(request.body)
+```
+具体怎么用，就看后面了。
 
 ## 测试环境  
 
