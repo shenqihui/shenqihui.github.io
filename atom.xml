@@ -171,8 +171,8 @@
     <link href="http://shenqihui.github.io/2015/12/10/fab_deploy_simple/"/>
     <id>http://shenqihui.github.io/2015/12/10/fab_deploy_simple/</id>
     <published>2015-12-10T14:23:23.000Z</published>
-    <updated>2015-12-10T07:37:03.000Z</updated>
-    <content type="html"><![CDATA[<p>这是遇到的某个项目（<a href="https://www.zoomeye.org" target="_blank" rel="external">zoomeye</a>）的 fab 部署脚本的改写通用版本。</p>
+    <updated>2016-01-25T04:21:32.000Z</updated>
+    <content type="html"><![CDATA[<p>这是我常用的 fab 部署脚本的改写通用版本。</p>
 <p>可能对大型项目没起作用，但是对于小项目，作用还是很大，所以发出来写个文章分享下。</p>
 <a id="more"></a>
 <hr>
@@ -215,7 +215,7 @@
 </ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>这是遇到的某个项目（<a href="https://www.zoomeye.org">zoomeye</a>）的 fab 部署脚本的改写通用版本。</p>
+    <![CDATA[<p>这是我常用的 fab 部署脚本的改写通用版本。</p>
 <p>可能对大型项目没起作用，但是对于小项目，作用还是很大，所以发出来写个文章分享下。</p>]]>
     
     </summary>
