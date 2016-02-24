@@ -1,4 +1,4 @@
-Sitemap: http://blog.shenqh.com/sitemap.xml
 Sitemap: /sitemap.xml
+Sitemap: http://blog.shenqh.com/sitemap.xml
 User-Agent: *
 Allow: /
