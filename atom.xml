@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.shenqh.com/"/>
-  <updated>2016-02-24T06:11:41.000Z</updated>
+  <updated>2016-02-24T11:21:21.000Z</updated>
   <id>http://blog.shenqh.com/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我的 hexo pithy 主题</title>
+    <link href="http://blog.shenqh.com/2016/02/24/my-hexo-theme-pithy/"/>
+    <id>http://blog.shenqh.com/2016/02/24/my-hexo-theme-pithy/</id>
+    <published>2016-02-24T11:53:02.000Z</published>
+    <updated>2016-02-24T11:21:21.000Z</updated>
+    
+    <content type="html">&lt;p&gt;这两天，写了个 hexo 简洁主题。&lt;/p&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;p&gt;就是这样， 主题地址： &lt;a href=&quot;https://github.com/shenqihui/hexo-theme-pithy&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;hexo-theme-pithy&lt;/a&gt; 。&lt;/p&gt;&lt;h2 id=&quot;u6548_u679C&quot;&gt;&lt;a href=&quot;#u6548_u679C&quot; class=&quot;headerlink&quot; title=&quot;效果&quot;&gt;&lt;/a&gt;效果&lt;/h2&gt;&lt;p&gt;看看效果，拖出来遛一遛，你现在看到的这个网页，就是使用这个主题的了。&lt;/p&gt;&lt;p&gt;大屏幕效果：&lt;br&gt;&lt;img src=&quot;/picture/hexo-theme-pithy/desktop.jpg&quot; alt=&quot;大屏幕效果&quot;&gt;&lt;br&gt;大屏幕效果之 Archive：&lt;br&gt;&lt;img src=&quot;/picture/hexo-theme-pithy/desktop-archive.jpg&quot; alt=&quot;大屏幕 archive 效果&quot;&gt;&lt;/p&gt;&lt;p&gt;iPad 效果：&lt;br&gt;&lt;img src=&quot;/picture/hexo-theme-pithy/pad.jpg&quot; alt=&quot;iPad 效果&quot;&gt;&lt;/p&gt;&lt;p&gt;iPhone 效果：&lt;br&gt;&lt;img src=&quot;/picture/hexo-theme-pithy/phone.jpg&quot; alt=&quot;iPhone 效果&quot;&gt;&lt;/p&gt;&lt;h2 id=&quot;u8BBE_u8BA1_u7406_u5FF5&quot;&gt;&lt;a href=&quot;#u8BBE_u8BA1_u7406_u5FF5&quot; class=&quot;headerlink&quot; title=&quot;设计理念&quot;&gt;&lt;/a&gt;设计理念&lt;/h2&gt;&lt;p&gt;我想要的，只是下面几个需求：&lt;/p&gt;&lt;ul&gt;&lt;li&gt;打开超快&lt;/li&gt;&lt;li&gt;整洁&lt;/li&gt;&lt;li&gt;干掉所有多余的东西&lt;/li&gt;&lt;li&gt;响应式&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;所以，最终下来，有里面几个特点：&lt;/p&gt;&lt;ul&gt;&lt;li&gt;出 disqus 评论和谷歌统计类 script ，没有任何其他 script&lt;/li&gt;&lt;li&gt;只有一个 css 文件，没有字体文件&lt;/li&gt;&lt;li&gt;响应式做个取舍，导航栏超出讲隐藏，因此需要确保在不隐藏部分显示出重要的链接(例如 iPhone 效果图中的导航条中，最后那个 about 就被隐藏了。)&lt;/li&gt;&lt;li&gt;既然导航栏隐藏了，推荐增加个链接(list)的页面，里面有所有的链接，包含导航条的所有，还能加友情链接，详情可参考我上面的做法&lt;/li&gt;&lt;/ul&gt;&lt;h2 id=&quot;u4F9D_u8D56&quot;&gt;&lt;a href=&quot;#u4F9D_u8D56&quot; class=&quot;headerlink&quot; title=&quot;依赖&quot;&gt;&lt;/a&gt;依赖&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;jade&lt;/li&gt;&lt;li&gt;less&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;配置方法：在你的 blog 目录执行下面，增加插件。&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm install hexo-renderer-jade --save  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm install hexo-renderer-less --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;&lt;h2 id=&quot;u4F7F_u7528&quot;&gt;&lt;a href=&quot;#u4F7F_u7528&quot; class=&quot;headerlink&quot; title=&quot;使用&quot;&gt;&lt;/a&gt;使用&lt;/h2&gt;&lt;p&gt;首先下载到你的主题目录，并且配置成为该主题。&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git &lt;span class=&quot;built_in&quot;&gt;clone&lt;/span&gt; https://github.com/shenqihui/hexo-theme-pithy.git themes/pithy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;&lt;p&gt;修改 &lt;code&gt;_config.yml&lt;/code&gt; 的 theme 为 &lt;code&gt;pithy&lt;/code&gt;&lt;/p&gt;&lt;h2 id=&quot;u914D_u7F6E&quot;&gt;&lt;a href=&quot;#u914D_u7F6E&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h2&gt;&lt;h3 id=&quot;hexo__u5FC5_u5199_u914D_u7F6E&quot;&gt;&lt;a href=&quot;#hexo__u5FC5_u5199_u914D_u7F6E&quot; class=&quot;headerlink&quot; title=&quot;hexo 必写配置&quot;&gt;&lt;/a&gt;hexo 必写配置&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;date_format&lt;/li&gt;&lt;li&gt;title&lt;/li&gt;&lt;/ul&gt;&lt;h3 id=&quot;u4E3B_u9898_u914D_u7F6E&quot;&gt;&lt;a href=&quot;#u4E3B_u9898_u914D_u7F6E&quot; class=&quot;headerlink&quot; title=&quot;主题配置&quot;&gt;&lt;/a&gt;主题配置&lt;/h3&gt;&lt;p&gt;默认的配置就能跑起来了。&lt;br&gt;需要配置的时候，打开看看，针对性填充或者修改就行。&lt;/p&gt;&lt;h2 id=&quot;u8865_u5145&quot;&gt;&lt;a href=&quot;#u8865_u5145&quot; class=&quot;headerlink&quot; title=&quot;补充&quot;&gt;&lt;/a&gt;补充&lt;/h2&gt;&lt;p&gt;主题还在不断开发，啥时候有更改，会改上去，欢迎提 issue&lt;/p&gt;&lt;h2 id=&quot;End&quot;&gt;&lt;a href=&quot;#End&quot; class=&quot;headerlink&quot; title=&quot;End&quot;&gt;&lt;/a&gt;End&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这两天，写了个 hexo 简洁主题。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://blog.shenqh.com/tags/hexo/"/>
+    
+      <category term="theme" scheme="http://blog.shenqh.com/tags/theme/"/>
+    
+      <category term="设计" scheme="http://blog.shenqh.com/tags/%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>CSS 技巧：table 中，如何进行 warp 和 ellipsis</title>
@@ -395,24 +419,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;strong&gt;前言：&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;下面将探讨 javascript 面向对象编程的知识。&lt;/p&gt;&lt;p&gt;请不要刻意把 javascript 想成面向对象编程是理所当然的。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>探讨 css 中 repaint 和 reflow</title>
-    <link href="http://blog.shenqh.com/2014/02/12/%E6%8E%A2%E8%AE%A8css%E4%B8%ADrepaint%E5%92%8Creflow/"/>
-    <id>http://blog.shenqh.com/2014/02/12/探讨css中repaint和reflow/</id>
-    <published>2014-02-11T21:47:00.000Z</published>
-    <updated>2015-05-12T15:54:50.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;strong&gt;前言：&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;页面设计中，不可避免的需要浏览器进行 repaint 和 reflow 。那到底什么是 repaint 和 reflow 呢。下面谈谈自己对 repaint 和 reflow 的理解，以及结合其他技术牛的讲解，谈谈如何优化 repaint 和 reflow 。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;strong&gt;初步介绍：&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;开发一个页面时，不可避免的需要进行 repaint 和 reflow 。也就只有古来的静态页面才会不存在 repaint 和 reflow 。 repaint 主要是针对某一个 DOM 元素进行的重绘， reflow 则是回流，针对整个页面的重排。字面意思来说： repaint 就是重绘， reflow 就是回流。 repaint 和 reflow 的目的是：展示一个新的页面样貌。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;严重性：&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;在性能优先的前提下，性能消耗 reflow 大于 repaint 。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;体现：&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;repaint 是某个 DOM 元素进行重绘； reflow 是整个页面进行重排，也就是页面所有 DOM 元素渲染。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;如何触发：&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;style 变动造成 repaint 和 reflow 。&lt;/p&gt;&lt;p&gt;不涉及任何 DOM 元素的排版问题的变动为 repaint ，例如元素的 color / text - align / text - decoration 等等属性的变动。&lt;/p&gt;&lt;p&gt;除上面所提到的 DOM 元素 style 的修改基本为 reflow 。例如元素的任何涉及长、宽、行高、边框、 display 等 style 的修改。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;常见触发场景：&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;p&gt;触发 repaint ：&lt;/p&gt;&lt;ol&gt;&lt;li&gt;color 的修改，如 color =# ddd ；&lt;/li&gt;&lt;li&gt;text - align 的修改，如 text - align = center ；&lt;/li&gt;&lt;li&gt;a : hover 也会造成重绘。&lt;/li&gt;&lt;li&gt;: hover 引起的颜色等不导致页面回流的 style 变动。&lt;/li&gt;&lt;li&gt;等等太多，一时间写出来也太难想了。&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;触发 reflow ：&lt;/p&gt;&lt;ol&gt;&lt;li&gt;width / height / border / margin / padding 的修改，如 width =778 px ；&lt;/li&gt;&lt;li&gt;动画，: hover 等伪类引起的元素表现改动， display = none 等造成页面回流；&lt;/li&gt;&lt;li&gt;appendChild 等 DOM 元素操作；&lt;/li&gt;&lt;li&gt;font 类 style 的修改；&lt;/li&gt;&lt;li&gt;background 的修改，注意着字面上可能以为是重绘，但是浏览器确实回流了，经过浏览器厂家的优化，部分 background 的修改只触发 repaint ，当然 IE 不用考虑；&lt;/li&gt;&lt;li&gt;scroll 页面，这个不可避免；&lt;/li&gt;&lt;li&gt;resize 页面，桌面版本的进行浏览器大小的缩放，移动端的话，还没玩过能拖动程序， resize 程序窗口大小的多窗口操作系统。&lt;/li&gt;&lt;li&gt;读取元素的属性（这个无法理解，但是技术达人是这么说的，那就把它当做定理吧）：读取元素的某些属性（ offsetLeft 、 offsetTop 、 offsetHeight 、 offsetWidth 、 scrollTop / Left / Width / Height 、 clientTop / Left / Width / Height 、 getComputedStyle ()、 currentStyle ( in IE ))；&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;strong&gt;如何避免：&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;说避免那是不可能的，不然就是以前古老的静态页面了，没有交互，那在现在看来，就是一个失败的作品。所以，在我们进行网页设计的时候，就必须尽量减少页面的 repaint 和 reflow 。 repaint 和 reflow 的目的是为了展示一个新的页面，那么我们在进行页面交互时，尽量通过各种方法减少 repaint 和 reflow 但又能展示一个新的页面的目的。所以下面将结合其他技术达人的建议，通过自己的理解，给大家讲解如何避免和优化 repaint 和 reflow ：&lt;/p&gt;&lt;p&gt;下面是大神 Nicole Sullivan 的原话：&lt;/p&gt;&lt;blockquote&gt;&lt;ol&gt;&lt;li&gt;Change classes on the element you wish to style ( as low in the dom tree as possible )&lt;/li&gt;&lt;li&gt;Avoid setting multiple inline styles&lt;/li&gt;&lt;li&gt;Apply animations to elements that are position fixed or absolute&lt;/li&gt;&lt;li&gt;Trade smoothness for speed&lt;/li&gt;&lt;li&gt;Avoid tables for layout&lt;/li&gt;&lt;li&gt;Avoid JavaScript expressions in the CSS ( IE only )&lt;/li&gt;&lt;/ol&gt;&lt;/blockquote&gt;&lt;ol&gt;&lt;li&gt;&lt;strong&gt;尽可能在 DOM 末梢通过改变 class 来修改元素的 style 属性&lt;/strong&gt;：尽可能的减少受影响的 DOM 元素。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;避免设置多项内联样式&lt;/strong&gt;：使用常用的 class 的方式进行设置样式，以避免设置样式时访问 DOM 的低效率。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;设置动画元素 position 属性为 fixed 或者 absolute&lt;/strong&gt;：由于当前元素从 DOM 流中独立出来，因此受影响的只有当前元素，元素 repaint 。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;牺牲平滑度满足性能&lt;/strong&gt;：动画精度太强，会造成更多次的 repaint / reflow ，牺牲精度，能满足性能的损耗，获取性能和平滑度的平衡。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;避免使用 table 进行布局&lt;/strong&gt;： table 的每个元素的大小以及内容的改动，都会导致整个 table 进行重新计算，造成大幅度的 repaint 或者 reflow 。改用 div 则可以进行针对性的 repaint 和避免不必要的 reflow 。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;避免在 CSS 中使用运算式&lt;/strong&gt;：学习 CSS 的时候就知道，这个应该避免，不应该加深到这一层再去了解，因为这个的后果确实非常严重，一旦存在动画性的 repaint / reflow ，那么每一帧动画都会进行计算，性能消耗不容小觑。&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;strong&gt;参考文献：&lt;/strong&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;a href=&quot;/http :// www . blueidea . com / tech / web /2011/8365. asp&quot; title=&quot; http :// www . blueidea . com / tech / web /2011/8365. asp &quot;&gt;页面重构应注意的 repaint 和 reflow&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/http :// blog . csdn . net / baiduforum / article / details /5415527&quot; title=&quot;如何减少浏览器 repaint 和 reflow （上）&quot;&gt;如何减少浏览器 repaint 和 reflow （上）&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/http :// www . zhangxinxu . com / wordpress /2010/01/% E 5%9 B %9 E % E 6% B 5%81% E 4% B 8%8 E % E 9%87%8 D % E 7% BB %98% EF % BC %9 Acss % E 6%80% A 7% E 8%83% BD % E 8% AE % A 9 javascript % E 5%8 F %98% E 6%85% A 2% EF % BC %9 F /&quot; title=&quot;回流与重绘： CSS 性能让 JavaScript 变慢？&quot;&gt;回流与重绘： CSS 性能让 JavaScript 变慢？&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;/http :// www . stubbornella . org / content /2009/03/27/ reflows - repaints - css - performance - making - your - javascript - slow /&quot; title=&quot; Permanent   Link :  Reflows  &amp;amp; amp ;  Repaints :  CSS   Performance   making   your   JavaScript   slow ?&quot;&gt;Reflows &amp;amp; amp ; Repaints : CSS Performance making your JavaScript slow ?&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;觉得有用，点个赞，赞赞更健康。&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;前言：&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;页面设计中，不可避免的需要浏览器进行 repaint 和 reflow 。那到底什么是 repaint 和 reflow 呢。下面谈谈自己对 repaint 和 reflow 的理解，以及结合其他技术牛的讲解，谈谈如何优化 repaint 和 reflow 。&lt;br&gt;
     
     </summary>
     
