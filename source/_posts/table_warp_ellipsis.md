@@ -1,6 +1,7 @@
 title: "CSS 技巧：table 中，如何进行 warp 和 ellipsis"
 tags: [table, warp, ellipsis]
 date: 2016-01-17 17:15:23
+categories: [BLOG,文章]
 ---
 
 今天谈谈 table 中 warp 和 ellipsis 问题。
