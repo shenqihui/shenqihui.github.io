@@ -41,7 +41,8 @@ fab deploy:test,userA,funBranch,ubuntu@10.10.10.12
 
 # 依赖
 python, pip, fabric
-```
+
+```bash
 sudo apt-get build-essential python-dev python-pip
 sudo pip install fabric
 ```
@@ -64,7 +65,7 @@ sudo pip install fabric
 ---
 
 看看源码：
-<script src="http://gist.stutostu.com/shenqihui/64205c52078ce6c14602.js?file=fabfile.py"></script>
+<script src="http://gist.github.com/shenqihui/64205c52078ce6c14602.js?file=fabfile.py"></script>
 
 ---
 
