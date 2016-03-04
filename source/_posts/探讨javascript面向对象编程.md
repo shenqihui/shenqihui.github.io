@@ -210,7 +210,7 @@ var __extends = function(child,father) {
 
 所以，还是来试试coffeescript的写法吧
 
-```javascript
+```coffeescript
 class Animal
   constructor:(@name) ->
   sayHello:->
