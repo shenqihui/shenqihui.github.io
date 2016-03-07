@@ -34,7 +34,7 @@ date: 2015-02-12 00:38:04
 
 先来看看下面这段代码。  
 
-```
+```javascript
 // save old ajax
 $._ajax = $.ajax;
 // incase something.
@@ -68,7 +68,7 @@ $.ajax = ajaxHacker;
 
 ### 使用新的变量保存即将被劫持的函数
   
-```
+```javascript
 $._ajax = $.ajax;  
 e._success = e.success || noop;
 ```
@@ -76,7 +76,7 @@ e._success = e.success || noop;
 
 ### 改写被劫持函数的功能
 
-```
+```javascript
 $.ajax = ajaxHacker;
 e.success = function success(data) {
   // ...
@@ -92,7 +92,7 @@ e.success = function success(data) {
 
 先看一个简单的： 
 
-```
+```javascript
 function ajaxHacker(e, n) {
   // ...
   
@@ -104,7 +104,7 @@ function ajaxHacker(e, n) {
 
 复杂点的：
 
-```
+```javascript
 e.success = function success(data) {
   // ...
   myFunctionToHack(data);
@@ -118,7 +118,7 @@ e.success = function success(data) {
 但是这个时候使用了 `call` 进行调用，原因就是避免函数运行环境 `this` 对象变化了。使用 `call` 能够确保劫持之前的运行上下文与劫持之后的运行上下文一致。  
 当然如果 `this` 对象没被使用的话，不使用 `call` 也是可以的，  
 
-```
+```javascript
 e._success(data);
 ```
 这样子调用，也行。
