@@ -13,8 +13,8 @@ date: 2016-02-23 20:27:17
 
 # 联系方式
 
-- 手机：13450363532  
-- Email：shenqihui0920@gmail.com  
+- 手机：134****3532  
+- Email：shen****@gmail.com  
 - 微信号：iuhiqnehs  
 
 ---
@@ -123,7 +123,7 @@ date: 2016-02-23 20:27:17
 
 
 ## 技术文章
-
+- [CSS: display 对 css 个个属性的影响](http://blog.shenqh.com/)
 - [CSS 技巧：table 中，如何进行 warp 和 ellipsis](http://blog.shenqh.com/2016/01/17/table_warp_ellipsis/)  
 - [fab 部署脚本](http://blog.shenqh.com/2015/12/10/fab_deploy_simple/)  
 - [Git 最佳实践](http://blog.shenqh.com/2015/01/29/best-practices-of-git/)
