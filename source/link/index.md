@@ -15,5 +15,9 @@ date: 2016-02-24 15:44:13
 
 ## 友情链接
 
-[ZoomEye](https://www.zoomeye.org/)
-[偶尔陶醉的世界](http://www.stutostu.com/)
+### 团体
+[ZoomEye](https://www.zoomeye.org/)  
+
+### 个人
+[偶尔陶醉的世界](http://www.stutostu.com/)  
+[jay](http://www.devjay.com/)  

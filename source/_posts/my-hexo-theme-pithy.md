@@ -15,11 +15,13 @@ tags: ['hexo', 'theme', '设计']
 
 大屏幕效果：
 ![大屏幕效果](/picture/hexo-theme-pithy/desktop.jpg)
-大屏幕效果之 Archive：
+大屏幕效果之 Archive ：
 ![大屏幕 archive 效果](/picture/hexo-theme-pithy/desktop-archive.jpg)
 
 iPad 效果：
-![iPad 效果](/picture/hexo-theme-pithy/pad.jpg)
+![iPad 效果](/picture/hexo-theme-pithy/pad.jpg)  
+iPad 效果之 Archive ：
+![iPad 效果](/picture/hexo-theme-pithy/pad.jpg)  
 
 iPhone 效果：
 ![iPhone 效果](/picture/hexo-theme-pithy/phone.jpg)
