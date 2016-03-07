@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.shenqh.com/2016/02/24/my-hexo-theme-pithy/</loc>
+    <lastmod>2016-03-07T03:35:08.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://blog.shenqh.com/link/index.html</loc>
     <lastmod>2016-03-07T02:21:01.000Z</lastmod>
   </url>
@@ -24,11 +29,6 @@
   <url>
     <loc>http://blog.shenqh.com/about/index.html</loc>
     <lastmod>2016-03-02T13:47:33.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://blog.shenqh.com/2016/02/24/my-hexo-theme-pithy/</loc>
-    <lastmod>2016-02-24T11:21:21.000Z</lastmod>
   </url>
   
   <url>
