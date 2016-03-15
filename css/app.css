@@ -1,1 +1,1495 @@
-/*! normalize.css v2.1.3 | MIT License | git.io/normalize */a,a:visited{color:inherit}body,html{-webkit-text-size-adjust:100%}body,h1,h2,h3,h4,h5,h6{font-family:STFangSong,Helvetica,Arial,Vernada,Tahoma,STXihei,"Microsoft YaHei","Songti SC",SimSun,Heiti,sans-serif}blockquote,cite,dfn,em,i{font-style:italic}.clearfix:after,.highlight figcaption:after,.pagination:after,.site-navbar ul:after,.site-navbar:after,section[archive]>section:after,section[index] div[article-list] article [post-excerpt]:after{clear:both}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,video{display:inline-block}.is-hidden,[hidden],template{display:none}audio:not([controls]){display:none;height:0}html{font-family:sans-serif;-ms-text-size-adjust:100%}body,figure{margin:0}a{background:0 0}a:focus{outline:dotted thin}a:active,a:hover{outline:0}h1{margin:.67em 0}abbr[title]{border-bottom:1px dotted}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:1px;border:none;box-shadow:0 -1px 0 0 #dfdfdf}mark{background:#ff0;color:#000}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em}pre,small{font-size:.75em}q{quotes:"\201C" "\201D" "\2018" "\2019"}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0;max-width:100%;height:auto;vertical-align:middle}svg:not(:root){overflow:hidden}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}button,input{line-height:normal}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top}.width-responsive{width:70%}*,:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}a,a:visited{text-decoration:none;outline:0}.gist .gist-file .gist-meta a:hover,a{text-decoration:underline}a:focus,a:hover{color:#45be6d}p a,p a:visited{line-height:inherit}address,body,p{line-height:1.42}dl,ol,ul{padding:0;margin:0 0 1.42em}address,li h1,li h2,li h3,li h4,li h5,li h6,li p,p,pre code{margin-top:0}@media only screen and (min-width:768px)and (max-width:1279px){.width-responsive{width:80%}dl,ol,ul{margin-top:0;margin-bottom:1.42em}}@media only screen and (max-width:767px){.width-responsive{width:90%}dl,ol,ul{margin-top:0;margin-bottom:1.42em}}ol{list-style:decimal}ul{list-style:disc}li ol,li ul,ol ol,ul ul{top:0;margin-top:0;margin-bottom:0;margin-left:1.5em}table{border-collapse:collapse;border-spacing:0;width:100%}td,th{padding:0 5px}.left{float:left}.right{float:right}.text-left{text-align:left}.text-right{text-align:right}.text-center{text-align:center}body{background:#fff;color:#111;font-size:20px;word-wrap:break-word;word-break:break-all}@media only screen and (min-width:768px)and (max-width:1279px){body{font-size:16px;font-weight:400}}@media only screen and (max-width:767px){body{font-size:12px;font-weight:400}}h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-weight:inherit}b,dt,h1,legend,strong{font-weight:800}h1{font-size:1.75em;line-height:.81142857}h2{font-size:1.5em;line-height:1.89333333}h3{font-size:1.25em;line-height:2.272}address,p{font-size:1em;margin-bottom:1.42em}@media only screen and (min-width:768px)and (max-width:1279px){h1{line-height:.81142857}h2{line-height:1.89333333}h3{line-height:2.272}address,p{line-height:1.42;margin-top:0;margin-bottom:1.42em}}@media only screen and (max-width:767px){h1{line-height:.81142857}h2{line-height:1.89333333}h3{line-height:2.272}address,p{line-height:1.42;margin-top:0;margin-bottom:1.42em}}p img{margin:0}small{line-height:3.78666667}del{text-decoration:line-through}ins{color:red}form,label,legend{font-size:1em;line-height:1.42}@media only screen and (min-width:768px)and (max-width:1279px){small{line-height:3.78666667}form,label,legend{line-height:1.42}}@media only screen and (max-width:767px){small{line-height:3.78666667}form,label,legend{line-height:1.42}}table caption,tfoot{font-size:.75em;line-height:1.89333333}th{box-shadow:0 1px 0 0 #555;font-weight:600;text-align:left}code,kbd,pre,samp,tt,var{font-family:"Source Code Pro","Dejavu Sans Mono",Monaco,Consolas,monospace;font-weight:400}.gist .gist-file,code,pre{font-family:"Source Code Pro",Consolas,Monaco,Menlo,Consolas,monospace}pre{white-space:pre}pre code{margin-bottom:1.89428em;display:block;overflow:auto}@media only screen and (min-width:768px)and (max-width:1279px){pre,table caption,tfoot{line-height:1.89333333}pre code{margin-top:0;margin-bottom:1.89428em}}@media only screen and (max-width:767px){pre,table caption,tfoot{line-height:1.89333333}pre code{margin-top:0;margin-bottom:1.89428em}}li code,p code{background:#f7f7f7;line-height:1;margin:0 .25em;padding:0 .35em}blockquote{position:relative;margin:0 0 0 -1em;padding-left:1em;color:#555;border-left:dotted .075em #555}footer[site-footer] div[copyright] h4:before,q:before{content:"“"}footer[site-footer] div[copyright] h4:after,q:after{content:"”"}abbr,acronym{letter-spacing:.1em;text-transform:uppercase}abbr[title],acronym[title],dfn[title]{cursor:help}section[index] div[article-list] article{padding:1em 0;border-bottom:1px solid #f7f7f7}section[index] div[article-list] article h2{float:left;margin-top:0;line-height:30px}section[index] div[article-list] article time{float:right;margin-left:3em;line-height:30px;color:#999}section[index] div[article-list] article [post-excerpt]{color:#999}section[index] div[article-list] article [post-excerpt]:after,section[index] div[article-list] article [post-excerpt]:before{content:" ";display:table}section[index] div[article-list] article:last-child{border-bottom:0}footer[site-footer]{border-top:1px solid #f7f7f7;margin:1em auto;padding-top:1em;color:#555;font-size:.8em}footer[site-footer] [copyright],footer[site-footer] [footer_word],footer[site-footer] [powered]{width:70%;margin:0 auto;text-align:center}@media only screen and (min-width:768px)and (max-width:1279px){footer[site-footer] [copyright],footer[site-footer] [footer_word],footer[site-footer] [powered]{width:80%}}@media only screen and (max-width:767px){footer[site-footer] [copyright],footer[site-footer] [footer_word],footer[site-footer] [powered]{width:90%}}footer[site-footer] div[copyright]{text-align:center;margin-bottom:1em}footer[site-footer] div[powered]{font-size:.75em}footer[site-footer] div[footer_word]{font-size:.85em;padding-left:.5em}footer[site-footer] div[footer_word]:before{display:inline-block;content:"*";color:transparent;width:3px;height:100%;background:#dfdfdf}section[post] [post-title]{text-align:center;margin:.5em 0}section[post] time[post-time]{float:right;margin-left:3em;color:#999}section[post] img,section[post] video{max-width:80%;height:auto;display:block;margin:auto;border:1px solid #ddd;border-radius:3px;box-shadow:2px 2px 4px #bbb;-webkit-border-radius:3px;-webkit-box-shadow:2px 2px 4px #bbb}#comments,.cp_embed_iframe{border:1px solid #f7f7f7}div[social-line]{display:none}#comments{padding:.5em}.post-items{margin-top:0;margin-bottom:2.84em;list-style-type:none}@media only screen and (min-width:768px)and (max-width:1279px){.post-items{margin-top:0;margin-bottom:2.84em}}@media only screen and (max-width:767px){.post-items{margin-top:0;margin-bottom:2.84em}}.post-item{margin-top:0;margin-bottom:1.42em}@media only screen and (min-width:768px)and (max-width:1279px){.post-item{margin-top:0;margin-bottom:1.42em}}@media only screen and (max-width:767px){.post-item{margin-top:0;margin-bottom:1.42em}}.post{margin-top:0;margin-bottom:2.84em}@media only screen and (min-width:768px)and (max-width:1279px){.post{margin-top:0;margin-bottom:2.84em}}@media only screen and (max-width:767px){.post{margin-top:0;margin-bottom:2.84em}}figure.highlight{margin-top:0;margin-bottom:1.42em;overflow:auto}@media only screen and (min-width:768px)and (max-width:1279px){figure.highlight{margin-top:0;margin-bottom:1.42em}}@media only screen and (max-width:767px){figure.highlight{margin-top:0;margin-bottom:1.42em}}.pagination [post-next],.pagination [post-prev]{display:block}.pagination:after,.pagination:before,section[archive]>section:after,section[archive]>section:before{content:" ";display:table}.pagination a[post-prev]{margin-right:2em;float:left}.pagination a[post-next]{margin-left:2em;float:right}section[archive]>section{margin-left:1em;padding-left:1em;border-left:3px solid #f7f7f7}section[archive]>section h3{margin:0;line-height:48px}section[archive]>section time{float:left;margin-right:1em;line-height:48px;color:#999}.pagination{margin:1em auto;font-size:1.2em;text-align:center;width:auto;color:#555;border-top:1px solid #f7f7f7;padding-top:.5em}.extend,.page-number,.space{display:inline-block;float:left;padding:0 .5em}.highlight figcaption a,small{float:right}.hemisu-comment,.page-number.current,pre .comment,pre .html .doctype,pre .xml .doctype{color:#999}.hemisu-accent1,pre .number,pre .ruby .keyword{color:#538192}.hemisu-accent2,pre .html .value,pre .regexp,pre .string,pre .xml .value{color:#739200}.hemisu-accent3,pre .constant,pre .css .rules .attribute,pre .html .tag,pre .keyword,pre .title,pre .xml .tag{color:#F05}.hemisu-accent4{color:#503D15}pre .html .tag .title,pre .xml .tag .title{color:#111}.highlight,pre{background:#2d2d2d;margin:0 10px;padding:15px 1em;border-style:solid;border-color:#ddd;border-width:1px 0;-webkit-border-radius:0;border-radius:0;overflow:auto;color:#ccc;line-height:19.88px}.gist .gist-file .gist-data .line-numbers,.highlight .gutter pre{color:#666;font-size:.85em}code{background:0 0;text-shadow:0 1px #fff;padding:0 .3em}pre code{background:0 0;text-shadow:none;padding:0}.highlight pre{border:none;margin:0;padding:0}.highlight table{margin:0;width:auto}.highlight td{border:none;padding:0}.highlight figcaption{font-size:.85em;color:#999;line-height:1em;margin-bottom:1em}.highlight figcaption:after,.highlight figcaption:before{content:"";display:table}.highlight .gutter pre{text-align:right;padding-right:20px}.highlight .line{height:19.88px}.gist .gist-file{margin:0}.gist .gist-file .gist-data{background:0 0;border:none}.gist .gist-file .gist-data .line-numbers{background:0 0;border:none;padding:0 20px 0 0}.gist .gist-file .gist-data .line-data{padding:0!important}.gist .gist-file .highlight{margin:0;padding:0;border:none}.gist .gist-file .gist-meta{background:#2d2d2d;color:#999;font:.85em 'Avenir Next',Avenir,'Helvetica Neue',Helvetica,'Lantinghei SC','Hiragino Sans GB','Microsoft YaHei',"微软雅黑",STHeiti,'WenQuanYi Micro Hei',"Apple LiGothic Medium","Microsoft JhengHei";text-shadow:0 0;line-height:3em;padding:0 1em}.gist .gist-file .gist-meta a{color:#258fb8;font-weight:400}pre .comment,pre .title{color:#999}pre .attribute,pre .css .class,pre .css .id,pre .css .pseudo,pre .html .doctype,pre .regexp,pre .ruby .constant,pre .tag,pre .variable,pre .xml .doctype,pre .xml .pi,pre .xml .tag .title{color:#f2777a}pre .built_in,pre .constant,pre .literal,pre .number,pre .params,pre .preprocessor{color:#f99157}pre .class,pre .css .rules .attribute,pre .header,pre .inheritance,pre .ruby .class .title,pre .ruby .symbol,pre .string,pre .value,pre .xml .cdata{color:#9c9}pre .css .hexcolor{color:#6cc}pre .coffeescript .title,pre .function,pre .javascript .title,pre .perl .sub,pre .python .decorator,pre .python .title,pre .ruby .function .title,pre .ruby .title .keyword{color:#69c}pre .javascript .function,pre .keyword{color:#c9c}body,html{min-height:100%}dl,ol,ul{margin-left:1.5em}.clearfix:after,.clearfix:before{content:" ";display:table}.dn{display:none}small{color:#999;display:inline-block}.site-navbar ul:after,.site-navbar ul:before,.site-navbar:after,.site-navbar:before{content:" ";display:table}.site-navbar{line-height:48px;font-size:1.2em;border-bottom:1px solid #f7f7f7}.site-navbar ul{padding:0;margin:0;border:0}.site-navbar ul[nav-left]{float:left;padding-left:.5em}.site-navbar ul[nav-left] h1{line-height:48px;margin:0}.site-navbar ul[nav-right]{float:right;padding-right:.5em;max-height:48px;overflow-y:hidden}.site-navbar li{list-style:none;display:inline-block;float:left;padding:0 .5em}section[site-body]{padding:0;border:0;margin:1em auto 0;width:70%;max-width:40em}@media only screen and (min-width:768px)and (max-width:1279px){section[site-body]{width:80%}}@media only screen and (max-width:767px){section[site-body]{width:90%}}.tag-list{padding:0;margin:0 0 1em;border:0}.tag-list-item,[page-tag]{display:inline-block;text-decoration:none;vertical-align:middle;-webkit-border-radius:.5em;-moz-border-radius:.5em;border-radius:.5em;padding:.1em .5em;-webkit-box-shadow:0 .1em .1em 0 rgba(0,0,0,.2),inset 0 .1em 0 0 rgba(255,255,255,.4);-moz-box-shadow:0 .1em .1em 0 rgba(0,0,0,.2),inset 0 .1em 0 0 rgba(255,255,255,.4);box-shadow:0 .1em .1em 0 rgba(0,0,0,.2),inset 0 .1em 0 0 rgba(255,255,255,.4);margin-bottom:.1em;margin-right:.2em;line-height:1.2em;background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);background:-moz-linear-gradient(top,#c4c4c4 0,#7a7a7a 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#c4c4c4),color-stop(100%,#7a7a7a));background:-webkit-linear-gradient(top,#c4c4c4 0,#7a7a7a 100%);background:-o-linear-gradient(top,#c4c4c4 0,#7a7a7a 100%);background:-ms-linear-gradient(top,#c4c4c4 0,#7a7a7a 100%);background:linear-gradient(top,#c4c4c4 0,#7a7a7a 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='@beginColor', endColorstr='@endColor', GradientType=0)}.tag-list-item,.tag-list-item *,[page-tag],[page-tag] *{color:#fff}.tag-list-item:hover,[page-tag]:hover{background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);background:-moz-linear-gradient(top,#dedede 0,#949494 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#dedede),color-stop(100%,#949494));background:-webkit-linear-gradient(top,#dedede 0,#949494 100%);background:-o-linear-gradient(top,#dedede 0,#949494 100%);background:-ms-linear-gradient(top,#dedede 0,#949494 100%);background:linear-gradient(top,#dedede 0,#949494 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='lighten(@beginColor, 10%)', endColorstr='lighten(@endColor, 10%)', GradientType=0)}.tag-list-item:before,[page-tag]:before{content:'\2022   # ';color:#FFF;vertical-align:middle;margin-right:0;font-style:italic}.tag-list-item.tags-d,[page-tag].tags-d{display:inline;padding-left:.5em;font-size:.8em;line-height:1;color:#fff;vertical-align:baseline}@media print{a,a:active,a:hover,a:link,a:visited{text-decoration:none}a[href^=http]:after{content:" (" attr(href)")";text-decoration:underline}body{padding:0;margin:0;border:0}#comments{display:none}}
+/*
+
+  Load all of the css/less files
+*/
+/*! normalize.css v2.1.3 | MIT License | git.io/normalize */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+/**
+ * Address `[hidden]` styling not present in IE 8/9.
+ * Hide the `template` element in IE, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+  display: none;
+}
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0;
+}
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background: transparent;
+}
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+a:focus {
+  outline: thin dotted;
+}
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+a:active,
+a:hover {
+  outline: 0;
+}
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold;
+}
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+dfn {
+  font-style: italic;
+}
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000;
+}
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+pre {
+  white-space: pre-wrap;
+}
+/**
+ * Set consistent quote types.
+ */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+img {
+  border: 0;
+}
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+figure {
+  margin: 0;
+}
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+button,
+input {
+  line-height: normal;
+}
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+button,
+select {
+  text-transform: none;
+}
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */
+}
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/*
+
+  Colours
+*/
+/*
+
+  Typography
+*/
+/*
+
+  Sizes and breakpoints
+*/
+/*
+
+  Dimensions
+*/
+.width-responsive {
+  width: 70%;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .width-responsive {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .width-responsive {
+    width: 90%;
+  }
+}
+/*
+
+  Typography
+*/
+/*
+
+	Base
+*/
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  background: #ffffff;
+  color: #111111;
+}
+/*
+
+	Links
+*/
+a,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+  outline: 0;
+}
+a:visited {
+  color: inherit;
+}
+a:hover,
+a:focus {
+  color: #45be6d;
+}
+p a,
+p a:visited {
+  line-height: inherit;
+}
+/*
+
+	Lists
+*/
+ul,
+ol,
+dl {
+  margin-top: 0em;
+  margin-bottom: 1.42em;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 0;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  ul,
+  ol,
+  dl {
+    margin-top: 0em;
+    margin-bottom: 1.42em;
+  }
+}
+@media only screen and (max-width: 767px) {
+  ul,
+  ol,
+  dl {
+    margin-top: 0em;
+    margin-bottom: 1.42em;
+  }
+}
+ol {
+  list-style: decimal;
+}
+ul {
+  list-style: disc;
+}
+li ul,
+li ol,
+ul ul,
+ol ol {
+  top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 1.5em;
+}
+li h1,
+li h2,
+li h3,
+li h4,
+li h5,
+li h6,
+li p {
+  margin-top: 0;
+}
+/*
+
+  Table
+*/
+table {
+  width: 100%;
+}
+th {
+  box-shadow: 0 1px 0 0 #555555;
+}
+th,
+td {
+  padding: 0 5px;
+}
+/*
+
+	Images
+*/
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+/*
+
+	Misc Helper
+*/
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.is-hidden {
+  display: none;
+}
+/*
+
+	Base
+*/
+body {
+  font-size: 20px;
+  line-height: 1.42;
+  font-family: STFangSong, Helvetica, Arial, Vernada, Tahoma, STXihei, "Microsoft YaHei", "Songti SC", SimSun, Heiti, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  body {
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+@media only screen and (max-width: 767px) {
+  body {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+/*
+
+	Headings
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: STFangSong, Helvetica, Arial, Vernada, Tahoma, STXihei, "Microsoft YaHei", "Songti SC", SimSun, Heiti, sans-serif;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  font-weight: inherit;
+}
+h1 {
+  font-size: 1.75em;
+  line-height: 0.81142857;
+  font-weight: 800;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  h1 {
+    line-height: 0.81142857;
+  }
+}
+@media only screen and (max-width: 767px) {
+  h1 {
+    line-height: 0.81142857;
+  }
+}
+h2 {
+  font-size: 1.5em;
+  line-height: 1.89333333;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  h2 {
+    line-height: 1.89333333;
+  }
+}
+@media only screen and (max-width: 767px) {
+  h2 {
+    line-height: 1.89333333;
+  }
+}
+h3 {
+  font-size: 1.25em;
+  line-height: 2.272;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  h3 {
+    line-height: 2.272;
+  }
+}
+@media only screen and (max-width: 767px) {
+  h3 {
+    line-height: 2.272;
+  }
+}
+/*
+
+	Paragraphs
+*/
+p,
+address {
+  font-size: 1em;
+  line-height: 1.42;
+  margin-top: 0em;
+  margin-bottom: 1.42em;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  p,
+  address {
+    line-height: 1.42;
+  }
+}
+@media only screen and (max-width: 767px) {
+  p,
+  address {
+    line-height: 1.42;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  p,
+  address {
+    margin-top: 0em;
+    margin-bottom: 1.42em;
+  }
+}
+@media only screen and (max-width: 767px) {
+  p,
+  address {
+    margin-top: 0em;
+    margin-bottom: 1.42em;
+  }
+}
+p img {
+  margin: 0;
+}
+/*
+
+	Emphasis
+*/
+cite,
+dfn,
+em,
+i {
+  font-style: italic;
+}
+b,
+strong,
+dt,
+legend {
+  font-weight: 800;
+}
+small {
+  font-size: 0.75em;
+  line-height: 3.78666667;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  small {
+    line-height: 3.78666667;
+  }
+}
+@media only screen and (max-width: 767px) {
+  small {
+    line-height: 3.78666667;
+  }
+}
+del {
+  text-decoration: line-through;
+}
+ins {
+  color: #ff0000;
+}
+/*
+
+	Form
+*/
+form,
+legend,
+label {
+  font-size: 1em;
+  line-height: 1.42;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  form,
+  legend,
+  label {
+    line-height: 1.42;
+  }
+}
+@media only screen and (max-width: 767px) {
+  form,
+  legend,
+  label {
+    line-height: 1.42;
+  }
+}
+/*
+
+  Table
+*/
+table caption,
+tfoot {
+  font-size: 0.75em;
+  line-height: 1.89333333;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  table caption,
+  tfoot {
+    line-height: 1.89333333;
+  }
+}
+@media only screen and (max-width: 767px) {
+  table caption,
+  tfoot {
+    line-height: 1.89333333;
+  }
+}
+th {
+  font-weight: 600;
+  text-align: left;
+}
+/*
+
+  Code
+*/
+code,
+kbd,
+samp,
+pre,
+tt,
+var {
+  font-family: "Source Code Pro", "Dejavu Sans Mono", Monaco, Consolas, monospace;
+  font-weight: 400;
+}
+pre {
+  font-size: 0.75em;
+  line-height: 1.89333333;
+  overflow: auto;
+  margin: 0;
+  white-space: pre;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  pre {
+    line-height: 1.89333333;
+  }
+}
+@media only screen and (max-width: 767px) {
+  pre {
+    line-height: 1.89333333;
+  }
+}
+pre code {
+  background: #f7f7f7;
+  margin-top: 0em;
+  margin-bottom: 1.89428em;
+  display: block;
+  overflow: auto;
+  padding: 0 .5em;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  pre code {
+    margin-top: 0em;
+    margin-bottom: 1.89428em;
+  }
+}
+@media only screen and (max-width: 767px) {
+  pre code {
+    margin-top: 0em;
+    margin-bottom: 1.89428em;
+  }
+}
+p code,
+li code {
+  background: #f7f7f7;
+  line-height: 1;
+  margin: 0 .25em;
+  padding: 0 .35em;
+}
+/*
+
+  Quote
+*/
+blockquote {
+  font-style: italic;
+  position: relative;
+  margin: 0;
+  margin-left: -1em;
+  padding-left: 1em;
+  color: #555555;
+  border-left: dotted 0.075em #555555;
+}
+q:before {
+  content: "“";
+}
+q:after {
+  content: "”";
+}
+/*
+
+  Others
+*/
+abbr,
+acronym {
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+abbr[title],
+acronym[title],
+dfn[title] {
+  cursor: help;
+}
+hr {
+  height: 1px;
+  border: none;
+  box-shadow: 0 -1px 0 0 #dfdfdf;
+}
+section[index] div[article-list] article {
+  padding: 1em 0;
+  border-bottom: 1px solid #f7f7f7;
+}
+section[index] div[article-list] article h2 {
+  float: left;
+  margin-top: 0;
+  line-height: 30px;
+}
+section[index] div[article-list] article time {
+  float: right;
+  margin-left: 3em;
+  line-height: 30px;
+  color: #999999;
+}
+section[index] div[article-list] article [post-excerpt] {
+  color: #999999;
+}
+section[index] div[article-list] article [post-excerpt]:before,
+section[index] div[article-list] article [post-excerpt]:after {
+  content: " ";
+  display: table;
+}
+section[index] div[article-list] article [post-excerpt]:after {
+  clear: both;
+}
+section[index] div[article-list] article [post-excerpt]:before,
+section[index] div[article-list] article [post-excerpt]:after {
+  content: " ";
+  display: table;
+}
+section[index] div[article-list] article [post-excerpt]:after {
+  clear: both;
+}
+section[index] div[article-list] article:last-child {
+  border-bottom: 0;
+}
+footer[site-footer] {
+  border-top: 1px solid #f7f7f7;
+  margin: 1em auto;
+  padding-top: 1em;
+  color: #555555;
+  font-size: .8em;
+}
+footer[site-footer] [powered],
+footer[site-footer] [footer_word],
+footer[site-footer] [copyright] {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  footer[site-footer] [powered],
+  footer[site-footer] [footer_word],
+  footer[site-footer] [copyright] {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 767px) {
+  footer[site-footer] [powered],
+  footer[site-footer] [footer_word],
+  footer[site-footer] [copyright] {
+    width: 90%;
+  }
+}
+footer[site-footer] div[copyright] {
+  text-align: center;
+  margin-bottom: 1em;
+}
+footer[site-footer] div[copyright] h4:before {
+  content: "“";
+}
+footer[site-footer] div[copyright] h4:after {
+  content: "”";
+}
+footer[site-footer] div[powered] {
+  font-size: 0.75em;
+}
+footer[site-footer] div[footer_word] {
+  font-size: 0.85em;
+  padding-left: .5em;
+}
+footer[site-footer] div[footer_word]:before {
+  display: inline-block;
+  content: "*";
+  color: transparent;
+  width: 3px;
+  height: 100%;
+  background: #dfdfdf;
+}
+/*
+
+  Post
+*/
+section[post] [post-title] {
+  text-align: center;
+  margin: .5em 0;
+}
+section[post] time[post-time] {
+  float: right;
+  margin-left: 3em;
+  color: #999999;
+}
+section[post] img,
+section[post] video {
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: auto;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: 2px 2px 4px #bbb;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 2px 2px 4px #bbb;
+}
+div[social-line] {
+  display: none;
+}
+#comments {
+  border: 1px solid #f7f7f7;
+  padding: .5em;
+}
+.cp_embed_iframe {
+  border: 1px solid #f7f7f7;
+}
+.post-items {
+  margin-top: 0em;
+  margin-bottom: 2.84em;
+  list-style-type: none;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .post-items {
+    margin-top: 0em;
+    margin-bottom: 2.84em;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .post-items {
+    margin-top: 0em;
+    margin-bottom: 2.84em;
+  }
+}
+.post-item {
+  margin-top: 0em;
+  margin-bottom: 1.42em;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .post-item {
+    margin-top: 0em;
+    margin-bottom: 1.42em;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .post-item {
+    margin-top: 0em;
+    margin-bottom: 1.42em;
+  }
+}
+.post {
+  margin-top: 0em;
+  margin-bottom: 2.84em;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  .post {
+    margin-top: 0em;
+    margin-bottom: 2.84em;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .post {
+    margin-top: 0em;
+    margin-bottom: 2.84em;
+  }
+}
+figure.highlight {
+  margin-top: 0em;
+  margin-bottom: 1.42em;
+  overflow: auto;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  figure.highlight {
+    margin-top: 0em;
+    margin-bottom: 1.42em;
+  }
+}
+@media only screen and (max-width: 767px) {
+  figure.highlight {
+    margin-top: 0em;
+    margin-bottom: 1.42em;
+  }
+}
+.pagination [post-prev],
+.pagination [post-next] {
+  display: block;
+}
+.pagination a[post-prev] {
+  margin-right: 2em;
+  float: left;
+}
+.pagination a[post-next] {
+  margin-left: 2em;
+  float: right;
+}
+section[archive] > section {
+  margin-left: 1em;
+  padding-left: 1em;
+  border-left: 3px solid #f7f7f7;
+}
+section[archive] > section h3 {
+  margin: 0;
+  line-height: 48px;
+}
+section[archive] > section time {
+  float: left;
+  margin-right: 1em;
+  line-height: 48px;
+  color: #999999;
+}
+section[archive] > section:before,
+section[archive] > section:after {
+  content: " ";
+  display: table;
+}
+section[archive] > section:after {
+  clear: both;
+}
+section[archive] > section:before,
+section[archive] > section:after {
+  content: " ";
+  display: table;
+}
+section[archive] > section:after {
+  clear: both;
+}
+/*
+
+  pagination
+*/
+.pagination {
+  margin: 1em auto;
+  font-size: 1.2em;
+  text-align: center;
+  width: auto;
+  color: #555555;
+  border-top: 1px solid #f7f7f7;
+  padding-top: .5em;
+}
+.pagination:before,
+.pagination:after {
+  content: " ";
+  display: table;
+}
+.pagination:after {
+  clear: both;
+}
+.pagination:before,
+.pagination:after {
+  content: " ";
+  display: table;
+}
+.pagination:after {
+  clear: both;
+}
+.page-number,
+.space,
+.extend {
+  display: inline-block;
+  float: left;
+  padding: 0 .5em;
+}
+.page-number.current {
+  color: #999999;
+}
+/* Hemisu Light */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - http://noahfrederick.com/vim-color-scheme-hemisu/ */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+.hemisu-comment,
+pre .comment,
+pre .xml .doctype,
+pre .html .doctype {
+  color: #999999;
+}
+.hemisu-accent1,
+pre .number,
+pre .ruby .keyword {
+  color: #538192;
+}
+.hemisu-accent2,
+pre .string,
+pre .regexp,
+pre .xml .value,
+pre .html .value {
+  color: #739200;
+}
+.hemisu-accent3,
+pre .keyword,
+pre .title,
+pre .constant,
+pre .xml .tag,
+pre .html .tag,
+pre .css .rules .attribute {
+  color: #FF0055;
+}
+.hemisu-accent4 {
+  color: #503D15;
+}
+pre .xml .tag .title {
+  color: #111111;
+}
+pre .html .tag .title {
+  color: #111111;
+}
+pre,
+.highlight {
+  background: #2d2d2d;
+  margin: 0 10px;
+  padding: 15px 1em;
+  border-style: solid;
+  border-color: #ddd;
+  border-width: 1px 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  overflow: auto;
+  color: #ccc;
+  line-height: 19.88px;
+}
+.highlight .gutter pre,
+.gist .gist-file .gist-data .line-numbers {
+  color: #666;
+  font-size: 0.85em;
+}
+pre,
+code {
+  font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+}
+code {
+  background: "";
+  text-shadow: 0 1px #fff;
+  padding: 0 0.3em;
+}
+pre code {
+  background: none;
+  text-shadow: none;
+  padding: 0;
+}
+.highlight pre {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.highlight table {
+  margin: 0;
+  width: auto;
+}
+.highlight td {
+  border: none;
+  padding: 0;
+}
+.highlight figcaption {
+  font-size: 0.85em;
+  color: #999;
+  line-height: 1em;
+  margin-bottom: 1em;
+}
+.highlight figcaption:before,
+.highlight figcaption:after {
+  content: "";
+  display: table;
+}
+.highlight figcaption:after {
+  clear: both;
+}
+.highlight figcaption a {
+  float: right;
+}
+.highlight .gutter pre {
+  text-align: right;
+  padding-right: 20px;
+}
+.highlight .line {
+  height: 19.88px;
+}
+.gist .gist-file {
+  font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+  margin: 0;
+}
+.gist .gist-file .gist-data {
+  background: none;
+  border: none;
+}
+.gist .gist-file .gist-data .line-numbers {
+  background: none;
+  border: none;
+  padding: 0 20px 0 0;
+}
+.gist .gist-file .gist-data .line-data {
+  padding: 0 !important;
+}
+.gist .gist-file .highlight {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.gist .gist-file .gist-meta {
+  background: #2d2d2d;
+  color: #999;
+  font: 0.85em 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, 'Lantinghei SC', 'Hiragino Sans GB', 'Microsoft YaHei', "微软雅黑", STHeiti, 'WenQuanYi Micro Hei', "Apple LiGothic Medium", "Microsoft JhengHei";
+  text-shadow: 0 0;
+  line-height: 3em;
+  padding: 0 1em;
+}
+.gist .gist-file .gist-meta a {
+  color: #258fb8;
+  font-weight: normal;
+}
+.gist .gist-file .gist-meta a:hover {
+  text-decoration: underline;
+}
+pre .comment,
+pre .title {
+  color: #999;
+}
+pre .variable,
+pre .attribute,
+pre .tag,
+pre .regexp,
+pre .ruby .constant,
+pre .xml .tag .title,
+pre .xml .pi,
+pre .xml .doctype,
+pre .html .doctype,
+pre .css .id,
+pre .css .class,
+pre .css .pseudo {
+  color: #f2777a;
+}
+pre .number,
+pre .preprocessor,
+pre .built_in,
+pre .literal,
+pre .params,
+pre .constant {
+  color: #f99157;
+}
+pre .class,
+pre .ruby .class .title,
+pre .css .rules .attribute {
+  color: #9c9;
+}
+pre .string,
+pre .value,
+pre .inheritance,
+pre .header,
+pre .ruby .symbol,
+pre .xml .cdata {
+  color: #9c9;
+}
+pre .css .hexcolor {
+  color: #6cc;
+}
+pre .function,
+pre .python .decorator,
+pre .python .title,
+pre .ruby .function .title,
+pre .ruby .title .keyword,
+pre .perl .sub,
+pre .javascript .title,
+pre .coffeescript .title {
+  color: #69c;
+}
+pre .keyword,
+pre .javascript .function {
+  color: #c9c;
+}
+html,
+body {
+  min-height: 100%;
+}
+body {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+a {
+  text-decoration: underline;
+}
+ul,
+ol,
+dl {
+  margin-left: 1.5em;
+}
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.dn {
+  display: none;
+}
+small {
+  color: #999999;
+  display: inline-block;
+  float: right;
+}
+.site-navbar {
+  line-height: 48px;
+  font-size: 1.2em;
+  border-bottom: 1px solid #f7f7f7;
+}
+.site-navbar:before,
+.site-navbar:after {
+  content: " ";
+  display: table;
+}
+.site-navbar:after {
+  clear: both;
+}
+.site-navbar:before,
+.site-navbar:after {
+  content: " ";
+  display: table;
+}
+.site-navbar:after {
+  clear: both;
+}
+.site-navbar ul {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.site-navbar ul[nav-left] {
+  float: left;
+  padding-left: .5em;
+}
+.site-navbar ul[nav-left] h1 {
+  line-height: 48px;
+  margin: 0;
+}
+.site-navbar ul[nav-right] {
+  float: right;
+  padding-right: .5em;
+  max-height: 48px;
+  overflow-y: hidden;
+}
+.site-navbar ul:before,
+.site-navbar ul:after {
+  content: " ";
+  display: table;
+}
+.site-navbar ul:after {
+  clear: both;
+}
+.site-navbar ul:before,
+.site-navbar ul:after {
+  content: " ";
+  display: table;
+}
+.site-navbar ul:after {
+  clear: both;
+}
+.site-navbar li {
+  list-style: none;
+  display: inline-block;
+  float: left;
+  padding: 0 .5em;
+}
+section[site-body] {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  margin: 1em auto 0;
+  width: 70%;
+  max-width: 40em;
+}
+@media only screen and (min-width: 768px) and (max-width: 1279px) {
+  section[site-body] {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 767px) {
+  section[site-body] {
+    width: 90%;
+  }
+}
+.tag-list {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  margin-bottom: 1em;
+}
+.tag-list-item,
+[page-tag] {
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: middle;
+  -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
+  border-radius: .5em;
+  padding: .1em .5em;
+  /* padding-left: 1em; */
+  -webkit-box-shadow: 0 0.1em 0.1em 0 rgba(0, 0, 0, 0.2), inset 0 0.1em 0 0 rgba(255, 255, 255, 0.4);
+  -moz-box-shadow: 0 0.1em 0.1em 0 rgba(0, 0, 0, 0.2), inset 0 0.1em 0 0 rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0.1em 0.1em 0 rgba(0, 0, 0, 0.2), inset 0 0.1em 0 0 rgba(255, 255, 255, 0.4);
+  margin-bottom: .1em;
+  margin-right: .2em;
+  line-height: 1.2em;
+  background: #c4c4c4;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #c4c4c4 0%, #7a7a7a 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c4c4c4), color-stop(100%, #7a7a7a));
+  background: -webkit-linear-gradient(top, #c4c4c4 0%, #7a7a7a 100%);
+  background: -o-linear-gradient(top, #c4c4c4 0%, #7a7a7a 100%);
+  background: -ms-linear-gradient(top, #c4c4c4 0%, #7a7a7a 100%);
+  background: linear-gradient(top, #c4c4c4 0%, #7a7a7a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@beginColor', endColorstr='@endColor', GradientType=0);
+}
+.tag-list-item *,
+[page-tag] *,
+.tag-list-item,
+[page-tag] {
+  color: #ffffff;
+}
+.tag-list-item:hover,
+[page-tag]:hover {
+  background: #dedede;
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, #dedede 0%, #949494 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dedede), color-stop(100%, #949494));
+  background: -webkit-linear-gradient(top, #dedede 0%, #949494 100%);
+  background: -o-linear-gradient(top, #dedede 0%, #949494 100%);
+  background: -ms-linear-gradient(top, #dedede 0%, #949494 100%);
+  background: linear-gradient(top, #dedede 0%, #949494 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='lighten(@beginColor, 10%)', endColorstr='lighten(@endColor, 10%)', GradientType=0);
+}
+.tag-list-item:before,
+[page-tag]:before {
+  content: '\2022   # ';
+  color: #FFFFFF;
+  vertical-align: middle;
+  margin-right: 0em;
+  font-style: italic;
+  /*text-shadow: 0 -0.1em -0.1em rgba(0, 0, 0, 0.2);*/
+}
+.tag-list-item.tags-d,
+[page-tag].tags-d {
+  color: #428bca;
+  display: inline;
+  padding-left: .5em;
+  font-size: .8em;
+  line-height: 1;
+  color: #fff;
+  vertical-align: baseline;
+}
+/* print */
+@media print {
+  a,
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    text-decoration: none;
+  }
+  a[href^='http']:after {
+    content: " (" attr(href) ")";
+    text-decoration: underline;
+  }
+  body {
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+  #comments {
+    display: none;
+  }
+}
+/* /print */
