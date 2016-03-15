@@ -1,0 +1,27 @@
+Vagrant.configure(2) do |config|
+  # 刚刚那个 title
+  config.vm.box = "temp"
+  # 虚拟机端口转发到宿主机
+  config.vm.network "forwarded_port", guest: 8000, host: 8002
+  # 设置内网 ip
+  config.vm.network "private_network", ip: "192.168.100.100"
+  # 文件挂载，写绝对路径
+  config.vm.synced_folder "/Users/shenqihui/github", "/home/vagrant/github"
+  config.vm.synced_folder "/Users/shenqihui/github", "/opt"
+  config.vm.synced_folder "/Users/shenqihui/.ssh/", "/home/vagrant/.ssh_mac"
+  config.vm.provider "virtualbox" do |vb|
+    # 图形界面开启
+    # vb.gui = true
+    # 内存处理
+    # vb.memory = "2048"
+  end
+  # 下面我不用
+  # config.push.define "atlas" do |push|
+  #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
+  # end
+  # 下面我基本不用
+  # config.vm.provision "shell", inline: <<-SHELL
+  #   sudo apt-get update
+  #   sudo apt-get install -y apache2
+  # SHELL
+end
