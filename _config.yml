@@ -89,6 +89,17 @@ plugins:
 theme: pithy
 exclude_generator:
 
+include:
+  - .htaccess
+
+exclude:
+  - ppt/**
+
+skip_render:
+  - google9ef657bd26aea9ee.html
+  - resume/**
+  - ppt/experience/**
+
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
@@ -106,15 +117,16 @@ less:
     - css/app.less
 
 minifier:
-  html_minifier:
-    enable: false
 
-  css_minifier:
-    enable: false
+html_minifier:
+  enable: false
+
+css_minifier:
+  enable: false
 
 
-  js_minifier:
-    enable: false
+js_minifier:
+  enable: false
 
 image_minifier:
   enable: false
