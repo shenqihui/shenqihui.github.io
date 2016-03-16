@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.shenqh.com/"/>
-  <updated>2016-03-04T03:58:11.000Z</updated>
+  <updated>2016-03-16T12:11:38.000Z</updated>
   <id>http://blog.shenqh.com/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我的程序员生涯经验分享</title>
+    <link href="http://blog.shenqh.com/2016/03/16/my_program_experience/"/>
+    <id>http://blog.shenqh.com/2016/03/16/my_program_experience/</id>
+    <published>2016-03-16T12:00:39.000Z</published>
+    <updated>2016-03-16T12:11:38.000Z</updated>
+    
+    <content type="html">&lt;p&gt;最近写了个 PPT ，分享下自己的程序员生涯的经验。&lt;/p&gt;&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;.my_ppt_frame{width:100%;height:500px;height:90vmin}&lt;/style&gt;&lt;p&gt;下面这个是 iframe 方式嵌套进去的，不方便操作上下一页。PPT &lt;a href=&quot;/ppt/experience/index.htm&quot;&gt;地址&lt;/a&gt; 。&lt;/p&gt;&lt;p&gt;使用的是 &lt;a href=&quot;https://github.com/ksky521/nodePPT&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;nodePPT&lt;/a&gt; 生成的，左右按钮可操作前进后退。&lt;/p&gt;&lt;iframe src=&quot;/ppt/experience/index.htm&quot; frameborder=&quot;0&quot; class=&quot;my_ppt_frame&quot;&gt;&lt;/iframe&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近写了个 PPT ，分享下自己的程序员生涯的经验。&lt;/p&gt;&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;.my_ppt_frame{width:100%;height:500px;height:90vmin}&lt;/style&gt;&lt;p&gt;下面这个是 
+    
+    </summary>
+    
+    
+      <category term="程序员" scheme="http://blog.shenqh.com/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>经纬度范围</title>
+    <link href="http://blog.shenqh.com/2016/03/16/lat_long/"/>
+    <id>http://blog.shenqh.com/2016/03/16/lat_long/</id>
+    <published>2016-03-16T08:31:00.000Z</published>
+    <updated>2016-03-16T11:58:30.000Z</updated>
+    
+    <content type="html">&lt;p&gt;最近在弄 geo 的信息，经纬度随机造下数据填充地图，查了下，重新学习了下初中高中的地理知识。&lt;/p&gt;&lt;h1 id=&quot;u7ECF_u7EAC_u5EA6_u8303_u56F4&quot;&gt;&lt;a href=&quot;#u7ECF_u7EAC_u5EA6_u8303_u56F4&quot; class=&quot;headerlink&quot; title=&quot;经纬度范围&quot;&gt;&lt;/a&gt;经纬度范围&lt;/h1&gt;&lt;h2 id=&quot;u7ECF_u5EA6&quot;&gt;&lt;a href=&quot;#u7ECF_u5EA6&quot; class=&quot;headerlink&quot; title=&quot;经度&quot;&gt;&lt;/a&gt;经度&lt;/h2&gt;&lt;p&gt;东西半球的坐标范围是 -180 到 180&lt;/p&gt;&lt;p&gt;负坐标代表西半球，正坐标代表东半球&lt;/p&gt;&lt;p&gt;伦敦为 0 经度&lt;/p&gt;&lt;h2 id=&quot;u7EAC_u5EA6&quot;&gt;&lt;a href=&quot;#u7EAC_u5EA6&quot; class=&quot;headerlink&quot; title=&quot;纬度&quot;&gt;&lt;/a&gt;纬度&lt;/h2&gt;&lt;p&gt;南北半球的坐标范围是 -90 到 90&lt;/p&gt;&lt;p&gt;负坐标代表南半球，正坐标代表北半球，赤道为 0 纬度。&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在弄 geo 的信息，经纬度随机造下数据填充地图，查了下，重新学习了下初中高中的地理知识。&lt;/p&gt;&lt;h1 id=&quot;u7ECF_u7EAC_u5EA6_u8303_u56F4&quot;&gt;&lt;a href=&quot;#u7ECF_u7EAC_u5EA6_u8303_u56F4&quot; class=
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>CSS: 长度单位</title>
@@ -387,42 +425,6 @@
     <summary type="html">
     
       &lt;p&gt;1、查看 ip、ua 以及&amp;nbsp;X Forwarded For，来自v2的，平常识别下自己的机器信息。&amp;nbsp;&lt;a href=&quot;http://www.v2ex.com/ua&quot;&gt;http://www.v2ex.com/ua&lt;/a&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>支付宝么么哒</title>
-    <link href="http://blog.shenqh.com/2014/10/30/%E6%94%AF%E4%BB%98%E5%AE%9D%E4%B9%88%E4%B9%88%E5%93%92/"/>
-    <id>http://blog.shenqh.com/2014/10/30/支付宝么么哒/</id>
-    <published>2014-10-29T20:44:00.000Z</published>
-    <updated>2015-02-15T15:41:34.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;http://images.cnitblog.com/blog/358891/201410/301244088943397.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;&lt;p&gt;么么哒。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://images.cnitblog.com/blog/358891/201410/301244088943397.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;&lt;p&gt;么么哒。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>js页码生成库，一个适合前后端分离的页码生成器</title>
-    <link href="http://blog.shenqh.com/2014/07/13/js%E9%A1%B5%E7%A0%81%E7%94%9F%E6%88%90%E5%BA%93%EF%BC%8C%E4%B8%80%E4%B8%AA%E9%80%82%E5%90%88%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E7%9A%84%E9%A1%B5%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/"/>
-    <id>http://blog.shenqh.com/2014/07/13/js页码生成库，一个适合前后端分离的页码生成器/</id>
-    <published>2014-07-13T01:50:00.000Z</published>
-    <updated>2015-05-12T15:40:51.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;上星期写的任务里面有需要进行分页的处理，git搜索了一番，没有觉得合适的，于是自己临时写了个分页的算法。&lt;/p&gt;&lt;p&gt;然后等闲下来的时候，决定把分页进行优化并推广。于是乎，一个适合前后端分离的页码生成器就这样出来了。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;先别废话了，直接上 &lt;a href=&quot;https://github.com/shenqihui/pagination&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;git 地址&lt;/a&gt; 和 &lt;a href=&quot;http://shenqihui.github.io/pagination/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;demo 地址&lt;/a&gt;。看官果断点击进去瞧瞧看。项目主页的 readme 文档的自动排版将更好。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;先讲讲设计思想&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;整个开发流程围绕事件绑定进行开发。&lt;/p&gt;&lt;p&gt;脱离 callback 回调这种回调方法，直接使用 事件 方式触发换页前后的动作，方便解耦。&lt;/p&gt;&lt;p&gt;既然使用这种方式进行回调，就使用全局变量挂载分页的数据，方便回调时候进行分页数据的访问。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;库的依赖&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;由于开发库的时候，并没有使用原生的语法进行元素或者事件绑定的操作，因此需要依赖某个库。&lt;/p&gt;&lt;p&gt;现阶段，经过测试支持 zepto 以及 jquery （二选一）。&lt;/p&gt;&lt;p&gt;css 方面，建议还是直接自己写或者使用 bootstrap 的库，源代码里面有从 bootstrap 里面抽出来的分页 css 代码。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;简洁demo&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;由于分页就必须知道分页数据大小，因此必须传输配置对象。&lt;/p&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; pageConfig = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// 每页显示的数据长度，必填，而且 &amp;gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  prePageLenght: &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// 数据的总长度，必填，而且 &amp;gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  dataLength: &lt;span class=&quot;number&quot;&gt;30&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// 现在的页码，默认 1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  pageNow: &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// 渲染分页 html 的容器，一般框架的容器即可&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  renderBox: $(&lt;span class=&quot;string&quot;&gt;&#39;.pagination-box&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;配置之后，进行调用&lt;/p&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 运行即可分页&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;pageBuilder(pageConfig);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这样子就能进行分页了。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;回调的书写&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;回调的书写虽然放在了调用分页的主函数后面，但是记得在调用分页之前就定义这些事件，因为一旦调用分页函数，就马上触发分页回调，写在后面了，就会忘记了刚分页时候的事件回调了。&lt;/p&gt;&lt;p&gt;首先是分页前的回调，分页之前会触发 window 下面一个自定义分页之前的事件&amp;nbsp;&lt;span class=&quot;s1&quot;&gt;beforePageChange ，因此要触发处理分页前的动作，就这样处理：&lt;/span&gt;&lt;/p&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 提前定义好分页之前的动作，可选&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$(&lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;).on(&lt;span class=&quot;string&quot;&gt;&#39;beforePageChange&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// callback&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// todo&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// 获取当前页码，可以从 pageBuilder.page.pageNow 取得，注意此时的值为未分页之前的旧页码。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;同样道理，分页之后的回调差不多：&lt;/p&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 提前定义好分页之后的动作，可选&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$(&lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;).on(&lt;span class=&quot;string&quot;&gt;&#39;afterPageChange&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// callback&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// todo&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;// 获取当前页码，可以从 pageBuilder.page.pageNow 取得&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;strong&gt;特别说明&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;一个页面只适合使用一个分页实例。分页的动作将在 hashchange 触发之后进行分页。&lt;/p&gt;&lt;p&gt;里面监控页码变化的函数：&lt;/p&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 绑定换页的事件&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$(&lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;).on(&lt;span class=&quot;string&quot;&gt;&#39;hashchange&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; hash = location.hash;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; pageTemp = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;regexp&quot;&gt;/^#page=\d+$/&lt;/span&gt;.test(hash) === &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 直接是页码的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pageTemp = hash.substring(&lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;) | &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (defaultConfig.pageNow !== pageTemp) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      defaultConfig.pageNow = pageTemp;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      $(&lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;).trigger(&lt;span class=&quot;string&quot;&gt;&quot;renderPagination&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (hash === &lt;span class=&quot;string&quot;&gt;&quot;#page=next&quot;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 下一页的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    location.hash = &lt;span class=&quot;string&quot;&gt;&quot;page=&quot;&lt;/span&gt; + ( defaultConfig.pageNow + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (hash === &lt;span class=&quot;string&quot;&gt;&quot;#page=prev&quot;&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 上一页的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    location.hash = &lt;span class=&quot;string&quot;&gt;&quot;page=&quot;&lt;/span&gt; + ( defaultConfig.pageNow - &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;因为 hashchange 只支持 IE8+，&lt;/p&gt;&lt;p&gt;所以，该插件只适合 IE8+，甚至IE8的怪异模式不支持 hashchange 事件。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;结束语&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;这个库还有很多可以优化的地方，例如页码缓存，还有作用域优化之类的，还没进行优化。&lt;/p&gt;&lt;p&gt;希望大家喜欢。喜欢的话，点个推荐吧，如果使用上了，记得 star 下哦。&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;前言&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;上星期写的任务里面有需要进行分页的处理，git搜索了一番，没有觉得合适的，于是自己临时写了个分页的算法。&lt;/p&gt;&lt;p&gt;然后等闲下来的时候，决定把分页进行优化并推广。于是乎，一个适合前后端分离的页码生成器就这样出来了。&lt;br&gt;
     
     </summary>
     
