@@ -118,15 +118,15 @@ less:
 
 minifier:
 
-html_minifier:
-  enable: false
+  html_minifier:
+    enable: false
 
-css_minifier:
-  enable: false
+  css_minifier:
+    enable: false
 
+  js_minifier:
+    enable: false
 
-js_minifier:
-  enable: false
 
 image_minifier:
   enable: false
