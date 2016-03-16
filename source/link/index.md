@@ -13,6 +13,9 @@ date: 2016-02-24 15:44:13
 [Rss](/atom.xml)
 [About](/about)
 
+### 我的 PPT
+[我的程序员经验分享](http://blog.shenqh.com/ppt/experience/)
+
 ## 友情链接
 
 ### 团体
@@ -21,3 +24,4 @@ date: 2016-02-24 15:44:13
 ### 个人
 [偶尔陶醉的世界](http://www.stutostu.com/)  
 [jay](http://www.devjay.com/)  
+[David Jones](http://blog.davidkk.com/)

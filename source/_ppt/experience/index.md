@@ -1,4 +1,4 @@
-title: 我的经验分享
+title: 我的程序员经验分享
 speaker: 神奇辉
 url: http://blog.shenqh.com
 transition: zoomin/cards/slide
@@ -12,7 +12,7 @@ theme: dark
   }
 </style>
 
-# 经验分享
+# 我的程序员经验分享
 
 
 神奇辉  
@@ -28,7 +28,7 @@ Blog: [http://blog.shenqh.com](http://blog.shenqh.com)
 * docker
 * git
 * github
-* Github desktop
+* Github Desktop
 * Mac
 * 程序员必备素质
 
@@ -41,7 +41,7 @@ Blog: [http://blog.shenqh.com](http://blog.shenqh.com)
   * 工具：~~svn，TortoiseHg，~~ git，github，vagrant，docker，npm， fabric， 等等
   * 前端：nodejs，javascript，html，css
   * 后端：~~php，ruby，java，~~ python，nodejs
-  * 运维：linux，nginx，
+  * 运维：linux，nginx
   * 数据库：mysql，redis，ES，mongo
   * 总结：渣渣程序员一枚
 * 程序员社交网站
@@ -103,7 +103,7 @@ Blog: [http://blog.shenqh.com](http://blog.shenqh.com)
 
 [slide]
 # vagrant
-实际 vagrant 编码，上面那幅图的图片版本
+实际 vagrant 编码，上面那幅图的文字版本
 ```python
 Vagrant.configure(2) do |config|
   # 刚刚那个 title
@@ -136,7 +136,8 @@ end
 
 [slide]
 # vagrant 实例
-1.4M GIF, 时长 2 min ， 一次播放，想重复看刷新页面即可。看到 `vagrant@ubuntu-14:~$ ls` 就结束了。
+1.4M GIF, 时长 2 min ， 一次播放，想重复看刷新页面即可。  
+看到 `vagrant@ubuntu-14:~$ ls` 就结束了。
 ![vagrant_hello.gif](/vagrant_hello.gif)
 
 [slide]
@@ -149,7 +150,7 @@ end
 * 方便转发端口
 * 方便配置内网 IP 和公网 IP
 * 那用不用？
-* 用起来。
+* 用起来
 
 [slide]
 # docker
@@ -168,11 +169,11 @@ end
 * 是啥？ {:&.moveIn}
   * 目前最流行的版本管理工具 {:&.moveIn}
   * 管理代码
-* 怎么学？怎么用？ {:&.moveIn}
+* 怎么学？怎么用？
   * 多搜索查看下文章 {:&.moveIn}
   * 参与下 github 的开源项目
   * 参与下实际的 mr 合作
-  * 善于使用工具： mac 、 github desktop
+  * 善于使用工具： mac 、 Github Desktop
   * 多使用 git 尝试新的指令
 
 [slide]
@@ -183,14 +184,16 @@ end
 * 不说了。自己回去注册个，参与下上面的活动。
 
 [slide]
-# Github desktop
+# Github Desktop
 
 ![github_desktop.jpg](/github_desktop.jpg)
 
 # 用来干啥的？
 
-查看 history ， 进行 commit ，特别是一个文件中的其中几行的 commit 。 无冲突 push 分支。  
-其他操作呢？终端运行吧。
+* 查看 history  
+* 进行 commit ，特别是一个文件中的其中几行的 commit 
+* 无冲突分支 push 
+* 其他操作呢？终端运行吧。
 
 
 [slide]
@@ -205,7 +208,7 @@ end
 [slide]
 # 程序员必备素质
 
-* 搜索能力
+* 思考能力，探索能力
   * 这个问题，该如何解决？
 * 搜索能力
   * 很多问题，前人已经踩过坑了，网上已经有解决方法
@@ -217,6 +220,8 @@ end
   * 书读得越多而不加思索，你就会觉得你知道得很多；而当你读书而思考得越多的时候，你就会越清楚地看到，你知道得还很少。 ——伏尔泰
 
 [slide]
+# 给个讨论
+
 举个 js 领域的例子：js 数组排序的问题
 
 ```javascript
