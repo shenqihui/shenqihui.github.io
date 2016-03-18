@@ -1,1 +1,1359 @@
-!function(e,t,n,i,o,s){function r(e){e=e?decodeURIComponent(e):"";var t=e.split("?"),n=t[1]?t[1]:t[0],i=n.split("&"),o={};return i.forEach(function(e){e=e.split("="),e[0].length>0&&(o[e[0]]=e[1]||"")}),o}function a(e,t,n){e&&"function"==typeof e.dispatchEvent||(n=t,t=e,e=null);var i=document.createEvent("Event");if(i.initEvent("ppt"+t,!0,!0),i.stopped=!1,i.stop=function(){i.preventDefault(),i.stopPropagation(),i.stopped=!0},n)for(var o in n)n.hasOwnProperty(o)&&(i[o]=n[o]);return e&&e.dispatchEvent&&e.dispatchEvent(i),i}function c(){$e.current=fe+1,Z&&(Z.style.width=(fe+1)/(te+1)*100+"%")}function l(e){return se.slice.call(e)}function d(e,n){return n=n&&1===n.nodeType?n:t,n.querySelectorAll(e)}function u(e){return t.getElementById(e)}function f(e){return x()?void $e.curItem--:($e.curItem=0,m(Q[fe]),pe=fe,--fe<0&&(fe=0),void e("prev",!e))}function="" p(e){return="" l()?void="" $e.curitem++:($e.curitem="0,m(Q[fe]),pe=fe,++fe">te&&(fe=te),E("next",!e),void y(Q[fe])(Q[fe+1]))}function v(){Le&&clearTimeout(Le),Le=setTimeout(b,800)}function h(e){if(!e)return e;e=e.split(".");for(var t=window,n=0,i=e.length;i>n;n++){var o=typeof t[e[n]];if("object"!==o&&"function"!==o)break;t=t[e[n]]}return"function"==typeof t?t:null}function b(){var e=Q[fe];if(e&&(!e||1===e.nodeType)){var t=e.dataset,n=t.incallback||t.onEnter,i=h(n),o=a("Enter",{container:e});i&&"function"==typeof i&&W(n,o),["Keypress","Build"].forEach(function(n){var i=t["on"+n];i=h(i),i&&"function"==typeof i&&e.addEventListener("ppt"+n,i,!0)});var s=l(d("iframe[data-src]",e));s.length&&s.forEach(function(e){var t=e.dataset.src;t&&(e.src=t,delete e.dataset.src)})}}function m(e){!e||e&&1!==e.nodeType||(xe&&clearTimeout(xe),xe=setTimeout(function(){g(e)},1500))}function g(e){var t=e.dataset,n=t.outcallback||t.onLeave,i=h(n),o=a("Leave",{container:e});i&&"function"==typeof i&&W(n,o),["Keypress","Build"].forEach(function(n){var i=t["on"+n];i=h(i),i&&"function"==typeof i&&e.removeEventListener("ppt"+n,i,!0)})}function y(e){var t=arguments.callee;if(e&&1===e.nodeType)for(var n=d("preload",e),i=n.length;i--;){var o=n[i],s=o.dataset,r=s.type,a=s.url,c=ne["load"+r.toUpperCase()];"function"==typeof c&&c(a,function(e){return function(){e.parentNode&&e.parentNode.removeChild(e),e=null}}(o))}return t}function L(e){if(oe.classList.contains("overview"))return!1;$curSlide=Q[fe];var t=a($curSlide,"Build",{direction:"next",container:$curSlide});if(t.stopped)return t.stopped;var n,i=l(d(".building"),$curSlide);if(i.length)for(;n=i.shift();)n=n.classList,n.remove("building"),n.add("builded");var o=d(".tobuild",$curSlide);if(!o.length)return!1;var s=o.item(0);return n=s.classList,n.remove("tobuild"),n.contains("subSlide")&&l(d(".subSlide.builded",$curSlide)).forEach(function(e){e.classList.add("subBuilded")}),n.add("building"),!0}function x(e){if(oe.classList.contains("overview"))return!1;$curSlide=Q[fe];var t=a($curSlide,"Build",{direction:"prev",container:$curSlide});if(t.stopped)return t.stopped;var n,i,o=l(d(".building"),$curSlide),s=o.length;if(s)for(;n=o.shift();){var r=n.classList;if(r.remove("building"),r.add("tobuild"),i=n,r.contains("subSlide")){var c=l(d(".subSlide.builded.subBuilded",$curSlide)).pop();c&&c.classList.remove("subBuilded")}}var u=l(d(".builded",$curSlide));if(!u.length&&!s)return!1;var f=u.pop();return f&&(i||(i=f),n=f.classList,n.remove("builded"),0===s?(n.add("tobuild"),f=u.pop(),f.classList.remove("builded"),f.classList.add("building")):n.add("building")),!0}function k(){for(var e,t=te,n=Ce.transition,i=".build > *,.fadeIn > *,.rollIn > *,.moveIn > *,.bounceIn > *,.zoomIn > *,.fade > *,.subSlide";e=Q[t--];){var o=l(d(i,e)),s=e.dataset;o.forEach(function(e,t){e.classList.add("tobuild"),"index"in e.dataset||(e.dataset.index=t)}),s.transition||(s.transition=n)}}function E(n){return w(),c(),de&&(ue=!0,e.location.hash="#"+fe),v(n),we(),t.body.classList.contains("overview")?void T():void(t.body.classList.contains("popup")||t.body.classList.remove("with-notes"))}function w(){var e=fe,t="pagedown";if(pe!==fe||($cur=Q[fe],!$cur.classList.contains("pageup"))){pe>fe&&(t="pageup");for(var i=0,o=Q.length;o>i;++i)switch(i){case e-2:I(Q[i],"far-past",t);break;case e-1:I(Q[i],"past",t);break;case e:I(Q[i],"current",t);break;case e+1:I(Q[i],"next",t);break;case e+2:I(Q[i],"far-next",t);break;default:I(Q[i])}n.fire("slide.update",fe,0,t)}}function S(e){oe.classList.toggle("overview"),T(),e||n.fire("overview")}function T(){for(var e,n=t.body.classList.contains("overview"),i=0;e=Q[i];i++)e.style.transform=e.style.webkitTransform=e.style.msTransform=e.style.mozTransform=n?"translateZ(-2500px) translate("+105*(i-fe)+"%, 0%)":"",e.style.animation=e.style.webkitAnimation=e.style.msAnimation=e.style.mozAnimation=n?"none":"",$e.fire(n?"overviewshown":"overviewhidden")}function I(e,t,n){if(e){t&&e.classList.add(t),n&&-1===location.href.indexOf("_multiscreen=control")&&-1===location.href.indexOf("iscontroller=1")&&e.classList.add(n);var i=["next","past","far-next","far-past","current","pagedown","pageup"];i.forEach(function(i){t!==i&&n!==i&&e.classList.remove(i)})}}function F(e){var i=e.keyCode,o=e.target;if(!/^(input|textarea)$/i.test(o.nodeName)&&!o.isContentEditable){e.isFromControl||n.fire("nodepptEvent:eventKeyup",e),n.fire("slide.keyup",e);var s=Q[fe],r=a(s,"Keypress",{keyCode:i,orgiTarget:o,container:s});if(r.stopped)return r.stopped;switch(i){case 122:be.supportsFullScreen&&be.requestFullScreen(document.body);break;case 13:if(t.body.classList.contains("overview"))S(e.isFromControl);else{var c=parseInt(ve)-1;c>=0&&te>=c&&H(c)}ve="";break;case 72:t.body.classList.toggle("highlight-code"),setTimeout(function(){t.body.classList.toggle("highlight-code")},2e3);break;case 87:e.shiftKey&&e.metaKey||oe.classList.contains("popup")||G.classList.toggle("layout-widescreen");break;case 79:S(e.isFromControl);break;case 78:oe.classList.contains("popup")||t.body.classList.toggle("with-notes");break;case 80:oe.classList.contains("popup")||K(e.isFromControl);break;case 66:if(V.context){V.context.strokeStyle="rgba(0,0,255,0.5)";break}case 89:if(V.context){V.context.strokeStyle="rgba(255,255,0,0.5)";break}case 82:if(V.context){V.context.strokeStyle="rgba(255,0,0,0.5)";break}case 71:if(V.context){V.context.strokeStyle="rgba(0,255,0,0.5)";break}case 77:if(V.context){V.context.strokeStyle="rgba(255,0,255,0.5)";break}case 49:ve+="1",V.context&&(V.context.lineWidth=3);break;case 50:ve+="2",V.context&&(V.context.lineWidth=7);break;case 51:ve+="3",V.context&&(V.context.lineWidth=11);break;case 52:ve+="4",V.context&&(V.context.lineWidth=15);break;case 48:ve+="0";break;case 53:ve+="5";break;case 54:ve+="6";break;case 55:ve+="7";break;case 56:ve+="8";break;case 57:ve+="9";break;case 67:oe.classList.contains("popup")||we(e.isFromControl);break;case 33:case 37:case 38:f();break;case 32:case 34:case 39:case 40:p()}}}function C(e){if(!ke&&1===e.touches.length){re=0,ae=0;var t=e.touches[0];ce=t.pageX,le=t.pageY,oe.addEventListener("touchmove",$,!0),oe.addEventListener("touchend",D,!0)}}function $(e){if(e.touches.length>1)X();else{var t=e.touches[0];re=t.pageX-ce,ae=t.pageY-le}try{e.preventDefault()}catch(n){console.log(n)}}function D(e){var t=Math.abs(re),n=Math.abs(ae);return t>15&&2*t/3>n&&re>0?(X(),P(38)):(P(39),void X())}function P(e){var t=document.createEvent("Event");t.initEvent("keyup",!0,!0),t.keyCode=e,document.dispatchEvent(t)}function X(){oe.removeEventListener("touchmove",$,!0),oe.removeEventListener("touchend",D,!0)}function Y(){t.addEventListener("keyup",F,!1),oe.addEventListener("touchstart",C,!1),u("_btn-bar").addEventListener("click",function(){var e=!1;return function(){e?(this.classList.remove("fa-close"),this.classList.add("fa-bars"),u("_btn-box").style.display="none"):(this.classList.remove("fa-bars"),this.classList.add("fa-close"),u("_btn-box").style.display="inline-block"),e=!e}}(),!1),u("_btn-prev").addEventListener("click",function(){P(38)},!1),u("_btn-next").addEventListener("click",function(){P(39)},!1),u("_btn-overview").addEventListener("click",function(){var e=!1;return function(){e?(this.classList.add("fa-compress"),this.classList.remove("fa-expand")):(this.classList.add("fa-expand"),this.classList.remove("fa-compress")),S(),e=!e}}(),!1),u("_btn-brush").addEventListener("click",function(){var e=!1;return function(){e?(this.classList.add("fa-paint-brush"),this.classList.remove("fa-eraser"),we()):(K(),this.classList.add("fa-eraser"),this.classList.remove("fa-paint-brush")),e=!e}}(),!1),e.addEventListener("hashchange",function(){location.hash&&!ue&&(de=!1,m(Q[fe]),pe=fe,fe=0|location.hash.substr(1),E(),de=!0),ue=!1},!0)}function B(){V.context=V.getContext("2d");var e=V.context;e.lineWidth=3,e.lineJoin="round",e.strokeStyle="rgba(255,0,0,0.5)"}function K(e){V&&(ke=!0,oe.classList.contains("with-notes")&&(Ee=1,oe.classList.remove("with-notes"),oe.classList.remove("popup")),V.width=oe.clientWidth,V.height=oe.clientHeight,B(),V.style.display="",G.style.overflow="hidden",V.addEventListener("mousedown",Se,!0),V.addEventListener("mouseup",Ie,!0),V.addEventListener("mousemove",Fe,!0),V.addEventListener("touchmove",Fe,!0),V.addEventListener("touchend",Ie,!0),V.addEventListener("touchcancel",Ie,!0),V.addEventListener("touchstart",Se,!0),t.addEventListener("selectstart",M,!0),e||n.fire("nodepptEvent:show paint"))}function M(){return!1}function O(){G.style.overflow="",V.context&&V.context.clearRect(0,0,R,U),V.style.display="none"}function W(e,t){var n=h(e);n(t)}function _(){ee=u(Ce.tipID),G=u(Ce.containerID),R=Ce.width,U=Ce.height,Z=u(Ce.progressID),$e.$slides=Q=l(d(Ce.slideClass,G)),te=Q.length,$e.count=te,te--,V=u(Ce.drawBoardID),V&&(V.style.display="none")}function q(){i(Ce.dir+"img.screenfull.js",function(){var e=l(d(Ce.slideClass+" img",G));screenfull(e)})}function J(){Ce.theme&&o("/css/theme."+Ce.theme+".css")}function N(){he&&he.print&&l(d("iframe[data-src]")).forEach(function(e){0===e.src.indexOf("about:blank")&&e.dataset.src&&(e.src=e.dataset.src)})}function z(e){e=e||{};for(var t in Ce)t in e&&(Ce[t]=e[t]);if(["theme","transition"].forEach(function(e){he&&he[e]&&(Ce[e]=he[e])}),$e.dir=Ce.dir,Ce.control){var n=Ce.control;i(Ce.dir+"nodeppt.control.js",function(){$e.Control.load(n.type,n.args)})}_(),J(),k(),q(),Y(),pe=fe,he&&he.print?N():(location.hash&&(fe=0|location.hash.substr(1))?E():(w(),c(),v()),y(Q[fe])(Q[fe+1])),oe.style.opacity=1}function j(e){var t=d(".magic",e.container);if(t.length){t=t[0];var n=0|(t.dataset.index||0),i="pagedown";"prev"===e.direction&&(i="pageup");var o=l(d(".magicItem",t)),s=o.length;if(!e.firstKiss){if("prev"===e.direction){if(n--,0>n)return n=0,t.dataset.index=n,void(t.dataset.status="wait");e.stop()}else{if(n++,n===s)return n=s-1,t.dataset.index=n,void(t.dataset.status="done");e.stop()}t.dataset.index=n}if(e.firstKiss){var r=o[n];r.addEventListener(ie,function(){t.style.visibility="visible"})}for(var a=0;s>a;++a)switch(a){case n-2:I(o[a],"far-past",i);break;case n-1:I(o[a],"past",i);break;case n:I(o[a],"current",i);break;case n+1:I(o[a],"next",i);break;case n+2:I(o[a],"far-next",i);break;default:I(o[a])}}}function A(){return fe}function H(e){pe=e-1,pe=0>pe?0:pe,fe=e,E()}var R,U,Z,G,Q,V,ee,te,ne={loadJS:i,loadCSS:o},ie=function(){var e,t=document.createElement("fakeelement"),n={transition:"transitionend",OTransition:"oTransitionEnd",MozTransition:"transitionend",WebkitTransition:"webkitTransitionEnd"};for(e in n)if(t.style[e]!==s)return n[e]}(),oe=t.body,se=[],re=0,ae=0,ce=0,le=0,de=!0,ue=!1,fe=0,pe=0,ve="",he=r(location.search),be={supportsFullScreen:!1,isFullScreen:function(){return!1},requestFullScreen:function(){},cancelFullScreen:function(){},fullScreenEventName:"",prefix:""},me="webkit moz o ms".split(" ");if("undefined"!=typeof document.cancelFullScreen)be.supportsFullScreen=!0;else for(var ge=0,ye=me.length;ye>ge;ge++)if(be.prefix=me[ge],"undefined"!=typeof document[be.prefix+"CancelFullScreen"]){be.supportsFullScreen=!0;break}be.supportsFullScreen&&(be.fullScreenEventName=be.prefix+"fullscreenchange",be.isFullScreen=function(){switch(this.prefix){case"":return document.fullScreen;case"webkit":return document.webkitIsFullScreen;default:return document[this.prefix+"FullScreen"]}},be.requestFullScreen=function(e){return""===this.prefix?e.requestFullScreen():e[this.prefix+"RequestFullScreen"]()},be.cancelFullScreen=function(e){return""===this.prefix?document.cancelFullScreen():document[this.prefix+"CancelFullScreen"]()});var Le,xe,ke=!1,Ee=0,we=function(e){O(),ve="",Ee&&(oe.classList.add("with-notes"),oe.classList.add("popup")),ke=!1,V.removeEventListener("mousedown",Se),V.removeEventListener("mouseup",Ie),V.removeEventListener("mousemove",Fe),V.removeEventListener("touchstart",Se),V.removeEventListener("touchmove",Fe),V.removeEventListener("touchend",Ie),V.removeEventListener("touchcancel",Ie),t.removeEventListener("selectstart",M,!0),e||n.fire("nodepptEvent:remove paint")},Se=function(n){V.isMouseDown=!0;try{var i=n.targetTouches[0];n=i}catch(o){}var s=V.iLastX=n.layerX||n.offsetX||n.clientX-V.offsetLeft+(e.pageXOffset||t.body.scrollLeft||t.documentElement.scrollLeft),r=V.iLastY=n.layerY||n.offsetY||n.clientY-V.offsetTop+(e.pageYOffset||t.body.scrollTop||t.documentElement.scrollTop);return Te.push({x:s,y:r}),!1},Te=[],Ie=function(e){V.isMouseDown=!1,V.iLastX=-1,V.iLastY=-1,e.isFromControl||n.fire("nodepptEvent:paint points",Te),Te.length=0};n.on("controlEvent:paint points",function(e){var t=e.points,n=e.screen,i=n.width/2,o=n.height/2,s=oe.offsetWidth,r=oe.offsetHeight,a=s/2,c=r/2,l=s/n.width,d=r/n.height,u=V.context;if(u){u.beginPath();var f=a-(i-t[0].x)*l,p=c-(o-t[0].y)*d;u.moveTo(f,p);for(var v=0,h=t.length;h>v;v++)u.lineTo(a-(i-t[v].x)*l,c-(o-t[v].y)*d);u.stroke()}});var Fe=function(n){var i=n;if(V.isMouseDown){try{var o=n.targetTouches[0];n=o}catch(s){console.log(s)}var r=n.layerX||n.offsetX||n.clientX-V.offsetLeft+(e.pageXOffset||t.body.scrollLeft||t.documentElement.scrollLeft),a=n.layerY||n.offsetY||n.clientY-V.offsetTop+(e.pageYOffset||t.body.scrollTop||t.documentElement.scrollTop),c=V.context;c.beginPath(),c.moveTo(V.iLastX,V.iLastY),c.lineTo(r,a),c.stroke(),V.iLastX=r,V.iLastY=a,Te.push({x:r,y:a});try{i.preventDefault()}catch(s){console.log(s)}return!1}},Ce={containerID:"container",isControlDevice:!1,drawBoardID:"drawBoard",slideClass:".slide",buildClass:".build",progressID:"progress",transition:"",tipID:"tip",webSocketHost:"",width:900,dir:"./",height:700,control:!1};j.init=function(e){var t=d(".magic",e.container);if(t.length){t=t[0];var n=t.dataset.index||0;switch(t.dataset.status){case"done":t.dataset.index=n,n--;break;case"wait":break;default:e.firstKiss=!0,j(e)}}};var $e={current:0,curItem:0,init:z,setIndex:function(e,t){function n(){t--<=0||(l(),settimeout(n,300))}e--,0>e&&(e=0),H(e),t>0&&n()},next:p,prev:f,doSlide:E,proxyFn:W,showPaint:K,removePaint:we,buildNextItem:L,buildPrevItem:x,magic:j};["on","un","fire"].forEach(function(e){$e[e]=function(){var t=l(arguments);t[0]="slide."+t[0],n[e].apply(null,t)}}),e.Slide=$e,e.jumpSlide=H,e.getcurIndex=A;try{window.console&&window.console.log&&(console.log("Powered By nodePPT, %c https://github.com/ksky521/nodePPT","color:red"),console.log("Install nodePPT: %c npm install -g nodeppt","color:red"))}catch(De){}}(window,document,MixJS.event.broadcast,MixJS.loadJS,MixJS.loadCSS);</=0||(l(),settimeout(n,300))}e--,0></0&&(fe=0),void>
+(function ($win, $doc, $B, loadJS, loadCSS, undefined) {
+    //用于单页ppt预加载资源
+    var preloadFn = {
+        loadJS: loadJS,
+        loadCSS: loadCSS
+    };
+
+    var transitionEndEvent = function whichTransitionEvent() {
+        var t;
+        var el = document.createElement('fakeelement');
+        var transitions = {
+            'transition': 'transitionend',
+            'OTransition': 'oTransitionEnd',
+            'MozTransition': 'transitionend',
+            'WebkitTransition': 'webkitTransitionEnd'
+        };
+
+        for (t in transitions) {
+            if (el.style[t] !== undefined) {
+                return transitions[t];
+            }
+        }
+    }();
+
+    var $body = $doc.body;
+    var emptyFn = function () {};
+    var emptyArr = [];
+
+    var touchDX = 0; //touch事件x数据
+    var touchDY = 0; //touch事件y数据
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var ISSYNC = false;
+
+    var ctrlType = 'bind';
+    var doHash = true;
+    var lockSlide = false;
+    var slideWidth; //单页宽度
+    var slideHeight;
+    var curIndex = 0; //当前幻灯片索引
+    var pastIndex = 0; //上一个幻灯片索引
+    var $progress; //进度条
+    var $container; //幻灯片容器
+    var $slides; //幻灯片集合
+    var $drawBoard; //画板
+    var $slideTip;
+    var slideCount; //幻灯片总页数-1
+    var slideJump = ''; //幻灯片跳转
+    var QUERY = queryToJson(location.search);
+
+    function queryToJson(url) {
+        url = !!url ? decodeURIComponent(url) : '';
+
+        var locse = url.split('?'),
+            search = locse[1] ? locse[1] : locse[0],
+            pairs = search.split('&'),
+            result = {};
+
+        pairs.forEach(function (pair) {
+            pair = pair.split('=');
+            if (pair[0].length > 0) {
+                result[pair[0]] = pair[1] || '';
+            }
+        });
+
+        return result;
+    }
+    var fullScreenApi = {
+            supportsFullScreen: false,
+            isFullScreen: function () {
+                return false;
+            },
+            requestFullScreen: function () {},
+            cancelFullScreen: function () {},
+            fullScreenEventName: '',
+            prefix: ''
+        },
+        browserPrefixes = 'webkit moz o ms'.split(' ');
+
+    if (typeof document.cancelFullScreen != 'undefined') {
+        fullScreenApi.supportsFullScreen = true;
+    } else {
+        for (var i = 0, il = browserPrefixes.length; i < il; i++) {
+            fullScreenApi.prefix = browserPrefixes[i];
+
+            if (typeof document[fullScreenApi.prefix + 'CancelFullScreen'] != 'undefined') {
+                fullScreenApi.supportsFullScreen = true;
+
+                break;
+            }
+        }
+    }
+
+    if (fullScreenApi.supportsFullScreen) {
+        fullScreenApi.fullScreenEventName = fullScreenApi.prefix + 'fullscreenchange';
+
+        fullScreenApi.isFullScreen = function () {
+            switch (this.prefix) {
+                case '':
+                    return document.fullScreen;
+                case 'webkit':
+                    return document.webkitIsFullScreen;
+                default:
+                    return document[this.prefix + 'FullScreen'];
+            }
+        };
+        fullScreenApi.requestFullScreen = function (el) {
+            return (this.prefix === '') ? el.requestFullScreen() : el[this.prefix + 'RequestFullScreen']();
+        };
+        fullScreenApi.cancelFullScreen = function (el) {
+            return (this.prefix === '') ? document.cancelFullScreen() : document[this.prefix + 'CancelFullScreen']();
+        };
+    }
+
+
+
+    function dispatchEvent($dom, name, data) {
+        if (!$dom || typeof $dom.dispatchEvent !== 'function') {
+            data = name;
+            name = $dom;
+            $dom = null;
+        }
+        var event = document.createEvent('Event');
+        event.initEvent('ppt' + name, true, true);
+        event.stopped = false;
+        event.stop = function () {
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopped = true;
+        };
+        if (data) {
+            for (var i in data) {
+                if (data.hasOwnProperty(i)) {
+                    event[i] = data[i];
+                }
+            }
+        }
+        $dom && $dom.dispatchEvent && $dom.dispatchEvent(event);
+        return event;
+    }
+    //设置底部进度条
+    function setProgress() {
+        //添加dataset
+        Slide.current = curIndex + 1;
+        if ($progress) {
+            $progress.style.width = ((curIndex + 1) / (slideCount + 1)) * 100 + '%';
+        }
+    }
+
+    //泛数组转换为数组
+    function toArray(arrayLike) {
+        return emptyArr.slice.call(arrayLike);
+    }
+
+    //封装选择器
+    function $(selector, context) {
+        context = (context && context.nodeType === 1) ? context : $doc;
+        return context.querySelectorAll(selector);
+    }
+
+    //getID方法
+    function $$(id) {
+        return $doc.getElementById(id);
+    }
+
+    //上一页
+    function prevSlide(isControl) {
+
+        if (buildPrevItem()) {
+            Slide.curItem--;
+            return;
+        }
+        Slide.curItem = 0;
+        slideOutCallBack($slides[curIndex]);
+        pastIndex = curIndex;
+        --curIndex < 0 && (curIndex = 0);
+        doSlide('prev', isControl ? false : true);
+    }
+
+    //下一页
+    function nextSlide(isControl) {
+        if (buildNextItem()) {
+            Slide.curItem++;
+            return;
+        }
+        Slide.curItem = 0;
+        slideOutCallBack($slides[curIndex]);
+        pastIndex = curIndex;
+        ++curIndex > slideCount && (curIndex = slideCount);
+        doSlide('next', isControl ? false : true);
+        //预加载
+        preload($slides[curIndex])($slides[curIndex + 1]);
+    }
+
+
+    //slide切入回调incallback
+    //<slide data-incallback=""
+    var slideInTimer;
+
+    function slideInCallBack() {
+        if (slideInTimer) {
+            clearTimeout(slideInTimer);
+        }
+        //休息休息一下~
+        slideInTimer = setTimeout(slideInCallBack_, 800);
+    }
+
+    function getCallbackFuncFromName(cbNames) {
+        if (!cbNames) {
+            return cbNames;
+        }
+        cbNames = cbNames.split('.');
+        var cb = window;
+        for (var i = 0, len = cbNames.length; i < len; i++) {
+            var type = typeof cb[cbNames[i]];
+            if (type === 'object' || type === 'function') {
+                cb = cb[cbNames[i]];
+            } else {
+                break;
+            }
+        }
+        if (typeof cb === 'function') {
+            return cb;
+        }
+        return null;
+    }
+
+    function slideInCallBack_() {
+        var $cur = $slides[curIndex];
+        if (!$cur || ($cur && $cur.nodeType !== 1)) {
+            return;
+        }
+        var dataset = $cur.dataset;
+        var cbNames = dataset.incallback || dataset.onEnter;
+        var cb = getCallbackFuncFromName(cbNames);
+        var event = dispatchEvent('Enter', {
+            container: $cur
+        });
+        //如果有data-incallback那么就执行callback
+        cb && typeof cb === 'function' && proxyFn(cbNames, event);
+
+
+        //事件：keypress接管，build接管
+        ['Keypress', 'Build'].forEach(function (v) {
+            var callback = dataset['on' + v];
+            callback = getCallbackFuncFromName(callback);
+            if (callback && typeof callback === 'function') {
+                $cur.addEventListener('ppt' + v, callback, true);
+            }
+        });
+
+        //检测iframe
+        var $iframe = toArray($('iframe[data-src]', $cur));
+        if ($iframe.length) {
+            $iframe.forEach(function (v) {
+                var src = v.dataset.src;
+                if (src) {
+                    //防止二次加载
+                    v.src = src;
+                    delete v.dataset.src;
+                }
+            });
+
+        }
+    }
+
+    //slide切出回调outcallback
+    //<slide data-outcallback=""
+    var slideOutTimer;
+
+    function slideOutCallBack(prev) {
+        if (!prev || (prev && prev.nodeType !== 1)) {
+            return;
+        }
+        if (slideOutTimer) {
+            clearTimeout(slideOutTimer);
+        }
+        slideOutTimer = setTimeout(function () {
+            slideOutCallBack_(prev);
+        }, 1500);
+    }
+
+    function slideOutCallBack_(prev) {
+        var dataset = prev.dataset;
+        var cbNames = dataset.outcallback || dataset.onLeave;
+        var cb = getCallbackFuncFromName(cbNames);
+        var event = dispatchEvent('Leave', {
+            container: prev
+        });
+        //如果有data-outcallback那么就执行callback
+        cb && typeof cb === 'function' && proxyFn(cbNames, event);
+
+        //解绑事件：keypress，build
+        ['Keypress', 'Build'].forEach(function (v) {
+            var callback = dataset['on' + v];
+            callback = getCallbackFuncFromName(callback);
+            if (callback && typeof callback === 'function') {
+                prev.removeEventListener('ppt' + v, callback, true);
+            }
+        });
+    }
+
+    //预加载资源
+    //<preload data-type="js||css" data-url="">
+    function preload(node) {
+        var self = arguments.callee;
+        if (node && node.nodeType === 1) {
+            var $preload = $('preload', node),
+                len = $preload.length;
+            while (len--) {
+                var tmpNode = $preload[len],
+                    dataset = tmpNode.dataset,
+                    type = dataset.type,
+                    url = dataset.url;
+                var fn = preloadFn['load' + type.toUpperCase()];
+                typeof fn === 'function' && fn(url, function (tmpNode) {
+                    return function () {
+                        //将该标签删除，释放内存
+                        tmpNode.parentNode && tmpNode.parentNode.removeChild(tmpNode);
+                        tmpNode = null;
+                    };
+                }(tmpNode));
+            }
+        }
+        return self;
+    }
+
+
+    //单行前进
+    function buildNextItem(iscontrol) {
+        if ($body.classList.contains('overview')) {
+            return false;
+        }
+        $curSlide = $slides[curIndex];
+        //自定义事件，直接返回
+        var event = dispatchEvent($curSlide, 'Build', {
+            direction: 'next',
+            container: $curSlide
+        });
+        if (event.stopped) {
+            return event.stopped;
+        }
+
+
+        var subBuilded = toArray($('.building'), $curSlide);
+        var list;
+        if (subBuilded.length) {
+
+            while (list = subBuilded.shift()) {
+                list = list.classList
+                list.remove('building');
+                list.add('builded');
+            }
+        }
+        var toBuild = $('.tobuild', $curSlide);
+
+        if (!toBuild.length) {
+            return false;
+        }
+
+        var item = toBuild.item(0);
+        list = item.classList;
+        list.remove('tobuild');
+
+        if (list.contains('subSlide')) {
+            toArray($('.subSlide.builded', $curSlide)).forEach(function ($item) {
+                $item.classList.add('subBuilded');
+            });
+        }
+
+        list.add('building');
+        return true;
+    }
+
+    //单条往后走
+    function buildPrevItem(iscontrol) {
+        if ($body.classList.contains('overview')) {
+            return false;
+        }
+        $curSlide = $slides[curIndex];
+
+        //自定义事件，直接返回
+        var event = dispatchEvent($curSlide, 'Build', {
+            direction: 'prev',
+            container: $curSlide
+        });
+        if (event.stopped) {
+            return event.stopped;
+        }
+        var subBuilded = toArray($('.building'), $curSlide);
+        var list;
+        var buildingLen = subBuilded.length;
+        var curList;
+
+        if (buildingLen) {
+            while (list = subBuilded.shift()) {
+                var clist = list.classList
+                clist.remove('building');
+                clist.add('tobuild');
+                curList = list;
+                if (clist.contains('subSlide')) {
+                    var $item = toArray($('.subSlide.builded.subBuilded', $curSlide)).pop();
+                    $item && $item.classList.remove('subBuilded');
+                }
+            }
+        }
+        var builded = toArray($('.builded', $curSlide));
+        if (!builded.length && !buildingLen) {
+            return false;
+        }
+
+        var item = builded.pop();
+        if (item) {
+            if (!curList) {
+                curList = item;
+            }
+            list = item.classList;
+            list.remove('builded');
+            if (buildingLen === 0) {
+                list.add('tobuild');
+                item = builded.pop();
+                item.classList.remove('builded');
+                item.classList.add('building');
+            } else {
+                list.add('building');
+            }
+
+        }
+        return true;
+    }
+
+    //设置单行页面添加
+    function makeBuildLists() {
+        var i = slideCount;
+        var slide;
+        var transition = defaultOptions.transition;
+        var buildClass = '.build > *,.fadeIn > *,.rollIn > *,.moveIn > *,.bounceIn > *,.zoomIn > *,.fade > *,.subSlide';
+        while (slide = $slides[i--]) {
+
+            var $items = toArray($(buildClass, slide));
+            var dataset = slide.dataset;
+            $items.forEach(function ($v, i) {
+                $v.classList.add('tobuild');
+                if (!('index' in $v.dataset)) {
+                    $v.dataset.index = i;
+                }
+            });
+
+            if (!dataset.transition) {
+                dataset.transition = transition;
+            }
+        }
+
+    }
+
+    //切换动画
+    function doSlide(direction) {
+        // $container.style.marginLeft = -(slideID * slideWidth) + 'px';
+        updateSlideClass();
+        setProgress();
+        if (doHash) {
+            lockSlide = true;
+            $win.location.hash = "#" + curIndex;
+        }
+        slideInCallBack(direction);
+        removePaint();
+
+        if ($doc.body.classList.contains('overview')) {
+            focusOverview_();
+            return;
+        } else if (!$doc.body.classList.contains('popup')) {
+            $doc.body.classList.remove('with-notes');
+        }
+
+    }
+
+    function updateSlideClass() {
+        var curSlide = curIndex;
+        var pageClass = 'pagedown';
+        if (pastIndex === curIndex) {
+            $cur = $slides[curIndex];
+            if ($cur.classList.contains('pageup')) {
+                return;
+            }
+        }
+        if (pastIndex > curIndex) {
+            //往前翻页
+            pageClass = 'pageup';
+        } else {
+            //往后翻页
+        }
+        for (var i = 0, len = $slides.length; i < len; ++i) {
+            switch (i) {
+                case curSlide - 2:
+                    updateSlideClass_($slides[i], 'far-past', pageClass);
+                    break;
+                case curSlide - 1:
+                    updateSlideClass_($slides[i], 'past', pageClass);
+                    break;
+                case curSlide:
+                    updateSlideClass_($slides[i], 'current', pageClass);
+                    break;
+                case curSlide + 1:
+                    updateSlideClass_($slides[i], 'next', pageClass);
+                    break;
+                case curSlide + 2:
+                    updateSlideClass_($slides[i], 'far-next', pageClass);
+                    break;
+                default:
+                    updateSlideClass_($slides[i]);
+                    break;
+            }
+        }
+        $B.fire('slide.update', curIndex, 0, pageClass);
+
+    }
+
+    function overview(isFromControl) {
+        $body.classList.toggle('overview');
+        focusOverview_();
+        if (!isFromControl) {
+            $B.fire('overview');
+        }
+    }
+
+    function focusOverview_() {
+        var isOV = $doc.body.classList.contains('overview');
+        for (var i = 0, slide; slide = $slides[i]; i++) {
+            slide.style.transform = slide.style.webkitTransform = slide.style.msTransform = slide.style.mozTransform = isOV ?
+                'translateZ(-2500px) translate(' + ((i - curIndex) * 105) +
+                '%, 0%)' : '';
+            slide.style.animation = slide.style.webkitAnimation = slide.style.msAnimation = slide.style.mozAnimation = isOV ?
+                'none' : '';
+            Slide.fire(isOV ? 'overviewshown' : 'overviewhidden');
+        }
+    }
+
+    function updateSlideClass_(el, className, pageClass) {
+        // var el = $slides[slideNo];
+
+        if (!el) {
+            return;
+        }
+        if (className) {
+            el.classList.add(className);
+        }
+        if (pageClass && location.href.indexOf('_multiscreen=control') === -1 && location.href.indexOf('iscontroller=1') === -1) {
+            el.classList.add(pageClass);
+        }
+
+        var arr = ['next', 'past', 'far-next', 'far-past', 'current', 'pagedown', 'pageup'];
+        arr.forEach(function (v) {
+            if (className !== v && pageClass !== v) {
+                el.classList.remove(v);
+            }
+        });
+
+    }
+
+    //显示tips
+    function showTips(msg) {
+        if (!$slideTip) {
+            return;
+        }
+        $slideTip.innerHTML = msg;
+        $slideTip.style.display = 'block';
+        setTimeout(function () {
+            $slideTip.style.display = 'none';
+        }, 3E3);
+    }
+
+
+    /*************************events***************/
+
+    //pc键盘翻页事件逻辑
+    function evtkeydown(e) {
+        try {
+            e.preventDefault(); //j防止按键盘后，页面走位
+        } catch (err) {
+            console.log(err);
+        }
+        return false;
+    }
+
+    function evtDocUp(e) {
+        var key = e.keyCode;
+        // console.log(key);
+        var target = e.target;
+        //防止input和textarea，和可以编辑tag
+        if (/^(input|textarea)$/i.test(target.nodeName) || target.isContentEditable) {
+            return;
+        }
+        if (!e.isFromControl) {
+            $B.fire('nodepptEvent:eventKeyup', e);
+        }
+        $B.fire('slide.keyup', e);
+
+        var $curSlide = $slides[curIndex];
+        var event = dispatchEvent($curSlide, 'Keypress', {
+            keyCode: key,
+            orgiTarget: target,
+            container: $curSlide
+        });
+        if (event.stopped) {
+            return event.stopped;
+        }
+
+        switch (key) {
+            case 122:
+                //全屏
+                if (fullScreenApi.supportsFullScreen) {
+                    fullScreenApi.requestFullScreen(document.body);
+                }
+                break;
+            case 13:
+                // Enter
+                if ($doc.body.classList.contains('overview')) {
+                    overview(e.isFromControl);
+                } else {
+                    //j  幻灯片跳转
+                    var slideJumpIndex = parseInt(slideJump) - 1;
+                    if (slideJumpIndex >= 0 && slideJumpIndex <= slideCount) {
+                        jumpSlide(slideJumpIndex);
+                    }
+                }
+                slideJump = '';
+                break;
+            case 72:
+                // H: Toggle code highlighting
+                $doc.body.classList.toggle('highlight-code');
+                setTimeout(function () {
+                    $doc.body.classList.toggle('highlight-code');
+                }, 2000);
+                break;
+                // 下掉宽屏模式，默认width：100%
+            case 87:
+                // W: Toggle widescreen
+                // Only respect 'w' on body. Don't want to capture keys from an <input>.
+                if (!(e.shiftKey && e.metaKey)) {
+                    if (!$body.classList.contains('popup'))
+                        $container.classList.toggle('layout-widescreen');
+                }
+                break;
+            case 79:
+                // O: Toggle overview
+                overview(e.isFromControl);
+
+                break;
+            case 78:
+                // N
+                if (!$body.classList.contains('popup'))
+                    $doc.body.classList.toggle('with-notes');
+                break;
+            case 80:
+                //P
+                if (!$body.classList.contains('popup')) {
+                    showPaint(e.isFromControl);
+                }
+                break;
+            case 66:
+                //b
+                if ($drawBoard.context) {
+                    $drawBoard.context.strokeStyle = 'rgba(0,0,255,0.5)'; //j pen_blue
+                    break;
+                }
+            case 89:
+                //y
+                if ($drawBoard.context) {
+                    $drawBoard.context.strokeStyle = 'rgba(255,255,0,0.5)'; //pen_yellow
+                    break;
+                }
+            case 82:
+                //r
+                if ($drawBoard.context) {
+                    $drawBoard.context.strokeStyle = 'rgba(255,0,0,0.5)'; //pen_red
+                    break;
+                }
+            case 71:
+                //g
+                if ($drawBoard.context) {
+                    $drawBoard.context.strokeStyle = 'rgba(0,255,0,0.5)'; //pen_green
+                    break;
+                }
+            case 77:
+                //m
+                if ($drawBoard.context) {
+                    $drawBoard.context.strokeStyle = 'rgba(255,0,255,0.5)'; //pen_magenta
+                    break;
+                }
+            case 49:
+                //1
+                slideJump = slideJump + '1';
+                if ($drawBoard.context) {
+                    $drawBoard.context.lineWidth = 3;
+                }
+                break;
+            case 50:
+                //2
+                slideJump = slideJump + '2';
+                if ($drawBoard.context) {
+                    $drawBoard.context.lineWidth = 7;
+                }
+                break;
+            case 51:
+                //3
+                slideJump = slideJump + '3';
+                if ($drawBoard.context) {
+                    $drawBoard.context.lineWidth = 11;
+                }
+                break;
+            case 52:
+                //4
+                slideJump = slideJump + '4';
+                if ($drawBoard.context) {
+                    $drawBoard.context.lineWidth = 15; //j 笔粗细
+                }
+                break;
+            case 48:
+                slideJump = slideJump + '0';
+                break;
+            case 53:
+                slideJump = slideJump + '5';
+                break;
+            case 54:
+                slideJump = slideJump + '6';
+                break;
+            case 55:
+                slideJump = slideJump + '7';
+                break;
+            case 56:
+                slideJump = slideJump + '8';
+                break;
+            case 57:
+                slideJump = slideJump + '9'; //j 幻灯片跳转
+                break;
+            case 67:
+                //c
+                if (!$body.classList.contains('popup')) {
+                    removePaint(e.isFromControl);
+                }
+                break;
+                //上一页
+            case 33:
+                // pg up
+            case 37:
+                // left
+            case 38:
+                // up
+                prevSlide();
+                break;
+                //下一页
+            case 32:
+                // space
+            case 34:
+                // pg down
+            case 39:
+                // right
+            case 40:
+                // down
+                nextSlide();
+                break;
+        }
+
+
+    }
+
+    /******************************** Touch events *********************/
+    var isStopTouchEvent = false;
+
+    function evtTouchStart(event) {
+        if (!isStopTouchEvent && event.touches.length === 1) {
+            touchDX = 0;
+            touchDY = 0;
+            var touch = event.touches[0];
+            touchStartX = touch.pageX;
+            touchStartY = touch.pageY;
+            //捕获，尽早发现事件
+            $body.addEventListener('touchmove', evtTouchMove, true);
+            $body.addEventListener('touchend', evtTouchEnd, true);
+        }
+    }
+
+    //touch事件
+    function evtTouchMove(event) {
+        if (event.touches.length > 1) {
+            cancelTouch();
+        } else {
+            var touch = event.touches[0];
+
+            touchDX = touch.pageX - touchStartX;
+            touchDY = touch.pageY - touchStartY;
+        }
+        try {
+            event.preventDefault();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    //touchend事件
+    function evtTouchEnd(event) {
+        var dx = Math.abs(touchDX);
+        var dy = Math.abs(touchDY);
+
+        if ((dx > 15) && (dy < (dx * 2 / 3))) {
+            if (touchDX > 0) {
+                cancelTouch();
+                return createKeyEvent(38);
+                // prevSlide();
+            } else {
+                // nextSlide();
+            }
+        }
+        createKeyEvent(39);
+
+        cancelTouch();
+    }
+
+    function createKeyEvent(keyCode) {
+        var evt = document.createEvent('Event');
+        evt.initEvent('keyup', true, true);
+        evt.keyCode = keyCode;
+
+        document.dispatchEvent(evt);
+    }
+    //取消绑定
+    function cancelTouch() {
+        $body.removeEventListener('touchmove', evtTouchMove, true);
+        $body.removeEventListener('touchend', evtTouchEnd, true);
+    }
+
+    //绑定事件
+    function bindEvent() {
+        $doc.addEventListener('keyup', evtDocUp, false);
+        // $doc.addEventListener('keydown', evtkeydown, false); //j 防止页面走位
+        // $doc.addEventListener('keypress', evtkeydown, false); //j 防止页面走位
+        $body.addEventListener('touchstart', evtTouchStart, false);
+        $$('_btn-bar').addEventListener('click', function () {
+            var isOpen = false;
+            return function () {
+                if (!isOpen) {
+                    this.classList.remove('fa-bars');
+                    this.classList.add('fa-close');
+                    $$('_btn-box').style.display = 'inline-block';
+                } else {
+                    this.classList.remove('fa-close');
+                    this.classList.add('fa-bars');
+                    $$('_btn-box').style.display = 'none';
+
+                }
+                isOpen = !isOpen;
+            };
+        }(), false);
+        $$('_btn-prev').addEventListener('click', function () {
+            createKeyEvent(38);
+        }, false);
+        $$('_btn-next').addEventListener('click', function () {
+            createKeyEvent(39);
+        }, false);
+        $$('_btn-overview').addEventListener('click', function () {
+            var isOpen = false;
+            return function () {
+
+                if (isOpen) {
+                    this.classList.add('fa-compress');
+                    this.classList.remove('fa-expand');
+                } else {
+                    this.classList.add('fa-expand');
+                    this.classList.remove('fa-compress');
+                }
+
+                overview();
+                isOpen = !isOpen;
+            };
+        }(), false);
+        $$('_btn-brush').addEventListener('click', function () {
+            var isOpen = false;
+            return function () {
+                if (isOpen) {
+                    this.classList.add('fa-paint-brush');
+                    this.classList.remove('fa-eraser');
+                    removePaint();
+                } else {
+                    showPaint();
+                    this.classList.add('fa-eraser');
+                    this.classList.remove('fa-paint-brush');
+                }
+                isOpen = !isOpen;
+            };
+        }(), false);
+
+        $win.addEventListener('hashchange', function () {
+            if (location.hash && !lockSlide) {
+                doHash = false;
+                slideOutCallBack($slides[curIndex]);
+                pastIndex = curIndex;
+                curIndex = location.hash.substr(1) | 0;
+
+                doSlide();
+                doHash = true;
+            }
+            lockSlide = false;
+        }, true);
+    }
+
+
+    /***********画图部分事件处理函数************/
+    //画图前准备
+
+    function drawCanvasReady() {
+        $drawBoard.context = $drawBoard.getContext('2d');
+        var context = $drawBoard.context;
+        context.lineWidth = 3;
+        // context.lineCap = 'square'; //'round';
+        context.lineJoin = 'round'; //'bevel';
+        context.strokeStyle = 'rgba(255,0,0,0.5)'; //"red";
+    }
+
+    //显示画板
+    var isControl = 0;
+
+    function showPaint(isFromControl) {
+        if (!$drawBoard) {
+            return;
+        }
+
+        //1、将翻页停止
+        isStopTouchEvent = true;
+        //2、将管理模式去掉
+        if ($body.classList.contains('with-notes')) {
+            isControl = 1;
+            $body.classList.remove('with-notes');
+            $body.classList.remove('popup');
+        }
+        $drawBoard.width = $body.clientWidth;
+        $drawBoard.height = $body.clientHeight;
+        drawCanvasReady();
+
+        $drawBoard.style.display = '';
+        $container.style.overflow = 'hidden';
+
+        $drawBoard.addEventListener('mousedown', pMouseDown, true);
+        $drawBoard.addEventListener('mouseup', pMouseUp, true);
+        $drawBoard.addEventListener('mousemove', pMouseMove, true);
+        //滑动
+        $drawBoard.addEventListener('touchmove', pMouseMove, true);
+        $drawBoard.addEventListener('touchend', pMouseUp, true);
+        $drawBoard.addEventListener('touchcancel', pMouseUp, true);
+        $drawBoard.addEventListener('touchstart', pMouseDown, true);
+
+        $doc.addEventListener('selectstart', stopSelect, true);
+        if (!isFromControl) {
+            $B.fire('nodepptEvent:show paint');
+        }
+    }
+
+    //禁止选中
+    function stopSelect() {
+        return false;
+    }
+
+    //清除画板内容
+    function clearPaint() {
+        $container.style.overflow = '';
+        $drawBoard.context && $drawBoard.context.clearRect(0, 0, slideWidth, slideHeight);
+        $drawBoard.style.display = 'none';
+    }
+
+    //删除画板
+    var removePaint = function (isFromControl) {
+        clearPaint();
+        slideJump = ''; //j 幻灯片跳转
+        if (isControl) {
+            $body.classList.add('with-notes');
+            $body.classList.add('popup');
+        }
+        isStopTouchEvent = false;
+        $drawBoard.removeEventListener('mousedown', pMouseDown);
+        $drawBoard.removeEventListener('mouseup', pMouseUp);
+        $drawBoard.removeEventListener('mousemove', pMouseMove);
+        //滑动
+        $drawBoard.removeEventListener('touchstart', pMouseDown);
+        $drawBoard.removeEventListener('touchmove', pMouseMove);
+        $drawBoard.removeEventListener('touchend', pMouseUp);
+        $drawBoard.removeEventListener('touchcancel', pMouseUp);
+
+
+        $doc.removeEventListener('selectstart', stopSelect, true);
+        if (!isFromControl) {
+            $B.fire('nodepptEvent:remove paint');
+        }
+    };
+    var pMouseDown = function (e) {
+        $drawBoard.isMouseDown = true;
+        try { //j 触屏画笔
+            var touch = e.targetTouches[0];
+            e = touch;
+        } catch (err) {}
+        //        $drawBoard.iLastX = e.clientX - $drawBoard.offsetLeft + ($win.pageXOffset || $doc.body.scrollLeft || $doc.documentElement.scrollLeft);
+        //        $drawBoard.iLastY = e.clientY - $drawBoard.offsetTop + ($win.pageYOffset || $doc.body.scrollTop || $doc.documentElement.scrollTop);
+        var x = $drawBoard.iLastX = e.layerX || e.offsetX || (e.clientX - $drawBoard.offsetLeft + ($win.pageXOffset || $doc.body.scrollLeft || $doc.documentElement.scrollLeft));
+        var y = $drawBoard.iLastY = e.layerY || e.offsetY || (e.clientY - $drawBoard.offsetTop + ($win.pageYOffset || $doc.body.scrollTop || $doc.documentElement.scrollTop));
+        pPoints.push({
+            x: x,
+            y: y
+        });
+        return false; //j 触屏画笔
+    };
+    var pPoints = [];
+    var pMouseUp = function (e) {
+        $drawBoard.isMouseDown = false;
+        $drawBoard.iLastX = -1;
+        $drawBoard.iLastY = -1;
+        if (!e.isFromControl) {
+            $B.fire('nodepptEvent:paint points', pPoints);
+        }
+        pPoints.length = 0;
+    };
+    $B.on('controlEvent:paint points', function (data) {
+        var points = data.points;
+        //远程来的屏幕
+        var wh = data.screen;
+        var tOX = wh.width / 2,
+            tOY = wh.height / 2;
+
+        var width = $body.offsetWidth;
+        var height = $body.offsetHeight;
+        var cOX = width / 2,
+            cOY = height / 2;
+
+        var iw = width / wh.width;
+        var ih = height / wh.height;
+
+        var context = $drawBoard.context;
+        if (!context) {
+            return;
+        }
+        context.beginPath();
+        var startX = cOX - (tOX - points[0].x) * iw;
+        var startY = cOY - (tOY - points[0].y) * ih;
+        // console.log(startX, points[0].x, startY, iw, wh);
+        context.moveTo(startX, startY);
+        for (var i = 0, len = points.length; i < len; i++) {
+            context.lineTo(cOX - (tOX - points[i].x) * iw, cOY - (tOY - points[i].y) * ih);
+        }
+        context.stroke();
+    });
+    var pMouseMove = function (e) {
+        var ee = e;
+        if ($drawBoard.isMouseDown) {
+            try { //j 触屏画笔
+                var touch = e.targetTouches[0];
+                e = touch;
+            } catch (err) {
+                console.log(err);
+            }
+            //            var iX = e.clientX - $drawBoard.offsetLeft + ($win.pageXOffset || $doc.body.scrollLeft || $doc.documentElement.scrollLeft);
+            //            var iY = e.clientY - $drawBoard.offsetTop + ($win.pageYOffset || $doc.body.scrollTop || $doc.documentElement.scrollTop);
+            var iX = e.layerX || e.offsetX || (e.clientX - $drawBoard.offsetLeft + ($win.pageXOffset || $doc.body.scrollLeft || $doc.documentElement.scrollLeft));
+            var iY = e.layerY || e.offsetY || (e.clientY - $drawBoard.offsetTop + ($win.pageYOffset || $doc.body.scrollTop || $doc.documentElement.scrollTop));
+            var context = $drawBoard.context;
+            context.beginPath();
+            context.moveTo($drawBoard.iLastX, $drawBoard.iLastY);
+            context.lineTo(iX, iY);
+            context.stroke();
+            $drawBoard.iLastX = iX;
+            $drawBoard.iLastY = iY;
+            pPoints.push({
+                x: iX,
+                y: iY
+            });
+            try {
+                ee.preventDefault();
+            } catch (err) {
+                console.log(err);
+            }
+            return false; //j 触屏画笔
+        }
+    };
+
+    //代理函数，用于函数控制
+    function proxyFn(fnName, args) {
+        var cb = getCallbackFuncFromName(fnName);
+        cb(args);
+    }
+
+    /**
+     * 默认配置
+     * @type {Object}
+     */
+    var defaultOptions = {
+        containerID: 'container',
+        isControlDevice: false,
+        drawBoardID: 'drawBoard',
+        slideClass: '.slide',
+        buildClass: '.build',
+        progressID: 'progress',
+        transition: '',
+        tipID: 'tip',
+        webSocketHost: '',
+        width: 900,
+        dir: './',
+        height: 700,
+        control: false
+    };
+
+    //初始化变量
+    function initVar() {
+        $slideTip = $$(defaultOptions.tipID);
+        $container = $$(defaultOptions.containerID);
+        slideWidth = defaultOptions.width;
+        slideHeight = defaultOptions.height;
+        $progress = $$(defaultOptions.progressID);
+        Slide.$slides = $slides = toArray($(defaultOptions.slideClass, $container));
+
+        slideCount = $slides.length; //幻灯片总页数-1
+        Slide.count = slideCount;
+
+        // $container.style.width = slideCount*slideWidth + 'px';//设置容器总宽度
+        slideCount--;
+        $drawBoard = $$(defaultOptions.drawBoardID);
+        if ($drawBoard) {
+            $drawBoard.style.display = 'none';
+        }
+    }
+
+    function fullImg() {
+        loadJS(defaultOptions.dir + 'img.screenfull.js', function () {
+            //图片处理
+            var $imgs = toArray($(defaultOptions.slideClass + ' img', $container));
+            screenfull($imgs);
+        });
+    }
+
+    function loadTheme() {
+        if (defaultOptions.theme) {
+            loadCSS('/css/theme.' + defaultOptions.theme + '.css');
+        }
+    }
+
+    //如果是print则需要修改
+    function iPrint() {
+        if (QUERY && QUERY.print) {
+            toArray($('iframe[data-src]')).forEach(function (v) {
+                if (v.src.indexOf('about:blank') === 0 && v.dataset.src) {
+                    v.src = v.dataset.src;
+                }
+            });
+        }
+    }
+
+
+    //初始化
+    function init(options) {
+        options = options || {};
+
+        for (var key in defaultOptions) {
+            if (!!(key in options)) {
+                defaultOptions[key] = options[key];
+            }
+        }
+        ['theme', 'transition'].forEach(function (v) {
+            if (QUERY && QUERY[v]) {
+                defaultOptions[v] = QUERY[v];
+            }
+        });
+
+        Slide.dir = defaultOptions.dir;
+        if (defaultOptions.control) {
+            var control = defaultOptions.control;
+            loadJS(defaultOptions.dir + 'nodeppt.control.js', function () {
+                Slide.Control.load(control.type, control.args);
+            });
+        }
+
+        initVar(); //初始化变量
+        loadTheme();
+        makeBuildLists();
+        fullImg(); //图片全屏
+        bindEvent();
+        pastIndex = curIndex;
+        if (QUERY && QUERY.print) {
+            iPrint(); //打印
+        } else {
+            if (location.hash && (curIndex = (location.hash.substr(1) | 0))) {
+                doSlide();
+            } else {
+                updateSlideClass();
+                setProgress();
+                slideInCallBack();
+            }
+            preload($slides[curIndex])($slides[curIndex + 1]);
+        }
+
+        $body.style.opacity = 1;
+    }
+
+    function magic(e) {
+        var $cur = $('.magic', e.container);
+        if ($cur.length) {
+            $cur = $cur[0];
+        } else {
+            return;
+        }
+        var index = ($cur.dataset.index || 0) | 0;
+
+        var pageClass = 'pagedown';
+
+        if (e.direction === 'prev') {
+            //往前翻页
+            pageClass = 'pageup';
+        }
+        var $slides = toArray($('.magicItem', $cur));
+        var len = $slides.length;
+
+        if (!e.firstKiss) {
+            if (e.direction === 'prev') {
+                index--;
+                if (index < 0) {
+                    index = 0;
+                    $cur.dataset.index = index;
+                    //标示状态
+                    $cur.dataset.status = 'wait';
+                    return;
+                } else {
+                    e.stop();
+                }
+            } else {
+                index++;
+                if (index === len) {
+                    index = len - 1;
+                    $cur.dataset.index = index;
+                    //标示状态
+                    $cur.dataset.status = 'done';
+                    return;
+                } else {
+                    e.stop();
+                }
+            }
+            $cur.dataset.index = index;
+        }
+        if (e.firstKiss) {
+            var $curSlide = $slides[index];
+            $curSlide.addEventListener(transitionEndEvent, function () {
+                $cur.style.visibility = 'visible';
+            });
+        }
+        for (var i = 0; i < len; ++i) {
+            switch (i) {
+                case index - 2:
+                    updateSlideClass_($slides[i], 'far-past', pageClass);
+                    break;
+                case index - 1:
+                    updateSlideClass_($slides[i], 'past', pageClass);
+                    break;
+                case index:
+                    updateSlideClass_($slides[i], 'current', pageClass);
+                    break;
+                case index + 1:
+                    updateSlideClass_($slides[i], 'next', pageClass);
+                    break;
+                case index + 2:
+                    updateSlideClass_($slides[i], 'far-next', pageClass);
+                    break;
+                default:
+                    updateSlideClass_($slides[i]);
+                    break;
+            }
+        }
+
+
+    }
+    magic.init = function (e) {
+        var $cur = $('.magic', e.container);
+        if ($cur.length) {
+            $cur = $cur[0];
+        } else {
+            return;
+        }
+
+        var index = $cur.dataset.index || 0;
+        switch ($cur.dataset.status) {
+            case 'done':
+                //说明从完成的地方往前翻页
+                $cur.dataset.index = index;
+                index--;
+                break;
+            case 'wait':
+                //说明已经到了第一页了
+                break;
+            default:
+                //第一次进入
+                e.firstKiss = true;
+                magic(e);
+        }
+
+    };
+    var Slide = {
+        current: 0,
+        curItem: 0,
+        init: init,
+        setIndex: function (i, item) {
+            i--;
+            if (i < 0) {
+                i = 0;
+            }
+            jumpSlide(i);
+            if (item > 0) {
+                buildItem();
+            }
+
+            function buildItem() {
+                if (item-- <= 0) {
+                    return;
+                } else {
+                    buildNextItem();
+                }
+                setTimeout(buildItem, 300);
+            }
+            // this.curItem = item;
+        },
+        next: nextSlide,
+        prev: prevSlide,
+        doSlide: doSlide,
+        proxyFn: proxyFn,
+        showPaint: showPaint,
+        removePaint: removePaint,
+        buildNextItem: buildNextItem,
+        buildPrevItem: buildPrevItem,
+        magic: magic
+    };
+    ['on', 'un', 'fire'].forEach(function (v) {
+        Slide[v] = function () {
+            var args = toArray(arguments);
+            args[0] = 'slide.' + args[0];
+            $B[v].apply(null, args);
+        };
+    });
+
+    function getcurIndex() { //j外部控制跳转
+        return curIndex;
+    }
+
+    function jumpSlide(gotoIndex) { //j外部控制跳转
+        pastIndex = gotoIndex - 1;
+        pastIndex = pastIndex < 0 ? 0 : pastIndex;
+        curIndex = gotoIndex;
+        doSlide();
+    }
+    $win.Slide = Slide;
+    $win.jumpSlide = jumpSlide; //j外部控制跳转
+    $win.getcurIndex = getcurIndex; //j外部控制跳转
+    try {
+        if (window.console && window.console.log) {
+            console.log('Powered By nodePPT, %c https://github.com/ksky521/nodePPT', 'color:red');
+            console.log('Install nodePPT: %c npm install -g nodeppt', 'color:red');
+        }
+    } catch (e) {}
+}(window, document, MixJS.event.broadcast, MixJS.loadJS, MixJS.loadCSS));
