@@ -1,5 +1,5 @@
 title: nodejs 平台的 webscoket 的实现
-tags: [nodejs, javascript, websocket, 技术]
+tags: [javascript,技术,前端]
 date: 2013-08-07 04:43:00
 ---
 

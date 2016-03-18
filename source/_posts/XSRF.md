@@ -1,5 +1,5 @@
 title: XSRF测试题
-tags: []  
+tags: [javascript,技术,前端]
 date: 2015-01-17 00:38:04
 ---
 

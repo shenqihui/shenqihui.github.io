@@ -1,5 +1,5 @@
 title: "Django 框架关于 IE 跨域 XDomainRequest 传输的问题"
-tags: ["django", "ie", "ajax", "XDomainRequest", "corf"]
+tags: [python,技术]
 date: 2015-08-14 13:24:01
 ---
 

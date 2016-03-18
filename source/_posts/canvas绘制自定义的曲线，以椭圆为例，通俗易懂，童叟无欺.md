@@ -1,5 +1,5 @@
 title: canvas绘制自定义的曲线，以椭圆为例，通俗易懂，童叟无欺
-tags: []
+tags: [javascript,技术]
 date: 2013-08-21 04:57:00
 ---
 

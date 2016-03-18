@@ -1,5 +1,5 @@
 title: 'javascript 函数劫持'
-tags: []  
+tags: [javascript,技术,前端]
 date: 2015-02-12 00:38:04
 
 ---

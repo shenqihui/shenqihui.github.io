@@ -1,5 +1,5 @@
 title: "关于颜色的几种形式"
-tags: ['color', 'web']
+tags: [javascript,技术,前端]
 date: 2015-11-20 11:01:30
 ---
 关于颜色的几种形式

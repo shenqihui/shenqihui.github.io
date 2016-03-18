@@ -1,7 +1,7 @@
 layout: photo
 title: "我的 hexo pithy 主题"
 date: 2016-02-24 19:53:02
-tags: ['hexo', 'theme', '设计']
+tags: [技术,前端,设计]
 ---
 
 这两天，写了个 hexo 简洁主题。
