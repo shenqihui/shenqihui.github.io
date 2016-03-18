@@ -98,8 +98,8 @@ exclude:
 skip_render:
   - google9ef657bd26aea9ee.html
   - resume/**
-  - ppt/experience/*.htm
-  - ppt/experience/**/*.js
+  - ppt/experience/*.html
+  - ppt/experience/js/highlight/*.js
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
