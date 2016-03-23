@@ -27,7 +27,7 @@ comments: false
 - 本科 / XXXX大学 / XXX学院 / XX工程
 - 工作年限：3 年
 - 微博： [@神奇辉](http://weibo.com/1896403155/profile)
-- 技术博客：[http://blog.shenqh.com](http://blog.shenqh.com)
+- 博客：[http://blog.shenqh.com](http://blog.shenqh.com)
 - Github：[http://github.com/shenqihui](http://github.com/shenqihui)
 - 期望职位：前端开发工程师
 - 期望城市：广州
