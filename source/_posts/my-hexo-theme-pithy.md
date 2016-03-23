@@ -24,7 +24,7 @@ iPad 效果之 Archive ：
 ![iPad 效果](/picture/hexo-theme-pithy/pad.jpg)  
 
 iPhone 效果：
-![iPhone 效果](/picture/hexo-theme-pithy/phone.jpg)
+![iPhone 效果](/picture/hexo-theme-pithy/phone.png)
 
 ## 设计理念
 
