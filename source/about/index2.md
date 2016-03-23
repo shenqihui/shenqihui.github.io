@@ -66,9 +66,6 @@ comments: false
 ## 威创股份 （ 2013 年 03 月 ~ 2014 年 03 月 ）
 [ViSmart 可视化应用解决方案](http://www.vtron.com/products/Hrp.aspx?MID=02020303)：负责项目的测试以及代码优化，  [ViSmart 智慧城市中心高分可视化解决方案](http://www.vtron.com/products/detail2.aspx?MID=02020302)：负责三大模块系统多分辨率（超高分辨率到普通分辨率）下前端相关工作。
 
-## 经传科技  实习生（ 2012 年 11 月 ~ 2013 年 02 月 ）
-经传软件金融研究平台[研究版宣传页面](http://www.jingzhuan.cn/product/research.html)，[伊的家商城](http://www.yidejia.com) 的部分功能增加修改，[伊的家皮肤测试](http://mskin.yidejia.com)
-
 ---
 
 # 开源项目和作品
