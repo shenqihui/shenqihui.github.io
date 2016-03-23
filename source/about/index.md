@@ -3,8 +3,6 @@ date: 2016-02-23 20:27:17
 comments: false
 ---
 
-<base target="_blank" />
-
 # 神奇辉
 
 一枚前端，目前在帝都浪。
@@ -72,3 +70,16 @@ comments: false
 
 ## 参考技能关键字
 javascript, es6, html(5), css(3), python, linux, angular,  git, mac, Grunt, gulp
+
+
+<script type="text/javascript" charset="utf-8" async defer>
+  setTimeout(function() {
+    if(document && document.querySelectorAll) {
+      Array.prototype.forEach.call(document.querySelectorAll('[href^="http"]'), function(elem) {
+        if(elem.setAttribute) {
+          elem.setAttribute('target','_blank');
+        }
+      });
+    }
+  }, 100);
+</script>

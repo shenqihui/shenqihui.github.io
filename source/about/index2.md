@@ -3,8 +3,6 @@ date: 2016-02-23 20:27:17
 comments: false
 ---
 
-<base target="_blank" />
-
 # 神奇辉
 
 一枚前端，目前在帝都浪。
@@ -116,3 +114,15 @@ javascript, es6, html(5), css(3), python, linux, angular,  git, mac, Grunt, gulp
 # 致谢
 感谢您花时间阅读我的简历，期待能有机会和您共事。   
 PS: 部分链接需要在电子版里面直接点击打开网页查看，若出现网络异常，可尝试挂 VPN 访问。
+
+<script type="text/javascript" charset="utf-8" async defer>
+  setTimeout(function() {
+    if(document && document.querySelectorAll) {
+      Array.prototype.forEach.call(document.querySelectorAll('[href^="http"]'), function(elem) {
+        if(elem.setAttribute) {
+          elem.setAttribute('target','_blank');
+        }
+      });
+    }
+  }, 100);
+</script>
