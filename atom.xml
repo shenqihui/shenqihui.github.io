@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.shenqh.com/"/>
-  <updated>2016-03-18T03:19:43.000Z</updated>
+  <updated>2016-03-27T01:04:09.000Z</updated>
   <id>http://blog.shenqh.com/</id>
   
   <author>
@@ -14,6 +14,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>跳街舞的年轻人</title>
+    <link href="http://blog.shenqh.com/2016/03/27/street-dancing-boy/"/>
+    <id>http://blog.shenqh.com/2016/03/27/street-dancing-boy/</id>
+    <published>2016-03-27T00:49:46.000Z</published>
+    <updated>2016-03-27T01:04:09.000Z</updated>
+    
+    <content type="html">&lt;p&gt;昨晚，看着广场跳街舞的年轻人，一顿感慨。&lt;/p&gt;&lt;p&gt;毕竟后生仔，而我已经老去。&lt;/p&gt;&lt;hr&gt;&lt;p&gt;未完待续。&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;昨晚，看着广场跳街舞的年轻人，一顿感慨。&lt;/p&gt;&lt;p&gt;毕竟后生仔，而我已经老去。&lt;/p&gt;&lt;hr&gt;&lt;p&gt;未完待续。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>我的程序员生涯经验分享</title>
@@ -428,24 +446,6 @@
       <category term="前端" scheme="http://blog.shenqh.com/tags/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="技术" scheme="http://blog.shenqh.com/tags/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>自己收集的一堆开发有用的网址</title>
-    <link href="http://blog.shenqh.com/2014/11/04/%E8%87%AA%E5%B7%B1%E6%94%B6%E9%9B%86%E7%9A%84%E4%B8%80%E5%A0%86%E5%BC%80%E5%8F%91%E6%9C%89%E7%94%A8%E7%9A%84%E7%BD%91%E5%9D%80/"/>
-    <id>http://blog.shenqh.com/2014/11/04/自己收集的一堆开发有用的网址/</id>
-    <published>2014-11-03T19:36:00.000Z</published>
-    <updated>2015-02-15T15:41:34.000Z</updated>
-    
-    <content type="html">&lt;p&gt;1、查看 ip、ua 以及&amp;nbsp;X Forwarded For，来自v2的，平常识别下自己的机器信息。&amp;nbsp;&lt;a href=&quot;http://www.v2ex.com/ua&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.v2ex.com/ua&lt;/a&gt;&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;2、楼下补充&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;1、查看 ip、ua 以及&amp;nbsp;X Forwarded For，来自v2的，平常识别下自己的机器信息。&amp;nbsp;&lt;a href=&quot;http://www.v2ex.com/ua&quot;&gt;http://www.v2ex.com/ua&lt;/a&gt;&lt;br&gt;
-    
-    </summary>
-    
     
   </entry>
   
