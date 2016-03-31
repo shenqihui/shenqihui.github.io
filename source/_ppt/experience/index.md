@@ -50,6 +50,7 @@ Blog: [http://blog.shenqh.com](http://blog.shenqh.com)
   * weibo 
   * twitter
   * v2ex
+* [知道创宇研发技能表](http://blog.knownsec.com/Knownsec_RD_Checklist/v3.0.html)
 
 [slide]
 # 废话2
