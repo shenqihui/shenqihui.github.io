@@ -26,3 +26,17 @@ date: 2016-02-24 15:44:13
 [jay](http://www.devjay.com/)  
 [David Jones](http://blog.davidkk.com/)
 [行之](http://lvyaojia.sinaapp.com/)
+
+
+
+<script type="text/javascript" charset="utf-8" async defer>
+  setTimeout(function() {
+    if(document && document.querySelectorAll) {
+      Array.prototype.forEach.call(document.querySelectorAll('[href^="http"]'), function(elem) {
+        if(elem.setAttribute) {
+          elem.setAttribute('target','_blank');
+        }
+      });
+    }
+  }, 100);
+</script>
