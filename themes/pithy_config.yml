@@ -5,8 +5,6 @@ menu:
   Link: /link
   Weibo: http://www.weibo.com/p/1005051896403155
   Github: https://github.com/shenqihui
-  Mail: mailto:c2hlbnFpaHVpMDkyMEBnbWFpbC5jb20K
-  Rss: /atom.xml
   About: /about
 
 rss: /atom.xml
@@ -41,3 +39,8 @@ excerpt:
 tagcloud:
   start_color: '#777777'
   end_color: '#111111'
+
+# font config.
+font:
+  # body: STFangSong, simSun, 宋体, serif
+  # pre: Monaco, Consolas, monospace
