@@ -15,6 +15,7 @@ date: 2016-02-24 15:44:13
 
 ### 我的 PPT
 [我的程序员经验分享](http://blog.shenqh.com/ppt/experience/)
+[程序员交流会](http://blog.shenqh.com/ppt/the_pragmatic_programmer)
 
 ## 友情链接
 
