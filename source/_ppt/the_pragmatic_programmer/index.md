@@ -18,32 +18,44 @@ theme: dark
 
 # 交流会
 
-基本上就是程序员交流会吧
+一场程序员的交流会
 
-## 交流大概内容
+[slide]
 
-* 程序员社交 {:&.moveIn}
+# 交流大概内容
+
+* 交流会是什么 {:&.moveIn}
+* 知道创宇研发技能表
+* 程序员的社交 
 * 知识获取
 * 学什么、用什么？
 * 工具控
-* 问题的引起和解决
+* debug 、 解决需求  
 * 程序员的能力
 
 
 [slide]
-# 什么是交流会
+# 交流会是什么
 
-* 话题引导  {:&.moveIn}
-* 你说一句我说一句。  
-* 想说啥，打断还是不打断另外再说。   
-* 只是，千万不要像老罗 VS 王自如一样，那是不礼貌。  
-* 怎么进行交流（普通谈话）：
-  * 每次交流，都会有回应方 {:&.moveIn}
-  * 一个问题、意见、事件，都需要指定回应方，可能是一人、多人。
-  * 否则：
-    * 自言自语 {:&.moveIn}
-    * 无病呻吟
-* 下面开始进行交流
+* 有话题引导  {:&.moveIn}  
+* 你说一句我说一句   
+* 取长补短  
+* 要表述的时候，打断还是不打断另外再说  
+  * 只是，千万不要像老罗 VS 王自如一样，那是不礼貌的  
+  * 等我把话说完  
+* 怎么进行交流（普通谈话、通知、讨论，都算交流）：
+  * 每次交流，都应有回应方 {:&.moveIn}
+  * 都需要指定回应方，可能是一人、多人
+
+* # 下面开始进行交流，每个人都要发表意见
+
+[slide]
+
+# 知道创宇研发技能表
+
+花三十分钟讨论这个
+
+[http://blog.knownsec.com/Knownsec_RD_Checklist/v3.0.html](http://blog.knownsec.com/Knownsec_RD_Checklist/v3.0.html)
 
 [slide]
 
@@ -51,8 +63,7 @@ theme: dark
 
 花十分钟讨论这个问题
 
-* 每人说说自己对这个的理解   {:&.moveIn}  
-* github
+* github  {:&.moveIn}  
   * watch {:&.moveIn}
   * issue
   * pr
@@ -67,15 +78,14 @@ theme: dark
 
 花十分钟讨论这个问题
 
-* 每人说说自己对这个的理解  
 * github
 * stackoverflow
 * v2ex 、 知乎 、 cnodejs 
 * cnblog 、 csdn
-* quora 、 twitter 、
-* 新的  
-* 邮件组 、 码农周刊   
-* 一手信息、二手信息  
+* quora 、 twitter 
+
+* 邮件组 、 码农周刊 (new)   
+* 一手信息、二手信息 （new) 
 
 [slide]
 
@@ -83,8 +93,7 @@ theme: dark
 
 花十分钟讨论这个问题
 
-* 每人说说自己对这个的理解 {:&.moveIn}   
-* ![book.jpg](/book.jpg)  
+* ![book.jpg](/book.jpg)   {:&.moveIn}   
   * 挑出自己打死不看的那本 {:&.moveIn}
   * 为啥不看
 * 术业有专攻
@@ -99,23 +108,22 @@ theme: dark
 
 花十分钟讨论这个问题
 
-* 每人说说自己对这个的理解 {:&.moveIn}   
-* 工欲善其事，必先利其器   
+* 工欲善其事，必先利其器  {:&.moveIn}    
 * 磨刀不误砍柴
 
 [slide]
 
 # 问题的引起和解决
 
-在程序员眼里，就算 debug 、解决需求 吧。  
+debug 、解决需求
 
 花十分钟讨论这个问题
 
-* 每人说说自己对这个的理解 {:&.moveIn}   
-* 找出原因  
+* 找出原因  {:&.moveIn}    
 * 解决问题
 * 效率问题
 * 性能问题
+
 
 
 [slide]
@@ -124,17 +132,26 @@ theme: dark
 
 花十分钟讨论这个问题
 
-* 每人说说自己对这个的理解 {:&.moveIn}   
-* [程序员需要具备的基本技能](http://coolshell.cn/articles/428.html)
+* [程序员需要具备的基本技能](http://coolshell.cn/articles/428.html)  {:&.moveIn}   
 * [程序员技术练级攻略](http://coolshell.cn/articles/4990.html)
 * [如何面试程序员？](http://www.ruanyifeng.com/blog/2010/12/how_to_interview_a_programmer.html)
 * [程序员进阶宝典](http://www.jianshu.com/p/88cc0e0b9b18)
+* 专业领域能力，视野，思想
 * 这是一个问题，自己进行解决。
+
+
 
 [slide]
 
-# 最后赠送一张图
+# 最后
 
-![p.jpg](/p.jpg)
+* 赠送一张图 ![p.jpg](/p.jpg)  {:&.moveIn}    
+* 我们俩都是年轻人，要将自己献身于伟大事业的开创，我们是天生的魔术师，但我们不会用自己的天赋去伤害任何人。 -- 阿尔弗雷德·波登 《致命魔术》
+* [知道创宇研发技能表v3.0](http://blog.knownsec.com/Knownsec_RD_Checklist/v3.0.html)  
+  * 完成一件事有好几条途径，优秀的人的途径最短  {:&.moveIn}    
+  * 任何科学研究最终必须至少到哲学层面，触碰到上帝的脚
+* 技能提升，思想提升
+
+* # END
 
 
