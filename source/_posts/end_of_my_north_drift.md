@@ -11,14 +11,15 @@ tags: ['life']
 ---
 
 从广州直接到北京，入职知道创宇，加入 404 ，搞 [ZoomEye](http://www.zoomeye.org/) ，使我迅速成长起来。
-我的整个北漂的生涯，已知道创宇贯穿。  
+我的整个北漂的生涯，以知道创宇贯穿。  
 
 --- 
 
 ## 知道创宇足球队  
 
-![足球](/picture/knownsec_life/football1.jpg)  
-![足球](/picture/knownsec_life/football2.jpg)  
+<!-- ![足球](/picture/knownsec_life/football1_s.jpg)   -->
+![足球](/picture/knownsec_life/football2_s.jpg)  
+[高清大图](/picture/knownsec_life/football2_s.jpg)  
 (给路人甲的提示：前排绿色球鞋的是我)  
 
 最后的一场球，来的人挺多，望京南湖体育公园，2016 年 04 月 20 日，晚， 六点到八点。  
