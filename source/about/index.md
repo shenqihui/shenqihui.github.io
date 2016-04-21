@@ -5,7 +5,8 @@ comments: false
 
 # 神奇辉
 
-一枚前端，目前在帝都浪。
+一枚前端，目前在广州。
+曾经北漂过，如今还是安安稳稳呆在广州，陪着家人。
 
 ---
 
@@ -24,12 +25,10 @@ comments: false
 - XXX / 男 / XXXX
 - 本科 / XXXX大学 / XXX学院 / XX工程
 - 工作年限：3 年
-- 微博： [@神奇辉](http://weibo.com/1896403155/profile)
-- 博客：[http://blog.shenqh.com](http://blog.shenqh.com)
 - Github：[http://github.com/shenqihui](http://github.com/shenqihui)
+- 博客：[http://blog.shenqh.com](http://blog.shenqh.com)
+- 微博： [@神奇辉](http://weibo.com/1896403155/profile)
 - 期望职位：前端开发工程师
-- 期望城市：广州
-- 当前城市：北京
 
 ---
 
@@ -51,25 +50,25 @@ comments: false
 ## 内部分享
 - [Git 最佳实践](http://blog.shenqh.com/2015/01/29/best-practices-of-git/)： [PPT](http://blog.shenqh.com/pdf/best-practices-of-git.shenqihui.pdf)， 2015 年 3 月。
 - [我的程序员经验分享](http://blog.shenqh.com/ppt/experience/) ， 2016 年 3 月。
+- [程序员交流会](http://blog.shenqh.com/ppt/the_pragmatic_programmer/) ， 2016 年 4 月。
 
 ---
 
 # 技能清单
 以下均为我熟练使用的技能
 
+- 前端框架：Bootstrap / AngularJS / jQuery / D3.js / ECharts 
+- 前端工具：Bower / Gulp / Less / Grunt / Npm / Npm Script
+- 版本管理、文档和自动化部署工具： Git / Fabric / Webhook
+- 开发工具：Mac / Ubuntu / ST3 / Vim / Vagrant / Github Desktop 
 - Web开发：Python
 - Web框架：Django
-- 前端框架：Bootstrap / AngularJS / jQuery / D3.js / ECharts
-- 前端工具：Bower / Gulp / Less / Grunt / Npm / Npm Script
-- 数据库相关：MySQL / Mongo
-- 版本管理、文档和自动化部署工具： Git / fabric / webhook
-- 单元测试：karma / jasmine
-- 开发工具：Mac / ubuntu / ST3 / vim / Vagrant / docker / Github Desktop 
 
-另外： React 入门，ES 6 入门，XSS 入门，网站安全知识入门，熟悉 ES 、 redis 等数据库。
+另外，入门的技能： Nodejs 、 React ，React-Native ，ES 6 ，XSS ，Webpack ，网站安全知识，ES 、 Redis 、 MySQL 、 Mongo 等， Docker ， karma ， Jasmine 。
 
 ## 参考技能关键字
-javascript, es6, html(5), css(3), python, linux, angular,  git, mac, Grunt, gulp
+Javascript, ES5/6, HTML(5), CSS(3), Python, Linux, Angular,  Git, Mac, Grunt, Gulp
+
 
 
 <script type="text/javascript" charset="utf-8" async defer>
