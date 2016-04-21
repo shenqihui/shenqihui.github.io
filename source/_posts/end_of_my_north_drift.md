@@ -19,7 +19,7 @@ tags: ['life']
 
 <!-- ![足球](/picture/knownsec_life/football1_s.jpg)   -->
 ![足球](/picture/knownsec_life/football2_s.jpg)  
-[高清大图](/picture/knownsec_life/football2_s.jpg)  
+[高清大图](/picture/knownsec_life/football2.jpg)  
 (给路人甲的提示：前排绿色球鞋的是我)  
 
 最后的一场球，来的人挺多，望京南湖体育公园，2016 年 04 月 20 日，晚， 六点到八点。  
