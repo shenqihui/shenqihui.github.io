@@ -69,7 +69,7 @@ tags: ['life']
 
 其他小朋友们：
 
-一笔带过了，不能暴露过多信息。
+一笔带过了，不能暴露过多信息。谢谢你们的陪伴。
 
 ---
 
@@ -83,7 +83,6 @@ tags: ['life']
 ![卡片背面](/picture/knownsec_life/ka2.jpg)
 ![猴子](/picture/knownsec_life/wawa1.jpg)
 
-一笔带过了，不能暴露过多信息。谢谢你们的陪伴。
 
 ---
 
