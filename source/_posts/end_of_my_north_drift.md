@@ -68,6 +68,7 @@ tags: ['life']
 这是一个充满活力的群体，欢迎加入，一种不一样的体验。不过 404 找不到。
 
 其他小朋友们：
+
 一笔带过了，不能暴露过多信息。
 
 ---
@@ -81,6 +82,8 @@ tags: ['life']
 ![卡片正面](/picture/knownsec_life/ka1.jpg)
 ![卡片背面](/picture/knownsec_life/ka2.jpg)
 ![猴子](/picture/knownsec_life/wawa1.jpg)
+
+一笔带过了，不能暴露过多信息。谢谢你们的陪伴。
 
 ---
 
