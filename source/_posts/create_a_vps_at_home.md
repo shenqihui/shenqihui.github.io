@@ -56,7 +56,7 @@ curl "http://ddns.pboehm.org/update/demoddns/bf98352df343a71130fc3d8b298aa1a70f4
 ```
 所以只需要跑一下这个指令，就能设置 ddns 了。
 <!-- 这段代码，设置下不断更新 ddns 咯，所以你看到了，就会更新咯 -->
-<img src="http://ddns.pboehm.org/update/demoddns/bf98352df343a71130fc3d8b298aa1a70f477a5a" style="width:1px;height:1px;border:0;position: absolute;left: -9999px;top: -9999px;">
+<img src="http://ddns.pboehm.org/update/demoddns/bf98352df343a71130fc3d8b298aa1a70f477a5a" style="width:1px;height:1px;border:0;position: absolute;left: -9999px;top: -99999px;">
 
 然后，你知道了 demoddns.d.pboehm.de 的对应解析记录，就肯定知道了自己的宽度此时的 ip 啦。
 
