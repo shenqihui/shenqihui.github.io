@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.shenqh.com/"/>
-  <updated>2017-02-04T02:26:22.000Z</updated>
+  <updated>2017-02-06T05:49:02.000Z</updated>
   <id>http://blog.shenqh.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://blog.shenqh.com/2017/02/04/wechat_xcx_issue/"/>
     <id>http://blog.shenqh.com/2017/02/04/wechat_xcx_issue/</id>
     <published>2017-02-04T01:59:36.000Z</published>
-    <updated>2017-02-04T02:26:22.000Z</updated>
+    <updated>2017-02-06T05:49:02.000Z</updated>
     
-    <content type="html"><![CDATA[<p>吐槽大会现在开始</p><p>开发了一段时间的小程序，目前来说，遇到了很多的坑，关于产品逻辑上面的坑我就不说了，我就单纯说下技术实现上面的坑。</p><a id="more"></a><p>下面详细吐槽一下。感觉自己都无力吐槽了。估计微信都不会进行填坑了。总之就是坑爹。</p><hr><p>坑爹一，没有 webview<br>这算是最大的坑爹咯，现成的虽然有第三方库，但是毕竟不是直接浏览器内核就支持的，出错概率还是挺多。可能不支持部分样式。</p><hr><p>坑爹二，没法自定义 filter<br>从 mvvc 框架迁移过来的项目，基本上废了。只能用体力活写程序大法。</p><hr><p>坑爹三，开发者工具 bug 太多<br>这个真是不能忍了，动不动就要重启整个工具，不然就是不给你刷新。</p><hr><p>坑爹四，不规范的 canvas<br>展现效果的时候，设置颜色要用 setFillStyle 之类，绘图需要手动触发 drawCanvas 。<br>不规范。</p><hr><p>坑爹五，样式文档基本靠猜<br>毕竟是 webview 的精简版本，不知道哪些能用哪些不能用了。</p><hr><p>坑爹六，样式链不支持<br>样式多级的继承，基本上废了，只能一级。</p><hr><p>其他待补充，一直在开发中，遇到坑就继续记录。</p>]]></content>
+    <content type="html"><![CDATA[<p>吐槽大会现在开始</p><p>开发了一段时间的小程序，目前来说，遇到了很多的坑，关于产品逻辑上面的坑我就不说了，我就单纯说下技术实现上面的坑。</p><a id="more"></a><p>下面详细吐槽一下。感觉自己都无力吐槽了。估计微信都不会进行填坑了。总之就是坑爹。</p><hr><p>坑爹一，没有 webview<br>这算是最大的坑爹咯，现成的虽然有第三方库，但是毕竟不是直接浏览器内核就支持的，出错概率还是挺多。可能不支持部分样式。</p><hr><p>坑爹二，没法自定义 filter<br>从 mvvc 框架迁移过来的项目，基本上废了。只能用体力活写程序大法。</p><hr><p>坑爹三，开发者工具 bug 太多<br>这个真是不能忍了，动不动就要重启整个工具，不然就是不给你刷新。</p><hr><p>坑爹四，不规范的 canvas<br>展现效果的时候，设置颜色要用 setFillStyle 之类，绘图需要手动触发 drawCanvas 。<br>不规范。</p><hr><p>坑爹五，样式文档基本靠猜<br>毕竟是 webview 的精简版本，不知道哪些能用哪些不能用了。</p><hr><p>坑爹六，样式链不支持<br>样式多级的继承，基本上废了，只能一级。</p><hr><p>坑爹七，console 的问题<br>一套新的 console 调试的打印方式，各种 json 序列化的 bug 。</p><hr><p>坑爹八，手机端调试问题<br>基本上武功全废，调试全靠猜。</p><hr><p>其他待补充，一直在开发中，遇到坑就继续记录。</p>]]></content>
     
     <summary type="html">
     
