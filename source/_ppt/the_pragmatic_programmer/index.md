@@ -1,5 +1,5 @@
 title: 交流会
-speaker: 神奇辉
+speaker: me
 url: http://blog.shenqh.com
 transition: zoomin/cards/slide
 theme: dark
@@ -26,23 +26,23 @@ theme: dark
 
 * 交流会是什么 {:&.moveIn}
 * 知道创宇研发技能表
-* 程序员的社交 
+* 程序员的社交
 * 知识获取
 * 学什么、用什么？
 * 工具控
-* debug 、 解决需求  
+* debug 、 解决需求
 * 程序员的能力
 
 
 [slide]
 # 交流会是什么
 
-* 有话题引导  {:&.moveIn}  
-* 你说一句我说一句   
-* 取长补短  
-* 要表述的时候，打断还是不打断另外再说  
-  * 只是，千万不要像老罗 VS 王自如一样，那是不礼貌的  
-  * 等我把话说完  
+* 有话题引导  {:&.moveIn}
+* 你说一句我说一句
+* 取长补短
+* 要表述的时候，打断还是不打断另外再说
+  * 只是，千万不要像老罗 VS 王自如一样，那是不礼貌的
+  * 等我把话说完
 * 怎么进行交流（普通谈话、通知、讨论，都算交流）：
   * 每次交流，都应有回应方 {:&.moveIn}
   * 都需要指定回应方，可能是一人、多人
@@ -63,14 +63,14 @@ theme: dark
 
 花十分钟讨论这个问题
 
-* github  {:&.moveIn}  
+* github  {:&.moveIn}
   * watch {:&.moveIn}
   * issue
   * pr
 * stackoverflow
-* v2ex 、 知乎 、 cnodejs 
+* v2ex 、 知乎 、 cnodejs
 * cnblog 、 csdn
-* quora 、 twitter 
+* quora 、 twitter
 
 [slide]
 
@@ -80,12 +80,12 @@ theme: dark
 
 * github
 * stackoverflow
-* v2ex 、 知乎 、 cnodejs 
+* v2ex 、 知乎 、 cnodejs
 * cnblog 、 csdn
-* quora 、 twitter 
+* quora 、 twitter
 
-* 邮件组 、 码农周刊 (new)   
-* 一手信息、二手信息 （new) 
+* 邮件组 、 码农周刊 (new)
+* 一手信息、二手信息 （new)
 
 [slide]
 
@@ -93,7 +93,7 @@ theme: dark
 
 花十分钟讨论这个问题
 
-* ![book.jpg](/book.jpg)   {:&.moveIn}   
+* ![book.jpg](/book.jpg)   {:&.moveIn}
   * 挑出自己打死不看的那本 {:&.moveIn}
   * 为啥不看
 * 术业有专攻
@@ -108,7 +108,7 @@ theme: dark
 
 花十分钟讨论这个问题
 
-* 工欲善其事，必先利其器  {:&.moveIn}    
+* 工欲善其事，必先利其器  {:&.moveIn}
 * 磨刀不误砍柴
 
 [slide]
@@ -119,7 +119,7 @@ debug 、解决需求
 
 花十分钟讨论这个问题
 
-* 找出原因  {:&.moveIn}    
+* 找出原因  {:&.moveIn}
 * 解决问题
 * 效率问题
 * 性能问题
@@ -132,7 +132,7 @@ debug 、解决需求
 
 花十分钟讨论这个问题
 
-* [程序员需要具备的基本技能](http://coolshell.cn/articles/428.html)  {:&.moveIn}   
+* [程序员需要具备的基本技能](http://coolshell.cn/articles/428.html)  {:&.moveIn}
 * [程序员技术练级攻略](http://coolshell.cn/articles/4990.html)
 * [如何面试程序员？](http://www.ruanyifeng.com/blog/2010/12/how_to_interview_a_programmer.html)
 * [程序员进阶宝典](http://www.jianshu.com/p/88cc0e0b9b18)
@@ -145,10 +145,10 @@ debug 、解决需求
 
 # 最后
 
-* 赠送一张图 ![p.jpg](/p.jpg)  {:&.moveIn}    
+* 赠送一张图 ![p.jpg](/p.jpg)  {:&.moveIn}
 * 我们俩都是年轻人，要将自己献身于伟大事业的开创，我们是天生的魔术师，但我们不会用自己的天赋去伤害任何人。 -- 阿尔弗雷德·波登 《致命魔术》
-* [知道创宇研发技能表v3.0](http://blog.knownsec.com/Knownsec_RD_Checklist/v3.0.html)  
-  * 完成一件事有好几条途径，优秀的人的途径最短  {:&.moveIn}    
+* [知道创宇研发技能表v3.0](http://blog.knownsec.com/Knownsec_RD_Checklist/v3.0.html)
+  * 完成一件事有好几条途径，优秀的人的途径最短  {:&.moveIn}
   * 任何科学研究最终必须至少到哲学层面，触碰到上帝的脚
 * 技能提升，思想提升
 

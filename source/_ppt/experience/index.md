@@ -1,5 +1,5 @@
 title: 我的程序员经验分享
-speaker: 神奇辉
+speaker: me
 url: http://blog.shenqh.com
 transition: zoomin/cards/slide
 theme: dark
@@ -15,10 +15,8 @@ theme: dark
 # 我的程序员经验分享
 
 
-神奇辉  
-微博：[@神奇辉](http://www.weibo.com/p/1005051896403155)  
-Github：[shenqihui](https://github.com/shenqihui)  
-Blog: [http://blog.shenqh.com](http://blog.shenqh.com)  
+Github：[shenqihui](https://github.com/shenqihui)
+Blog: [http://blog.shenqh.com](http://blog.shenqh.com)
 
 [slide]
 # 分享目录
@@ -47,7 +45,7 @@ Blog: [http://blog.shenqh.com](http://blog.shenqh.com)
 * 程序员社交网站
   * github {:&.moveIn}
   * cnblog
-  * weibo 
+  * weibo
   * twitter
   * v2ex
 * [知道创宇研发技能表](http://blog.knownsec.com/Knownsec_RD_Checklist/v3.0.html)
@@ -60,7 +58,7 @@ Blog: [http://blog.shenqh.com](http://blog.shenqh.com)
   * 只是初一年级，但已经有了近5年的网络安全技术的学习和实践经验
   * 初中获得 ** 计算机大赛 ** 奖励
   * 高中获得 ** 计算机编程大赛一等奖，保送 ** 大学
-  * ** 以上几条都是假的，→_→ ** 
+  * ** 以上几条都是假的，→_→ **
   * 考大学时候，文科不是我的料，理科，化学没意思，物理弱鸡，其他，没兴趣，还是对计算机更感兴趣吧
   * ![word_lrean_m.jpg](/word_lrean_m.jpg)
   * ![word_lrean_m1.jpg](/word_lrean_m1.jpg)
@@ -71,7 +69,7 @@ Blog: [http://blog.shenqh.com](http://blog.shenqh.com)
 
 参考链接：http://www.stutostu.com/?p=1395
 
-* 什么是 vagrant 
+* 什么是 vagrant
   * Create and configure lightweight, reproducible, and portable development environments.
   * Development environments made easy.
   * 因开发环境而生
@@ -137,7 +135,7 @@ end
 
 [slide]
 # vagrant 实例
-1.4M GIF, 时长 2 min ， 一次播放，想重复看刷新页面即可。  
+1.4M GIF, 时长 2 min ， 一次播放，想重复看刷新页面即可。
 看到 `vagrant@ubuntu-14:~$ ls` 就结束了。
 ![vagrant_hello.gif](/vagrant_hello.gif)
 
@@ -162,10 +160,10 @@ end
   * 如果有人写好了 Dockerfile ， 那就用吧。  {:&.moveIn}
   * ci 测试使用这个来快速搭建环境。
   * 用来开发，不建议，调试比较坑。
-  * 总要学着玩下，踩下坑的。 
+  * 总要学着玩下，踩下坑的。
 
 [slide]
-# git 
+# git
 
 * 是啥？ {:&.moveIn}
   * 目前最流行的版本管理工具 {:&.moveIn}
@@ -191,9 +189,9 @@ end
 
 # 用来干啥的？
 
-* 查看 history  
-* 进行 commit ，特别是一个文件中的其中几行的 commit 
-* 无冲突分支 push 
+* 查看 history
+* 进行 commit ，特别是一个文件中的其中几行的 commit
+* 无冲突分支 push
 * 其他操作呢？终端运行吧。
 
 
@@ -257,21 +255,21 @@ end
 ```
 
 [slide]
-举个 js 领域的例子：js 数组排序的问题  
+举个 js 领域的例子：js 数组排序的问题
 为什么返回不同返回值，排序顺序就不同？
 
 * 内部就是一个排序算法，进行了元素对比，然后插入  {:&.moveIn}
-* 我猜测是快排  
+* 我猜测是快排
 * “sort() 方法对数组的元素做原地的排序，并返回这个数组。 sort 可能不是稳定的。默认按照字符串的Unicode码位点（code point）排序。”
 * 出自：[MDN> Web 技术文档> JavaScript> JavaScript 参考文档> JavaScript 标准库> Array> Array.prototype.sort()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 
-* ![array_sort.jpg](/array_sort.jpg)  
+* ![array_sort.jpg](/array_sort.jpg)
 * 图参考[javascript Array.prototype.sort 排序浅谈](http://imweb.io/topic/565cf7253ad940357eb99881) 。不去求证了。
 
 
 [slide]
 # 感谢
-感谢大家  
+感谢大家
 感谢 nodePPT
 
 [slide]

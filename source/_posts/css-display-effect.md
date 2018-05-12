@@ -21,5 +21,5 @@ float 了的元素，就会变成 block 类型的了。
 
 详情参看：
 
-<p data-height="268" data-theme-id="0" data-slug-hash="eZpNGq" data-default-tab="result" data-user="shenqihui" class="codepen">See the Pen <a href="http://codepen.io/shenqihui/pen/eZpNGq/">display effect</a> by 神奇辉 (<a href="http://codepen.io/shenqihui">@shenqihui</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="eZpNGq" data-default-tab="result" data-user="shenqihui" class="codepen">See the Pen <a href="http://codepen.io/shenqihui/pen/eZpNGq/">display effect</a> on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>

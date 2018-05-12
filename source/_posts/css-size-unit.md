@@ -33,12 +33,12 @@ tags: [技术,前端,css]
 
 Codepen 例子（我 fork 的）：
 
-<p data-height="268" data-theme-id="0" data-slug-hash="wGKKvN" data-default-tab="result" data-user="shenqihui" class="codepen">See the Pen <a href="http://codepen.io/shenqihui/pen/wGKKvN/">Testing of Length units</a> by 神奇辉 (<a href="http://codepen.io/shenqihui">@shenqihui</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="268" data-theme-id="0" data-slug-hash="wGKKvN" data-default-tab="result" data-user="shenqihui" class="codepen">See the Pen <a href="http://codepen.io/shenqihui/pen/wGKKvN/">Testing of Length units</a> on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 
 
 
-参看：  
+参看：
 [CSS的长度单位](http://www.w3cplus.com/css/the-lengths-of-css.html)
-[七个你可能不了解的CSS单位](http://www.w3cplus.com/css/7-css-units-you-might-not-know-about.html) 
+[七个你可能不了解的CSS单位](http://www.w3cplus.com/css/7-css-units-you-might-not-know-about.html)

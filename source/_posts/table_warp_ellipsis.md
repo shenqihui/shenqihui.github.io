@@ -5,7 +5,7 @@ categories: [BLOG,文章]
 ---
 
 今天谈谈 table 中 warp 和 ellipsis 问题。
-table（display:table 形式，下同） 元素， 会随着子元素的高度和宽度直接进行缩放， 自定义的宽度高度基本不起作用，这也是 table 设定的目的。  
+table（display:table 形式，下同） 元素， 会随着子元素的高度和宽度直接进行缩放， 自定义的宽度高度基本不起作用，这也是 table 设定的目的。
 但是，如果 table 中存在超级长的无法 warp 的单词，想要直接进行 ellipsis 展现，就必须进行特殊的设定。
 
 下面我来讲讲这个的技术细节：
@@ -16,7 +16,7 @@ table（display:table 形式，下同） 元素， 会随着子元素的高度�
 
 # 例子，眼见为实
 
-<p data-height="500" data-theme-id="0" data-slug-hash="zrEMOj" data-default-tab="result" data-user="shenqihui" class='codepen'>See the Pen <a href='http://codepen.io/shenqihui/pen/zrEMOj/'>zrEMOj</a> by 神奇辉 (<a href='http://codepen.io/shenqihui'>@shenqihui</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p data-height="500" data-theme-id="0" data-slug-hash="zrEMOj" data-default-tab="result" data-user="shenqihui" class='codepen'>See the Pen <a href='http://codepen.io/shenqihui/pen/zrEMOj/'>zrEMOj</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 ---
@@ -26,8 +26,8 @@ table（display:table 形式，下同） 元素， 会随着子元素的高度�
 ---
 
 ## 例子一：任性，随便超出
-不进行任何的处理，最基础的表格，我猜测这种情况在网站开发的时候估计会很少发生的。  
-无需讲解。  
+不进行任何的处理，最基础的表格，我猜测这种情况在网站开发的时候估计会很少发生的。
+无需讲解。
 
 ---
 
@@ -38,12 +38,12 @@ tag {
   word-break: break-all;
 }
 ```
-这个就是影响强制换行的主要代码，一般连用，最重要的就是 `word-break` 这个属性，能把所有的非正常 break 的单词进行强制单词。  
+这个就是影响强制换行的主要代码，一般连用，最重要的就是 `word-break` 这个属性，能把所有的非正常 break 的单词进行强制单词。
 
 ---
 
 ## 例子三： 限定高度，进行超出的 ellipsis 。
-一般这种需求，在进行列表形式的内容展示时候会经常用到。  
+一般这种需求，在进行列表形式的内容展示时候会经常用到。
 
 例如：如果其中一列的文字超长，采用例子二的解决方式，会造成整个页面的不平衡。而这个时候，大部分是在展现的时候进行 ellipsis 隐藏提醒，如果用户 hover 或者其他方式时候，再采用 title 的方式进行提醒等等。
 
@@ -93,5 +93,5 @@ tag {
 
 上面三个技术点的讲解，估计能理解上面为什么用那些 css 就能处理文本的超出或者 ellipsis 了。
 
-在 `td` 中， 使用了 `.td-overflow-container` ，定义了其宽度高度，使用了 relative 的定位，使 `.td-overflow` 有了定位的参考。  
+在 `td` 中， 使用了 `.td-overflow-container` ，定义了其宽度高度，使用了 relative 的定位，使 `.td-overflow` 有了定位的参考。
 这个时候， `.td-overflow` 就知道了其宽度和高度了，具体的 `text-overflow` 或者 `overflow` 就能和普通的 block 类型的元素一样的处理方式了。
