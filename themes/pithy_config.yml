@@ -42,5 +42,5 @@ tagcloud:
 
 # font config.
 font:
-  # body: STFangSong, simSun, 宋体, serif
-  # pre: Monaco, Consolas, monospace
+  body: 'Raleway', sans-serif
+  pre: Monaco, Consolas, monospace
