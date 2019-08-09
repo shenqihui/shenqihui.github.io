@@ -22,7 +22,7 @@ comments: false
 ---
 
 ## 简历总结
-现在的工作中，主要负责 前端技术的架构 、 前端人员招聘到培养管理 、 部门开发任务分发安排。
+现在的工作中，主要负责 前端技术的架构及调研 、 前端人员招聘到培养管理 、 部门开发任务分发安排， 协调产品与技术之间的工作。
 主要使用的技能点有 React / antd / dva / RESTful / graphql / Scss / Less / Taro / git 。
 在以往的工作中，曾使用 Angular 1 / wepy / Python + Django / ES,Mysql,Redis,Mongo ，目前由于业务没用上，基本上处于技能闲置状态。
 
