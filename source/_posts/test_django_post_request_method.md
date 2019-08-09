@@ -3,9 +3,9 @@ tags: [python,技术]
 date: 2015-08-14 13:24:01
 ---
 
-Django 是一个强大的 Web 框架。  
-不过，  
-最近在处理各种跨域传输的问题，其中就遇到了一个坑： Django 服务下 IE 8、9 下面通过 XDomainRequest 无法传输数据的问题。  
+Django 是一个强大的 Web 框架。
+不过，
+最近在处理各种跨域传输的问题，其中就遇到了一个坑： Django 服务下 IE 8、9 下面通过 XDomainRequest 无法传输数据的问题。
 <!--more-->
 
 ---
@@ -25,7 +25,7 @@ Django 是一个强大的 Web 框架。
 
 ---
 
-## 验证过程   
+## 验证过程
 
 然后我就开始验证这个过程了。
 
@@ -141,7 +141,7 @@ url(r'^$', 'some_app.views.index', name='test_post'),
             if (this.readyState==4 && this.status==200) {
               console.log(type + ' with XMLHttpRequest: ', this.responseText);
               document.getElementById(type + '-xml').innerHTML = type + ' with XMLHttpRequest respone: <span class="red">' + this.responseText + '</span>';
-              
+
             }
           }
           setTimeout(function() {
@@ -201,7 +201,7 @@ url(r'^$', 'some_app.views.index', name='test_post'),
             if (this.readyState==4 && this.status==200) {
               console.log(type + ' with XMLHttpRequest: ', this.responseText);
               document.getElementById(type + '-xml').innerHTML = type + ' with XMLHttpRequest respone: <span class="red">' + this.responseText + '</span>';
-              
+
             }
           }
           setTimeout(function() {
@@ -235,12 +235,12 @@ Django 在处理 XDomainRequest 的 POST 请求时候确实没有正确解析。
 提供一种可行的解决方式，强行解析 body 即可。
 
 ```python
-from django.http import QueryDict  
+from django.http import QueryDict
 QueryDict(request.body)
 ```
 具体怎么用，就看后面了。
 
-## 测试环境  
+## 测试环境
 
 后端环境：
 

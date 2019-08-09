@@ -1,6 +1,9 @@
 title: 汤姆大叔 深入理解JavaScript系列（20）：《你真懂JavaScript吗？》答案详解 后六道题答案
 tags: []
 date: 2014-02-03 15:00:00
+show: hide
+hidden: true
+visible: hide
 ---
 
 原题目地址：http://www.cnblogs.com/TomXu/archive/2012/02/10/2342098.html
@@ -64,7 +67,7 @@ Object.prototype.myLength = function(){
 }
 var objArr = [
   {a:1, b:2, c:5, d:7, e:8, g:0, h:12, i:5, v:9, w:9, x:9, y:9, z: 15},
-  {a:2, b:2, c:5, d:7, e:8, g:0, h:12, i:5, j:7, k:5, l:9, m:9, n:0, o:1, p:9, x:9, y:9, z:9 }, 
+  {a:2, b:2, c:5, d:7, e:8, g:0, h:12, i:5, j:7, k:5, l:9, m:9, n:0, o:1, p:9, x:9, y:9, z:9 },
   {a:3, b:2, c:5, d:7, e:8, g:0, h:12, i:5, j:7, k:5, l:9, m:9, n:0, o:1, p:9, q:0 },
   {a:4, b:2, c:5, d:7, e:8, g:0, h:12, i:5, j:7, k:5, w:9, x:9, y:9, z:9 },
   {a:5, b:2, c:5, d:7, e:8, g:0, h:12, i:5, j:7, k:5, v:9, w:9, x:9, y:9, z:9 },

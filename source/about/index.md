@@ -3,8 +3,8 @@ date: 2016-02-23 20:27:17
 comments: false
 ---
 
-一枚前端，目前在广州。
-曾经北漂过，如今还是呆在广州。
+一个前端程序员，目前在广州。
+曾经北漂过，如今还是留着在广州。
 
 ---
 
@@ -25,7 +25,7 @@ comments: false
 - 工作年限：3 年
 - Github：[http://github.com/shenqihui](http://github.com/shenqihui)
 - 博客：[http://blog.shenqh.com](http://blog.shenqh.com)
-- 期望职位：前端开发工程师
+- 职位：前端开发
 
 ---
 

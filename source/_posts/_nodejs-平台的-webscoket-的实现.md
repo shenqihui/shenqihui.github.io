@@ -1,6 +1,9 @@
 title: nodejs 平台的 webscoket 的实现
 tags: [javascript,技术,前端]
 date: 2013-08-07 04:43:00
+show: hide
+hidden: true
+visible: hide
 ---
 
 新手入门，没办法，只能选择不断不断的 google 吧。
@@ -106,7 +109,7 @@ var socketServer = require('./socketServer').init(9000);
         console.log(e);
       }
     })();
-    
+
     $(function() {
       if (wsConn) {
         wsConn.onopen = function() {

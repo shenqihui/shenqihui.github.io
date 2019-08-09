@@ -1,6 +1,9 @@
- title : 探讨 css 中 repaint 和 reflow 
+ title : 探讨 css 中 repaint 和 reflow
  tags : []
  date : 2014-02-12 05:47:00
+ show: hide
+ hidden: true
+ visible: hide
 ---
 
 **前言：**
@@ -53,10 +56,10 @@
 下面是大神 Nicole   Sullivan 的原话：
 
 > 1.   Change   classes   on   the   element   you   wish   to   style  ( as   low   in   the   dom   tree   as   possible )
-> 2.   Avoid   setting   multiple   inline   styles 
-> 3.   Apply   animations   to   elements   that   are   position   fixed   or   absolute 
-> 4.   Trade   smoothness   for   speed 
-> 5.   Avoid   tables   for   layout 
+> 2.   Avoid   setting   multiple   inline   styles
+> 3.   Apply   animations   to   elements   that   are   position   fixed   or   absolute
+> 4.   Trade   smoothness   for   speed
+> 5.   Avoid   tables   for   layout
 > 6.   Avoid   JavaScript   expressions   in   the   CSS ( IE   only )
 
 1.  **尽可能在 DOM 末梢通过改变 class 来修改元素的 style 属性**：尽可能的减少受影响的 DOM 元素。

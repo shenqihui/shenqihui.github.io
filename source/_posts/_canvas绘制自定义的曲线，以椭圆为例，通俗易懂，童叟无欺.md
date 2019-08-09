@@ -1,6 +1,9 @@
 title: canvas绘制自定义的曲线，以椭圆为例，通俗易懂，童叟无欺
 tags: [javascript,技术]
 date: 2013-08-21 04:57:00
+show: hide
+hidden: true
+visible: hide
 ---
 
 本篇文章，将讲述如何通过自定义的曲线函数，使用 canvas 的方式进行曲线的绘制。
@@ -40,9 +43,9 @@ date: 2013-08-21 04:57:00
 [百度百科](http://baike.baidu.com/link?url=pbwLlXdKGl18oSg94MhDTzfi-http://baike.baidu.com/link?url=pbwLlXdKGl18oSg94MhDTzfi-s1HNoSmCs9EfZ3PeGy0hJSE0suePuZqvO7D92Zi)里面讲到，
 
 > 椭圆的标准方程有两种，取决于焦点所在的坐标轴：
-> 
+>
 > 1）焦点在X轴时，标准方程为：x&sup2;/a&sup2;+y&sup2;/b&sup2;=1 (a&gt;b&gt;0)
-> 
+>
 > 2）焦点在Y轴时，标准方程为：y&sup2;/a&sup2;+x&sup2;/b&sup2;=1 (a&gt;b&gt;0)
 
 其实两个概念差不多一样，将a 和 b在方程中的位置对调就行。不详细讲。
@@ -67,7 +70,7 @@ x² = a²b² / (b²+a²(tanθ)²)，代入 y = xtanθ，并进行化简得出  x
 
 ```javascript
 /*
-  func: 
+  func:
         ellipseFunc:return the length
   args:
         a:[number] ellipse's a
@@ -82,18 +85,18 @@ function ellipseFunc(a,b,theta) {
 
 3、画一个点
 
-既然曲线函数完毕，下面就行画图了，先从画一个点来说，网上很对关于描绘一个点的帖子，我选了 ctx. [fillRect](http://www.w3schools.com/tags/canvas_fillrect.asp) (x,y,a,b)，这是绘制矩形的函数，x、y 为绘制矩形的起点，就是左上角，设置 a=b=1 ，就能绘制一个长宽各为 1px 大小的矩阵，个人喜欢使用其他也行。 
+既然曲线函数完毕，下面就行画图了，先从画一个点来说，网上很对关于描绘一个点的帖子，我选了 ctx. [fillRect](http://www.w3schools.com/tags/canvas_fillrect.asp) (x,y,a,b)，这是绘制矩形的函数，x、y 为绘制矩形的起点，就是左上角，设置 a=b=1 ，就能绘制一个长宽各为 1px 大小的矩阵，个人喜欢使用其他也行。
 
 下面是绘制一个点的函数，填充风格没有定义，在传入 _ctx 时是什么 [fillStyle](http://www.w3school.com.cn/html5/canvas_fillstyle.asp) 就填充什么风格。
 
 ```javascript
 /*
-  func: 
+  func:
         drawPoint:draw a point
   args:
         _ctx:[object]the canvas's getContent("2d") variable
         point:[object] the point where to draw a dot such as {"x":200,"y":200}
-        strokwidth:[number] the draw line's width and height 
+        strokwidth:[number] the draw line's width and height
 */
 function drawPoint(_ctx,point,strokwidth){
   strokwidth = strokwidth || 1;
@@ -110,7 +113,7 @@ function drawPoint(_ctx,point,strokwidth){
 点的绘制讲述完毕，开始画曲线了，用 for 循环，画图吧。
 ```javascript
 /*
-  func: 
+  func:
         drawShape:draw a shape
   args:
         canvasId:[string]the canvas's id
@@ -162,7 +165,7 @@ drawShape("myCanvas",ellipseFunc,{"a":300,"b":200},{"x":400,"y":400});
 
 <script>
   /*
-    func: 
+    func:
           ellipseFunc:return the length
     args:
           a:[number] ellipse's a
@@ -175,12 +178,12 @@ drawShape("myCanvas",ellipseFunc,{"a":300,"b":200},{"x":400,"y":400});
   }
 
   /*
-    func: 
+    func:
           drawPoint:draw a point
     args:
           _ctx:[object]the canvas's getContent("2d") variable
           point:[object] the point where to draw a dot such as {"x":200,"y":200}
-          strokwidth:[number] the draw line's width and height 
+          strokwidth:[number] the draw line's width and height
   */
   function drawPoint(_ctx,point,strokwidth){
     strokwidth = strokwidth || 1;
@@ -192,7 +195,7 @@ drawShape("myCanvas",ellipseFunc,{"a":300,"b":200},{"x":400,"y":400});
   }
 
   /*
-    func: 
+    func:
           drawShape:draw a shape
     args:
           canvasId:[string]the canvas's id

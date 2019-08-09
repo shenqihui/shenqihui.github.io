@@ -7,30 +7,32 @@ comments: false
 ---
 
 ## 联系方式
-手机: 13450XXXXXX  /  Email: XXXXXX@gmail.com  /  微信号: XXXXXX
+手机: 13450XXXXXX  /  Email: XXXX@gmail.com or XXX@qq.com  /  微信号: XXX
 
 ---
 
 ## 个人信息
 
 - XXX / 男 / XXXX
-- 本科 / XXXXXX / XXXX学院 / XXXX (XXXX~XXXX)
-- 工作年限: 5+ 年
+- 本科 / XXXX大学 / XXXX学院 / XXXX (XXXX~XXXX)
+- 工作年限: 6+ 年
 - Github: [github.com/shenqihui](https://github.com/shenqihui) / Gist: [gist.github.com/shenqihui](https://gist.github.com/shenqihui) / 博客: [blog.shenqh.com](http://blog.shenqh.com)
-- 期望职位: 前端开发
+- 职位: 前端开发
 
 ---
 
 ## 简历总结
-现在的工作中，主要负责公司部分项目的前端架构以及功能开发，主要使用的技能点有 React / antd / dva / RESTful / graphql / Scss / Less / wepy (微信小程序框架, [1.4.3](https://github.com/Tencent/wepy/blob/2.0.x/CHANGELOG.md#143-2017-02-22) 版本有参与[开发及建议](https://github.com/Tencent/wepy/pulls?utf8=%E2%9C%93&q=author%3Ashenqihui))。
-在以往的工作中，曾使用 Angular 1 / Python + Django / ES,Mysql,Redis,Mongo / Docker ，目前由于业务没用上，基本上处于技能闲置状态。
+现在的工作中，主要负责 前端技术的架构 、 前端人员招聘到培养管理 、 部门开发任务分发安排。
+主要使用的技能点有 React / antd / dva / RESTful / graphql / Scss / Less / Taro / git 。
+在以往的工作中，曾使用 Angular 1 / wepy / Python + Django / ES,Mysql,Redis,Mongo ，目前由于业务没用上，基本上处于技能闲置状态。
 
 ---
 
 ## 工作经历
 
 ### 广东青藤教育 (2015 年 05 月 ~ 至今, 前端开发)
-负责管理后台及微信小程序等项目的前端基础架构及功能的编写，维护公司部分 IT 基础信息。
+负责管理后台及微信小程序等项目的前端基础架构及功能的编写，维护公司 IT 基础信息。
+公司大部分项目为前后端分离方案，开发阶段已经全部使用 nignx 进行转发处理。
 
 #### 宫主帮管理系统 + 智慧宫定制版本 (2015 年 05 月 ~ 至今 )
 负责 PC 端管理系统 / 微信小程序的架构以及开发，参与 PC + 微信小程序 + M 站的开发，项目一直处于功能开发及维护中。
@@ -70,10 +72,10 @@ comments: false
 ## 技能清单
 以下为我熟练使用的技能 / 工具
 
-- 前端框架/库/工具: React / Wepy / axios + jwt / Webpack / parcel / gulp
-- 开发工具: Mac / Ubuntu / ST3 / vi / Vagrant / git / Github Desktop / Sketch / Nginx
+- 前端框架/库/工具: React / Taro / axios + jwt / Webpack / parcel / gulp
+- 开发工具: Mac / Ubuntu / VS Code / ST3 / vi / Vagrant / git / Github Desktop / Sketch / Nginx
 - 其他: rsync / tmux / Sass / Less / Sentry / Hotjar / Webhook / eslint
 
 曾经熟练掌握的技能: Fabric / Python + Django / thinkjs / Docker / Angular (目前公司已经转型 React，ng 旧项目处于维护阶段)
 
-另外，熟悉 XSS 等网站安全知识 / ES,Redis,MySQL,Mongo / Karma 。(两年多之前的工作使用，目前有点生疏)
+另外，熟悉 XSS 等网站安全知识 / ES,Redis,MySQL,Mongo / Karma 。(曾从事一年半网络安全方向的工作，目前有点生疏)

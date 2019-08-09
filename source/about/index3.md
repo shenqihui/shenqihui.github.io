@@ -9,7 +9,7 @@ comments: false
 
 - 手机：134XXXXXXXX
 - Email：shenXXXXXXXXX@gmail.com
-- 微信号：iuhiqnehs
+- 微信号：xxxxxxxxx
 
 ---
 
@@ -22,7 +22,7 @@ comments: false
 - 工作年限：3 年
 - Github：[http://github.com/shenqihui](http://github.com/shenqihui)
 - 博客：[http://blog.shenqh.com](http://blog.shenqh.com)
-- 期望职位：前端开发工程师
+- 职位：前端开发
 
 ---
 

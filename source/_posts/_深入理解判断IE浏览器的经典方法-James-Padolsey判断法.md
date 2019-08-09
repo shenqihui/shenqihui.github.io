@@ -1,6 +1,9 @@
 title: 深入理解判断IE浏览器的经典方法-James Padolsey判断法
 tags: [javascript,技术,前端]
 date: 2012-07-20 02:11:00
+show: hide
+hidden: true
+visible: hide
 ---
 
 标题这样子，是为了吸引眼球，至于是不是 James Padolsey 原创的方法，网上是这么流传的就是了。菜鸟习作，写的不好，请轻拍。如果错误，请指出，感谢。
@@ -64,9 +67,9 @@ while (
 其实，能改成另外一种符合常人思维的形式。如下
 
 ```javascript
-do {  
-  div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->';         
-} while(all[0])  
+do {
+  div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->';
+} while(all[0])
 ```
 
 改成这样子，while 循环应该能看懂了吧？
@@ -78,9 +81,9 @@ do {
 如
 
 ```javascript
-do {  
-  div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->';         
-}while(all[0]) 
+do {
+  div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->';
+}while(all[0])
 alert(all[0])
 ```
 
@@ -89,9 +92,9 @@ alert(all[0])
 但是，如果将这个写在 while 循环里面，你会发现，最后的那次警告必然是 undefined ，之前的都是 object （IEtester 下面），非IE浏览器的话，只有一个警告，为 undefined。代码如下，
 
 ```javascript
-do {  
+do {
   div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->';
-  alert(all[0])         
+  alert(all[0])
 }while(all[0])
 ```
 

@@ -1,6 +1,9 @@
 title: 探讨javascript面向对象编程
 tags: []
 date: 2014-02-12 05:58:00
+show: hide
+hidden: true
+visible: hide
 ---
 
 **前言：**
@@ -195,12 +198,12 @@ var __extends = function(child,father) {
   for(var property in father) {
     child[property] = father[property];
   }
-  function ctor() { 
-    this.constructor = child; 
-  } 
-  ctor.prototype = parent.prototype; 
-  child.prototype = new ctor(); 
-  child.__super__ = father.prototype; 
+  function ctor() {
+    this.constructor = child;
+  }
+  ctor.prototype = parent.prototype;
+  child.prototype = new ctor();
+  child.__super__ = father.prototype;
 }
 ```
 
